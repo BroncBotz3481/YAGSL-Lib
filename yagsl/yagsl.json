@@ -4,17 +4,197 @@
   "version": "2023.0.1",
   "uuid": "",
   "mavenUrls": [
-    "https://broncbotz3481.github.io/YAGSL-Lib/yagsl/repos/releases"
+    "https://broncbotz3481.github.io/YAGSL-Lib/yagsl/repos/releases",
+    "https://maven.ctr-electronics.com/release/",
+    "https://dev.studica.com/maven/release/2023/",
+    "https://maven.revrobotics.com/"
   ],
   "jsonUrl": "https://broncbotz3481.github.io/YAGSL-Lib/yagsl/yagsl.json",
   "javaDependencies": [
+    {
+      "groupId": "com.revrobotics.frc",
+      "artifactId": "REVLib-java",
+      "version": "2023.1.1"
+    },
+    {
+      "groupId": "com.kauailabs.navx.frc",
+      "artifactId": "navx-frc-java",
+      "version": "2023.0.3"
+    },
+    {
+      "groupId": "com.ctre.phoenix",
+      "artifactId": "api-java",
+      "version": "5.30.2"
+    },
+    {
+      "groupId": "com.ctre.phoenix",
+      "artifactId": "wpiapi-java",
+      "version": "5.30.2"
+    },
     {
       "groupId": "swervelib",
       "artifactId": "YAGSL-java",
       "version": "2023.0.1"
     }
   ],
-  "jniDependencies": [],
+  "jniDependencies": [
+    {
+      "groupId": "com.ctre.phoenix",
+      "artifactId": "cci",
+      "version": "5.30.2",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "linuxathena"
+      ],
+      "simMode": "hwsim"
+    },
+    {
+      "groupId": "com.ctre.phoenix.sim",
+      "artifactId": "cci-sim",
+      "version": "5.30.2",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro",
+      "artifactId": "tools",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "linuxathena"
+      ],
+      "simMode": "hwsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "tools-sim",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simTalonSRX",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simTalonFX",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simVictorSPX",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simPigeonIMU",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simCANCoder",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simProTalonFX",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simProCANcoder",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    },
+    {
+      "groupId": "com.ctre.phoenixpro.sim",
+      "artifactId": "simProPigeon2",
+      "version": "23.0.1",
+      "isJar": false,
+      "skipInvalidPlatforms": true,
+      "validPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal"
+      ],
+      "simMode": "swsim"
+    }
+  ],
   "cppDependencies": [
     {
       "groupId": "swervelib",
