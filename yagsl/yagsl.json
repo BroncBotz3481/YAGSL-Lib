@@ -1,0 +1,35 @@
+{
+  "fileName": "yagsl.json",
+  "name": "YAGSL",
+  "version": "2023.0.1",
+  "uuid": "",
+  "mavenUrls": [
+    "https://broncbotz3481.github.io/YAGSL-Lib/repos/releases"
+  ],
+  "jsonUrl": "https://broncbotz3481.github.io/YAGSL-Lib/yagsl.json",
+  "javaDependencies": [
+    {
+      "groupId": "swervelib",
+      "artifactId": "YAGSL-java",
+      "version": "2023.0.1"
+    }
+  ],
+  "jniDependencies": [],
+  "cppDependencies": [
+    {
+      "groupId": "swervelib",
+      "artifactId": "YAGSL-java",
+      "version": "2023.0.1",
+      "libName": "YAGSL",
+      "headerClassifier": "headers",
+      "sharedLibrary": false,
+      "skipInvalidPlatforms": true,
+      "binaryPlatforms": [
+        "windowsx86-64",
+        "linuxx86-64",
+        "osxuniversal",
+        "linuxathena"
+      ]
+    }
+  ]
+}
