@@ -128,13 +128,13 @@ build.dependsOn outputJar
 
 libraryBuild.dependsOn build
 
-def releasesRepoUrl = "yagsl/repos/releases"
+def releasesRepoUrl = "$buildDir/repos/releases"
 
 publishing {
     repositories {
         maven {
 
-            url = releasesRepoUrl
+            url = [releasesRepoUrl, 'repos/']
         }
     }
 }
