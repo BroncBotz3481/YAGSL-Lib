@@ -49,7 +49,7 @@ public class SwerveDrive {
   /**
    * Creates a new swerve drivebase subsystem. Robot is controlled via the {@link SwerveDrive#drive}
    * method, or via the {@link SwerveDrive#setModuleStates} method. The {@link SwerveDrive#drive}
-   * method incorporates kinematics— it takes a translation and rotation, as well as parameters for
+   * method incorporates kinematics- it takes a translation and rotation, as well as parameters for
    * field-centric and closed-loop velocity control. {@link SwerveDrive#setModuleStates} takes a
    * list of SwerveModuleStates and directly passes them to the modules. This subsystem also handles
    * odometry.
