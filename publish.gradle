@@ -134,7 +134,7 @@ publishing {
     repositories {
         maven {
 
-            url = [releasesRepoUrl, 'repos/']
+            url = releasesRepoUrl
         }
     }
 }
