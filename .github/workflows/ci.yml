@@ -31,6 +31,8 @@ jobs:
         run: |
           git config --global --add safe.directory /__w/YAGSL-Lib/YAGSL-Lib
           git fetch --prune --unshallow
+      - name: Install Toolchains
+        run: ./gradlew installRoboRioToolchain
       - name: Build with Gradle
         run: ./gradlew build --max-workers 1 ${{ matrix.build-options }}
       - uses: actions/upload-artifact@v3
@@ -62,6 +64,8 @@ jobs:
           distribution: 'zulu'
           java-version: 17
           architecture: ${{ matrix.architecture }}
+      - name: Install Toolchains
+        run: ./gradlew installRoboRioToolchain
       - name: Build with Gradle
         run: ./gradlew build -Pbuildalldesktop
       - uses: actions/upload-artifact@v3
