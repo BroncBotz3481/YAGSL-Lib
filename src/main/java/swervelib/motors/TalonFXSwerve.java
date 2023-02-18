@@ -5,9 +5,10 @@ import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-// import frc.robot.Robot;
+import edu.wpi.first.wpilibj.RobotBase;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
+import swervelib.simulation.ctre.PhysicsSim;
 
 /**
  * {@link com.ctre.phoenix.motorcontrol.can.TalonFX} Swerve Motor. Made by Team 1466 WebbRobotics.
@@ -43,10 +44,9 @@ public class TalonFXSwerve extends SwerveMotor {
     factoryDefaults();
     clearStickyFaults();
 
-    // if (!Robot.isReal())
-    // {
-    //   PhysicsSim.getInstance().addTalonFX(motor, .25, 6800);
-    // }
+    if (RobotBase.isSimulation()) {
+      PhysicsSim.getInstance().addTalonFX(motor, .25, 6800);
+    }
   }
 
   /**
@@ -241,10 +241,9 @@ public class TalonFXSwerve extends SwerveMotor {
    */
   @Override
   public void setReference(double setpoint, double feedforward) {
-    // if (!Robot.isReal())
-    // {
-    //   PhysicsSim.getInstance().run();
-    // }
+    if (RobotBase.isSimulation()) {
+      PhysicsSim.getInstance().run();
+    }
 
     burnFlash();
 
@@ -292,7 +291,7 @@ public class TalonFXSwerve extends SwerveMotor {
    */
   @Override
   public void setPosition(double position) {
-    if (!absoluteEncoder) {
+    if (!absoluteEncoder && !RobotBase.isSimulation()) {
       motor.setSelectedSensorPosition(convertToNativeSensorUnits(position));
     }
   }

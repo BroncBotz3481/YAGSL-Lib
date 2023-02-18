@@ -11,10 +11,10 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import frc.robot.Robot;
 import java.util.ArrayList;
 import java.util.List;
 import swervelib.imu.SwerveIMU;
@@ -49,7 +49,7 @@ public class SwerveDrive {
   /**
    * Creates a new swerve drivebase subsystem. Robot is controlled via the {@link SwerveDrive#drive}
    * method, or via the {@link SwerveDrive#setModuleStates} method. The {@link SwerveDrive#drive}
-   * method incorporates kinematics- it takes a translation and rotation, as well as parameters for
+   * method incorporates kinematics-- it takes a translation and rotation, as well as parameters for
    * field-centric and closed-loop velocity control. {@link SwerveDrive#setModuleStates} takes a
    * list of SwerveModuleStates and directly passes them to the modules. This subsystem also handles
    * odometry.
@@ -68,14 +68,12 @@ public class SwerveDrive {
 
     // Create an integrator for angle if the robot is being simulated to emulate an IMU
     // If the robot is real, instantiate the IMU instead.
-    // if (!Robot.isReal())
-    // {
-    //   simIMU = new SwerveIMUSimulation();
-    // } else
-    // {
-    imu = config.imu;
-    imu.factoryDefault();
-    // }
+    if (RobotBase.isSimulation()) {
+      simIMU = new SwerveIMUSimulation();
+    } else {
+      imu = config.imu;
+      imu.factoryDefault();
+    }
 
     this.swerveModules = config.modules;
 
@@ -249,13 +247,11 @@ public class SwerveDrive {
   public void zeroGyro() {
     // Resets the real gyro or the angle accumulator, depending on whether the robot is being
     // simulated
-    // if (Robot.isReal())
-    // {
-    imu.setYaw(0);
-    // } else
-    // {
-    //   simIMU.setAngle(0);
-    // }
+    if (!RobotBase.isSimulation()) {
+      imu.setYaw(0);
+    } else {
+      simIMU.setAngle(0);
+    }
     swerveController.lastAngle = 0;
     resetOdometry(new Pose2d(getPose().getTranslation(), new Rotation2d()));
   }
@@ -267,15 +263,13 @@ public class SwerveDrive {
    */
   public Rotation2d getYaw() {
     // Read the imu if the robot is real or the accumulator if the robot is simulated.
-    // if (Robot.isReal())
-    // {
-    double[] ypr = new double[3];
-    imu.getYawPitchRoll(ypr);
-    return Rotation2d.fromDegrees(swerveDriveConfiguration.invertedIMU ? 360 - ypr[0] : ypr[0]);
-    // } else
-    // {
-    //   return simIMU.getYaw();
-    // }
+    if (!RobotBase.isSimulation()) {
+      double[] ypr = new double[3];
+      imu.getYawPitchRoll(ypr);
+      return Rotation2d.fromDegrees(swerveDriveConfiguration.invertedIMU ? 360 - ypr[0] : ypr[0]);
+    } else {
+      return simIMU.getYaw();
+    }
   }
 
   /**
@@ -285,15 +279,13 @@ public class SwerveDrive {
    */
   public Rotation2d getPitch() {
     // Read the imu if the robot is real or the accumulator if the robot is simulated.
-    // if (Robot.isReal())
-    // {
-    double[] ypr = new double[3];
-    imu.getYawPitchRoll(ypr);
-    return Rotation2d.fromDegrees(swerveDriveConfiguration.invertedIMU ? 360 - ypr[1] : ypr[1]);
-    // } else
-    // {
-    //   return simIMU.getPitch();
-    // }
+    if (!RobotBase.isSimulation()) {
+      double[] ypr = new double[3];
+      imu.getYawPitchRoll(ypr);
+      return Rotation2d.fromDegrees(swerveDriveConfiguration.invertedIMU ? 360 - ypr[1] : ypr[1]);
+    } else {
+      return simIMU.getPitch();
+    }
   }
 
   /**
@@ -303,15 +295,13 @@ public class SwerveDrive {
    */
   public Rotation2d getRoll() {
     // Read the imu if the robot is real or the accumulator if the robot is simulated.
-    // if (Robot.isReal())
-    // {
-    double[] ypr = new double[3];
-    imu.getYawPitchRoll(ypr);
-    return Rotation2d.fromDegrees(swerveDriveConfiguration.invertedIMU ? 360 - ypr[2] : ypr[2]);
-    // } else
-    // {
-    //   return simIMU.getRoll();
-    // }
+    if (!RobotBase.isSimulation()) {
+      double[] ypr = new double[3];
+      imu.getYawPitchRoll(ypr);
+      return Rotation2d.fromDegrees(swerveDriveConfiguration.invertedIMU ? 360 - ypr[2] : ypr[2]);
+    } else {
+      return simIMU.getRoll();
+    }
   }
 
   /**
@@ -321,18 +311,16 @@ public class SwerveDrive {
    */
   public Rotation3d getGyroRotation3d() {
     // Read the imu if the robot is real or the accumulator if the robot is simulated.
-    // if (Robot.isReal())
-    // {
-    double[] ypr = new double[3];
-    imu.getYawPitchRoll(ypr);
-    return new Rotation3d(
-        Math.toRadians(swerveDriveConfiguration.invertedIMU ? 360 - ypr[2] : ypr[2]),
-        Math.toRadians(swerveDriveConfiguration.invertedIMU ? 360 - ypr[1] : ypr[1]),
-        Math.toRadians(swerveDriveConfiguration.invertedIMU ? 360 - ypr[0] : ypr[0]));
-    // } else
-    // {
-    //   return simIMU.getGyroRotation3d();
-    // }
+    if (!RobotBase.isSimulation()) {
+      double[] ypr = new double[3];
+      imu.getYawPitchRoll(ypr);
+      return new Rotation3d(
+          Math.toRadians(swerveDriveConfiguration.invertedIMU ? 360 - ypr[2] : ypr[2]),
+          Math.toRadians(swerveDriveConfiguration.invertedIMU ? 360 - ypr[1] : ypr[1]),
+          Math.toRadians(swerveDriveConfiguration.invertedIMU ? 360 - ypr[0] : ypr[0]));
+    } else {
+      return simIMU.getGyroRotation3d();
+    }
   }
 
   /**
@@ -395,12 +383,13 @@ public class SwerveDrive {
     swerveDrivePoseEstimator.update(getYaw(), getModulePositions());
 
     // Update angle accumulator if the robot is simulated
-    // if (!Robot.isReal())
-    // {
-    //   simIMU.updateOdometry(kinematics, getStates(),
-    //
-    // getSwerveModulePoses(swerveDrivePoseEstimator.getEstimatedPosition()), field);
-    // }
+    if (RobotBase.isSimulation()) {
+      simIMU.updateOdometry(
+          kinematics,
+          getStates(),
+          getSwerveModulePoses(swerveDrivePoseEstimator.getEstimatedPosition()),
+          field);
+    }
 
     field.setRobotPose(swerveDrivePoseEstimator.getEstimatedPosition());
 
@@ -457,14 +446,11 @@ public class SwerveDrive {
           robotPose.getRotation(), getModulePositions(), robotPose);
     }
 
-    // if (Robot.isReal())
-    // {
-    imu.setYaw(swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getDegrees());
-    // Yaw reset recommended by Team 1622
-    // } else
-    // {
-    //
-    // simIMU.setAngle(swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getRadians());
-    // }
+    if (!RobotBase.isSimulation()) {
+      imu.setYaw(swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getDegrees());
+      // Yaw reset recommended by Team 1622
+    } else {
+      simIMU.setAngle(swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getRadians());
+    }
   }
 }

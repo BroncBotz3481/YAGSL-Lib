@@ -4,6 +4,7 @@ import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.math.SwerveModuleState2;
@@ -91,10 +92,9 @@ public class SwerveModule {
     driveMotor.burnFlash();
     angleMotor.burnFlash();
 
-    // if (!Robot.isReal())
-    // {
-    //   simModule = new SwerveModuleSimulation();
-    // }
+    if (RobotBase.isSimulation()) {
+      simModule = new SwerveModuleSimulation();
+    }
 
     lastAngle = getState().angle.getDegrees();
   }
@@ -144,11 +144,9 @@ public class SwerveModule {
         angle, Math.toDegrees(desiredState.omegaRadPerSecond) * configuration.angleKV);
     lastAngle = angle;
 
-    // if (!Robot.isReal())
-    // {
-    //   simModule.updateStateAndPosition(desiredState);
-    // }
-
+    if (RobotBase.isSimulation()) {
+      simModule.updateStateAndPosition(desiredState);
+    }
   }
 
   /**
@@ -170,15 +168,13 @@ public class SwerveModule {
     double velocity;
     Rotation2d azimuth;
     double omega;
-    // if (Robot.isReal())
-    // {
-    velocity = driveMotor.getVelocity();
-    azimuth = Rotation2d.fromDegrees(angleMotor.getPosition());
-    omega = Math.toRadians(angleMotor.getVelocity());
-    // } else
-    // {
-    //   return simModule.getState();
-    // }
+    if (!RobotBase.isSimulation()) {
+      velocity = driveMotor.getVelocity();
+      azimuth = Rotation2d.fromDegrees(angleMotor.getPosition());
+      omega = Math.toRadians(angleMotor.getVelocity());
+    } else {
+      return simModule.getState();
+    }
     return new SwerveModuleState2(velocity, azimuth, omega);
   }
 
@@ -190,14 +186,12 @@ public class SwerveModule {
   public SwerveModulePosition getPosition() {
     double position;
     Rotation2d azimuth;
-    // if (Robot.isReal())
-    // {
-    position = driveMotor.getPosition();
-    azimuth = Rotation2d.fromDegrees(angleMotor.getPosition());
-    // } else
-    // {
-    //   return simModule.getPosition();
-    // }
+    if (!RobotBase.isSimulation()) {
+      position = driveMotor.getPosition();
+      azimuth = Rotation2d.fromDegrees(angleMotor.getPosition());
+    } else {
+      return simModule.getPosition();
+    }
     SmartDashboard.putNumber("Module " + moduleNumber + "Angle", azimuth.getDegrees());
     return new SwerveModulePosition(position, azimuth);
   }
