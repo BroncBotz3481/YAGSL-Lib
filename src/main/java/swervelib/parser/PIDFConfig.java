@@ -14,6 +14,8 @@ public class PIDFConfig {
   public double d;
   /** Feedforward value for PID. */
   public double f;
+  /** Feedforward scalar for PID applied dynamically. */
+  public double fscalar = 1;
   /** Integral zone of the PID. */
   public double iz;
 
