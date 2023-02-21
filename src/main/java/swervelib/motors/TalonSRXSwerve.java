@@ -15,10 +15,10 @@ public class TalonSRXSwerve extends SwerveMotor {
 
   /** Factory default already occurred. */
   private final boolean factoryDefaultOccurred = false;
-  /** TalonSRX motor controller. */
-  WPI_TalonSRX motor;
   /** Whether the absolute encoder is integrated. */
   private final boolean absoluteEncoder = false;
+  /** TalonSRX motor controller. */
+  WPI_TalonSRX motor;
   /** The position conversion factor. */
   private double positionConversionFactor = 1;
 

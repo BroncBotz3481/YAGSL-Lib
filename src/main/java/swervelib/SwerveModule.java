@@ -102,7 +102,7 @@ public class SwerveModule {
   /** Synchronize the integrated angle encoder with the absolute encoder. */
   public void synchronizeEncoders() {
     if (absoluteEncoder != null) {
-      angleMotor.setPosition(absoluteEncoder.getAbsolutePosition() - angleOffset);
+      angleMotor.setPosition(getAbsolutePosition() - angleOffset);
     }
   }
 
@@ -202,7 +202,12 @@ public class SwerveModule {
    * @return Absolute encoder angle in degrees.
    */
   public double getAbsolutePosition() {
-    return absoluteEncoder.getAbsolutePosition();
+    double angle = absoluteEncoder.getAbsolutePosition();
+    if (absoluteEncoder.readingError) {
+      angle = getRelativePosition();
+    }
+
+    return angle;
   }
 
   /**
