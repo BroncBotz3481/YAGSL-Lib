@@ -19,10 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import swervelib.imu.SwerveIMU;
 import swervelib.math.SwerveKinematics2;
+import swervelib.math.SwerveMath;
 import swervelib.math.SwerveModuleState2;
 import swervelib.parser.SwerveControllerConfiguration;
 import swervelib.parser.SwerveDriveConfiguration;
 import swervelib.simulation.SwerveIMUSimulation;
+import swervelib.telemetry.SwerveDriveTelemetry;
 
 /** Swerve Drive class representing and controlling the swerve drive. */
 public class SwerveDrive {
@@ -91,7 +93,23 @@ public class SwerveDrive {
                 0.9)); // x,y,heading in radians; Vision measurement std dev, higher=less weight
 
     zeroGyro();
+
+    // Initialize Telemetry
     SmartDashboard.putData("Field", field);
+
+    SwerveDriveTelemetry.maxSpeed = swerveDriveConfiguration.maxSpeed;
+    SwerveDriveTelemetry.maxAngularVelocity = swerveController.config.maxAngularVelocity;
+    SwerveDriveTelemetry.moduleCount = swerveModules.length;
+    SwerveDriveTelemetry.sizeLeftRight =
+        SwerveMath.getSwerveModule(swerveModules, true, false).moduleLocation.getX()
+            - SwerveMath.getSwerveModule(swerveModules, false, false).moduleLocation.getX();
+    SwerveDriveTelemetry.sizeFrontBack =
+        SwerveMath.getSwerveModule(swerveModules, false, true).moduleLocation.getY()
+            - SwerveMath.getSwerveModule(swerveModules, false, false).moduleLocation.getY();
+    SwerveDriveTelemetry.wheelLocations = new double[SwerveDriveTelemetry.moduleCount * 2];
+    SwerveDriveTelemetry.measuredStates = new double[SwerveDriveTelemetry.moduleCount * 2];
+    SwerveDriveTelemetry.desiredStates = new double[SwerveDriveTelemetry.moduleCount * 2];
+    // TODO: Might need to flip X and Y.
   }
 
   /**
@@ -123,6 +141,9 @@ public class SwerveDrive {
 
     // Display commanded speed for testing
     SmartDashboard.putString("RobotVelocity", velocity.toString());
+    SwerveDriveTelemetry.desiredChassisSpeeds[1] = velocity.vyMetersPerSecond;
+    SwerveDriveTelemetry.desiredChassisSpeeds[0] = velocity.vxMetersPerSecond;
+    SwerveDriveTelemetry.desiredChassisSpeeds[2] = Math.toDegrees(velocity.omegaRadiansPerSecond);
 
     // Calculate required module states via kinematics
     SwerveModuleState2[] swerveModuleStates = kinematics.toSwerveModuleStates(velocity);
@@ -383,22 +404,30 @@ public class SwerveDrive {
     swerveDrivePoseEstimator.update(getYaw(), getModulePositions());
 
     // Update angle accumulator if the robot is simulated
+    Pose2d[] modulePoses = getSwerveModulePoses(swerveDrivePoseEstimator.getEstimatedPosition());
     if (RobotBase.isSimulation()) {
-      simIMU.updateOdometry(
-          kinematics,
-          getStates(),
-          getSwerveModulePoses(swerveDrivePoseEstimator.getEstimatedPosition()),
-          field);
+      simIMU.updateOdometry(kinematics, getStates(), modulePoses, field);
     }
 
     field.setRobotPose(swerveDrivePoseEstimator.getEstimatedPosition());
+    ChassisSpeeds measuredChassisSpeeds = kinematics.toChassisSpeeds(getStates());
+    SwerveDriveTelemetry.measuredChassisSpeeds[1] = measuredChassisSpeeds.vyMetersPerSecond;
+    SwerveDriveTelemetry.measuredChassisSpeeds[0] = measuredChassisSpeeds.vxMetersPerSecond;
+    SwerveDriveTelemetry.measuredChassisSpeeds[2] =
+        Math.toDegrees(measuredChassisSpeeds.omegaRadiansPerSecond);
+    SwerveDriveTelemetry.robotRotation = getYaw().getDegrees();
 
-    double[] moduleStates = new double[swerveModules.length * 2];
     double sumOmega = 0;
     for (SwerveModule module : swerveModules) {
       SwerveModuleState2 moduleState = module.getState();
-      moduleStates[module.moduleNumber] = moduleState.angle.getDegrees();
-      moduleStates[module.moduleNumber + 1] = moduleState.speedMetersPerSecond;
+      SwerveDriveTelemetry.measuredStates[module.moduleNumber * 2] = moduleState.angle.getDegrees();
+      SwerveDriveTelemetry.measuredStates[(module.moduleNumber * 2) + 1] =
+          moduleState.speedMetersPerSecond;
+      SwerveDriveTelemetry.wheelLocations[module.moduleNumber * 2] =
+          modulePoses[module.moduleNumber].getX();
+      SwerveDriveTelemetry.wheelLocations[(module.moduleNumber * 2) + 1] =
+          modulePoses[module.moduleNumber].getY();
+
       sumOmega += Math.abs(moduleState.omegaRadPerSecond);
 
       SmartDashboard.putNumber(
@@ -406,7 +435,6 @@ public class SwerveDrive {
       SmartDashboard.putNumber(
           "Module" + module.moduleNumber + "Absolute Encoder", module.getAbsolutePosition());
     }
-    SmartDashboard.putNumberArray("moduleStates", moduleStates);
 
     // If the robot isn't moving synchronize the encoders every 100ms (Inspired by democrat's SDS
     // lib)
@@ -415,6 +443,8 @@ public class SwerveDrive {
       synchronizeModuleEncoders();
       moduleSynchronizationCounter = 0;
     }
+
+    SwerveDriveTelemetry.updateData();
   }
 
   /** Synchronize angle motor integrated encoders with data from absolute encoders. */
