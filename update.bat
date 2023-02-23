@@ -1,3 +1,3 @@
 ./gradlew.bat :spotlessApply
 ./gradlew.bat publish
-copy /y build/repos/releases/swervelib yagsl/repos/
+xcopy /y build/repos/releases/swervelib yagsl/repos/
