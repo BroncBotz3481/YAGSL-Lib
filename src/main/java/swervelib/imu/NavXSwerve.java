@@ -13,13 +13,17 @@ public class NavXSwerve extends SwerveIMU {
   /** Offset for the NavX yaw reading. */
   private double yawOffset = 0;
 
-  /** Constructor for the NavX swerve. */
-  public NavXSwerve() {
+  /**
+   * Constructor for the NavX swerve.
+   *
+   * @param port Serial Port to connect to.
+   */
+  public NavXSwerve(SerialPort.Port port) {
     try {
       /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
       /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
       /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
-      gyro = new AHRS(SerialPort.Port.kMXP);
+      gyro = new AHRS(port);
       SmartDashboard.putData(gyro);
     } catch (RuntimeException ex) {
       DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
