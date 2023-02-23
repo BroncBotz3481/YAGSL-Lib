@@ -72,7 +72,7 @@ public class SwerveModule {
     if (absoluteEncoder != null) {
       absoluteEncoder.factoryDefault();
       absoluteEncoder.configure(moduleConfiguration.absoluteEncoderInverted);
-      angleMotor.setPosition(absoluteEncoder.getAbsolutePosition() - angleOffset);
+      angleMotor.setPosition(getAbsolutePosition() - angleOffset);
     }
 
     // Config angle motor/controller

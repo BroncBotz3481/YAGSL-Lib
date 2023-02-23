@@ -42,11 +42,11 @@ public class SwerveModuleSimulation {
    */
   public void updateStateAndPosition(SwerveModuleState2 desiredState) {
     dt = timer.get() - lastTime;
-    fakePos += (fakeSpeed * dt);
     lastTime = timer.get();
 
     state = desiredState;
     fakeSpeed = desiredState.speedMetersPerSecond;
+    fakePos += (fakeSpeed * dt);
   }
 
   /**
@@ -55,6 +55,7 @@ public class SwerveModuleSimulation {
    * @return {@link SwerveModulePosition} of the simulated module.
    */
   public SwerveModulePosition getPosition() {
+
     return new SwerveModulePosition(
         fakePos, state.angle.plus(new Rotation2d(state.omegaRadPerSecond * dt)));
   }
