@@ -16,7 +16,7 @@ public class SwerveModulePhysicalCharacteristics {
   public final double angleGearRatio;
   /** Drive motor encoder pulse per rotation. 1 if integrated encoder. */
   public final int driveEncoderPulsePerRotation;
-  /** Angle motor encoder pulse per rotation. 1 if integrated encoder. */
+  /** Angle motor encoder pulse per rotation. 1 for Neo encoder. 2048 for Falcons. */
   public final int angleEncoderPulsePerRotation;
   /** Optimal voltage of the robot. */
   public final double optimalVoltage;
