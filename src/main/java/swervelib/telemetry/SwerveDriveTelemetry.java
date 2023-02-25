@@ -1,5 +1,6 @@
 package swervelib.telemetry;
 
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -8,6 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class SwerveDriveTelemetry {
 
+  /** The current telemetry verbosity level. */
+  public static TelemetryVerbosity verbosity = TelemetryVerbosity.MACHINE;
+  /** State of simulation of the Robot, used to optimize retrieval. */
+  public static boolean isSimulation = RobotBase.isSimulation();
   /** The number of swerve modules */
   public static int moduleCount;
   /** The number of swerve modules */
@@ -62,5 +67,17 @@ public class SwerveDriveTelemetry {
     SmartDashboard.putNumber("swerve/maxAngularVelocity", maxAngularVelocity);
     SmartDashboard.putNumberArray("swerve/measuredChassisSpeeds", measuredChassisSpeeds);
     SmartDashboard.putNumberArray("swerve/desiredChassisSpeeds", desiredChassisSpeeds);
+  }
+
+  /** Verbosity of telemetry data sent back. */
+  public enum TelemetryVerbosity {
+    /** No telemetry data is sent back. */
+    NONE,
+    /** Low telemetry data, only post the robot position on the field. */
+    LOW,
+    /** Full swerve drive data is sent back in both human and machine readable forms. */
+    HIGH,
+    /** Only send the machine readable data related to swerve drive. */
+    MACHINE
   }
 }

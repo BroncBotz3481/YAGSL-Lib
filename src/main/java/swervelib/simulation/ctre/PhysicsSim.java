@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /** Manages physics simulation for CTRE products. */
 public class PhysicsSim {
 
-  private static final PhysicsSim sim = new PhysicsSim();
+  private static PhysicsSim sim;
   private final ArrayList<SimProfile> _simProfiles = new ArrayList<SimProfile>();
 
   /**
@@ -17,6 +17,9 @@ public class PhysicsSim {
    * @return {@link PhysicsSim} instance.
    */
   public static PhysicsSim getInstance() {
+    if (sim == null) {
+      sim = new PhysicsSim();
+    }
     return sim;
   }
 

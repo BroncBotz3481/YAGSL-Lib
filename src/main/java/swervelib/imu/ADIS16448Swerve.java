@@ -24,7 +24,7 @@ public class ADIS16448Swerve extends SwerveIMU {
   /** Reset IMU to factory default. */
   @Override
   public void factoryDefault() {
-    yawOffset = imu.getAngle() % 360;
+    yawOffset = Math.IEEEremainder(imu.getAngle(), 360);
   }
 
   /** Clear sticky faults on IMU. */
@@ -40,7 +40,7 @@ public class ADIS16448Swerve extends SwerveIMU {
    */
   @Override
   public void setYaw(double yaw) {
-    yawOffset = (yaw % 360) + (imu.getAngle() % 360);
+    yawOffset = Math.IEEEremainder(yaw, 360) + Math.IEEEremainder(imu.getAngle(), 360);
   }
 
   /**
@@ -50,9 +50,9 @@ public class ADIS16448Swerve extends SwerveIMU {
    */
   @Override
   public void getYawPitchRoll(double[] yprArray) {
-    yprArray[0] = (imu.getAngle() % 360) - yawOffset;
-    yprArray[1] = imu.getXComplementaryAngle() % 360;
-    yprArray[2] = imu.getYComplementaryAngle() % 360;
+    yprArray[0] = Math.IEEEremainder(imu.getAngle(), 360) - yawOffset;
+    yprArray[1] = Math.IEEEremainder(imu.getXComplementaryAngle(), 360);
+    yprArray[2] = Math.IEEEremainder(imu.getYComplementaryAngle(), 360);
   }
 
   /**
