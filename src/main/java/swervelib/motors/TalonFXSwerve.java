@@ -31,8 +31,8 @@ public class TalonFXSwerve extends SwerveMotor {
   private double positionConversionFactor = 1;
   /** If the TalonFX configuration has changed. */
   private boolean configChanged = true;
-  /** Feedforward scalar value for the angle motor. */
-  private double fscalar = 1;
+  /** Nominal voltage default to use with feedforward. */
+  private double nominalVoltage = 12.0;
 
   /**
    * Constructor for TalonFX swerve motor.
@@ -131,7 +131,6 @@ public class TalonFXSwerve extends SwerveMotor {
   public void configureCANStatusFrames(int CANStatus1) {
     motor.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, CANStatus1);
     // TODO: Configure Status Frame 2 thru 21 if necessary
-    //
     // https://v5.docs.ctr-electronics.com/en/stable/ch18_CommonAPI.html#setting-status-frame-periods
   }
 
@@ -148,7 +147,6 @@ public class TalonFXSwerve extends SwerveMotor {
     configuration.slot0.kF = config.f;
     configuration.slot0.integralZone = config.iz;
     configuration.slot0.closedLoopPeakOutput = config.output.max;
-    fscalar = config.fscalar;
     configChanged = true;
   }
 
@@ -270,8 +268,7 @@ public class TalonFXSwerve extends SwerveMotor {
         isDriveMotor ? ControlMode.Velocity : ControlMode.Position,
         convertToNativeSensorUnits(setpoint),
         DemandType.ArbitraryFeedForward,
-        isDriveMotor ? feedforward : feedforward * fscalar);
-    // Credit to Team 3181 for the -0.3, I'm not sure why it works, but it does.
+        feedforward / nominalVoltage);
   }
 
   /**
@@ -315,6 +312,7 @@ public class TalonFXSwerve extends SwerveMotor {
   public void setVoltageCompensation(double nominalVoltage) {
     configuration.voltageCompSaturation = nominalVoltage;
     configChanged = true;
+    this.nominalVoltage = nominalVoltage;
   }
 
   /**
