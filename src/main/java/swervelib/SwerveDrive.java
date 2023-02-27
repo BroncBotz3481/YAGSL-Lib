@@ -233,11 +233,10 @@ public class SwerveDrive {
       module.setDesiredState(desiredStates[module.moduleNumber], isOpenLoop);
 
       if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal()) {
-        SwerveModuleState2 moduleState = module.getState();
         SwerveDriveTelemetry.desiredStates[module.moduleNumber * 2] =
-            moduleState.angle.getDegrees();
+            desiredStates[module.moduleNumber].angle.getDegrees();
         SwerveDriveTelemetry.desiredStates[(module.moduleNumber * 2) + 1] =
-            moduleState.speedMetersPerSecond;
+            desiredStates[module.moduleNumber].speedMetersPerSecond;
       }
       if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
         SmartDashboard.putNumber(
@@ -553,8 +552,7 @@ public class SwerveDrive {
 
   /**
    * Add a vision measurement to the {@link SwerveDrivePoseEstimator} and update the {@link
-   * SwerveIMU} gyro reading with the given timestamp of the vision measurement. <b>THIS WILL BREAK
-   * IF UPDATED TOO OFTEN.</b>
+   * SwerveIMU} gyro reading with the given timestamp of the vision measurement.
    *
    * @param robotPose Robot {@link Pose2d} as measured by vision.
    * @param timestamp Timestamp the measurement was taken as time since startup, should be taken
