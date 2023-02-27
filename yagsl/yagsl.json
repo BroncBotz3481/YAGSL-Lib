@@ -11,7 +11,7 @@
     {
       "groupId": "swervelib",
       "artifactId": "YAGSL-java",
-      "version": "2023.0.1"
+      "version": "2023.0.3"
     }
   ],
   "jniDependencies": [
