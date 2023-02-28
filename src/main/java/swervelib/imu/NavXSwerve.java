@@ -34,7 +34,7 @@ public class NavXSwerve extends SwerveIMU {
   @Override
   public void factoryDefault() {
     // gyro.reset(); // Reported to be slow
-    yawOffset = Math.IEEEremainder(gyro.getYaw(), 360);
+    yawOffset = gyro.getYaw() % 360;
   }
 
   /** Clear sticky faults on IMU. */
@@ -49,7 +49,7 @@ public class NavXSwerve extends SwerveIMU {
   @Override
   public void setYaw(double yaw) {
     // gyro.reset(); // Reported to be slow using the offset.
-    yawOffset = Math.IEEEremainder(yaw, 360) + Math.IEEEremainder(gyro.getYaw(), 360);
+    yawOffset = (yaw % 360) + (gyro.getYaw() % 360);
   }
 
   /**
@@ -60,9 +60,9 @@ public class NavXSwerve extends SwerveIMU {
   @Override
   public void getYawPitchRoll(double[] yprArray) {
 
-    yprArray[0] = (Math.IEEEremainder(gyro.getYaw(), 360)) - yawOffset;
-    yprArray[1] = Math.IEEEremainder(gyro.getPitch(), 360);
-    yprArray[2] = Math.IEEEremainder(gyro.getRoll(), 360);
+    yprArray[0] = (gyro.getYaw() % 360) - yawOffset;
+    yprArray[1] = (gyro.getPitch() % 360);
+    yprArray[2] = (gyro.getRoll() % 360);
   }
 
   /**
