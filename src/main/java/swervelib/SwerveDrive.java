@@ -55,6 +55,8 @@ public class SwerveDrive {
    * position and degrees of rotation)
    */
   public Matrix<N3, N1> visionMeasurementStdDevs = VecBuilder.fill(0.9, 0.9, 0.9);
+  /** Invert odometry readings of drive motor positions, used as a patch for debugging currently. */
+  public boolean invertOdometry = true;
   /** Swerve IMU device for sensing the heading of the robot. */
   private SwerveIMU imu;
   /** Simulation of the swerve drive. */
@@ -331,7 +333,8 @@ public class SwerveDrive {
   }
 
   /**
-   * Gets the current module positions (azimuth and wheel position (meters))
+   * Gets the current module positions (azimuth and wheel position (meters)). Inverts the distance
+   * from each module if {@link #invertOdometry} is true.
    *
    * @return A list of SwerveModulePositions containg the current module positions
    */
@@ -340,6 +343,9 @@ public class SwerveDrive {
         new SwerveModulePosition[swerveDriveConfiguration.moduleCount];
     for (SwerveModule module : swerveModules) {
       positions[module.moduleNumber] = module.getPosition();
+      if (invertOdometry) {
+        positions[module.moduleNumber].distanceMeters *= -1;
+      }
     }
     return positions;
   }

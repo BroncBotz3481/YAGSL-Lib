@@ -226,8 +226,6 @@ public class SparkMaxSwerve extends SwerveMotor {
   @Override
   public void setInverted(boolean inverted) {
     motor.setInverted(inverted);
-    // TODO: Investigate if inverting the encoder is necessary.
-    //  encoder.setInverted(inverted);
   }
 
   /** Save the configurations from flash to EEPROM. */
