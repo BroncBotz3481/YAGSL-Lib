@@ -33,6 +33,8 @@ public class SwerveModule {
   public SimpleMotorFeedforward feedforward;
   /** Last angle set for the swerve module. */
   public double lastAngle;
+  /** Last velocity set for the swerve module. */
+  public double lastVelocity;
   /** Simulated swerve module. */
   private SwerveModuleSimulation simModule;
 
@@ -133,7 +135,10 @@ public class SwerveModule {
       driveMotor.set(percentOutput);
     } else {
       double velocity = desiredState.speedMetersPerSecond;
-      driveMotor.setReference(velocity, feedforward.calculate(velocity));
+      if (velocity != lastVelocity) {
+        driveMotor.setReference(velocity, feedforward.calculate(velocity));
+      }
+      lastVelocity = velocity;
     }
 
     // Prevents module rotation if speed is less than 1%
@@ -141,8 +146,10 @@ public class SwerveModule {
         (Math.abs(desiredState.speedMetersPerSecond) <= (configuration.maxSpeed * 0.01)
             ? lastAngle
             : desiredState.angle.getDegrees());
-    angleMotor.setReference(
-        angle, Math.toDegrees(desiredState.omegaRadPerSecond) * configuration.angleKV);
+    if (angle != lastAngle) {
+      angleMotor.setReference(
+          angle, Math.toDegrees(desiredState.omegaRadPerSecond) * configuration.angleKV);
+    }
     lastAngle = angle;
 
     if (SwerveDriveTelemetry.isSimulation) {
