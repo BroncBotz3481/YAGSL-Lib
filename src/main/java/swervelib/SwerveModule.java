@@ -99,6 +99,7 @@ public class SwerveModule {
     }
 
     lastAngle = getState().angle.getDegrees();
+    lastVelocity = getState().speedMetersPerSecond;
   }
 
   /** Synchronize the integrated angle encoder with the absolute encoder. */
