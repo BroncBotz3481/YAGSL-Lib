@@ -359,7 +359,7 @@ public class SwerveDrive {
     // Resets the real gyro or the angle accumulator, depending on whether the robot is being
     // simulated
     if (!SwerveDriveTelemetry.isSimulation) {
-      imu.setYaw(0);
+      imu.setOffset(imu.getRawRotation3d());
     } else {
       simIMU.setAngle(0);
     }
@@ -595,7 +595,9 @@ public class SwerveDrive {
     }
 
     if (!SwerveDriveTelemetry.isSimulation) {
-      imu.setYaw(swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getDegrees());
+      imu.setOffset(
+          new Rotation3d(
+              0, 0, swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getRadians()));
       // Yaw reset recommended by Team 1622
     } else {
       simIMU.setAngle(swerveDrivePoseEstimator.getEstimatedPosition().getRotation().getRadians());
@@ -603,11 +605,11 @@ public class SwerveDrive {
   }
 
   /**
-   * Set the Gyroscope offset using a {@link Rotation3d} object. (Only yaw works currently.)
+   * Set the Gyroscope offset using a {@link Rotation3d} object.
    *
    * @param gyro Gyroscope offset.
    */
   public void setGyro(Rotation3d gyro) {
-    imu.setYaw(gyro.getZ());
+    imu.setOffset(gyro);
   }
 }
