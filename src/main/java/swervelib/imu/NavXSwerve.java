@@ -58,7 +58,7 @@ public class NavXSwerve extends SwerveIMU {
    * @param offset gyro offset as a {@link Rotation3d}.
    */
   public void setOffset(Rotation3d offset) {
-    offset = getRotation3d();
+    this.offset = offset;
   }
 
   /**

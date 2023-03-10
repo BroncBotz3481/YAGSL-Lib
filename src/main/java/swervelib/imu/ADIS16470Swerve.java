@@ -47,7 +47,7 @@ public class ADIS16470Swerve extends SwerveIMU {
    * @param offset gyro offset as a {@link Rotation3d}.
    */
   public void setOffset(Rotation3d offset) {
-    offset = getRotation3d();
+    this.offset = offset;
   }
 
   /**

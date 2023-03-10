@@ -42,6 +42,8 @@ public class Pigeon2Swerve extends SwerveIMU {
   @Override
   public void factoryDefault() {
     imu.configFactoryDefault();
+    imu.configEnableCompass(
+        false); // Compass utilization causes readings to jump dramatically in some cases.
   }
 
   /** Clear sticky faults on IMU. */
@@ -56,7 +58,7 @@ public class Pigeon2Swerve extends SwerveIMU {
    * @param offset gyro offset as a {@link Rotation3d}.
    */
   public void setOffset(Rotation3d offset) {
-    offset = getRotation3d();
+    this.offset = offset;
   }
 
   /**
