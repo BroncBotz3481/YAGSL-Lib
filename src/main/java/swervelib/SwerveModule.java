@@ -37,6 +37,8 @@ public class SwerveModule {
   public double lastVelocity;
   /** Simulated swerve module. */
   private SwerveModuleSimulation simModule;
+  /** Encoder synchronization queued. */
+  private boolean synchronizeEncoderQueued = false;
 
   /**
    * Construct the swerve module and initialize the swerve module motors and absolute encoder.
@@ -75,7 +77,7 @@ public class SwerveModule {
     if (absoluteEncoder != null) {
       absoluteEncoder.factoryDefault();
       absoluteEncoder.configure(moduleConfiguration.absoluteEncoderInverted);
-      angleMotor.setPosition(getAbsolutePosition() - angleOffset);
+      angleMotor.setPosition(getAbsolutePosition());
     }
 
     // Config angle motor/controller
@@ -102,15 +104,17 @@ public class SwerveModule {
     lastVelocity = getState().speedMetersPerSecond;
   }
 
-  /** Synchronize the integrated angle encoder with the absolute encoder. */
-  public void synchronizeEncoders() {
+  /** Queue synchronization of the integrated angle encoder with the absolute encoder. */
+  public void queueSynchronizeEncoders() {
     if (absoluteEncoder != null) {
-      angleMotor.setPosition(getAbsolutePosition() - angleOffset);
+      synchronizeEncoderQueued = true;
     }
   }
 
   /**
-   * Set the desired state of the swerve module.
+   * Set the desired state of the swerve module. <br>
+   * <b>WARNING: If you are not using one of the functions from {@link SwerveDrive} you may screw up
+   * {@link SwerveDrive#kinematics}</b>
    *
    * @param desiredState Desired swerve module state.
    * @param isOpenLoop Whether to use open loop (direct percent) or direct velocity control.
@@ -157,9 +161,21 @@ public class SwerveModule {
               ? lastAngle
               : angle;
       // Prevent module rotation if angle is the same as the previous angle.
-      if (angle != lastAngle) {
-        angleMotor.setReference(
-            angle, Math.toDegrees(desiredState.omegaRadPerSecond) * configuration.angleKV);
+      if (angle != lastAngle || synchronizeEncoderQueued) {
+        // Synchronize encoders if queued and send in the current position as the value from the
+        // absolute encoder.
+        if (absoluteEncoder != null && synchronizeEncoderQueued) {
+          double absoluteEncoderPosition = getAbsolutePosition();
+          angleMotor.setPosition(absoluteEncoderPosition);
+          angleMotor.setReference(
+              angle,
+              Math.toDegrees(desiredState.omegaRadPerSecond) * configuration.angleKV,
+              absoluteEncoderPosition);
+          synchronizeEncoderQueued = false;
+        } else {
+          angleMotor.setReference(
+              angle, Math.toDegrees(desiredState.omegaRadPerSecond) * configuration.angleKV);
+        }
       }
     }
     lastAngle = angle;
@@ -221,19 +237,24 @@ public class SwerveModule {
   /**
    * Get the absolute position. Falls back to relative position on reading failure.
    *
-   * @return Absolute encoder angle in degrees.
+   * @return Absolute encoder angle in degrees in the range [0, 360).
    */
   public double getAbsolutePosition() {
+    double angle;
     if (absoluteEncoder != null) {
-      double angle = absoluteEncoder.getAbsolutePosition();
+      angle = absoluteEncoder.getAbsolutePosition() - angleOffset;
       if (absoluteEncoder.readingError) {
         angle = getRelativePosition();
       }
-
-      return angle;
+    } else {
+      angle = getRelativePosition();
+    }
+    angle %= 360;
+    if (angle < 0.0) {
+      angle += 360;
     }
 
-    return getRelativePosition();
+    return angle;
   }
 
   /**

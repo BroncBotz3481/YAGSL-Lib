@@ -9,6 +9,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.Timer;
 import java.util.Arrays;
 import java.util.Collections;
 import org.ejml.simple.SimpleMatrix;
@@ -34,6 +35,10 @@ public class SwerveKinematics2 extends SwerveDriveKinematics {
   private final SwerveModuleState2[] m_moduleStates;
   /** Previous CoR */
   private Translation2d m_prevCoR = new Translation2d();
+
+  private ChassisSpeeds m_prevChassisSpeeds = new ChassisSpeeds();
+  private final Timer m_moduleAccelTimer = new Timer();
+  private double m_prevModuleAccelTime = 0.0;
 
   /**
    * Constructs a swerve drive kinematics object. This takes in a variable number of wheel locations
@@ -64,6 +69,7 @@ public class SwerveKinematics2 extends SwerveDriveKinematics {
           i * 2 + 1, 0, /* Start Data */ 0, 1, -m_modules[i].getY(), +m_modules[i].getX());
     }
     m_forwardKinematics = m_inverseKinematics.pseudoInverse();
+    m_moduleAccelTimer.start();
 
     MathSharedStore.reportUsage(MathUsageId.kKinematics_SwerveDrive, 1);
   }
@@ -159,6 +165,17 @@ public class SwerveKinematics2 extends SwerveDriveKinematics {
   @SuppressWarnings("PMD.MethodReturnsInternalArray")
   public SwerveModuleState2[] toSwerveModuleStates(
       ChassisSpeeds chassisSpeeds, Translation2d centerOfRotationMeters) {
+    var time = m_moduleAccelTimer.get();
+    var dt = time - m_prevModuleAccelTime;
+    m_prevModuleAccelTime = time;
+
+    var accelChassisSpeeds =
+        new ChassisSpeeds(
+            (chassisSpeeds.vxMetersPerSecond - m_prevChassisSpeeds.vxMetersPerSecond) / dt,
+            (chassisSpeeds.vyMetersPerSecond - m_prevChassisSpeeds.vyMetersPerSecond) / dt,
+            (chassisSpeeds.omegaRadiansPerSecond - m_prevChassisSpeeds.omegaRadiansPerSecond) / dt);
+    m_prevChassisSpeeds = chassisSpeeds;
+
     if (chassisSpeeds.vxMetersPerSecond == 0.0
         && chassisSpeeds.vyMetersPerSecond == 0.0
         && chassisSpeeds.omegaRadiansPerSecond == 0.0) {
@@ -208,7 +225,13 @@ public class SwerveKinematics2 extends SwerveDriveKinematics {
     var moduleVelocityStatesMatrix = m_inverseKinematics.mult(chassisSpeedsVector);
 
     var accelerationVector = new SimpleMatrix(4, 1);
-    accelerationVector.setColumn(0, 0, 0, 0, Math.pow(chassisSpeeds.omegaRadiansPerSecond, 2), 0);
+    accelerationVector.setColumn(
+        0,
+        0,
+        accelChassisSpeeds.vxMetersPerSecond,
+        accelChassisSpeeds.vyMetersPerSecond,
+        chassisSpeeds.omegaRadiansPerSecond * chassisSpeeds.omegaRadiansPerSecond,
+        accelChassisSpeeds.omegaRadiansPerSecond);
 
     var moduleAccelerationStatesMatrix = bigInverseKinematics.mult(accelerationVector);
 

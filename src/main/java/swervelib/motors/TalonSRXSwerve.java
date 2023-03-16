@@ -276,11 +276,11 @@ public class TalonSRXSwerve extends SwerveMotor {
    * Convert the setpoint into native sensor units.
    *
    * @param setpoint Setpoint to mutate. In meters per second or degrees.
+   * @param position Position in degrees, only used on angle motors.
    * @return Setpoint as native sensor units. Encoder ticks per 100ms, or Encoder tick.
    */
-  public double convertToNativeSensorUnits(double setpoint) {
-    setpoint =
-        isDriveMotor ? setpoint * .1 : placeInAppropriate0To360Scope(getPosition(), setpoint);
+  public double convertToNativeSensorUnits(double setpoint, double position) {
+    setpoint = isDriveMotor ? setpoint * .1 : placeInAppropriate0To360Scope(position, setpoint);
     return setpoint / positionConversionFactor;
   }
 
@@ -292,6 +292,18 @@ public class TalonSRXSwerve extends SwerveMotor {
    */
   @Override
   public void setReference(double setpoint, double feedforward) {
+    setReference(setpoint, feedforward, getPosition());
+  }
+
+  /**
+   * Set the closed loop PID controller reference point.
+   *
+   * @param setpoint Setpoint in meters per second or angle in degrees.
+   * @param feedforward Feedforward in volt-meter-per-second or kV.
+   * @param position Only used on the angle motor, the position of the motor in degrees.
+   */
+  @Override
+  public void setReference(double setpoint, double feedforward, double position) {
     if (SwerveDriveTelemetry.isSimulation) {
       PhysicsSim.getInstance().run();
     }
@@ -300,7 +312,7 @@ public class TalonSRXSwerve extends SwerveMotor {
 
     motor.set(
         isDriveMotor ? ControlMode.Velocity : ControlMode.Position,
-        convertToNativeSensorUnits(setpoint),
+        convertToNativeSensorUnits(setpoint, position),
         DemandType.ArbitraryFeedForward,
         feedforward / nominalVoltage);
   }
@@ -322,7 +334,16 @@ public class TalonSRXSwerve extends SwerveMotor {
    */
   @Override
   public double getPosition() {
-    return motor.getSelectedSensorPosition() * positionConversionFactor;
+    if (isDriveMotor) {
+      return motor.getSelectedSensorPosition() * positionConversionFactor;
+    } else {
+      var pos = motor.getSelectedSensorPosition() * positionConversionFactor;
+      pos %= 360;
+      if (pos < 360) {
+        pos += 360;
+      }
+      return pos;
+    }
   }
 
   /**
@@ -333,7 +354,6 @@ public class TalonSRXSwerve extends SwerveMotor {
   @Override
   public void setPosition(double position) {
     if (!absoluteEncoder && !SwerveDriveTelemetry.isSimulation) {
-      position = position < 0 ? (position % 360) + 360 : position; // Fixes initial 360 movement.
       motor.setSelectedSensorPosition(position / positionConversionFactor, 0, 250);
     }
   }
