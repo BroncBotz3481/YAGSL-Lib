@@ -254,11 +254,11 @@ public class SparkMaxSwerve extends SwerveMotor {
   public void setReference(double setpoint, double feedforward) {
     int pidSlot =
         isDriveMotor ? SparkMAX_slotIdx.Velocity.ordinal() : SparkMAX_slotIdx.Position.ordinal();
-    pid.setReference(
-        setpoint,
-        isDriveMotor ? ControlType.kVelocity : ControlType.kPosition,
-        pidSlot,
-        feedforward);
+    if (isDriveMotor) {
+      pid.setReference(setpoint, ControlType.kVelocity, pidSlot, feedforward);
+    } else {
+      pid.setReference(setpoint, ControlType.kPosition);
+    }
   }
 
   /**
