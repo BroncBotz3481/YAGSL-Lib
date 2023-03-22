@@ -128,14 +128,6 @@ public class SwerveModule {
     desiredState =
         new SwerveModuleState2(
             simpleState.speedMetersPerSecond, simpleState.angle, desiredState.omegaRadPerSecond);
-    if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
-      SmartDashboard.putNumber(
-          "Optimized " + moduleNumber + " Speed Setpoint: ", desiredState.speedMetersPerSecond);
-      SmartDashboard.putNumber(
-          "Optimized " + moduleNumber + " Angle Setpoint: ", desiredState.angle.getDegrees());
-      SmartDashboard.putNumber(
-          "Module " + moduleNumber + " Omega: ", Math.toDegrees(desiredState.omegaRadPerSecond));
-    }
 
     if (isOpenLoop) {
       double percentOutput = desiredState.speedMetersPerSecond / configuration.maxSpeed;
@@ -162,6 +154,14 @@ public class SwerveModule {
     // Ensure the angle is above 0
     while (angle < 0) {
       angle += 360;
+    }
+
+    if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
+      SmartDashboard.putNumber(
+          "Optimized " + moduleNumber + " Speed Setpoint: ", desiredState.speedMetersPerSecond);
+      SmartDashboard.putNumber("Optimized " + moduleNumber + " Angle Setpoint: ", angle);
+      SmartDashboard.putNumber(
+          "Module " + moduleNumber + " Omega: ", Math.toDegrees(desiredState.omegaRadPerSecond));
     }
 
     // Prevent module rotation if angle is the same as the previous angle.
