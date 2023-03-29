@@ -22,7 +22,7 @@ public class SwerveModuleConfiguration {
   /** State of inversion of the angle motor. */
   public final boolean angleMotorInverted;
   /** Maximum robot speed in meters per second. */
-  public final double maxSpeed;
+  public double maxSpeed;
   /** PIDF configuration options for the angle motor closed-loop PID controller. */
   public PIDFConfig anglePIDF;
   /** PIDF configuration options for the drive motor closed-loop PID controller. */
@@ -88,10 +88,12 @@ public class SwerveModuleConfiguration {
     this.velocityPIDF = velocityPIDF;
     this.maxSpeed = maxSpeed;
     this.angleKV =
-        calculateAngleKV(
-            physicalCharacteristics.optimalVoltage,
-            angleMotorFreeSpeedRPM,
-            physicalCharacteristics.angleGearRatio);
+        physicalCharacteristics.angleMotorKV == 0
+            ? calculateAngleKV(
+                physicalCharacteristics.optimalVoltage,
+                angleMotorFreeSpeedRPM,
+                physicalCharacteristics.angleGearRatio)
+            : physicalCharacteristics.angleMotorKV;
     this.physicalCharacteristics = physicalCharacteristics;
     this.angleMotorEncoderPulsePerRevolution = angleMotorEncoderPulsePerRevolution;
   }

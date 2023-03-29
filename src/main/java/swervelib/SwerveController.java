@@ -187,4 +187,15 @@ public class SwerveController {
     return thetaController.calculate(currentHeadingAngleRadians, targetHeadingAngleRadians)
         * config.maxAngularVelocity;
   }
+
+  /**
+   * Set a new maximum angular velocity that is different from the auto-generated one. Modified the
+   * {@link SwerveControllerConfiguration#maxAngularVelocity} field which is used in the {@link
+   * SwerveController} class for {@link ChassisSpeeds} generation.
+   *
+   * @param angularVelocity Angular velocity in radians per second.
+   */
+  public void setMaximumAngularVelocity(double angularVelocity) {
+    config.maxAngularVelocity = angularVelocity;
+  }
 }

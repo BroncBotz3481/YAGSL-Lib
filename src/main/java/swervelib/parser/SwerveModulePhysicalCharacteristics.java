@@ -28,6 +28,12 @@ public class SwerveModulePhysicalCharacteristics {
   public final double wheelGripCoefficientOfFriction;
   /** Free speed rotations per minute of the motor, as described by the vendor. */
   public final double angleMotorFreeSpeedRPM;
+  /**
+   * Angle motor kV used for second order kinematics to tune the feedforward, this variable should
+   * be adjusted so that your drive train does not drift towards the direction you are rotating
+   * while you translate. When set to 0 the calculated kV will be used.
+   */
+  public final double angleMotorKV;
 
   /**
    * Construct the swerve module physical characteristics.
@@ -51,6 +57,8 @@ public class SwerveModulePhysicalCharacteristics {
    *     integrated encoders.
    * @param angleEncoderPulsePerRotation The number of encoder pulses per motor rotation, 1 for
    *     integrated encoders.
+   * @param angleMotorKV The kV applied to the steering motor to ensure your drivetrain does not
+   *     drift towards a direction when rotating while translating.
    */
   public SwerveModulePhysicalCharacteristics(
       double driveGearRatio,
@@ -64,7 +72,8 @@ public class SwerveModulePhysicalCharacteristics {
       double driveMotorRampRate,
       double angleMotorRampRate,
       int driveEncoderPulsePerRotation,
-      int angleEncoderPulsePerRotation) {
+      int angleEncoderPulsePerRotation,
+      double angleMotorKV) {
     this.wheelGripCoefficientOfFriction = wheelGripCoefficientOfFriction;
     this.optimalVoltage = optimalVoltage;
 
@@ -79,6 +88,7 @@ public class SwerveModulePhysicalCharacteristics {
     this.angleMotorCurrentLimit = angleMotorCurrentLimit;
     this.driveMotorRampRate = driveMotorRampRate;
     this.angleMotorRampRate = angleMotorRampRate;
+    this.angleMotorKV = angleMotorKV;
   }
 
   /**
@@ -122,6 +132,7 @@ public class SwerveModulePhysicalCharacteristics {
         driveMotorRampRate,
         angleMotorRampRate,
         driveEncoderPulsePerRotation,
-        angleEncoderPulsePerRotation);
+        angleEncoderPulsePerRotation,
+        0);
   }
 }

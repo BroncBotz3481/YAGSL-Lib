@@ -9,9 +9,9 @@ import static swervelib.math.SwerveMath.calculateMaxAngularVelocity;
 public class SwerveControllerConfiguration {
 
   /** Maximum robot speed in meters per second. */
-  public final double maxSpeed;
+  public double maxSpeed;
   /** Maximum angular velocity in rad/s */
-  public final double maxAngularVelocity;
+  public double maxAngularVelocity;
   /** PIDF for the heading of the robot. */
   public final PIDFConfig headingPIDF;
   /** hypotenuse deadband for the robot angle control joystick. */
