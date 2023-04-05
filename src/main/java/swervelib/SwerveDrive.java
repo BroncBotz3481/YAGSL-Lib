@@ -5,12 +5,7 @@ import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Transform2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.geometry.*;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.numbers.N1;
@@ -225,6 +220,27 @@ public class SwerveDrive {
   }
 
   /**
+   * Set the maximum speeds for desaturation.
+   *
+   * @param attainableMaxModuleSpeedMetersPerSecond The absolute max speed that a module can reach
+   *     in meters per second.
+   * @param attainableMaxTranslationalSpeedMetersPerSecond The absolute max speed that your robot
+   *     can reach while translating in meters per second.
+   * @param attainableMaxRotationalVelocityRadiansPerSecond The absolute max speed the robot can
+   *     reach while rotating in radians per second.
+   */
+  public void setMaximumSpeeds(
+      double attainableMaxModuleSpeedMetersPerSecond,
+      double attainableMaxTranslationalSpeedMetersPerSecond,
+      double attainableMaxRotationalVelocityRadiansPerSecond) {
+    setMaximumSpeed(attainableMaxModuleSpeedMetersPerSecond);
+    swerveDriveConfiguration.attainableMaxTranslationalSpeedMetersPerSecond =
+        attainableMaxTranslationalSpeedMetersPerSecond;
+    swerveDriveConfiguration.attainableMaxRotationalVelocityRadiansPerSecond =
+        attainableMaxRotationalVelocityRadiansPerSecond;
+  }
+
+  /**
    * Set the module states (azimuth and velocity) directly. Used primarily for auto pathing.
    *
    * @param desiredStates A list of SwerveModuleStates to send to the modules.
@@ -233,7 +249,15 @@ public class SwerveDrive {
    */
   private void setRawModuleStates(SwerveModuleState2[] desiredStates, boolean isOpenLoop) {
     // Desaturates wheel speeds
-    SwerveKinematics2.desaturateWheelSpeeds(desiredStates, swerveDriveConfiguration.maxSpeed);
+    if (swerveDriveConfiguration.attainableMaxTranslationalSpeedMetersPerSecond != 0
+        || swerveDriveConfiguration.attainableMaxRotationalVelocityRadiansPerSecond != 0)
+      SwerveKinematics2.desaturateWheelSpeeds(
+          desiredStates,
+          getRobotVelocity(),
+          swerveDriveConfiguration.maxSpeed,
+          swerveDriveConfiguration.attainableMaxTranslationalSpeedMetersPerSecond,
+          swerveDriveConfiguration.attainableMaxRotationalVelocityRadiansPerSecond);
+    else SwerveKinematics2.desaturateWheelSpeeds(desiredStates, swerveDriveConfiguration.maxSpeed);
 
     // Sets states
     for (SwerveModule module : swerveModules) {
