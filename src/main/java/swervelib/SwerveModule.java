@@ -180,7 +180,7 @@ public class SwerveModule {
    * @param angle Angle in degrees.
    */
   public void setAngle(double angle) {
-    angleMotor.setReference(angle, configuration.moduleSteerFFCL);
+    angleMotor.setReference(angle, 0);
     lastState.angle = Rotation2d.fromDegrees(angle);
   }
 

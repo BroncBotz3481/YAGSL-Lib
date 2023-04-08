@@ -59,6 +59,7 @@ public class SwerveModuleConfiguration {
    * @param physicalCharacteristics Physical characteristics of the swerve module.
    * @param angleMotorEncoderPulsePerRevolution The encoder pulse per revolution for the angle motor
    *     encoder.
+   * @param name The name for the swerve module.
    */
   public SwerveModuleConfiguration(
       SwerveMotor driveMotor,
