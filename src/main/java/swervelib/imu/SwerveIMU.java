@@ -4,20 +4,13 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import java.util.Optional;
 
-/**
- * Swerve IMU abstraction to define a standard interface with a swerve drive.
- */
-public abstract class SwerveIMU
-{
+/** Swerve IMU abstraction to define a standard interface with a swerve drive. */
+public abstract class SwerveIMU {
 
-  /**
-   * Reset IMU to factory default.
-   */
+  /** Reset IMU to factory default. */
   public abstract void factoryDefault();
 
-  /**
-   * Clear sticky faults on IMU.
-   */
+  /** Clear sticky faults on IMU. */
   public abstract void clearStickyFaults();
 
   /**
@@ -42,8 +35,8 @@ public abstract class SwerveIMU
   public abstract Rotation3d getRotation3d();
 
   /**
-   * Fetch the acceleration [x, y, z] from the IMU in meters per second squared. If acceleration isn't supported returns
-   * empty.
+   * Fetch the acceleration [x, y, z] from the IMU in meters per second squared. If acceleration
+   * isn't supported returns empty.
    *
    * @return {@link Translation3d} of the acceleration as an {@link Optional}.
    */

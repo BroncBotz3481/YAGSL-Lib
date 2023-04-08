@@ -1,4 +1,2 @@
-/**
- * CTRE Physics Simulator.
- */
+/** CTRE Physics Simulator. */
 package swervelib.simulation.ctre;

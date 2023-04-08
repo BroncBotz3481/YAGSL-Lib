@@ -6,48 +6,37 @@ import edu.wpi.first.wpilibj.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Optional;
 
-/**
- * IMU Swerve class for the {@link ADIS16448_IMU} device.
- */
-public class ADIS16448Swerve extends SwerveIMU
-{
+/** IMU Swerve class for the {@link ADIS16448_IMU} device. */
+public class ADIS16448Swerve extends SwerveIMU {
 
-  /**
-   * {@link ADIS16448_IMU} device to read the current headings from.
-   */
+  /** {@link ADIS16448_IMU} device to read the current headings from. */
   private final ADIS16448_IMU imu;
-  /**
-   * Offset for the ADIS16448.
-   */
-  private       Rotation3d    offset = new Rotation3d();
+  /** Offset for the ADIS16448. */
+  private Rotation3d offset = new Rotation3d();
 
   /**
-   * Construct the ADIS16448 imu and reset default configurations. Publish the gyro to the SmartDashboard.
+   * Construct the ADIS16448 imu and reset default configurations. Publish the gyro to the
+   * SmartDashboard.
    */
-  public ADIS16448Swerve()
-  {
+  public ADIS16448Swerve() {
     imu = new ADIS16448_IMU();
     factoryDefault();
     SmartDashboard.putData(imu);
   }
 
-  /**
-   * Reset IMU to factory default.
-   */
+  /** Reset IMU to factory default. */
   @Override
-  public void factoryDefault()
-  {
-    offset = new Rotation3d(
-        Math.toRadians(imu.getYComplementaryAngle()), Math.toRadians(imu.getXComplementaryAngle()),
-        Math.toRadians(imu.getAngle()));
+  public void factoryDefault() {
+    offset =
+        new Rotation3d(
+            Math.toRadians(imu.getYComplementaryAngle()),
+            Math.toRadians(imu.getXComplementaryAngle()),
+            Math.toRadians(imu.getAngle()));
   }
 
-  /**
-   * Clear sticky faults on IMU.
-   */
+  /** Clear sticky faults on IMU. */
   @Override
-  public void clearStickyFaults()
-  {
+  public void clearStickyFaults() {
     // Do nothing.
   }
 
@@ -56,8 +45,7 @@ public class ADIS16448Swerve extends SwerveIMU
    *
    * @param offset gyro offset as a {@link Rotation3d}.
    */
-  public void setOffset(Rotation3d offset)
-  {
+  public void setOffset(Rotation3d offset) {
     this.offset = offset;
   }
 
@@ -66,10 +54,10 @@ public class ADIS16448Swerve extends SwerveIMU
    *
    * @return {@link Rotation3d} from the IMU.
    */
-  public Rotation3d getRawRotation3d()
-  {
+  public Rotation3d getRawRotation3d() {
     return new Rotation3d(
-        Math.toRadians(imu.getYComplementaryAngle()), Math.toRadians(imu.getXComplementaryAngle()),
+        Math.toRadians(imu.getYComplementaryAngle()),
+        Math.toRadians(imu.getXComplementaryAngle()),
         Math.toRadians(imu.getAngle()));
   }
 
@@ -79,20 +67,18 @@ public class ADIS16448Swerve extends SwerveIMU
    * @return {@link Rotation3d} from the IMU.
    */
   @Override
-  public Rotation3d getRotation3d()
-  {
+  public Rotation3d getRotation3d() {
     return getRawRotation3d().minus(offset);
   }
 
   /**
-   * Fetch the acceleration [x, y, z] from the IMU in meters per second squared. If acceleration isn't supported returns
-   * empty.
+   * Fetch the acceleration [x, y, z] from the IMU in meters per second squared. If acceleration
+   * isn't supported returns empty.
    *
    * @return {@link Translation3d} of the acceleration.
    */
   @Override
-  public Optional<Translation3d> getAccel()
-  {
+  public Optional<Translation3d> getAccel() {
     return Optional.of(new Translation3d(imu.getAccelX(), imu.getAccelY(), imu.getAccelZ()));
   }
 
@@ -102,8 +88,7 @@ public class ADIS16448Swerve extends SwerveIMU
    * @return IMU object.
    */
   @Override
-  public Object getIMU()
-  {
+  public Object getIMU() {
     return imu;
   }
 }
