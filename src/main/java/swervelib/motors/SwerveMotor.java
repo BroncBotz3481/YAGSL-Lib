@@ -6,15 +6,22 @@ import swervelib.parser.PIDFConfig;
 /**
  * Swerve motor abstraction which defines a standard interface for motors within a swerve module.
  */
-public abstract class SwerveMotor {
+public abstract class SwerveMotor
+{
 
-  /** Whether the swerve motor is a drive motor. */
+  /**
+   * Whether the swerve motor is a drive motor.
+   */
   protected boolean isDriveMotor;
 
-  /** Configure the factory defaults. */
+  /**
+   * Configure the factory defaults.
+   */
   public abstract void factoryDefaults();
 
-  /** Clear the sticky faults on the motor controller. */
+  /**
+   * Clear the sticky faults on the motor controller.
+   */
   public abstract void clearStickyFaults();
 
   /**
@@ -26,8 +33,7 @@ public abstract class SwerveMotor {
   public abstract SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder);
 
   /**
-   * Configure the integrated encoder for the swerve module. Sets the conversion factors for
-   * position and velocity.
+   * Configure the integrated encoder for the swerve module. Sets the conversion factors for position and velocity.
    *
    * @param positionConversionFactor The conversion factor to apply for position.
    */
@@ -62,7 +68,9 @@ public abstract class SwerveMotor {
    */
   public abstract void setInverted(boolean inverted);
 
-  /** Save the configurations from flash to EEPROM. */
+  /**
+   * Save the configurations from flash to EEPROM.
+   */
   public abstract void burnFlash();
 
   /**
@@ -75,7 +83,7 @@ public abstract class SwerveMotor {
   /**
    * Set the closed loop PID controller reference point.
    *
-   * @param setpoint Setpoint in meters per second or angle in degrees.
+   * @param setpoint    Setpoint in meters per second or angle in degrees.
    * @param feedforward Feedforward in volt-meter-per-second or kV.
    */
   public abstract void setReference(double setpoint, double feedforward);
@@ -83,9 +91,9 @@ public abstract class SwerveMotor {
   /**
    * Set the closed loop PID controller reference point.
    *
-   * @param setpoint Setpoint in meters per second or angle in degrees.
+   * @param setpoint    Setpoint in meters per second or angle in degrees.
    * @param feedforward Feedforward in volt-meter-per-second or kV.
-   * @param position Only used on the angle motor, the position of the motor in degrees.
+   * @param position    Only used on the angle motor, the position of the motor in degrees.
    */
   public abstract void setReference(double setpoint, double feedforward, double position);
 
@@ -118,8 +126,8 @@ public abstract class SwerveMotor {
   public abstract void setVoltageCompensation(double nominalVoltage);
 
   /**
-   * Set the current limit for the swerve drive motor, remember this may cause jumping if used in
-   * conjunction with voltage compensation. This is useful to protect the motor from current spikes.
+   * Set the current limit for the swerve drive motor, remember this may cause jumping if used in conjunction with
+   * voltage compensation. This is useful to protect the motor from current spikes.
    *
    * @param currentLimit Current limit in AMPS at free speed.
    */
