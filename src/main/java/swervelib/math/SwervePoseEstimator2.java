@@ -109,7 +109,7 @@ public class SwervePoseEstimator2 // extends SwerveDrivePoseEstimator
    *
    * @param visionMeasurementStdDevs Standard deviations of the vision measurements. Increase these
    *     numbers to trust global measurements from vision less. This matrix is in the form [x, y,
-   *     theta]ᵀ, with units in meters and radians.
+   *     theta]^T, with units in meters and radians.
    */
   public void setVisionMeasurementStdDevs(Matrix<N3, N1> visionMeasurementStdDevs) {
     //    super.setVisionMeasurementStdDevs(visionMeasurementStdDevs);
