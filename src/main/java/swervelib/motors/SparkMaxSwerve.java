@@ -261,7 +261,7 @@ public class SparkMaxSwerve extends SwerveMotor {
     if (isDriveMotor) {
       pid.setReference(setpoint, ControlType.kVelocity, pidSlot, feedforward);
     } else {
-      pid.setReference(setpoint, ControlType.kPosition, pidSlot);
+      pid.setReference(setpoint, ControlType.kPosition, pidSlot, feedforward);
     }
   }
 

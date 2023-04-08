@@ -26,8 +26,6 @@ public class ModuleJson {
   public boolean absoluteEncoderInverted = false;
   /** The angle encoder pulse per revolution override. 1 for Neo encoder. 2048 for Falcons. */
   public double angleEncoderPulsePerRevolution = 0;
-  /** Angle motor free speed RPM. */
-  public double angleMotorFreeSpeedRPM = 0;
   /** The location of the swerve module from the center of the robot in inches. */
   public LocationJson location;
 
@@ -38,13 +36,15 @@ public class ModuleJson {
    * @param velocityPIDF The velocity PIDF values for the drive motor.
    * @param maxSpeed The maximum speed of the robot in meters per second.
    * @param physicalCharacteristics Physical characteristics of the swerve module.
+   * @param name Module json filename.
    * @return {@link SwerveModuleConfiguration} based on the provided data and parsed data.
    */
   public SwerveModuleConfiguration createModuleConfiguration(
       PIDFConfig anglePIDF,
       PIDFConfig velocityPIDF,
       double maxSpeed,
-      SwerveModulePhysicalCharacteristics physicalCharacteristics) {
+      SwerveModulePhysicalCharacteristics physicalCharacteristics,
+      String name) {
     SwerveMotor angleMotor = angle.createMotor(false);
     SwerveAbsoluteEncoder absEncoder = encoder.createEncoder();
 
@@ -71,8 +71,6 @@ public class ModuleJson {
         angleEncoderPulsePerRevolution == 0
             ? physicalCharacteristics.angleEncoderPulsePerRotation
             : angleEncoderPulsePerRevolution,
-        angleMotorFreeSpeedRPM == 0
-            ? physicalCharacteristics.angleMotorFreeSpeedRPM
-            : angleMotorFreeSpeedRPM);
+        name.replaceAll("\\.json", ""));
   }
 }

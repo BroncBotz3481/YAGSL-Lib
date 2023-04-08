@@ -5,7 +5,13 @@ import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.math.geometry.*;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.geometry.Twist2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.numbers.N1;
@@ -192,6 +198,20 @@ public class SwerveDrive {
                 translation.getX(), translation.getY(), rotation, getYaw())
             : new ChassisSpeeds(translation.getX(), translation.getY(), rotation);
 
+    // Thank you to Jared Russell FRC254 for Open Loop Compensation Code
+    // https://www.chiefdelphi.com/t/whitepaper-swerve-drive-skew-and-second-order-kinematics/416964/5
+    double dtConstant = 0.009;
+    Pose2d robotPoseVel =
+        new Pose2d(
+            velocity.vxMetersPerSecond * dtConstant,
+            velocity.vyMetersPerSecond * dtConstant,
+            Rotation2d.fromRadians(velocity.omegaRadiansPerSecond * dtConstant));
+    Twist2d twistVel = SwerveMath.PoseLog(robotPoseVel);
+
+    velocity =
+        new ChassisSpeeds(
+            twistVel.dx / dtConstant, twistVel.dy / dtConstant, twistVel.dtheta / dtConstant);
+
     // Heading Angular Velocity Deadband, might make a configuration option later.
     // Originally made by Team 1466 Webb Robotics.
     if (headingCorrection) {
@@ -250,14 +270,16 @@ public class SwerveDrive {
   private void setRawModuleStates(SwerveModuleState2[] desiredStates, boolean isOpenLoop) {
     // Desaturates wheel speeds
     if (swerveDriveConfiguration.attainableMaxTranslationalSpeedMetersPerSecond != 0
-        || swerveDriveConfiguration.attainableMaxRotationalVelocityRadiansPerSecond != 0)
+        || swerveDriveConfiguration.attainableMaxRotationalVelocityRadiansPerSecond != 0) {
       SwerveKinematics2.desaturateWheelSpeeds(
           desiredStates,
           getRobotVelocity(),
           swerveDriveConfiguration.maxSpeed,
           swerveDriveConfiguration.attainableMaxTranslationalSpeedMetersPerSecond,
           swerveDriveConfiguration.attainableMaxRotationalVelocityRadiansPerSecond);
-    else SwerveKinematics2.desaturateWheelSpeeds(desiredStates, swerveDriveConfiguration.maxSpeed);
+    } else {
+      SwerveKinematics2.desaturateWheelSpeeds(desiredStates, swerveDriveConfiguration.maxSpeed);
+    }
 
     // Sets states
     for (SwerveModule module : swerveModules) {
@@ -271,10 +293,10 @@ public class SwerveDrive {
       }
       if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
         SmartDashboard.putNumber(
-            "Module[" + module.moduleNumber + "] Speed Setpoint: ",
+            "Module[" + module.configuration.name + "] Speed Setpoint: ",
             module.lastState.speedMetersPerSecond);
         SmartDashboard.putNumber(
-            "Module[" + module.moduleNumber + "] Angle Setpoint: ",
+            "Module[" + module.configuration.name + "] Angle Setpoint: ",
             module.lastState.angle.getDegrees());
       }
     }
@@ -293,7 +315,7 @@ public class SwerveDrive {
   }
 
   /**
-   * Set chassis speeds with closed-loop velocity control.
+   * Set chassis speeds with closed-loop velocity control and second order kinematics.
    *
    * @param chassisSpeeds Chassis speeds to set.
    */
@@ -617,9 +639,11 @@ public class SwerveDrive {
       sumOmega += Math.abs(moduleState.omegaRadPerSecond);
       if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
         SmartDashboard.putNumber(
-            "Module" + module.moduleNumber + "Relative Encoder", module.getRelativePosition());
+            "Module[" + module.configuration.name + "] Relative Encoder",
+            module.getRelativePosition());
         SmartDashboard.putNumber(
-            "Module" + module.moduleNumber + "Absolute Encoder", module.getAbsolutePosition());
+            "Module[" + module.configuration.name + "] Absolute Encoder",
+            module.getAbsolutePosition());
       }
       if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal()) {
         SwerveDriveTelemetry.measuredStates[module.moduleNumber * 2] =

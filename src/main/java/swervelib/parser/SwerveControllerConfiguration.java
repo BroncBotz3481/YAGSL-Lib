@@ -8,15 +8,15 @@ import static swervelib.math.SwerveMath.calculateMaxAngularVelocity;
  */
 public class SwerveControllerConfiguration {
 
-  /** Maximum robot speed in meters per second. */
-  public double maxSpeed;
-  /** Maximum angular velocity in rad/s */
-  public double maxAngularVelocity;
   /** PIDF for the heading of the robot. */
   public final PIDFConfig headingPIDF;
   /** hypotenuse deadband for the robot angle control joystick. */
   public final double
       angleJoyStickRadiusDeadband; // Deadband for the minimum hypot for the heading joystick.
+  /** Maximum robot speed in meters per second. */
+  public double maxSpeed;
+  /** Maximum angular velocity in rad/s */
+  public double maxAngularVelocity;
 
   /**
    * Construct the swerve controller configuration.

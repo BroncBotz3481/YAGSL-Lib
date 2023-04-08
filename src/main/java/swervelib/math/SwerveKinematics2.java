@@ -33,11 +33,12 @@ public class SwerveKinematics2 extends SwerveDriveKinematics {
   private final Translation2d[] m_modules;
   /** Swerve module states. */
   private final SwerveModuleState2[] m_moduleStates;
+
+  private final Timer m_moduleAccelTimer = new Timer();
   /** Previous CoR */
   private Translation2d m_prevCoR = new Translation2d();
 
   private ChassisSpeeds m_prevChassisSpeeds = new ChassisSpeeds();
-  private final Timer m_moduleAccelTimer = new Timer();
   private double m_prevModuleAccelTime = 0.0;
 
   /**
