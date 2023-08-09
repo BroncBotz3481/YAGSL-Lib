@@ -232,6 +232,10 @@ public class SparkMaxSwerve extends SwerveMotor {
   /** Save the configurations from flash to EEPROM. */
   @Override
   public void burnFlash() {
+    try {
+      Thread.sleep(200);
+    } catch (Exception e) {
+    }
     motor.burnFlash();
   }
 

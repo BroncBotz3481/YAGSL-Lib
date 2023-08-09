@@ -18,6 +18,7 @@ import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -285,8 +286,6 @@ public class SwerveDrive {
           swerveDriveConfiguration.maxSpeed,
           swerveDriveConfiguration.attainableMaxTranslationalSpeedMetersPerSecond,
           swerveDriveConfiguration.attainableMaxRotationalVelocityRadiansPerSecond);
-    } else {
-      SwerveKinematics2.desaturateWheelSpeeds(desiredStates, swerveDriveConfiguration.maxSpeed);
     }
 
     // Sets states
@@ -376,7 +375,9 @@ public class SwerveDrive {
    * @param pose The pose to set the odometry to
    */
   public void resetOdometry(Pose2d pose) {
-    swerveDrivePoseEstimator.resetPosition(getYaw(), getModulePositions(), pose);
+    swerveDrivePoseEstimator.resetPosition(pose.getRotation(), getModulePositions(), pose);
+    kinematics.toSwerveModuleStates(
+        ChassisSpeeds.fromFieldRelativeSpeeds(0, 0, 0, pose.getRotation()));
   }
 
   /**
@@ -682,8 +683,24 @@ public class SwerveDrive {
   }
 
   /**
+   * Set the gyro scope offset to a desired known rotation. Unlike {@link
+   * SwerveDrive#setGyro(Rotation3d)} it DOES NOT take the current rotation into account.
+   *
+   * @param offset {@link Rotation3d} known offset of the robot for gyroscope to use.
+   */
+  public void setGyroOffset(Rotation3d offset) {
+    if (SwerveDriveTelemetry.isSimulation) {
+      simIMU.setAngle(offset.getZ());
+    } else {
+      imu.setOffset(offset);
+    }
+  }
+
+  /**
    * Add a vision measurement to the {@link SwerveDrivePoseEstimator} and update the {@link
-   * SwerveIMU} gyro reading with the given timestamp of the vision measurement.
+   * SwerveIMU} gyro reading with the given timestamp of the vision measurement. <br>
+   * <b>IT IS HIGHLY RECOMMENDED TO UPDATE YOUR GYROSCOPE OFFSET AFTER USING THIS FUNCTION!</b> <br>
+   * To update your gyroscope readings directly use {@link SwerveDrive#setGyroOffset(Rotation3d)}.
    *
    * @param robotPose Robot {@link Pose2d} as measured by vision.
    * @param timestamp Timestamp the measurement was taken as time since startup, should be taken
@@ -694,7 +711,7 @@ public class SwerveDrive {
    *     edu.wpi.first.math.kinematics.SwerveDriveOdometry#resetPosition(Rotation2d,
    *     SwerveModulePosition[], Pose2d)}.
    * @param trustWorthiness Trust level of vision reading when using a soft measurement, used to
-   *     multiply the standard deviation. Set to 1 for full trust.
+   *     multiply the standard deviation. Set to 1 for full trust. Higher = Less Weight.
    */
   public void addVisionMeasurement(
       Pose2d robotPose, double timestamp, boolean soft, double trustWorthiness) {
@@ -705,6 +722,12 @@ public class SwerveDrive {
       swerveDrivePoseEstimator.resetPosition(
           robotPose.getRotation(), getModulePositions(), robotPose);
     }
+
+    setGyroOffset(new Rotation3d(0, 0, robotPose.getRotation().getRadians()));
+    resetOdometry(
+        new Pose2d(
+            swerveDrivePoseEstimator.getEstimatedPosition().getTranslation(),
+            robotPose.getRotation()));
   }
 
   /**
@@ -730,12 +753,17 @@ public class SwerveDrive {
 
   /**
    * Set the expected gyroscope angle using a {@link Rotation3d} object. To reset gyro, set to a new
-   * {@link Rotation3d}.
+   * {@link Rotation3d} subtracted from the current gyroscopic readings {@link
+   * SwerveIMU#getRotation3d()}.
    *
-   * @param gyro expected gyroscope angle.
+   * @param gyro expected gyroscope angle as {@link Rotation3d}.
    */
   public void setGyro(Rotation3d gyro) {
-    imu.setOffset(imu.getRawRotation3d().minus(gyro));
+    if (SwerveDriveTelemetry.isSimulation) {
+      setGyroOffset(simIMU.getGyroRotation3d().minus(gyro));
+    } else {
+      setGyroOffset(imu.getRawRotation3d().minus(gyro));
+    }
   }
 
   /**
@@ -772,6 +800,18 @@ public class SwerveDrive {
   }
 
   /**
+   * Configure whether the {@link SwerveModuleState2} will be optimized to prevent spinning more
+   * than 90deg.
+   *
+   * @param optimizationEnabled Whether the module optimization is enabled.
+   */
+  public void setModuleStateOptimization(boolean optimizationEnabled) {
+    for (SwerveModule module : swerveModules) {
+      module.moduleStateOptimization = optimizationEnabled;
+    }
+  }
+
+  /**
    * Enable second order kinematics for simulation and modifying the feedforward. Second order
    * kinematics could increase accuracy in odometry.
    *
@@ -781,6 +821,28 @@ public class SwerveDrive {
     for (SwerveModule module : swerveModules) {
       module.configuration.moduleSteerFFCL = moduleFeedforward;
     }
+  }
+
+  /**
+   * Enable second order kinematics with calculated values for the feedforward and return the value
+   * used.
+   *
+   * @param motorFreeSpeedRPM Steering motor free speed RPM.
+   * @return The feedforward value used for the last swerve module.
+   */
+  public double enableSecondOrderKinematics(int motorFreeSpeedRPM) {
+    double feedforwardValue = 0;
+    for (SwerveModule module : swerveModules) {
+      feedforwardValue =
+          module.configuration.moduleSteerFFCL =
+              RobotController.getBatteryVoltage()
+                  / (2
+                      * Math.PI
+                      * (((double) motorFreeSpeedRPM)
+                          / module.configuration.physicalCharacteristics.angleGearRatio)
+                      / 60);
+    }
+    return feedforwardValue;
   }
 
   /** Enable second order kinematics for tracking purposes but completely untuned. */

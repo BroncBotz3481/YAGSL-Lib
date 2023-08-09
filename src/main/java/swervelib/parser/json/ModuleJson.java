@@ -46,13 +46,7 @@ public class ModuleJson {
       SwerveModulePhysicalCharacteristics physicalCharacteristics,
       String name) {
     SwerveMotor angleMotor = angle.createMotor(false);
-    SwerveAbsoluteEncoder absEncoder = encoder.createEncoder();
-
-    // If the absolute encoder is attached.
-    if (absEncoder == null) {
-      absEncoder = angle.createIntegratedEncoder(angleMotor);
-      angleMotor.setAbsoluteEncoder(absEncoder);
-    }
+    SwerveAbsoluteEncoder absEncoder = encoder.createEncoder(angleMotor);
 
     return new SwerveModuleConfiguration(
         drive.createMotor(true),

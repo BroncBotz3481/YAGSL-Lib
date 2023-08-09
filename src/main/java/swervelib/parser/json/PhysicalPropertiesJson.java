@@ -34,7 +34,7 @@ public class PhysicalPropertiesJson {
    * while you translate. Default value is 0. If robot arcs while translating and rotating negate
    * this.
    */
-  public double moduleFeedForwardClosedLoop = SwerveDriveTelemetry.isSimulation ? -0.33 : 0;
+  public double moduleFeedForwardClosedLoop = SwerveDriveTelemetry.isSimulation ? 0.33 : 0;
   /**
    * DEPRECATED: No longer needed, tune {@link PhysicalPropertiesJson#moduleFeedForwardClosedLoop}
    * instead.

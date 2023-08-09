@@ -33,6 +33,11 @@ public class SwerveModule {
   public SimpleMotorFeedforward feedforward;
   /** Last swerve module state applied. */
   public SwerveModuleState2 lastState;
+  /**
+   * Enable {@link SwerveModuleState2} optimizations so the angle is reversed and speed is reversed
+   * to ensure the module never turns more than 90deg.
+   */
+  public boolean moduleStateOptimization = true;
   /** Simulated swerve module. */
   private SwerveModuleSimulation simModule;
   /** Encoder synchronization queued. */
@@ -119,12 +124,14 @@ public class SwerveModule {
    *     desired state onto the swerve module.
    */
   public void setDesiredState(SwerveModuleState2 desiredState, boolean isOpenLoop, boolean force) {
-    desiredState =
-        SwerveModuleState2.optimize(
-            desiredState,
-            Rotation2d.fromDegrees(getAbsolutePosition()),
-            lastState,
-            configuration.moduleSteerFFCL);
+    if (moduleStateOptimization) {
+      desiredState =
+          SwerveModuleState2.optimize(
+              desiredState,
+              Rotation2d.fromDegrees(getAbsolutePosition()),
+              lastState,
+              configuration.moduleSteerFFCL);
+    }
 
     if (isOpenLoop) {
       double percentOutput = desiredState.speedMetersPerSecond / configuration.maxSpeed;
