@@ -166,7 +166,7 @@ public class SwerveModuleConfiguration {
         ? calculateMetersPerRotation(
             physicalCharacteristics.wheelDiameter,
             physicalCharacteristics.driveGearRatio,
-            angleMotorEncoderPulsePerRevolution)
+            physicalCharacteristics.driveEncoderPulsePerRotation)
         : calculateDegreesPerSteeringRotation(
             physicalCharacteristics.angleGearRatio, angleMotorEncoderPulsePerRevolution);
   }

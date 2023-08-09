@@ -48,6 +48,17 @@ public class ModuleJson {
     SwerveMotor angleMotor = angle.createMotor(false);
     SwerveAbsoluteEncoder absEncoder = encoder.createEncoder(angleMotor);
 
+    // Override angle encoder pulse per rotation based on the encoder and motor type.
+    int encoderPulseOverride =
+        encoder.getPulsePerRotation(physicalCharacteristics.angleEncoderPulsePerRotation);
+    int motorPulseOverride =
+        angle.getPulsePerRotation(physicalCharacteristics.angleEncoderPulsePerRotation);
+
+    int angleEncoderPulsePerRotation =
+        motorPulseOverride != physicalCharacteristics.angleEncoderPulsePerRotation
+            ? motorPulseOverride
+            : encoderPulseOverride;
+
     // If the absolute encoder is attached.
     if (absEncoder == null) {
       absEncoder = angle.createIntegratedEncoder(angleMotor);
@@ -69,7 +80,7 @@ public class ModuleJson {
         inverted.drive,
         inverted.angle,
         angleEncoderPulsePerRevolution == 0
-            ? physicalCharacteristics.angleEncoderPulsePerRotation
+            ? angleEncoderPulsePerRotation
             : angleEncoderPulsePerRevolution,
         name.replaceAll("\\.json", ""));
   }
