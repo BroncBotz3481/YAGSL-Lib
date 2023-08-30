@@ -60,11 +60,11 @@ public class SwerveModuleState2 extends SwerveModuleState {
         new SwerveModuleState2(
             SwerveModuleState.optimize(desiredState, currentAngle), desiredState.omegaRadPerSecond);
     if (desiredState.angle.equals(currentAngle)
-        || desiredState.angle.equals(optimized.angle.rotateBy(Rotation2d.fromDegrees(180)))
+        || desiredState.angle.equals(optimized.angle.rotateBy(Rotation2d.fromDegrees(90)))
         || moduleSteerFeedForwardClosedLoop == 0) {
       optimized.omegaRadPerSecond = 0;
     }
-    if (desiredState.angle.equals(optimized.angle.rotateBy(Rotation2d.fromDegrees(180)))) {
+    if (desiredState.angle.equals(optimized.angle.rotateBy(Rotation2d.fromDegrees(90)))) {
       desiredState.omegaRadPerSecond = 0;
       return desiredState;
     }
