@@ -13,26 +13,25 @@ public class SwerveControllerConfiguration {
   /** hypotenuse deadband for the robot angle control joystick. */
   public final double
       angleJoyStickRadiusDeadband; // Deadband for the minimum hypot for the heading joystick.
-  /** Maximum robot speed in meters per second. */
-  public double maxSpeed;
   /** Maximum angular velocity in rad/s */
   public double maxAngularVelocity;
 
   /**
    * Construct the swerve controller configuration.
    *
-   * @param driveCfg Drive configuration.
    * @param headingPIDF Heading PIDF configuration.
    * @param angleJoyStickRadiusDeadband Deadband on radius of angle joystick.
+   * @param maxSpeedMPS Maximum speed in meters per second for angular velocity, remember if you
+   *     have feet per second use {@link edu.wpi.first.math.util.Units#feetToMeters(double)}.
    */
   public SwerveControllerConfiguration(
       SwerveDriveConfiguration driveCfg,
       PIDFConfig headingPIDF,
-      double angleJoyStickRadiusDeadband) {
-    this.maxSpeed = driveCfg.maxSpeed;
+      double angleJoyStickRadiusDeadband,
+      double maxSpeedMPS) {
     this.maxAngularVelocity =
         calculateMaxAngularVelocity(
-            driveCfg.maxSpeed,
+            maxSpeedMPS,
             Math.abs(driveCfg.moduleLocationsMeters[0].getX()),
             Math.abs(driveCfg.moduleLocationsMeters[0].getY()));
     this.headingPIDF = headingPIDF;
@@ -45,8 +44,11 @@ public class SwerveControllerConfiguration {
    *
    * @param driveCfg Drive configuration.
    * @param headingPIDF Heading PIDF configuration.
+   * @param maxSpeedMPS Maximum speed in meters per second for angular velocity, remember if you
+   *     have feet per second use {@link edu.wpi.first.math.util.Units#feetToMeters(double)}.
    */
-  public SwerveControllerConfiguration(SwerveDriveConfiguration driveCfg, PIDFConfig headingPIDF) {
-    this(driveCfg, headingPIDF, 0.5);
+  public SwerveControllerConfiguration(
+      SwerveDriveConfiguration driveCfg, PIDFConfig headingPIDF, double maxSpeedMPS) {
+    this(driveCfg, headingPIDF, 0.5, maxSpeedMPS);
   }
 }

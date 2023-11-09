@@ -318,7 +318,7 @@ public class TalonSRXSwerve extends SwerveMotor {
   @Override
   public void setPosition(double position) {
     if (!absoluteEncoder && !SwerveDriveTelemetry.isSimulation) {
-      motor.setSelectedSensorPosition(position / positionConversionFactor, 0, 250);
+      motor.setSelectedSensorPosition(position / positionConversionFactor, 0, 0);
     }
   }
 
