@@ -234,13 +234,101 @@ public class SwerveDrive {
   }
 
   /**
+   * Secondary method of controlling the drive base given velocity and adjusting it for field
+   * oriented use.
+   *
+   * @param velocity Velocity of the robot desired.
+   * @param centerOfRotationMeters The center of rotation in meters, 0 is the center of the robot.
+   */
+  public void driveFieldOriented(ChassisSpeeds velocity, Translation2d centerOfRotationMeters) {
+    ChassisSpeeds fieldOrientedVelocity = ChassisSpeeds.fromFieldRelativeSpeeds(velocity, getYaw());
+    drive(fieldOrientedVelocity, centerOfRotationMeters);
+  }
+
+  /**
    * Secondary method for controlling the drivebase. Given a simple {@link ChassisSpeeds} set the
    * swerve module states, to achieve the goal.
    *
    * @param velocity The desired robot-oriented {@link ChassisSpeeds} for the robot to achieve.
    */
   public void drive(ChassisSpeeds velocity) {
-    drive(velocity, false);
+    drive(velocity, false, new Translation2d());
+  }
+
+  /**
+   * Secondary method for controlling the drivebase. Given a simple {@link ChassisSpeeds} set the
+   * swerve module states, to achieve the goal.
+   *
+   * @param velocity The desired robot-oriented {@link ChassisSpeeds} for the robot to achieve.
+   * @param centerOfRotationMeters The center of rotation in meters, 0 is the center of the robot.
+   */
+  public void drive(ChassisSpeeds velocity, Translation2d centerOfRotationMeters) {
+    drive(velocity, false, centerOfRotationMeters);
+  }
+
+  /**
+   * The primary method for controlling the drivebase. Takes a {@link Translation2d} and a rotation
+   * rate, and calculates and commands module states accordingly. Can use either open-loop or
+   * closed-loop velocity control for the wheel velocities. Also has field- and robot-relative
+   * modes, which affect how the translation vector is used.
+   *
+   * @param translation {@link Translation2d} that is the commanded linear velocity of the robot, in
+   *     meters per second. In robot-relative mode, positive x is torwards the bow (front) and
+   *     positive y is torwards port (left). In field-relative mode, positive x is away from the
+   *     alliance wall (field North) and positive y is torwards the left wall when looking through
+   *     the driver station glass (field West).
+   * @param rotation Robot angular rate, in radians per second. CCW positive. Unaffected by
+   *     field/robot relativity.
+   * @param fieldRelative Drive mode. True for field-relative, false for robot-relative.
+   * @param isOpenLoop Whether to use closed-loop velocity control. Set to true to disable
+   *     closed-loop.
+   * @param centerOfRotationMeters The center of rotation in meters, 0 is the center of the robot.
+   */
+  public void drive(
+      Translation2d translation,
+      double rotation,
+      boolean fieldRelative,
+      boolean isOpenLoop,
+      Translation2d centerOfRotationMeters) {
+    // Creates a robot-relative ChassisSpeeds object, converting from field-relative speeds if
+    // necessary.
+    ChassisSpeeds velocity =
+        fieldRelative
+            ? ChassisSpeeds.fromFieldRelativeSpeeds(
+                translation.getX(), translation.getY(), rotation, getYaw())
+            : new ChassisSpeeds(translation.getX(), translation.getY(), rotation);
+
+    drive(velocity, isOpenLoop, centerOfRotationMeters);
+  }
+
+  /**
+   * The primary method for controlling the drivebase. Takes a {@link Translation2d} and a rotation
+   * rate, and calculates and commands module states accordingly. Can use either open-loop or
+   * closed-loop velocity control for the wheel velocities. Also has field- and robot-relative
+   * modes, which affect how the translation vector is used.
+   *
+   * @param translation {@link Translation2d} that is the commanded linear velocity of the robot, in
+   *     meters per second. In robot-relative mode, positive x is torwards the bow (front) and
+   *     positive y is torwards port (left). In field-relative mode, positive x is away from the
+   *     alliance wall (field North) and positive y is torwards the left wall when looking through
+   *     the driver station glass (field West).
+   * @param rotation Robot angular rate, in radians per second. CCW positive. Unaffected by
+   *     field/robot relativity.
+   * @param fieldRelative Drive mode. True for field-relative, false for robot-relative.
+   * @param isOpenLoop Whether to use closed-loop velocity control. Set to true to disable
+   *     closed-loop.
+   */
+  public void drive(
+      Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
+    // Creates a robot-relative ChassisSpeeds object, converting from field-relative speeds if
+    // necessary.
+    ChassisSpeeds velocity =
+        fieldRelative
+            ? ChassisSpeeds.fromFieldRelativeSpeeds(
+                translation.getX(), translation.getY(), rotation, getYaw())
+            : new ChassisSpeeds(translation.getX(), translation.getY(), rotation);
+
+    drive(velocity, isOpenLoop, new Translation2d());
   }
 
   /**
@@ -252,8 +340,10 @@ public class SwerveDrive {
    * @param velocity The chassis speeds to set the robot to achieve.
    * @param isOpenLoop Whether to use closed-loop velocity control. Set to true to disable
    *     closed-loop.
+   * @param centerOfRotationMeters The center of rotation in meters, 0 is the center of the robot.
    */
-  public void drive(ChassisSpeeds velocity, boolean isOpenLoop) {
+  public void drive(
+      ChassisSpeeds velocity, boolean isOpenLoop, Translation2d centerOfRotationMeters) {
 
     // Thank you to Jared Russell FRC254 for Open Loop Compensation Code
     // https://www.chiefdelphi.com/t/whitepaper-swerve-drive-skew-and-second-order-kinematics/416964/5
@@ -293,39 +383,10 @@ public class SwerveDrive {
     }
 
     // Calculate required module states via kinematics
-    SwerveModuleState[] swerveModuleStates = kinematics.toSwerveModuleStates(velocity);
+    SwerveModuleState[] swerveModuleStates =
+        kinematics.toSwerveModuleStates(velocity, centerOfRotationMeters);
 
     setRawModuleStates(swerveModuleStates, isOpenLoop);
-  }
-
-  /**
-   * The primary method for controlling the drivebase. Takes a {@link Translation2d} and a rotation
-   * rate, and calculates and commands module states accordingly. Can use either open-loop or
-   * closed-loop velocity control for the wheel velocities. Also has field- and robot-relative
-   * modes, which affect how the translation vector is used.
-   *
-   * @param translation {@link Translation2d} that is the commanded linear velocity of the robot, in
-   *     meters per second. In robot-relative mode, positive x is torwards the bow (front) and
-   *     positive y is torwards port (left). In field-relative mode, positive x is away from the
-   *     alliance wall (field North) and positive y is torwards the left wall when looking through
-   *     the driver station glass (field West).
-   * @param rotation Robot angular rate, in radians per second. CCW positive. Unaffected by
-   *     field/robot relativity.
-   * @param fieldRelative Drive mode. True for field-relative, false for robot-relative.
-   * @param isOpenLoop Whether to use closed-loop velocity control. Set to true to disable
-   *     closed-loop.
-   */
-  public void drive(
-      Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
-    // Creates a robot-relative ChassisSpeeds object, converting from field-relative speeds if
-    // necessary.
-    ChassisSpeeds velocity =
-        fieldRelative
-            ? ChassisSpeeds.fromFieldRelativeSpeeds(
-                translation.getX(), translation.getY(), rotation, getYaw())
-            : new ChassisSpeeds(translation.getX(), translation.getY(), rotation);
-
-    drive(velocity, isOpenLoop);
   }
 
   /**

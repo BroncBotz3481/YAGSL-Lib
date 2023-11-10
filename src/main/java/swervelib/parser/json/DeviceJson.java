@@ -43,6 +43,11 @@ public class DeviceJson {
    * @return {@link SwerveAbsoluteEncoder} given.
    */
   public SwerveAbsoluteEncoder createEncoder(SwerveMotor motor) {
+    if (id > 40) {
+      DriverStation.reportWarning(
+          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
+          false);
+    }
     switch (type) {
       case "none":
       case "integrated":
@@ -75,6 +80,11 @@ public class DeviceJson {
    * @return {@link SwerveIMU} given.
    */
   public SwerveIMU createIMU() {
+    if (id > 40) {
+      DriverStation.reportWarning(
+          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
+          false);
+    }
     switch (type) {
       case "adis16448":
         return new ADIS16448Swerve();
@@ -116,6 +126,11 @@ public class DeviceJson {
    * @return {@link SwerveMotor} given.
    */
   public SwerveMotor createMotor(boolean isDriveMotor) {
+    if (id > 40) {
+      DriverStation.reportWarning(
+          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
+          false);
+    }
     switch (type) {
       case "sparkmax_brushed":
         switch (canbus) {
