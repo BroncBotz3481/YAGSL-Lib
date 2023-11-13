@@ -14,7 +14,7 @@ public class PhysicalPropertiesJson {
    * or {@link swervelib.math.SwerveMath#calculateMetersPerRotation(double, double, double)} for
    * drive motors.
    */
-  public MotorConfigDouble conversionFactor;
+  public MotorConfigDouble conversionFactor = new MotorConfigDouble(0, 0);
   /** The current limit in AMPs to apply to the motors. */
   public MotorConfigInt currentLimit = new MotorConfigInt(40, 20);
   /** The minimum number of seconds to take for the motor to go from 0 to full throttle. */

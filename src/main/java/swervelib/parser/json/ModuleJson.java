@@ -24,7 +24,7 @@ public class ModuleJson {
    * or {@link swervelib.math.SwerveMath#calculateMetersPerRotation(double, double, double)} for
    * drive motors.
    */
-  public MotorConfigDouble conversionFactor;
+  public MotorConfigDouble conversionFactor = new MotorConfigDouble(0, 0);
   /** Absolute encoder device configuration. */
   public DeviceJson encoder;
   /** Defines which motors are inverted. */
