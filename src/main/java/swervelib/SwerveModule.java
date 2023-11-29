@@ -45,9 +45,6 @@ public class SwerveModule {
   /** Encoder synchronization queued. */
   private boolean synchronizeEncoderQueued = false;
 
-  /** Absolute Encoder Read Issue Dectected. */
-  public boolean absoluteEncoderReadIssue = false;
-
   /**
    * Construct the swerve module and initialize the swerve module motors and absolute encoder.
    *
@@ -256,14 +253,11 @@ public class SwerveModule {
   public double getAbsolutePosition() {
     double angle;
     if (absoluteEncoder != null) {
-      absoluteEncoderReadIssue = false;
       angle = absoluteEncoder.getAbsolutePosition() - angleOffset;
       if (absoluteEncoder.readingError) {
-        absoluteEncoderReadIssue = true;
         angle = getRelativePosition();
       }
     } else {
-      absoluteEncoderReadIssue = true;
       angle = getRelativePosition();
     }
     angle %= 360;
@@ -340,12 +334,13 @@ public class SwerveModule {
     return configuration;
   }
 
-  /*
-   * Get if the last Absolute Encoder had a read issue.
+  /**
+   * Get if the last Absolute Encoder had a read issue, such as it does not exist.
    *
-   * @return If the last Absolute Encoder had a read issue.
+   * @return If the last Absolute Encoder had a read issue, or absolute encoder does not exist.
    */
   public boolean getAbsoluteEncoderReadIssue() {
-    return absoluteEncoderReadIssue;
+    if (absoluteEncoder == null) return true;
+    else return absoluteEncoder.readingError;
   }
 }
