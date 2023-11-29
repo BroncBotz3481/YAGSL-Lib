@@ -807,6 +807,9 @@ public class SwerveDrive {
           SmartDashboard.putNumber(
               "Module[" + module.configuration.name + "] Absolute Encoder",
               module.getAbsolutePosition());
+          SmartDashboard.putNumber(
+              "Module[" + module.configuration.name + "] Absolute Encoder Read Issue",
+              module.getAbsoluteEncoderReadIssue() ? 1 : 0);
         }
         if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal()) {
           SwerveDriveTelemetry.measuredStates[module.moduleNumber * 2] =
