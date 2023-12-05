@@ -28,6 +28,8 @@ public class SwerveDriveConfiguration {
    * @param swerveIMU Swerve IMU.
    * @param invertedIMU Invert the IMU.
    * @param driveFeedforward The drive motor feedforward to use for the {@link SwerveModule}.
+   * @param physicalCharacteristics {@link SwerveModulePhysicalCharacteristics} to store in
+   *     association with self.
    */
   public SwerveDriveConfiguration(
       SwerveModuleConfiguration[] moduleConfigs,

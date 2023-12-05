@@ -54,6 +54,7 @@ public class SwerveModuleConfiguration {
    * @param velocityPIDF Velocity PIDF configuration.
    * @param physicalCharacteristics Physical characteristics of the swerve module.
    * @param name The name for the swerve module.
+   * @param conversionFactors Conversion factors to be applied to the drive and angle motors.
    */
   public SwerveModuleConfiguration(
       SwerveMotor driveMotor,

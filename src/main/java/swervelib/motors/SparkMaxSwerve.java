@@ -6,8 +6,10 @@ import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
+import com.revrobotics.MotorFeedbackSensor;
 import com.revrobotics.REVLibError;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxAnalogSensor;
 import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.wpilibj.DriverStation;
 import java.util.function.Supplier;
@@ -22,7 +24,7 @@ public class SparkMaxSwerve extends SwerveMotor {
   /** Integrated encoder. */
   public RelativeEncoder encoder;
   /** Absolute encoder attached to the SparkMax (if exists) */
-  public AbsoluteEncoder absoluteEncoder;
+  public SwerveAbsoluteEncoder absoluteEncoder;
   /** Closed-loop PID controller. */
   public SparkMaxPIDController pid;
   /** Factory default already occurred. */
@@ -148,13 +150,14 @@ public class SparkMaxSwerve extends SwerveMotor {
    */
   @Override
   public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder) {
-    if (encoder.getAbsoluteEncoder() instanceof AbsoluteEncoder) {
+    if (encoder.getAbsoluteEncoder() instanceof MotorFeedbackSensor) {
       DriverStation.reportWarning(
           "IF possible configure the duty cycle encoder offset in the REV Hardware Client instead of using the"
               + " absoluteEncoderOffset in the Swerve Module JSON!",
           false);
-      absoluteEncoder = (AbsoluteEncoder) encoder.getAbsoluteEncoder();
-      configureSparkMax(() -> pid.setFeedbackDevice(absoluteEncoder));
+      absoluteEncoder = encoder;
+      configureSparkMax(
+          () -> pid.setFeedbackDevice((MotorFeedbackSensor) absoluteEncoder.getAbsoluteEncoder()));
     }
     return this;
   }
@@ -176,9 +179,25 @@ public class SparkMaxSwerve extends SwerveMotor {
       configureCANStatusFrames(10, 20, 20, 500, 500);
     } else {
       configureSparkMax(
-          () -> absoluteEncoder.setPositionConversionFactor(positionConversionFactor));
+          () -> {
+            if (absoluteEncoder.getAbsoluteEncoder() instanceof AbsoluteEncoder) {
+              return ((AbsoluteEncoder) absoluteEncoder.getAbsoluteEncoder())
+                  .setPositionConversionFactor(positionConversionFactor);
+            } else {
+              return ((SparkMaxAnalogSensor) absoluteEncoder.getAbsoluteEncoder())
+                  .setPositionConversionFactor(positionConversionFactor);
+            }
+          });
       configureSparkMax(
-          () -> absoluteEncoder.setVelocityConversionFactor(positionConversionFactor / 60));
+          () -> {
+            if (absoluteEncoder.getAbsoluteEncoder() instanceof AbsoluteEncoder) {
+              return ((AbsoluteEncoder) absoluteEncoder.getAbsoluteEncoder())
+                  .setVelocityConversionFactor(positionConversionFactor / 60);
+            } else {
+              return ((SparkMaxAnalogSensor) absoluteEncoder.getAbsoluteEncoder())
+                  .setVelocityConversionFactor(positionConversionFactor / 60);
+            }
+          });
     }
   }
 
@@ -326,7 +345,7 @@ public class SparkMaxSwerve extends SwerveMotor {
    */
   @Override
   public double getPosition() {
-    return absoluteEncoder == null ? encoder.getPosition() : absoluteEncoder.getPosition();
+    return absoluteEncoder == null ? encoder.getPosition() : absoluteEncoder.getAbsolutePosition();
   }
 
   /**
