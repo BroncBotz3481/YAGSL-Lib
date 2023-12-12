@@ -960,4 +960,21 @@ public class SwerveDrive {
       module.moduleStateOptimization = optimizationEnabled;
     }
   }
+
+  /**
+   * Pushes the Absolute Encoder offsets to the Encoder or Motor Controller, depending on type. Also
+   * removes the internal offsets to prevent double offsetting.
+   */
+  public void pushOffsetsToControllers() {
+    for (SwerveModule module : swerveModules) {
+      module.pushOffsetsToControllers();
+    }
+  }
+
+  /** Restores Internal YAGSL Encoder offsets and sets the Encoder stored offset back to 0 */
+  public void restoreInternalOffset() {
+    for (SwerveModule module : swerveModules) {
+      module.restoreInternalOffset();
+    }
+  }
 }
