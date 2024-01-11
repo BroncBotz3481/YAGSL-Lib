@@ -1,7 +1,8 @@
 {
   "fileName": "yagsl.json",
   "name": "YAGSL",
-  "version": "2023.2.9",
+  "version": "2024.4.1",
+  "frcYear": "2024",
   "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
   "mavenUrls": [
     "https://broncbotz3481.github.io/YAGSL-Lib/yagsl/repos"
@@ -11,7 +12,7 @@
     {
       "groupId": "swervelib",
       "artifactId": "YAGSL-java",
-      "version": "2023.2.9"
+      "version": "2024.4.1"
     }
   ],
   "jniDependencies": [

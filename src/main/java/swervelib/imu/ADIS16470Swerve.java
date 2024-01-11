@@ -3,6 +3,7 @@ package swervelib.imu;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.ADIS16470_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Optional;
 
@@ -28,11 +29,8 @@ public class ADIS16470Swerve extends SwerveIMU {
   /** Reset IMU to factory default. */
   @Override
   public void factoryDefault() {
-    offset =
-        new Rotation3d(
-            Math.toRadians(imu.getYComplementaryAngle()),
-            Math.toRadians(imu.getXComplementaryAngle()),
-            Math.toRadians(imu.getAngle()));
+    offset = new Rotation3d(0, 0, 0);
+    imu.calibrate();
   }
 
   /** Clear sticky faults on IMU. */
@@ -56,10 +54,7 @@ public class ADIS16470Swerve extends SwerveIMU {
    * @return {@link Rotation3d} from the IMU.
    */
   public Rotation3d getRawRotation3d() {
-    return new Rotation3d(
-        Math.toRadians(imu.getYComplementaryAngle()),
-        Math.toRadians(imu.getXComplementaryAngle()),
-        Math.toRadians(imu.getAngle()));
+    return new Rotation3d(0, 0, Math.toRadians(-imu.getAngle(IMUAxis.kYaw)));
   }
 
   /**

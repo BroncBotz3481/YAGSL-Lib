@@ -32,7 +32,8 @@ public class AnalogGyroSwerve extends SwerveIMU {
   /** Reset IMU to factory default. */
   @Override
   public void factoryDefault() {
-    offset = new Rotation3d(0, 0, Math.toRadians(gyro.getAngle()));
+    gyro.calibrate();
+    offset = new Rotation3d(0, 0, 0);
   }
 
   /** Clear sticky faults on IMU. */
@@ -56,7 +57,7 @@ public class AnalogGyroSwerve extends SwerveIMU {
    * @return {@link Rotation3d} from the IMU.
    */
   public Rotation3d getRawRotation3d() {
-    return new Rotation3d(0, 0, Math.toRadians(gyro.getAngle()));
+    return new Rotation3d(0, 0, Math.toRadians(-gyro.getAngle()));
   }
 
   /**

@@ -27,11 +27,8 @@ public class ADIS16448Swerve extends SwerveIMU {
   /** Reset IMU to factory default. */
   @Override
   public void factoryDefault() {
-    offset =
-        new Rotation3d(
-            Math.toRadians(imu.getYComplementaryAngle()),
-            Math.toRadians(imu.getXComplementaryAngle()),
-            Math.toRadians(imu.getAngle()));
+    offset = new Rotation3d(0, 0, 0);
+    imu.calibrate();
   }
 
   /** Clear sticky faults on IMU. */
@@ -56,9 +53,9 @@ public class ADIS16448Swerve extends SwerveIMU {
    */
   public Rotation3d getRawRotation3d() {
     return new Rotation3d(
-        Math.toRadians(imu.getYComplementaryAngle()),
-        Math.toRadians(imu.getXComplementaryAngle()),
-        Math.toRadians(imu.getAngle()));
+        Math.toRadians(-imu.getGyroAngleX()),
+        Math.toRadians(-imu.getGyroAngleY()),
+        Math.toRadians(-imu.getGyroAngleZ()));
   }
 
   /**

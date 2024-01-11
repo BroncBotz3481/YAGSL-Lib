@@ -1,7 +1,6 @@
 package swervelib.imu;
 
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.math.geometry.Quaternion;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -77,13 +76,7 @@ public class NavXSwerve extends SwerveIMU {
   @Override
   public void factoryDefault() {
     // gyro.reset(); // Reported to be slow
-    offset =
-        new Rotation3d(
-            new Quaternion(
-                gyro.getQuaternionW(),
-                gyro.getQuaternionX(),
-                gyro.getQuaternionY(),
-                gyro.getQuaternionZ()));
+    offset = gyro.getRotation3d();
   }
 
   /** Clear sticky faults on IMU. */
@@ -104,13 +97,9 @@ public class NavXSwerve extends SwerveIMU {
    *
    * @return {@link Rotation3d} from the IMU.
    */
+  @Override
   public Rotation3d getRawRotation3d() {
-    return new Rotation3d(
-        new Quaternion(
-            gyro.getQuaternionW() * 0.5,
-            gyro.getQuaternionX() * 0.5,
-            gyro.getQuaternionY() * 0.5,
-            gyro.getQuaternionZ() * 0.5)); // TODO: Remove when Studica's official release is made.
+    return gyro.getRotation3d();
   }
 
   /**
@@ -120,7 +109,7 @@ public class NavXSwerve extends SwerveIMU {
    */
   @Override
   public Rotation3d getRotation3d() {
-    return getRawRotation3d().minus(offset);
+    return gyro.getRotation3d().minus(offset);
   }
 
   /**

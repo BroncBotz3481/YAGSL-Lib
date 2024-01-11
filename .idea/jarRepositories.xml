@@ -56,5 +56,25 @@
       <option name="name" value="WPI3f48eb8c-50fe-43a6-9cb7-44c86353c4cb_0Release" />
       <option name="url" value="https://maven.revrobotics.com/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPIcb311d09-36e9-4143-a032-55bb2b94443b_0Release" />
+      <option name="name" value="WPIcb311d09-36e9-4143-a032-55bb2b94443b_0Release" />
+      <option name="url" value="https://dev.studica.com/maven/release/2024/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPI1b42324f-17c6-4875-8e77-1c312bc8c786_0Release" />
+      <option name="name" value="WPI1b42324f-17c6-4875-8e77-1c312bc8c786_0Release" />
+      <option name="url" value="https://3015rangerrobotics.github.io/pathplannerlib/repo" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPI151ecca8-670b-4026-8160-cdd2679ef2bd_0Release" />
+      <option name="name" value="WPI151ecca8-670b-4026-8160-cdd2679ef2bd_0Release" />
+      <option name="url" value="https://maven.reduxrobotics.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPILocal" />
+      <option name="name" value="WPILocal" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../Public/wpilib/2024/maven/" />
+    </remote-repository>
   </component>
 </project>
