@@ -11,10 +11,10 @@ import com.revrobotics.REVLibError;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkAnalogSensor;
 import com.revrobotics.SparkPIDController;
-import edu.wpi.first.wpilibj.DriverStation;
 import java.util.function.Supplier;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
+import swervelib.telemetry.Alert;
 import swervelib.telemetry.SwerveDriveTelemetry;
 
 /** An implementation of {@link CANSparkMax} as a {@link SwerveMotor}. */
@@ -30,6 +30,13 @@ public class SparkMaxSwerve extends SwerveMotor {
   public SparkPIDController pid;
   /** Factory default already occurred. */
   private boolean factoryDefaultOccurred = false;
+  /** An {@link Alert} for if there is an error configuring the motor. */
+  private Alert failureConfiguringAlert = new Alert("Motors","Failure configuring motor " + motor.getDeviceId(), Alert.AlertType.WARNING_TRACE);
+  /** An {@link Alert} for if the absolute encoder's offset is set in the json instead of the hardware client. */
+  private Alert absoluteEncoderOffsetWarning = new Alert("Motors",
+      "IF possible configure the duty cycle encoder offset in the REV Hardware Client instead of using the " +
+          "absoluteEncoderOffset in the Swerve Module JSON!",
+      Alert.AlertType.WARNING);
 
   /**
    * Initialize the swerve motor.
@@ -74,7 +81,7 @@ public class SparkMaxSwerve extends SwerveMotor {
         return;
       }
     }
-    DriverStation.reportWarning("Failure configuring motor " + motor.getDeviceId(), true);
+    failureConfiguringAlert.set(true);
   }
 
   /**
@@ -153,10 +160,7 @@ public class SparkMaxSwerve extends SwerveMotor {
   @Override
   public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder) {
     if (encoder.getAbsoluteEncoder() instanceof MotorFeedbackSensor) {
-      DriverStation.reportWarning(
-          "IF possible configure the duty cycle encoder offset in the REV Hardware Client instead of using the"
-              + " absoluteEncoderOffset in the Swerve Module JSON!",
-          false);
+      absoluteEncoderOffsetWarning.set(true);
       absoluteEncoder = encoder;
       configureSparkMax(
           () -> pid.setFeedbackDevice((MotorFeedbackSensor) absoluteEncoder.getAbsoluteEncoder()));

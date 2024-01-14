@@ -1,7 +1,7 @@
 package swervelib.encoders;
 
 import com.reduxrobotics.sensors.canandcoder.Canandcoder;
-import edu.wpi.first.wpilibj.DriverStation;
+import swervelib.telemetry.Alert;
 
 /** HELIUM {@link Canandcoder} from ReduxRobotics absolute encoder, attached through the CAN bus. */
 public class CanAndCoderSwerve extends SwerveAbsoluteEncoder {
@@ -10,6 +10,11 @@ public class CanAndCoderSwerve extends SwerveAbsoluteEncoder {
   public Canandcoder encoder;
   /** Inversion state of the encoder. */
   private boolean inverted = false;
+  /** An {@link Alert} for if the absolute encoder offset cannot be set. */
+  private Alert cannotSetOffset = new Alert(
+          "Encoders",
+          "Cannot Set Absolute Encoder Offset of CanAndCoders ID: " + encoder.getAddress(),
+          Alert.AlertType.WARNING);
 
   /**
    * Create the {@link Canandcoder}
@@ -71,8 +76,7 @@ public class CanAndCoderSwerve extends SwerveAbsoluteEncoder {
   @Override
   public boolean setAbsoluteEncoderOffset(double offset) {
     // CanAndCoder does not support Absolute Offset Changing
-    DriverStation.reportWarning(
-        "Cannot Set Absolute Encoder Offset of CanAndCoders ID: " + encoder.getAddress(), false);
+    cannotSetOffset.set(true);
     return false;
   }
 
