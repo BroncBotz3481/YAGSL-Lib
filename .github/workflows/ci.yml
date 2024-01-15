@@ -31,6 +31,8 @@ jobs:
       - name: Fetch all history and metadata
         run: |
           git config --global --add safe.directory /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}
+      - name: Install roboRio toolchain
+        run: ./gradlew installRoboRioToolchain
       - name: Build with Gradle
         run: ./gradlew build --max-workers 1 ${{ matrix.build-options }}
       - uses: actions/upload-artifact@v3
@@ -64,6 +66,8 @@ jobs:
           distribution: 'zulu'
           java-version: 17
           architecture: ${{ matrix.architecture }}
+      - name: Install roboRio toolchain
+        run: ./gradlew installRoboRioToolchain
       - name: Build with Gradle
         run: ./gradlew build -Pbuildalldesktop
       - uses: actions/upload-artifact@v3
