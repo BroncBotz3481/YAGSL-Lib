@@ -98,7 +98,7 @@ public class SwerveModule {
     // Config angle motor/controller
     angleMotor.configureIntegratedEncoder(moduleConfiguration.conversionFactors.angle);
     angleMotor.configurePIDF(moduleConfiguration.anglePIDF);
-    angleMotor.configurePIDWrapping(0, 90);
+    angleMotor.configurePIDWrapping(0, 180);
     angleMotor.setInverted(moduleConfiguration.angleMotorInverted);
     angleMotor.setMotorBrake(false);
 
@@ -154,7 +154,8 @@ public class SwerveModule {
    *     desired state onto the swerve module.
    */
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop, boolean force) {
-    desiredState = SwerveModuleState.optimize(desiredState, lastState.angle);
+    desiredState =
+        SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(getAbsolutePosition()));
 
     if (isOpenLoop) {
       double percentOutput = desiredState.speedMetersPerSecond / maxSpeed;
@@ -167,14 +168,14 @@ public class SwerveModule {
       double steerMotorError = desiredState.angle.getDegrees() - getAbsolutePosition();
       /* If error is close to 0 rotations, we're already there, so apply full power */
       /* If the error is close to 0.25 rotations, then we're 90 degrees, so movement doesn't help us at all */
-      double cosineScalar = Math.cos(Units.rotationsToRadians(steerMotorError));
+      double cosineScalar = Math.cos(Units.degreesToRadians(steerMotorError));
       /* Make sure we don't invert our drive, even though we shouldn't ever target over 90 degrees anyway */
       if (cosineScalar < 0.0) {
         cosineScalar = 0.0;
       }
 
       double velocity = desiredState.speedMetersPerSecond * (cosineScalar);
-      driveMotor.setReference(velocity, 0);
+      driveMotor.setReference(velocity, feedforward.calculate(velocity));
     }
 
     /* // Not necessary anymore.
@@ -390,6 +391,8 @@ public class SwerveModule {
           "Module[" + configuration.name + "] Raw Absolute Encoder",
           absoluteEncoder.getAbsolutePosition());
     }
+    SmartDashboard.putNumber(
+        "Module[" + configuration.name + "] Raw Motor Encoder", angleMotor.getPosition());
     SmartDashboard.putNumber(
         "Module[" + configuration.name + "] Adjusted Absolute Encoder", getAbsolutePosition());
     SmartDashboard.putNumber(

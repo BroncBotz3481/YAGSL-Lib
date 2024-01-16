@@ -75,6 +75,8 @@ public class SwerveDrive {
    * using 254's correction.
    */
   public boolean chassisVelocityCorrection = true;
+  /** Whether heading correction PID is currently active. */
+  private boolean correctionEnabled = false;
   /** Whether to correct heading when driving translationally. Set to true to enable. */
   public boolean headingCorrection = false;
   /** Swerve IMU device for sensing the heading of the robot. */
@@ -83,6 +85,8 @@ public class SwerveDrive {
   private SwerveIMUSimulation simIMU;
   /** Counter to synchronize the modules relative encoder with absolute encoder when not moving. */
   private int moduleSynchronizationCounter = 0;
+  /** Deadband for speeds in heading correction. */
+  private final double HEADING_CORRECTION_DEADBAND = 0.01;
   /** The last heading set in radians. */
   private double lastHeadingRadians = 0;
   /** The absolute max speed that your robot can reach while translating in meters per second. */
@@ -352,12 +356,19 @@ public class SwerveDrive {
 
     // Heading Angular Velocity Deadband, might make a configuration option later.
     // Originally made by Team 1466 Webb Robotics.
+    // Modified by Team 7525 Pioneers and BoiledBurntBagel of 6036
     if (headingCorrection) {
-      if (Math.abs(velocity.omegaRadiansPerSecond) < 0.01) {
+      if (Math.abs(velocity.omegaRadiansPerSecond) < HEADING_CORRECTION_DEADBAND
+          && (Math.abs(velocity.vxMetersPerSecond) > HEADING_CORRECTION_DEADBAND
+              || Math.abs(velocity.vyMetersPerSecond) > HEADING_CORRECTION_DEADBAND)) {
+        if (!correctionEnabled) {
+          lastHeadingRadians = getYaw().getRadians();
+          correctionEnabled = true;
+        }
         velocity.omegaRadiansPerSecond =
             swerveController.headingCalculate(lastHeadingRadians, getYaw().getRadians());
       } else {
-        lastHeadingRadians = getYaw().getRadians();
+        correctionEnabled = false;
       }
     }
 
@@ -783,6 +794,7 @@ public class SwerveDrive {
         sumVelocity += Math.abs(moduleState.speedMetersPerSecond);
         if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
           module.updateTelemetry();
+          SmartDashboard.putNumber("Adjusted IMU Yaw", getYaw().getDegrees());
         }
         if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal()) {
           SwerveDriveTelemetry.measuredStates[module.moduleNumber * 2] =
