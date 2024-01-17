@@ -51,6 +51,8 @@ public class SwerveDrive {
   private final Notifier odometryThread;
   /** Odometry lock to ensure thread safety. */
   private final Lock odometryLock = new ReentrantLock();
+  /** Deadband for speeds in heading correction. */
+  private final double HEADING_CORRECTION_DEADBAND = 0.01;
   /** Field object. */
   public Field2d field = new Field2d();
   /** Swerve controller for controlling heading of the robot. */
@@ -75,18 +77,16 @@ public class SwerveDrive {
    * using 254's correction.
    */
   public boolean chassisVelocityCorrection = true;
-  /** Whether heading correction PID is currently active. */
-  private boolean correctionEnabled = false;
   /** Whether to correct heading when driving translationally. Set to true to enable. */
   public boolean headingCorrection = false;
+  /** Whether heading correction PID is currently active. */
+  private boolean correctionEnabled = false;
   /** Swerve IMU device for sensing the heading of the robot. */
   private SwerveIMU imu;
   /** Simulation of the swerve drive. */
   private SwerveIMUSimulation simIMU;
   /** Counter to synchronize the modules relative encoder with absolute encoder when not moving. */
   private int moduleSynchronizationCounter = 0;
-  /** Deadband for speeds in heading correction. */
-  private final double HEADING_CORRECTION_DEADBAND = 0.01;
   /** The last heading set in radians. */
   private double lastHeadingRadians = 0;
   /** The absolute max speed that your robot can reach while translating in meters per second. */

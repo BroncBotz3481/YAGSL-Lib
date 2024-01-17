@@ -26,10 +26,23 @@ import swervelib.motors.SparkMaxSwerve;
 import swervelib.motors.SwerveMotor;
 import swervelib.motors.TalonFXSwerve;
 import swervelib.motors.TalonSRXSwerve;
+import swervelib.telemetry.Alert;
 
 /** Device JSON parsed class. Used to access the JSON data. */
 public class DeviceJson {
 
+  /** An {@link Alert} for if the CAN ID is greater than 40. */
+  private final Alert canIdWarning =
+      new Alert(
+          "JSON",
+          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
+          Alert.AlertType.WARNING);
+  /** An {@link Alert} for if there is an I2C lockup issue on the roboRIO. */
+  private final Alert i2cLockupWarning =
+      new Alert(
+          "IMU",
+          "I2C lockup issue detected on roboRIO. Check console for more information.",
+          Alert.AlertType.WARNING);
   /** The device type, e.g. pigeon/pigeon2/sparkmax/talonfx/navx */
   public String type;
   /** The CAN ID or pin ID of the device. */
@@ -46,9 +59,7 @@ public class DeviceJson {
    */
   public SwerveAbsoluteEncoder createEncoder(SwerveMotor motor) {
     if (id > 40) {
-      DriverStation.reportWarning(
-          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
-          false);
+      canIdWarning.set(true);
     }
     switch (type) {
       case "none":
@@ -86,9 +97,7 @@ public class DeviceJson {
    */
   public SwerveIMU createIMU() {
     if (id > 40) {
-      DriverStation.reportWarning(
-          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
-          false);
+      canIdWarning.set(true);
     }
     switch (type) {
       case "adis16448":
@@ -108,6 +117,7 @@ public class DeviceJson {
                 + "\nhttps://docs.wpilib.org/en/stable/docs/yearly-overview/known-issues"
                 + ".html#onboard-i2c-causing-system-lockups",
             false);
+        i2cLockupWarning.set(true);
         return new NavXSwerve(I2C.Port.kMXP);
       case "navx_usb":
         return new NavXSwerve(Port.kUSB);
@@ -130,9 +140,7 @@ public class DeviceJson {
    */
   public SwerveMotor createMotor(boolean isDriveMotor) {
     if (id > 40) {
-      DriverStation.reportWarning(
-          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
-          false);
+      canIdWarning.set(true);
     }
     switch (type) {
       case "sparkmax_brushed":
