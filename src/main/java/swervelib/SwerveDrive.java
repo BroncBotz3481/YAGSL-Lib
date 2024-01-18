@@ -57,7 +57,7 @@ public class SwerveDrive {
   /** Odometry lock to ensure thread safety. */
   private final Lock odometryLock = new ReentrantLock();
   /** Deadband for speeds in heading correction. */
-  private final double HEADING_CORRECTION_DEADBAND = 0.01;
+  private double HEADING_CORRECTION_DEADBAND = 0.01;
   /** Field object. */
   public Field2d field = new Field2d();
   /** Swerve controller for controlling heading of the robot. */
@@ -254,7 +254,18 @@ public class SwerveDrive {
    * @param state {@link SwerveDrive#headingCorrection} state.
    */
   public void setHeadingCorrection(boolean state) {
+    setHeadingCorrection(state, HEADING_CORRECTION_DEADBAND);
+  }
+
+  /**
+   * Set the heading correction capabilities of YAGSL.
+   *
+   * @param state {@link SwerveDrive#headingCorrection} state.
+   * @param deadband {@link SwerveDrive#HEADING_CORRECTION_DEADBAND} deadband.
+   */
+  public void setHeadingCorrection(boolean state, double deadband) {
     headingCorrection = state;
+    HEADING_CORRECTION_DEADBAND = deadband;
   }
 
   /**
