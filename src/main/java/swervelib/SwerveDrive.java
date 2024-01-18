@@ -187,6 +187,8 @@ public class SwerveDrive {
     }
 
     odometryThread.startPeriodic(SwerveDriveTelemetry.isSimulation ? 0.01 : 0.02);
+
+    checkIfTunerXCompatible();
   }
 
   /** Check all components to ensure that Tuner X Swerve Generator is recommended instead. */
