@@ -408,7 +408,9 @@ public class SwerveModule {
           absoluteEncoder.getAbsolutePosition());
     }
     SmartDashboard.putNumber(
-        "Module[" + configuration.name + "] Raw Motor Encoder", angleMotor.getPosition());
+        "Module[" + configuration.name + "] Raw Angle Encoder", angleMotor.getPosition());
+    SmartDashboard.putNumber(
+        "Module[" + configuration.name + "] Raw Drive Encoder", driveMotor.getPosition());
     SmartDashboard.putNumber(
         "Module[" + configuration.name + "] Adjusted Absolute Encoder", getAbsolutePosition());
     SmartDashboard.putNumber(
