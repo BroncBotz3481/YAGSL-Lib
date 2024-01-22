@@ -492,6 +492,8 @@ public class SwerveDrive {
           maxSpeedMPS,
           attainableMaxTranslationalSpeedMetersPerSecond,
           attainableMaxRotationalVelocityRadiansPerSecond);
+    } else {
+      SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, maxSpeedMPS);
     }
 
     // Sets states
