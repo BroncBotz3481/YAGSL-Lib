@@ -27,6 +27,7 @@ import swervelib.motors.SwerveMotor;
 import swervelib.motors.TalonFXSwerve;
 import swervelib.motors.TalonSRXSwerve;
 import swervelib.telemetry.Alert;
+import swervelib.telemetry.Alert.AlertType;
 
 /** Device JSON parsed class. Used to access the JSON data. */
 public class DeviceJson {
@@ -43,6 +44,12 @@ public class DeviceJson {
           "IMU",
           "I2C lockup issue detected on roboRIO. Check console for more information.",
           Alert.AlertType.WARNING);
+  /** NavX serial comm issue. */
+  private final Alert serialCommsIssueWarning =
+      new Alert(
+          "IMU",
+          "Serial comms is interrupted with USB and other serial traffic and causes intermittent connected/disconnection issues. Please consider another protocol or be mindful of this.",
+          AlertType.WARNING);
   /** The device type, e.g. pigeon/pigeon2/sparkmax/talonfx/navx */
   public String type;
   /** The CAN ID or pin ID of the device. */
@@ -109,7 +116,6 @@ public class DeviceJson {
       case "analog":
         return new AnalogGyroSwerve(id);
       case "navx":
-      case "navx_mxp_spi":
       case "navx_spi":
         return new NavXSwerve(SPI.Port.kMXP);
       case "navx_i2c":
@@ -121,8 +127,14 @@ public class DeviceJson {
         i2cLockupWarning.set(true);
         return new NavXSwerve(I2C.Port.kMXP);
       case "navx_usb":
+        DriverStation.reportWarning(
+            "WARNING: There is issues when using USB camera's and the NavX like this!\n"
+                + "https://pdocs.kauailabs.com/navx-mxp/guidance/selecting-an-interface/",
+            false);
+        serialCommsIssueWarning.set(true);
         return new NavXSwerve(Port.kUSB);
       case "navx_mxp_serial":
+        serialCommsIssueWarning.set(true);
         return new NavXSwerve(Port.kMXP);
       case "pigeon":
         return new PigeonSwerve(id);
