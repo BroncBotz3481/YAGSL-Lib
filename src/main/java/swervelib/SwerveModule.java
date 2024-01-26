@@ -38,7 +38,7 @@ public class SwerveModule {
   /** Maximum speed of the drive motors in meters per second. */
   public double maxSpeed;
   /** Last swerve module state applied. */
-  public SwerveModuleState lastState;
+  private SwerveModuleState lastState;
   /** Angle offset from the absolute encoder. */
   private double angleOffset;
   /** Simulated swerve module. */
@@ -167,28 +167,16 @@ public class SwerveModule {
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop, boolean force) {
     desiredState =
         SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(getAbsolutePosition()));
+    // Cosine compensation.
+    double velocity =
+        configuration.useCosineCompensator
+            ? getCosineCompensatedVelocity(desiredState)
+            : desiredState.speedMetersPerSecond;
 
     if (isOpenLoop) {
       double percentOutput = desiredState.speedMetersPerSecond / maxSpeed;
       driveMotor.set(percentOutput);
     } else {
-      double cosineScalar = 1.0;
-      if (configuration.useCosineCompensator) {
-        // Taken from the CTRE SwerveModule class.
-        // https://api.ctr-electronics.com/phoenix6/release/java/src-html/com/ctre/phoenix6/mechanisms/swerve/SwerveModule.html#line.46
-        /* From FRC 900's whitepaper, we add a cosine compensator to the applied drive velocity */
-        /* To reduce the "skew" that occurs when changing direction */
-        double steerMotorError = desiredState.angle.getDegrees() - getAbsolutePosition();
-        /* If error is close to 0 rotations, we're already there, so apply full power */
-        /* If the error is close to 0.25 rotations, then we're 90 degrees, so movement doesn't help us at all */
-        cosineScalar = Math.cos(Units.degreesToRadians(steerMotorError));
-        /* Make sure we don't invert our drive, even though we shouldn't ever target over 90 degrees anyway */
-        if (cosineScalar < 0.0) {
-          cosineScalar = 0.0;
-        }
-      }
-
-      double velocity = desiredState.speedMetersPerSecond * (cosineScalar);
       driveMotor.setReference(velocity, feedforward.calculate(velocity));
     }
 
@@ -216,12 +204,41 @@ public class SwerveModule {
       simModule.updateStateAndPosition(desiredState);
     }
 
+    if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal()) {
+      SwerveDriveTelemetry.desiredStates[moduleNumber * 2] = desiredState.angle.getDegrees();
+      SwerveDriveTelemetry.desiredStates[(moduleNumber * 2) + 1] = velocity;
+    }
+
     if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
       SmartDashboard.putNumber(
           "Module[" + configuration.name + "] Speed Setpoint", desiredState.speedMetersPerSecond);
       SmartDashboard.putNumber(
           "Module[" + configuration.name + "] Angle Setpoint", desiredState.angle.getDegrees());
     }
+  }
+
+  /**
+   * Get the cosine compensated velocity to set the swerve module to.
+   *
+   * @param desiredState Desired {@link SwerveModuleState} to use.
+   * @return Cosine compensated velocity in meters/second.
+   */
+  private double getCosineCompensatedVelocity(SwerveModuleState desiredState) {
+    double cosineScalar = 1.0;
+    // Taken from the CTRE SwerveModule class.
+    // https://api.ctr-electronics.com/phoenix6/release/java/src-html/com/ctre/phoenix6/mechanisms/swerve/SwerveModule.html#line.46
+    /* From FRC 900's whitepaper, we add a cosine compensator to the applied drive velocity */
+    /* To reduce the "skew" that occurs when changing direction */
+    double steerMotorError = desiredState.angle.getDegrees() - getAbsolutePosition();
+    /* If error is close to 0 rotations, we're already there, so apply full power */
+    /* If the error is close to 0.25 rotations, then we're 90 degrees, so movement doesn't help us at all */
+    cosineScalar = Math.cos(Units.degreesToRadians(steerMotorError));
+    /* Make sure we don't invert our drive, even though we shouldn't ever target over 90 degrees anyway */
+    if (cosineScalar < 0.0) {
+      cosineScalar = 0.0;
+    }
+
+    return desiredState.speedMetersPerSecond * (cosineScalar);
   }
 
   /**
