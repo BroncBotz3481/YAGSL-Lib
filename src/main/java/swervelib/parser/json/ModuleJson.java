@@ -37,6 +37,8 @@ public class ModuleJson {
   public boolean absoluteEncoderInverted = false;
   /** The location of the swerve module from the center of the robot in inches. */
   public LocationJson location;
+  /** Should do cosine compensation when not pointing correct direction;. */
+  public boolean useCosineCompensator = true;
 
   /**
    * Create the swerve module configuration based off of parsed data.
@@ -112,6 +114,7 @@ public class ModuleJson {
         absoluteEncoderInverted,
         inverted.drive,
         inverted.angle,
-        name.replaceAll("\\.json", ""));
+        name.replaceAll("\\.json", ""),
+        useCosineCompensator);
   }
 }

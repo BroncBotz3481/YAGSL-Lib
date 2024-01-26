@@ -75,8 +75,6 @@ public class SwerveDrive {
   public boolean headingCorrection = false;
   /** Deadband for speeds in heading correction. */
   private double HEADING_CORRECTION_DEADBAND = 0.01;
-  /** Whether heading correction PID is currently active. */
-  private boolean correctionEnabled = false;
   /** Swerve IMU device for sensing the heading of the robot. */
   private SwerveIMU imu;
   /** Simulation of the swerve drive. */
@@ -141,6 +139,7 @@ public class SwerveDrive {
                     0))); // x,y,heading in radians; Vision measurement std dev, higher=less weight
 
     zeroGyro();
+    setMaximumSpeed(maxSpeedMPS);
 
     // Initialize Telemetry
     if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.LOW.ordinal()) {
@@ -399,15 +398,11 @@ public class SwerveDrive {
       if (Math.abs(velocity.omegaRadiansPerSecond) < HEADING_CORRECTION_DEADBAND
           && (Math.abs(velocity.vxMetersPerSecond) > HEADING_CORRECTION_DEADBAND
               || Math.abs(velocity.vyMetersPerSecond) > HEADING_CORRECTION_DEADBAND)) {
-        if (!correctionEnabled) {
-          lastHeadingRadians = getOdometryHeading().getRadians();
-          correctionEnabled = true;
-        }
         velocity.omegaRadiansPerSecond =
             swerveController.headingCalculate(
-                lastHeadingRadians, getOdometryHeading().getRadians());
+                getOdometryHeading().getRadians(), lastHeadingRadians);
       } else {
-        correctionEnabled = false;
+        lastHeadingRadians = getOdometryHeading().getRadians();
       }
     }
 
@@ -625,6 +620,30 @@ public class SwerveDrive {
   }
 
   /**
+   * Getter for the {@link SwerveIMU}.
+   *
+   * @return generated {@link SwerveIMU}
+   */
+  public SwerveIMU getGyro() {
+    return swerveDriveConfiguration.imu;
+  }
+
+  /**
+   * Set the expected gyroscope angle using a {@link Rotation3d} object. To reset gyro, set to a new
+   * {@link Rotation3d} subtracted from the current gyroscopic readings {@link
+   * SwerveIMU#getRotation3d()}.
+   *
+   * @param gyro expected gyroscope angle as {@link Rotation3d}.
+   */
+  public void setGyro(Rotation3d gyro) {
+    if (SwerveDriveTelemetry.isSimulation) {
+      setGyroOffset(simIMU.getGyroRotation3d().minus(gyro));
+    } else {
+      setGyroOffset(imu.getRawRotation3d().minus(gyro));
+    }
+  }
+
+  /**
    * Resets the gyro angle to zero and resets odometry to the same position, but facing toward 0.
    */
   public void zeroGyro() {
@@ -738,6 +757,7 @@ public class SwerveDrive {
     maxSpeedMPS = maximumSpeed;
     swerveDriveConfiguration.physicalCharacteristics.optimalVoltage = optimalVoltage;
     for (SwerveModule module : swerveModules) {
+      module.maxSpeed = maximumSpeed;
       if (updateModuleFeedforward) {
         module.feedforward =
             SwerveMath.createDriveFeedforward(
@@ -921,9 +941,7 @@ public class SwerveDrive {
 
   /**
    * Add a vision measurement to the {@link SwerveDrivePoseEstimator} and update the {@link
-   * SwerveIMU} gyro reading with the given timestamp of the vision measurement. <br>
-   * <b>IT IS HIGHLY RECOMMENDED TO UPDATE YOUR GYROSCOPE OFFSET AFTER USING THIS FUNCTION!</b> <br>
-   * To update your gyroscope readings directly use {@link SwerveDrive#setGyroOffset(Rotation3d)}.
+   * SwerveIMU} gyro reading with the given timestamp of the vision measurement.
    *
    * @param robotPose Robot {@link Pose2d} as measured by vision.
    * @param timestamp Timestamp the measurement was taken as time since startup, should be taken
@@ -939,21 +957,6 @@ public class SwerveDrive {
 
     //    setGyroOffset(new Rotation3d(0, 0, robotPose.getRotation().getRadians()));
     //    resetOdometry(newOdometry);
-  }
-
-  /**
-   * Set the expected gyroscope angle using a {@link Rotation3d} object. To reset gyro, set to a new
-   * {@link Rotation3d} subtracted from the current gyroscopic readings {@link
-   * SwerveIMU#getRotation3d()}.
-   *
-   * @param gyro expected gyroscope angle as {@link Rotation3d}.
-   */
-  public void setGyro(Rotation3d gyro) {
-    if (SwerveDriveTelemetry.isSimulation) {
-      setGyroOffset(simIMU.getGyroRotation3d().minus(gyro));
-    } else {
-      setGyroOffset(imu.getRawRotation3d().minus(gyro));
-    }
   }
 
   /**

@@ -116,8 +116,8 @@ public class Pigeon2Swerve extends SwerveIMU {
   public Optional<Translation3d> getAccel() {
     // TODO: Switch to suppliers.
     StatusSignal<Double> xAcc = imu.getAccelerationX();
-    StatusSignal<Double> yAcc = imu.getAccelerationX();
-    StatusSignal<Double> zAcc = imu.getAccelerationX();
+    StatusSignal<Double> yAcc = imu.getAccelerationY();
+    StatusSignal<Double> zAcc = imu.getAccelerationZ();
 
     return Optional.of(
         new Translation3d(

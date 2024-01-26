@@ -6,7 +6,7 @@ plugins {
     id 'edu.wpi.first.NativeUtils' version '2024.6.1'
     id 'edu.wpi.first.GradleJni' version '1.1.0'
     id 'edu.wpi.first.GradleVsCode' version '2.1.0'
-    id "edu.wpi.first.GradleRIO" version "2024.1.1"
+    id "edu.wpi.first.GradleRIO" version "2024.2.1"
     id "com.diffplug.spotless" version "6.11.0"
 }
 
