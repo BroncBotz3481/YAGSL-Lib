@@ -14,6 +14,8 @@ import swervelib.telemetry.Alert;
 /** Swerve Absolute Encoder for CTRE CANCoders. */
 public class CANCoderSwerve extends SwerveAbsoluteEncoder {
 
+  /** Wait time for status frames to show up. */
+  private final double STATUS_TIMEOUT_SECONDS = 0.02;
   /** CANCoder with WPILib sendable and support. */
   public CANcoder encoder;
   /** An {@link Alert} for if the CANCoder magnet field is less than ideal. */
@@ -31,7 +33,8 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
    * @param id CAN ID.
    */
   public CANCoderSwerve(int id) {
-    encoder = new CANcoder(id);
+    // Empty string uses the default canbus for the system
+    this(id, "");
   }
 
   /**
@@ -115,7 +118,7 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
       readingFaulty.set(false);
     }
 
-    StatusSignal<Double> angle = encoder.getAbsolutePosition().refresh();
+    StatusSignal<Double> angle = encoder.getAbsolutePosition();
 
     // Taken from democat's library.
     // Source:
@@ -124,7 +127,7 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
       if (angle.getStatus() == StatusCode.OK) {
         break;
       }
-      angle = angle.waitForUpdate(0.01);
+      angle = angle.waitForUpdate(STATUS_TIMEOUT_SECONDS);
     }
     if (angle.getStatus() != StatusCode.OK) {
       readingError = true;

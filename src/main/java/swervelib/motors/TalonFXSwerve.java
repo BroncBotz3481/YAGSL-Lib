@@ -22,6 +22,8 @@ public class TalonFXSwerve extends SwerveMotor {
   private final MotionMagicVoltage m_angleVoltageSetter = new MotionMagicVoltage(0);
   /** Velocity voltage setter for controlling drive motor. */
   private final VelocityVoltage m_velocityVoltageSetter = new VelocityVoltage(0);
+  /** Wait time for status frames to show up. */
+  private final double STATUS_TIMEOUT_SECONDS = 0.02;
   /** TalonFX motor controller. */
   TalonFX motor;
   /** Conversion factor for the motor. */
@@ -308,7 +310,7 @@ public class TalonFXSwerve extends SwerveMotor {
    */
   @Override
   public double getVoltage() {
-    return motor.getMotorVoltage().refresh().getValue();
+    return motor.getMotorVoltage().waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue();
   }
 
   /**
@@ -328,7 +330,7 @@ public class TalonFXSwerve extends SwerveMotor {
    */
   @Override
   public double getAppliedOutput() {
-    return motor.getDutyCycle().refresh().getValue();
+    return motor.getDutyCycle().waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue();
   }
 
   /**

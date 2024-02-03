@@ -13,6 +13,8 @@ import java.util.Optional;
 /** SwerveIMU interface for the Pigeon2 */
 public class Pigeon2Swerve extends SwerveIMU {
 
+  /** Wait time for status frames to show up. */
+  private final double STATUS_TIMEOUT_SECONDS = 0.02;
   /** Pigeon2 IMU device. */
   Pigeon2 imu;
   /** Offset for the Pigeon 2. */
@@ -89,10 +91,10 @@ public class Pigeon2Swerve extends SwerveIMU {
     Rotation3d reading =
         new Rotation3d(
             new Quaternion(
-                w.refresh().getValue(),
-                x.refresh().getValue(),
-                y.refresh().getValue(),
-                z.refresh().getValue()));
+                w.waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue(),
+                x.waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue(),
+                y.waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue(),
+                z.waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue()));
     return invertedIMU ? reading.unaryMinus() : reading;
   }
 
@@ -121,7 +123,9 @@ public class Pigeon2Swerve extends SwerveIMU {
 
     return Optional.of(
         new Translation3d(
-                xAcc.refresh().getValue(), yAcc.refresh().getValue(), zAcc.refresh().getValue())
+                xAcc.waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue(),
+                yAcc.waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue(),
+                zAcc.waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue())
             .times(9.81 / 16384.0));
   }
 
