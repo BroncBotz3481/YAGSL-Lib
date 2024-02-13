@@ -2,6 +2,7 @@ package swervelib.telemetry;
 
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import swervelib.telemetry.Alert.AlertType;
 
 /**
  * Telemetry to describe the {@link swervelib.SwerveDrive} following frc-web-components. (Which
@@ -9,6 +10,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class SwerveDriveTelemetry {
 
+  /** An {@link Alert} for if the CAN ID is greater than 40. */
+  public static final Alert canIdWarning =
+      new Alert(
+          "JSON",
+          "CAN IDs greater than 40 can cause undefined behaviour, please use a CAN ID below 40!",
+          Alert.AlertType.WARNING);
+  /** An {@link Alert} for if there is an I2C lockup issue on the roboRIO. */
+  public static final Alert i2cLockupWarning =
+      new Alert(
+          "IMU",
+          "I2C lockup issue detected on roboRIO. Check console for more information.",
+          Alert.AlertType.WARNING);
+  /** NavX serial comm issue. */
+  public static final Alert serialCommsIssueWarning =
+      new Alert(
+          "IMU",
+          "Serial comms is interrupted with USB and other serial traffic and causes intermittent connected/disconnection issues. Please consider another protocol or be mindful of this.",
+          AlertType.WARNING);
   /** The current telemetry verbosity level. */
   public static TelemetryVerbosity verbosity = TelemetryVerbosity.MACHINE;
   /** State of simulation of the Robot, used to optimize retrieval. */

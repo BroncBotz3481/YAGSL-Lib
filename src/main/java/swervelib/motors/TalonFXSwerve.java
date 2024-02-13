@@ -14,6 +14,8 @@ import swervelib.telemetry.SwerveDriveTelemetry;
 /** {@link com.ctre.phoenix6.hardware.TalonFX} Swerve Motor. Made by Team 1466 WebbRobotics. */
 public class TalonFXSwerve extends SwerveMotor {
 
+  /** Wait time for status frames to show up. */
+  public static double STATUS_TIMEOUT_SECONDS = 0.02;
   /** Factory default already occurred. */
   private final boolean factoryDefaultOccurred = false;
   /** Whether the absolute encoder is integrated. */
@@ -22,8 +24,6 @@ public class TalonFXSwerve extends SwerveMotor {
   private final MotionMagicVoltage m_angleVoltageSetter = new MotionMagicVoltage(0);
   /** Velocity voltage setter for controlling drive motor. */
   private final VelocityVoltage m_velocityVoltageSetter = new VelocityVoltage(0);
-  /** Wait time for status frames to show up. */
-  public static double STATUS_TIMEOUT_SECONDS = 0.02;
   /** TalonFX motor controller. */
   TalonFX motor;
   /** Conversion factor for the motor. */

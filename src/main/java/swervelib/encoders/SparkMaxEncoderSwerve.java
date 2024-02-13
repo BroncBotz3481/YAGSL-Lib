@@ -26,13 +26,6 @@ public class SparkMaxEncoderSwerve extends SwerveAbsoluteEncoder {
    * @param conversionFactor The conversion factor to set if the output is not from 0 to 360.
    */
   public SparkMaxEncoderSwerve(SwerveMotor motor, int conversionFactor) {
-    if (motor.getMotor() instanceof CANSparkMax) {
-      encoder = ((CANSparkMax) motor.getMotor()).getAbsoluteEncoder(Type.kDutyCycle);
-      configureSparkMax(() -> encoder.setVelocityConversionFactor(conversionFactor));
-      configureSparkMax(() -> encoder.setPositionConversionFactor(conversionFactor));
-    } else {
-      throw new RuntimeException("Motor given to instantiate SparkMaxEncoder is not a CANSparkMax");
-    }
     failureConfiguring =
         new Alert(
             "Encoders",
@@ -41,6 +34,13 @@ public class SparkMaxEncoderSwerve extends SwerveAbsoluteEncoder {
     offsetFailure =
         new Alert(
             "Encoders", "Failure to set Absolute Encoder Offset", Alert.AlertType.WARNING_TRACE);
+    if (motor.getMotor() instanceof CANSparkMax) {
+      encoder = ((CANSparkMax) motor.getMotor()).getAbsoluteEncoder(Type.kDutyCycle);
+      configureSparkMax(() -> encoder.setVelocityConversionFactor(conversionFactor));
+      configureSparkMax(() -> encoder.setPositionConversionFactor(conversionFactor));
+    } else {
+      throw new RuntimeException("Motor given to instantiate SparkMaxEncoder is not a CANSparkMax");
+    }
   }
 
   /**

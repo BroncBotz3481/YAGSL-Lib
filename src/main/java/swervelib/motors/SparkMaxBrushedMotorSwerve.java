@@ -54,6 +54,20 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
       Type encoderType,
       int countsPerRevolution,
       boolean useDataPortQuadEncoder) {
+
+    noEncoderAlert =
+        new Alert("Motors", "Cannot use motor without encoder.", Alert.AlertType.ERROR_TRACE);
+    failureConfiguringAlert =
+        new Alert(
+            "Motors",
+            "Failure configuring motor " + motor.getDeviceId(),
+            Alert.AlertType.WARNING_TRACE);
+    noEncoderDefinedAlert =
+        new Alert(
+            "Motors",
+            "An encoder MUST be defined to work with a SparkMAX",
+            Alert.AlertType.ERROR_TRACE);
+
     // Drive motors **MUST** have an encoder attached.
     if (isDriveMotor && encoderType == Type.kNoSensor) {
       noEncoderAlert.set(true);
@@ -90,18 +104,6 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
     // configureSparkMax(() -> motor.setCANTimeout(0)); // Commented it out because it prevents
     // feedback.
 
-    noEncoderAlert =
-        new Alert("Motors", "Cannot use motor without encoder.", Alert.AlertType.ERROR_TRACE);
-    failureConfiguringAlert =
-        new Alert(
-            "Motors",
-            "Failure configuring motor " + motor.getDeviceId(),
-            Alert.AlertType.WARNING_TRACE);
-    noEncoderDefinedAlert =
-        new Alert(
-            "Motors",
-            "An encoder MUST be defined to work with a SparkMAX",
-            Alert.AlertType.ERROR_TRACE);
   }
 
   /**

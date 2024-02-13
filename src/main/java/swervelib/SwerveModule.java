@@ -34,6 +34,16 @@ public class SwerveModule {
   private final Alert encoderOffsetWarning;
   /** An {@link Alert} for if there is no Absolute Encoder on the module. */
   private final Alert noEncoderWarning;
+  /** NT3 Raw Absolute Angle publisher for the absolute encoder. */
+  private final String rawAbsoluteAngleName;
+  /** NT3 Adjusted Absolute angle publisher for the absolute encoder. */
+  private final String adjAbsoluteAngleName;
+  /** NT3 Absolute encoder read issue. */
+  private final String absoluteEncoderIssueName;
+  /** NT3 raw angle motor. */
+  private final String rawAngleName;
+  /** NT3 Raw drive motor. */
+  private final String rawDriveName;
   /**
    * Module number for kinematics, usually 0 to 3. front left -> front right -> back left -> back
    * right.
@@ -145,6 +155,12 @@ public class SwerveModule {
             "Motors",
             "Pushing the Absolute Encoder offset to the encoder failed on module #" + moduleNumber,
             Alert.AlertType.WARNING);
+
+    rawAbsoluteAngleName = "Module[" + configuration.name + "] Raw Absolute Encoder";
+    adjAbsoluteAngleName = "Module[" + configuration.name + "] Adjusted Absolute Encoder";
+    absoluteEncoderIssueName = "Module[" + configuration.name + "] Absolute Encoder Read Issue";
+    rawAngleName = "Module[" + configuration.name + "] Raw Angle Encoder";
+    rawDriveName = "Module[" + configuration.name + "] Raw Drive Encoder";
   }
 
   /**
@@ -454,18 +470,11 @@ public class SwerveModule {
   /** Update data sent to {@link SmartDashboard}. */
   public void updateTelemetry() {
     if (absoluteEncoder != null) {
-      SmartDashboard.putNumber(
-          "Module[" + configuration.name + "] Raw Absolute Encoder",
-          absoluteEncoder.getAbsolutePosition());
+      SmartDashboard.putNumber(rawAbsoluteAngleName, absoluteEncoder.getAbsolutePosition());
     }
-    SmartDashboard.putNumber(
-        "Module[" + configuration.name + "] Raw Angle Encoder", angleMotor.getPosition());
-    SmartDashboard.putNumber(
-        "Module[" + configuration.name + "] Raw Drive Encoder", driveMotor.getPosition());
-    SmartDashboard.putNumber(
-        "Module[" + configuration.name + "] Adjusted Absolute Encoder", getAbsolutePosition());
-    SmartDashboard.putNumber(
-        "Module[" + configuration.name + "] Absolute Encoder Read Issue",
-        getAbsoluteEncoderReadIssue() ? 1 : 0);
+    SmartDashboard.putNumber(rawAngleName, angleMotor.getPosition());
+    SmartDashboard.putNumber(rawDriveName, driveMotor.getPosition());
+    SmartDashboard.putNumber(adjAbsoluteAngleName, getAbsolutePosition());
+    SmartDashboard.putNumber(absoluteEncoderIssueName, getAbsoluteEncoderReadIssue() ? 1 : 0);
   }
 }
