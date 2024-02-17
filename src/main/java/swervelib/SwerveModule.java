@@ -201,6 +201,13 @@ public class SwerveModule {
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop, boolean force) {
     desiredState =
         SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(getAbsolutePosition()));
+
+    // If we are forcing the angle
+    if (!force) {
+      // Prevents module rotation if speed is less than 1%
+      SwerveMath.antiJitter(desiredState, lastState, Math.min(maxSpeed, 4));
+    }
+
     // Cosine compensation.
     double velocity =
         configuration.useCosineCompensator
@@ -213,12 +220,6 @@ public class SwerveModule {
     } else {
       driveMotor.setReference(velocity, feedforward.calculate(velocity));
       desiredState.speedMetersPerSecond = velocity;
-    }
-
-    // If we are forcing the angle
-    if (!force) {
-      // Prevents module rotation if speed is less than 1%
-      SwerveMath.antiJitter(desiredState, lastState, Math.min(maxSpeed, 4));
     }
 
     // Prevent module rotation if angle is the same as the previous angle.
