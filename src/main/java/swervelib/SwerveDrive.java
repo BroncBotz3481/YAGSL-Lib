@@ -759,11 +759,11 @@ public class SwerveDrive {
     for (SwerveModule module : swerveModules) {
       module.maxSpeed = maximumSpeed;
       if (updateModuleFeedforward) {
-        module.feedforward =
+        module.setFeedforward(
             SwerveMath.createDriveFeedforward(
                 optimalVoltage,
                 maximumSpeed,
-                swerveDriveConfiguration.physicalCharacteristics.wheelGripCoefficientOfFriction);
+                swerveDriveConfiguration.physicalCharacteristics.wheelGripCoefficientOfFriction));
       }
     }
   }
@@ -773,7 +773,8 @@ public class SwerveDrive {
    * used for the {@link SwerveDrive#setRawModuleStates(SwerveModuleState[], boolean)} function and
    * {@link SwerveController#getTargetSpeeds(double, double, double, double, double)} functions.
    * This function overrides what was placed in the JSON and could damage your motor/robot if set
-   * too high or unachievable rates. Overwrites the {@link SwerveModule#feedforward}.
+   * too high or unachievable rates. Overwrites the {@link
+   * SwerveModule#setFeedforward(SimpleMotorFeedforward)}.
    *
    * @param maximumSpeed Maximum speed for the drive motors in meters / second.
    */
@@ -824,11 +825,11 @@ public class SwerveDrive {
   /**
    * Setup the swerve module feedforward.
    *
-   * @param feedforward Feedforward for the drive motor on swerve modules.
+   * @param driveFeedforward Feedforward for the drive motor on swerve modules.
    */
-  public void replaceSwerveModuleFeedforward(SimpleMotorFeedforward feedforward) {
+  public void replaceSwerveModuleFeedforward(SimpleMotorFeedforward driveFeedforward) {
     for (SwerveModule swerveModule : swerveModules) {
-      swerveModule.feedforward = feedforward;
+      swerveModule.setFeedforward(driveFeedforward);
     }
   }
 
@@ -1004,7 +1005,7 @@ public class SwerveDrive {
    */
   public void resetDriveEncoders() {
     for (SwerveModule module : swerveModules) {
-      module.configuration.driveMotor.setPosition(0);
+      module.getDriveMotor().setPosition(0);
     }
   }
 
