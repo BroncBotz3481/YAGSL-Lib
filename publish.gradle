@@ -2,7 +2,9 @@ apply plugin: 'maven-publish'
 
 ext.licenseFile = files("$rootDir/LICENSE.txt")
 
-def pubVersion = '2024.6.1.0'
+def pubVersion = System.getenv("releaseVersion") ?: "test"
+
+def releasesRepoUrl = "yagsl/repos/"
 
 def outputsFolder = file("$buildDir/outputs")
 
@@ -145,7 +147,6 @@ build.dependsOn outputJar
 
 libraryBuild.dependsOn build
 
-def releasesRepoUrl = "yagsl/repos/releases"
 
 publishing {
     repositories {
@@ -155,12 +156,6 @@ publishing {
         }
     }
 }
-
-task cleanReleaseRepo(type: Delete) {
-    delete releasesRepoUrl
-}
-
-tasks.matching {it != cleanReleaseRepo}.all {it.dependsOn cleanReleaseRepo}
 
 model {
     publishing {
