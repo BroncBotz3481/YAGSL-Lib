@@ -7,6 +7,7 @@ import swervelib.math.IMULinearMovingAverageFilter;
 
 /** Generic IMU Velocity filter. */
 public class IMUVelocity {
+
   /** Swerve IMU. */
   private final SwerveIMU gyro;
   /**

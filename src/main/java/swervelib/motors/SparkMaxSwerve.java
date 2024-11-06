@@ -12,6 +12,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkAnalogSensor;
 import com.revrobotics.SparkPIDController;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import java.util.function.Supplier;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
@@ -20,8 +21,8 @@ import swervelib.telemetry.SwerveDriveTelemetry;
 /** An implementation of {@link CANSparkMax} as a {@link SwerveMotor}. */
 public class SparkMaxSwerve extends SwerveMotor {
 
-  /** SparkMAX Instance. */
-  public CANSparkMax motor;
+  /** {@link CANSparkMax} Instance. */
+  private final CANSparkMax motor;
   /** Integrated encoder. */
   public RelativeEncoder encoder;
   /** Absolute encoder attached to the SparkMax (if exists) */
@@ -79,6 +80,7 @@ public class SparkMaxSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
+      Timer.delay(0.01);
     }
     DriverStation.reportWarning("Failure configuring motor " + motor.getDeviceId(), true);
   }
@@ -328,7 +330,11 @@ public class SparkMaxSwerve extends SwerveMotor {
    */
   @Override
   public void setInverted(boolean inverted) {
-    motor.setInverted(inverted);
+    configureSparkMax(
+        () -> {
+          motor.setInverted(inverted);
+          return motor.getLastError();
+        });
   }
 
   /** Save the configurations from flash to EEPROM. */

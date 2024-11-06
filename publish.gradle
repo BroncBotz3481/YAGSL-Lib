@@ -123,8 +123,8 @@ task vendordepJson() {
         from "yagsl.json"
         into "yagsl/"
         expand(version: pubVersion,
-                groupId: artifactGroupId,
-                artifactId: baseArtifactId)
+        groupId: artifactGroupId,
+        artifactId: baseArtifactId)
     }
 }
 

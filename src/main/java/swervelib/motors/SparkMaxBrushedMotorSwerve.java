@@ -11,16 +11,17 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.SparkRelativeEncoder.Type;
+import edu.wpi.first.wpilibj.Timer;
 import java.util.function.Supplier;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
 import swervelib.telemetry.Alert;
 
-/** Brushed motor control with SparkMax. */
+/** Brushed motor control with {@link CANSparkMax}. */
 public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
 
   /** SparkMAX Instance. */
-  public CANSparkMax motor;
+  private final CANSparkMax motor;
 
   /** Absolute encoder attached to the SparkMax (if exists) */
   public AbsoluteEncoder absoluteEncoder;
@@ -141,6 +142,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
+      Timer.delay(0.01);
     }
     failureConfiguringAlert.set(true);
   }
@@ -327,7 +329,11 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
    */
   @Override
   public void setInverted(boolean inverted) {
-    motor.setInverted(inverted);
+    configureSparkMax(
+        () -> {
+          motor.setInverted(inverted);
+          return motor.getLastError();
+        });
   }
 
   /** Save the configurations from flash to EEPROM. */

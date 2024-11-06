@@ -22,7 +22,7 @@ public class TalonSRXSwerve extends SwerveMotor {
   /** Whether the absolute encoder is integrated. */
   private final boolean absoluteEncoder = false;
   /** TalonSRX motor controller. */
-  WPI_TalonSRX motor;
+  private final WPI_TalonSRX motor;
   /**
    * The position conversion factor to convert raw sensor units to Meters Per 100ms, or Ticks to
    * Degrees.

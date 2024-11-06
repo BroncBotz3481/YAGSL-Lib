@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Optional;
 import swervelib.telemetry.Alert;
 
-/** Communicates with the NavX as the IMU. */
+/** Communicates with the NavX({@link AHRS}) as the IMU. */
 public class NavXSwerve extends SwerveIMU {
 
   /** NavX IMU. */
@@ -23,7 +23,7 @@ public class NavXSwerve extends SwerveIMU {
   private Alert navXError;
 
   /**
-   * Constructor for the NavX swerve.
+   * Constructor for the NavX({@link AHRS}) swerve.
    *
    * @param port Serial Port to connect to.
    */
@@ -43,7 +43,7 @@ public class NavXSwerve extends SwerveIMU {
   }
 
   /**
-   * Constructor for the NavX swerve.
+   * Constructor for the NavX({@link AHRS}) swerve.
    *
    * @param port SPI Port to connect to.
    */
@@ -62,7 +62,7 @@ public class NavXSwerve extends SwerveIMU {
   }
 
   /**
-   * Constructor for the NavX swerve.
+   * Constructor for the NavX({@link AHRS}) swerve.
    *
    * @param port I2C Port to connect to.
    */
@@ -80,7 +80,10 @@ public class NavXSwerve extends SwerveIMU {
     }
   }
 
-  /** Reset IMU to factory default. */
+  /**
+   * Reset offset to current gyro reading. Does not call NavX({@link AHRS#reset()}) because it has
+   * been reported to be too slow.
+   */
   @Override
   public void factoryDefault() {
     // gyro.reset(); // Reported to be slow
@@ -154,7 +157,7 @@ public class NavXSwerve extends SwerveIMU {
   }
 
   /**
-   * Get the instantiated IMU object.
+   * Get the instantiated NavX({@link AHRS}) IMU object.
    *
    * @return IMU object.
    */

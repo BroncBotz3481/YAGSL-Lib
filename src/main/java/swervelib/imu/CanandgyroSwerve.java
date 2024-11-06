@@ -5,14 +5,14 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import java.util.Optional;
 
-/** SwerveIMU interface for the Boron Candandgyro by Redux Robotics */
+/** SwerveIMU interface for the Boron {@link Canandgyro} by Redux Robotics */
 public class CanandgyroSwerve extends SwerveIMU {
 
   /** Wait time for status frames to show up. */
   public static double STATUS_TIMEOUT_SECONDS = 0.04;
-  /** Boron Canandgyro by Redux Robotics. */
-  Canandgyro imu;
-  /** Offset for the Boron Canandgyro. */
+  /** Boron {@link Canandgyro} by Redux Robotics. */
+  private final Canandgyro imu;
+  /** Offset for the Boron {@link Canandgyro}. */
   private Rotation3d offset = new Rotation3d();
   /** Inversion for the gyro */
   private boolean invertedIMU = false;
@@ -20,19 +20,19 @@ public class CanandgyroSwerve extends SwerveIMU {
   /**
    * Generate the SwerveIMU for {@link Canandgyro}.
    *
-   * @param canid CAN ID for the Boron Canandgyro
+   * @param canid CAN ID for the Boron {@link Canandgyro}
    */
   public CanandgyroSwerve(int canid) {
     imu = new Canandgyro(canid);
   }
 
-  /** Reset IMU to factory default. */
+  /** Reset {@link Canandgyro} to factory default. */
   @Override
   public void factoryDefault() {
     imu.resetFactoryDefaults(STATUS_TIMEOUT_SECONDS);
   }
 
-  /** Clear sticky faults on IMU. */
+  /** Clear sticky faults on {@link Canandgyro}. */
   @Override
   public void clearStickyFaults() {
     imu.clearStickyFaults();
@@ -101,7 +101,7 @@ public class CanandgyroSwerve extends SwerveIMU {
   }
 
   /**
-   * Get the instantiated IMU object.
+   * Get the instantiated {@link Canandgyro} IMU object.
    *
    * @return IMU object.
    */

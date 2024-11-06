@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../script.js"></script>
-<script type="text/javascript" src="../../script-dir/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../script-dir/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -79,7 +79,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">CanandgyroSwerve</span>
 <span class="extends-implements">extends <a href="SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></span></div>
-<div class="block">SwerveIMU interface for the Boron Candandgyro by Redux Robotics</div>
+<div class="block">SwerveIMU interface for the Boron <code>Canandgyro</code> by Redux Robotics</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -121,20 +121,20 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div id="method-summary-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#clearStickyFaults()" class="member-name-link">clearStickyFaults</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Clear sticky faults on IMU.</div>
+<div class="block">Clear sticky faults on <code>Canandgyro</code>.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#factoryDefault()" class="member-name-link">factoryDefault</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Reset IMU to factory default.</div>
+<div class="block">Reset <code>Canandgyro</code> to factory default.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Translation3d</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAccel()" class="member-name-link">getAccel</a>()</code></div>
@@ -144,7 +144,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIMU()" class="member-name-link">getIMU</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the instantiated IMU object.</div>
+<div class="block">Get the instantiated <code>Canandgyro</code> IMU object.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRate()" class="member-name-link">getRate</a>()</code></div>
@@ -210,7 +210,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Generate the SwerveIMU for <code>Canandgyro</code>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>canid</code> - CAN ID for the Boron Canandgyro</dd>
+<dd><code>canid</code> - CAN ID for the Boron <code>Canandgyro</code></dd>
 </dl>
 </section>
 </li>
@@ -226,7 +226,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="factoryDefault()">
 <h3>factoryDefault</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">factoryDefault</span>()</div>
-<div class="block">Reset IMU to factory default.</div>
+<div class="block">Reset <code>Canandgyro</code> to factory default.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SwerveIMU.html#factoryDefault()">factoryDefault</a></code>&nbsp;in class&nbsp;<code><a href="SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></code></dd>
@@ -237,7 +237,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="clearStickyFaults()">
 <h3>clearStickyFaults</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">clearStickyFaults</span>()</div>
-<div class="block">Clear sticky faults on IMU.</div>
+<div class="block">Clear sticky faults on <code>Canandgyro</code>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SwerveIMU.html#clearStickyFaults()">clearStickyFaults</a></code>&nbsp;in class&nbsp;<code><a href="SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></code></dd>
@@ -328,7 +328,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getIMU()">
 <h3>getIMU</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">getIMU</span>()</div>
-<div class="block">Get the instantiated IMU object.</div>
+<div class="block">Get the instantiated <code>Canandgyro</code> IMU object.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SwerveIMU.html#getIMU()">getIMU</a></code>&nbsp;in class&nbsp;<code><a href="SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></code></dd>

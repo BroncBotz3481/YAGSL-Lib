@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../script.js"></script>
-<script type="text/javascript" src="../../script-dir/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../script-dir/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -79,7 +79,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SparkMaxBrushedMotorSwerve</span>
 <span class="extends-implements">extends <a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></span></div>
-<div class="block">Brushed motor control with SparkMax.</div>
+<div class="block">Brushed motor control with <a href="https://codedocs.revrobotics.com/java/com/revrobotics/CANSparkMax.html" title="class or interface in com.revrobotics" class="external-link"><code>CANSparkMax</code></a>.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -102,14 +102,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Integrated encoder.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://codedocs.revrobotics.com/java/com/revrobotics/CANSparkMax.html" title="class or interface in com.revrobotics" class="external-link">CANSparkMax</a></code></div>
-<div class="col-second even-row-color"><code><a href="#motor" class="member-name-link">motor</a></code></div>
+<div class="col-first even-row-color"><code><a href="https://codedocs.revrobotics.com/java/com/revrobotics/SparkPIDController.html" title="class or interface in com.revrobotics" class="external-link">SparkPIDController</a></code></div>
+<div class="col-second even-row-color"><code><a href="#pid" class="member-name-link">pid</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">SparkMAX Instance.</div>
-</div>
-<div class="col-first odd-row-color"><code><a href="https://codedocs.revrobotics.com/java/com/revrobotics/SparkPIDController.html" title="class or interface in com.revrobotics" class="external-link">SparkPIDController</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#pid" class="member-name-link">pid</a></code></div>
-<div class="col-last odd-row-color">
 <div class="block">Closed-loop PID controller.</div>
 </div>
 </div>
@@ -151,8 +146,8 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div id="method-summary-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
@@ -302,13 +297,6 @@ loadScripts(document, 'script');</script>
 <section class="field-details" id="field-detail">
 <h2>Field Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="motor">
-<h3>motor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://codedocs.revrobotics.com/java/com/revrobotics/CANSparkMax.html" title="class or interface in com.revrobotics" class="external-link">CANSparkMax</a></span>&nbsp;<span class="element-name">motor</span></div>
-<div class="block">SparkMAX Instance.</div>
-</section>
-</li>
 <li>
 <section class="detail" id="absoluteEncoder">
 <h3>absoluteEncoder</h3>

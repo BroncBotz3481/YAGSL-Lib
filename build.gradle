@@ -26,7 +26,7 @@ apply from: 'config.gradle'
 
 // Apply Java configuration
 dependencies {
-//    implementation wpi.java.deps.wpilib()
+    //    implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
 
     implementation "edu.wpi.first.cscore:cscore-java:$wpilibVersion"

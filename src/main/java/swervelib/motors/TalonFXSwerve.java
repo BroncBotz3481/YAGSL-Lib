@@ -25,7 +25,7 @@ public class TalonFXSwerve extends SwerveMotor {
   /** Velocity voltage setter for controlling drive motor. */
   private final VelocityVoltage m_velocityVoltageSetter = new VelocityVoltage(0);
   /** TalonFX motor controller. */
-  TalonFX motor;
+  private final TalonFX motor;
   /** Conversion factor for the motor. */
   private double conversionFactor;
   /** Current TalonFX configuration. */
