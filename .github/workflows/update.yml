@@ -26,7 +26,13 @@ jobs:
       - name: Copy source over
         run: |
           rm -rf src/main/java/swervelib
-          cp -r YAGSL-Example/src/main/java/swervelib src/main/java/ 
+          cp -r YAGSL-Example/src/main/java/swervelib src/main/java/
+      - name: Copy vendordeps over
+        run: |
+          rm vendordeps/*
+          cp YAGSL-Example/vendordeps/* vendordeps/
+      - name: Removing source repo
+        run: |
           rm -rf YAGSL-Example
       - name: Install roboRio toolchain
         run: ./gradlew installRoboRioToolchain
