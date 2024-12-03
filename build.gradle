@@ -3,14 +3,14 @@ plugins {
     id 'java'
     id 'google-test'
     id 'edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin' version '2020.2'
-    id 'edu.wpi.first.NativeUtils' version '2024.7.2'
+    id 'edu.wpi.first.NativeUtils' version '2025.6.0'
     id 'edu.wpi.first.GradleJni' version '1.1.0'
     id 'edu.wpi.first.GradleVsCode' version '2.1.0'
-    id "edu.wpi.first.GradleRIO" version "2024.3.2" // Version should be defined here.
+    id "edu.wpi.first.GradleRIO" version "2025.1.1-beta-2" // Version should be defined here.
     id "com.diffplug.spotless" version "6.11.0"
 }
 
-ext.wpilibVersion = "2024.3.2" // and again here, thanks gradle....
+ext.wpilibVersion = "2025.1.1-beta-2" // and again here, thanks gradle....
 
 repositories {
     mavenCentral()
@@ -20,6 +20,12 @@ wpilibRepositories.addAllReleaseRepositories(project)
 //} else {
 //wpilibRepositories.addAllDevelopmentRepositories(project)
 //}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+var javaVersion = "17"
 
 // Apply C++ configuration
 apply from: 'config.gradle'
@@ -56,7 +62,7 @@ nativeUtils {
 javadoc {
     destinationDir = file("docs")
     options {
-        links 'https://docs.oracle.com/en/java/javase/17/docs/api/', 'https://github.wpilib.org/allwpilib/docs/release/java/', 'https://codedocs.revrobotics.com/java/', 'https://api.ctr-electronics.com/phoenix6/release/java/', 'https://api.ctr-electronics.com/phoenix/release/java/'
+        links "https://docs.oracle.com/en/java/javase/$javaVersion/docs/api/", 'https://github.wpilib.org/allwpilib/docs/release/java/', 'https://codedocs.revrobotics.com/java/', 'https://api.ctr-electronics.com/phoenix6/release/java/', 'https://api.ctr-electronics.com/phoenix/release/java/'
     }
 }
 
@@ -142,5 +148,5 @@ build.dependsOn spotlessApply
 apply from: 'publish.gradle'
 
 wrapper {
-    gradleVersion '8.4'
+    gradleVersion '8.11'
 }
