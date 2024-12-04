@@ -5,25 +5,19 @@ import edu.wpi.first.util.DoubleCircularBuffer;
 /**
  * A linear filter that does not calculate() each time a value is added to the DoubleCircularBuffer.
  */
-public class IMULinearMovingAverageFilter
-{
+public class IMULinearMovingAverageFilter {
 
-  /**
-   * Circular buffer storing the current IMU readings
-   */
+  /** Circular buffer storing the current IMU readings */
   private final DoubleCircularBuffer m_inputs;
-  /**
-   * Gain on each reading.
-   */
-  private final double               m_inputGain;
+  /** Gain on each reading. */
+  private final double m_inputGain;
 
   /**
    * Construct a linear moving average fitler
    *
    * @param bufferLength The number of values to average across
    */
-  public IMULinearMovingAverageFilter(int bufferLength)
-  {
+  public IMULinearMovingAverageFilter(int bufferLength) {
     m_inputs = new DoubleCircularBuffer(bufferLength);
     m_inputGain = 1.0 / bufferLength;
   }
@@ -33,8 +27,7 @@ public class IMULinearMovingAverageFilter
    *
    * @param input Value to add
    */
-  public void addValue(double input)
-  {
+  public void addValue(double input) {
     m_inputs.addFirst(input);
   }
 
@@ -43,12 +36,10 @@ public class IMULinearMovingAverageFilter
    *
    * @return The average of the values in the buffer
    */
-  public double calculate()
-  {
+  public double calculate() {
     double returnVal = 0.0;
 
-    for (int i = 0; i < m_inputs.size(); i++)
-    {
+    for (int i = 0; i < m_inputs.size(); i++) {
       returnVal += m_inputs.get(i) * m_inputGain;
     }
 

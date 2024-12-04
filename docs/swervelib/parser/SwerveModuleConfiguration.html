@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../script.js"></script>
-<script type="text/javascript" src="../../script-dir/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../script-dir/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../index-all.html">Index</a></li>
 <li><a href="../../help-doc.html#class">Help</a></li>
 </ul>
@@ -116,7 +117,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">PIDF configuration options for the angle motor closed-loop PID controller.</div>
 </div>
-<div class="col-first even-row-color"><code>final <a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a></code></div>
+<div class="col-first even-row-color"><code>final <a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a></code></div>
 <div class="col-second even-row-color"><code><a href="#conversionFactors" class="member-name-link">conversionFactors</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Conversion factor for drive motor onboard PID's and angle PID's.</div>
@@ -167,9 +168,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.MotorConfigDouble,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,boolean,boolean,boolean,java.lang.String,boolean)" class="member-name-link">SwerveModuleConfiguration</a><wbr>(<a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;driveMotor,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.modules.ConversionFactorsJson,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,boolean,boolean,boolean,java.lang.String,boolean)" class="member-name-link">SwerveModuleConfiguration</a><wbr>(<a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;driveMotor,
  <a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;angleMotor,
- <a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+ <a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  <a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;absoluteEncoder,
  double&nbsp;angleOffset,
  double&nbsp;xMeters,
@@ -185,9 +186,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Construct a configuration object for swerve modules.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.MotorConfigDouble,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,java.lang.String,boolean)" class="member-name-link">SwerveModuleConfiguration</a><wbr>(<a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;driveMotor,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.modules.ConversionFactorsJson,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,java.lang.String,boolean)" class="member-name-link">SwerveModuleConfiguration</a><wbr>(<a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;driveMotor,
  <a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;angleMotor,
- <a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+ <a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  <a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;absoluteEncoder,
  double&nbsp;angleOffset,
  double&nbsp;xMeters,
@@ -224,7 +225,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="conversionFactors">
 <h3>conversionFactors</h3>
-<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a></span>&nbsp;<span class="element-name">conversionFactors</span></div>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a></span>&nbsp;<span class="element-name">conversionFactors</span></div>
 <div class="block">Conversion factor for drive motor onboard PID's and angle PID's. Use <a href="../math/SwerveMath.html#calculateMetersPerRotation(double,double,double)"><code>SwerveMath.calculateMetersPerRotation(double, double, double)</code></a> and <a href="../math/SwerveMath.html#calculateDegreesPerSteeringRotation(double,double)"><code>SwerveMath.calculateDegreesPerSteeringRotation(double, double)</code></a> respectively to
  calculate the conversion factors.</div>
 </section>
@@ -329,11 +330,11 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.MotorConfigDouble,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,boolean,boolean,boolean,java.lang.String,boolean)">
+<section class="detail" id="&lt;init&gt;(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.modules.ConversionFactorsJson,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,boolean,boolean,boolean,java.lang.String,boolean)">
 <h3>SwerveModuleConfiguration</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveModuleConfiguration</span><wbr><span class="parameters">(<a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;driveMotor,
  <a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;angleMotor,
- <a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+ <a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  <a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;absoluteEncoder,
  double&nbsp;angleOffset,
  double&nbsp;xMeters,
@@ -368,11 +369,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.MotorConfigDouble,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,java.lang.String,boolean)">
+<section class="detail" id="&lt;init&gt;(swervelib.motors.SwerveMotor,swervelib.motors.SwerveMotor,swervelib.parser.json.modules.ConversionFactorsJson,swervelib.encoders.SwerveAbsoluteEncoder,double,double,double,swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,java.lang.String,boolean)">
 <h3>SwerveModuleConfiguration</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveModuleConfiguration</span><wbr><span class="parameters">(<a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;driveMotor,
  <a href="../motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a>&nbsp;angleMotor,
- <a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+ <a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  <a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;absoluteEncoder,
  double&nbsp;angleOffset,
  double&nbsp;xMeters,

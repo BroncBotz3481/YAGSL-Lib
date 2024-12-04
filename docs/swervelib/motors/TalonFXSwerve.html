@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../script.js"></script>
-<script type="text/javascript" src="../../script-dir/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../script-dir/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../index-all.html">Index</a></li>
 <li><a href="../../help-doc.html#class">Help</a></li>
 </ul>
@@ -152,26 +153,6 @@ loadScripts(document, 'script');</script>
 <div class="block">Clear the sticky faults on the motor controller.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configureCANStatusFrames(int)" class="member-name-link">configureCANStatusFrames</a><wbr>(int&nbsp;CANStatus1)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the CAN status frames.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configureCANStatusFrames(int,int,int,int,int,int,int,int,int,int,int)" class="member-name-link">configureCANStatusFrames</a><wbr>(int&nbsp;CANStatus1,
- int&nbsp;CANStatus2,
- int&nbsp;CANStatus3,
- int&nbsp;CANStatus4,
- int&nbsp;CANStatus8,
- int&nbsp;CANStatus10,
- int&nbsp;CANStatus12,
- int&nbsp;CANStatus13,
- int&nbsp;CANStatus14,
- int&nbsp;CANStatus21,
- int&nbsp;CANStatusCurrent)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the CAN status frames.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configureIntegratedEncoder(double)" class="member-name-link">configureIntegratedEncoder</a><wbr>(double&nbsp;positionConversionFactor)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Configure the integrated encoder for the swerve module.</div>
@@ -207,78 +188,83 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the position of the integrated encoder.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSimMotor()" class="member-name-link">getSimMotor</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the velocity of the integrated encoder.</div>
+<div class="block">Get the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> of the motor class.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVoltage()" class="member-name-link">getVoltage</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the velocity of the integrated encoder.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVoltage()" class="member-name-link">getVoltage</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the voltage output of the motor controller.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAttachedAbsoluteEncoder()" class="member-name-link">isAttachedAbsoluteEncoder</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAttachedAbsoluteEncoder()" class="member-name-link">isAttachedAbsoluteEncoder</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Queries whether the absolute encoder is directly attached to the motor controller.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#set(double)" class="member-name-link">set</a><wbr>(double&nbsp;percentOutput)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#set(double)" class="member-name-link">set</a><wbr>(double&nbsp;percentOutput)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the percentage output.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAbsoluteEncoder(swervelib.encoders.SwerveAbsoluteEncoder)" class="member-name-link">setAbsoluteEncoder</a><wbr>(<a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;encoder)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAbsoluteEncoder(swervelib.encoders.SwerveAbsoluteEncoder)" class="member-name-link">setAbsoluteEncoder</a><wbr>(<a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;encoder)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the absolute encoder to be a compatible absolute encoder.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurrentLimit(int)" class="member-name-link">setCurrentLimit</a><wbr>(int&nbsp;currentLimit)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurrentLimit(int)" class="member-name-link">setCurrentLimit</a><wbr>(int&nbsp;currentLimit)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the current limit for the swerve drive motor, remember this may cause jumping if used in
  conjunction with voltage compensation.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInverted(boolean)" class="member-name-link">setInverted</a><wbr>(boolean&nbsp;inverted)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInverted(boolean)" class="member-name-link">setInverted</a><wbr>(boolean&nbsp;inverted)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the motor to be inverted.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLoopRampRate(double)" class="member-name-link">setLoopRampRate</a><wbr>(double&nbsp;rampRate)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLoopRampRate(double)" class="member-name-link">setLoopRampRate</a><wbr>(double&nbsp;rampRate)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the maximum rate the open/closed loop output can change by.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;isBrakeMode)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;isBrakeMode)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the idle mode.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPosition(double)" class="member-name-link">setPosition</a><wbr>(double&nbsp;position)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPosition(double)" class="member-name-link">setPosition</a><wbr>(double&nbsp;position)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the integrated encoder position.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;setpoint,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;setpoint,
  double&nbsp;feedforward)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the closed loop PID controller reference point.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,double,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;setpoint,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,double,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;setpoint,
  double&nbsp;feedforward,
  double&nbsp;position)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the closed loop PID controller reference point.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltage(double)" class="member-name-link">setVoltage</a><wbr>(double&nbsp;voltage)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltage(double)" class="member-name-link">setVoltage</a><wbr>(double&nbsp;voltage)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the voltage of the motor.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltageCompensation(double)" class="member-name-link">setVoltageCompensation</a><wbr>(double&nbsp;nominalVoltage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltageCompensation(double)" class="member-name-link">setVoltageCompensation</a><wbr>(double&nbsp;nominalVoltage)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the voltage compensation for the swerve module motor.</div>
 </div>
 </div>
@@ -420,50 +406,6 @@ loadScripts(document, 'script');</script>
      <code>
                                  (Math.PI * wheelDiameter) / (driveGearRatio * encoderTicksPerRotation)
                                  </code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="configureCANStatusFrames(int)">
-<h3>configureCANStatusFrames</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">configureCANStatusFrames</span><wbr><span class="parameters">(int&nbsp;CANStatus1)</span></div>
-<div class="block">Set the CAN status frames.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>CANStatus1</code> - Applied Motor Output, Fault Information, Limit Switch Information</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="configureCANStatusFrames(int,int,int,int,int,int,int,int,int,int,int)">
-<h3>configureCANStatusFrames</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">configureCANStatusFrames</span><wbr><span class="parameters">(int&nbsp;CANStatus1,
- int&nbsp;CANStatus2,
- int&nbsp;CANStatus3,
- int&nbsp;CANStatus4,
- int&nbsp;CANStatus8,
- int&nbsp;CANStatus10,
- int&nbsp;CANStatus12,
- int&nbsp;CANStatus13,
- int&nbsp;CANStatus14,
- int&nbsp;CANStatus21,
- int&nbsp;CANStatusCurrent)</span></div>
-<div class="block">Set the CAN status frames.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>CANStatus1</code> - Applied Motor Output, Fault Information, Limit Switch Information</dd>
-<dd><code>CANStatus2</code> - Selected Sensor Position (PID 0), Selected Sensor Velocity (PID 0), Brushed
-     Supply Current Measurement, Sticky Fault Information</dd>
-<dd><code>CANStatus3</code> - Quadrature Information</dd>
-<dd><code>CANStatus4</code> - Analog Input, Supply Battery Voltage, Controller Temperature</dd>
-<dd><code>CANStatus8</code> - Pulse Width Information</dd>
-<dd><code>CANStatus10</code> - Motion Profiling/Motion Magic Information</dd>
-<dd><code>CANStatus12</code> - Selected Sensor Position (Aux PID 1), Selected Sensor Velocity (Aux PID 1)</dd>
-<dd><code>CANStatus13</code> - PID0 (Primary PID) Information</dd>
-<dd><code>CANStatus14</code> - PID1 (Auxiliary PID) Information</dd>
-<dd><code>CANStatus21</code> - Integrated Sensor Position (Talon FX), Integrated Sensor Velocity (Talon FX)</dd>
-<dd><code>CANStatusCurrent</code> - Brushless Supply Current Measurement, Brushless Stator Current
-     Measurement</dd>
 </dl>
 </section>
 </li>
@@ -705,6 +647,19 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="SwerveMotor.html#getMotor()">getMotor</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
 <dt>Returns:</dt>
 <dd>Motor object.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSimMotor()">
+<h3>getSimMotor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></span>&nbsp;<span class="element-name">getSimMotor</span>()</div>
+<div class="block">Get the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> of the motor class.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="SwerveMotor.html#getSimMotor()">getSimMotor</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
+<dt>Returns:</dt>
+<dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> of this type.</dd>
 </dl>
 </section>
 </li>

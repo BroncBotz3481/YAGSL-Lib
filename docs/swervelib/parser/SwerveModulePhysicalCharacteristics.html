@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../script.js"></script>
-<script type="text/javascript" src="../../script-dir/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../script-dir/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../index-all.html">Index</a></li>
 <li><a href="../../help-doc.html#class">Help</a></li>
 </ul>
@@ -86,20 +87,30 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>final int</code></div>
-<div class="col-second even-row-color"><code><a href="#angleMotorCurrentLimit" class="member-name-link">angleMotorCurrentLimit</a></code></div>
+<div class="col-first even-row-color"><code>final double</code></div>
+<div class="col-second even-row-color"><code><a href="#angleFrictionVoltage" class="member-name-link">angleFrictionVoltage</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">The minimum voltage to spin the module or wheel.</div>
+</div>
+<div class="col-first odd-row-color"><code>final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#angleMotorCurrentLimit" class="member-name-link">angleMotorCurrentLimit</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Current limits for the Swerve Module.</div>
 </div>
-<div class="col-first odd-row-color"><code>final double</code></div>
-<div class="col-second odd-row-color"><code><a href="#angleMotorRampRate" class="member-name-link">angleMotorRampRate</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>final double</code></div>
+<div class="col-second even-row-color"><code><a href="#angleMotorRampRate" class="member-name-link">angleMotorRampRate</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The time it takes for the motor to go from 0 to full throttle in seconds.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#conversionFactor" class="member-name-link">conversionFactor</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code><a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#conversionFactor" class="member-name-link">conversionFactor</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The conversion factors for the drive and angle motors, created by <a href="../math/SwerveMath.html#calculateMetersPerRotation(double,double,double)"><code>SwerveMath.calculateMetersPerRotation(double, double, double)</code></a> and <a href="../math/SwerveMath.html#calculateDegreesPerSteeringRotation(double,double)"><code>SwerveMath.calculateDegreesPerSteeringRotation(double, double)</code></a>.</div>
+</div>
+<div class="col-first even-row-color"><code>final double</code></div>
+<div class="col-second even-row-color"><code><a href="#driveFrictionVoltage" class="member-name-link">driveFrictionVoltage</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The minimum voltage to spin the module or wheel.</div>
 </div>
 <div class="col-first odd-row-color"><code>final int</code></div>
 <div class="col-second odd-row-color"><code><a href="#driveMotorCurrentLimit" class="member-name-link">driveMotorCurrentLimit</a></code></div>
@@ -117,6 +128,16 @@ loadScripts(document, 'script');</script>
 <div class="block">The voltage to use for the smart motor voltage compensation.</div>
 </div>
 <div class="col-first even-row-color"><code>final double</code></div>
+<div class="col-second even-row-color"><code><a href="#robotMassKg" class="member-name-link">robotMassKg</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Robot mass in Kilograms.</div>
+</div>
+<div class="col-first odd-row-color"><code>final double</code></div>
+<div class="col-second odd-row-color"><code><a href="#steerRotationalInertia" class="member-name-link">steerRotationalInertia</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Steer rotational inertia in (KilogramSquareMeters) kg/m_sq.</div>
+</div>
+<div class="col-first even-row-color"><code>final double</code></div>
 <div class="col-second even-row-color"><code><a href="#wheelGripCoefficientOfFriction" class="member-name-link">wheelGripCoefficientOfFriction</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Wheel grip tape coefficient of friction on carpet, as described by the vendor.</div>
@@ -132,19 +153,23 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(swervelib.parser.json.MotorConfigDouble,double,double)" class="member-name-link">SwerveModulePhysicalCharacteristics</a><wbr>(<a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(swervelib.parser.json.modules.ConversionFactorsJson,double,double)" class="member-name-link">SwerveModulePhysicalCharacteristics</a><wbr>(<a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  double&nbsp;driveMotorRampRate,
  double&nbsp;angleMotorRampRate)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Construct the swerve module physical characteristics.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(swervelib.parser.json.MotorConfigDouble,double,double,int,int,double,double)" class="member-name-link">SwerveModulePhysicalCharacteristics</a><wbr>(<a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(swervelib.parser.json.modules.ConversionFactorsJson,double,double,int,int,double,double,double,double,double,double)" class="member-name-link">SwerveModulePhysicalCharacteristics</a><wbr>(<a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  double&nbsp;wheelGripCoefficientOfFriction,
  double&nbsp;optimalVoltage,
  int&nbsp;driveMotorCurrentLimit,
  int&nbsp;angleMotorCurrentLimit,
  double&nbsp;driveMotorRampRate,
- double&nbsp;angleMotorRampRate)</code></div>
+ double&nbsp;angleMotorRampRate,
+ double&nbsp;driveFrictionVoltage,
+ double&nbsp;angleFrictionVoltage,
+ double&nbsp;steerRotationalInertia,
+ double&nbsp;robotMassKg)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Construct the swerve module physical characteristics.</div>
 </div>
@@ -198,10 +223,38 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="driveFrictionVoltage">
+<h3>driveFrictionVoltage</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">driveFrictionVoltage</span></div>
+<div class="block">The minimum voltage to spin the module or wheel.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="angleFrictionVoltage">
+<h3>angleFrictionVoltage</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">angleFrictionVoltage</span></div>
+<div class="block">The minimum voltage to spin the module or wheel.</div>
+</section>
+</li>
+<li>
 <section class="detail" id="wheelGripCoefficientOfFriction">
 <h3>wheelGripCoefficientOfFriction</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">wheelGripCoefficientOfFriction</span></div>
 <div class="block">Wheel grip tape coefficient of friction on carpet, as described by the vendor.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="steerRotationalInertia">
+<h3>steerRotationalInertia</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">steerRotationalInertia</span></div>
+<div class="block">Steer rotational inertia in (KilogramSquareMeters) kg/m_sq.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="robotMassKg">
+<h3>robotMassKg</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">robotMassKg</span></div>
+<div class="block">Robot mass in Kilograms.</div>
 </section>
 </li>
 <li>
@@ -214,7 +267,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="conversionFactor">
 <h3>conversionFactor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a></span>&nbsp;<span class="element-name">conversionFactor</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a></span>&nbsp;<span class="element-name">conversionFactor</span></div>
 <div class="block">The conversion factors for the drive and angle motors, created by <a href="../math/SwerveMath.html#calculateMetersPerRotation(double,double,double)"><code>SwerveMath.calculateMetersPerRotation(double, double, double)</code></a> and <a href="../math/SwerveMath.html#calculateDegreesPerSteeringRotation(double,double)"><code>SwerveMath.calculateDegreesPerSteeringRotation(double, double)</code></a>.</div>
 </section>
 </li>
@@ -227,15 +280,19 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(swervelib.parser.json.MotorConfigDouble,double,double,int,int,double,double)">
+<section class="detail" id="&lt;init&gt;(swervelib.parser.json.modules.ConversionFactorsJson,double,double,int,int,double,double,double,double,double,double)">
 <h3>SwerveModulePhysicalCharacteristics</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveModulePhysicalCharacteristics</span><wbr><span class="parameters">(<a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveModulePhysicalCharacteristics</span><wbr><span class="parameters">(<a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  double&nbsp;wheelGripCoefficientOfFriction,
  double&nbsp;optimalVoltage,
  int&nbsp;driveMotorCurrentLimit,
  int&nbsp;angleMotorCurrentLimit,
  double&nbsp;driveMotorRampRate,
- double&nbsp;angleMotorRampRate)</span></div>
+ double&nbsp;angleMotorRampRate,
+ double&nbsp;driveFrictionVoltage,
+ double&nbsp;angleFrictionVoltage,
+ double&nbsp;steerRotationalInertia,
+ double&nbsp;robotMassKg)</span></div>
 <div class="block">Construct the swerve module physical characteristics.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -251,13 +308,17 @@ loadScripts(document, 'script');</script>
      (Prevents over drawing power from battery)</dd>
 <dd><code>angleMotorRampRate</code> - The time in seconds to go from 0 to full throttle on the motor.
      (Prevents overdrawing power and power loss).</dd>
+<dd><code>angleFrictionVoltage</code> - Angle motor minimum voltage.</dd>
+<dd><code>driveFrictionVoltage</code> - Drive motor minimum voltage.</dd>
+<dd><code>steerRotationalInertia</code> - Steering rotational inertia in KilogramSquareMeters.</dd>
+<dd><code>robotMassKg</code> - Robot mass in kG.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(swervelib.parser.json.MotorConfigDouble,double,double)">
+<section class="detail" id="&lt;init&gt;(swervelib.parser.json.modules.ConversionFactorsJson,double,double)">
 <h3>SwerveModulePhysicalCharacteristics</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveModulePhysicalCharacteristics</span><wbr><span class="parameters">(<a href="json/MotorConfigDouble.html" title="class in swervelib.parser.json">MotorConfigDouble</a>&nbsp;conversionFactors,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveModulePhysicalCharacteristics</span><wbr><span class="parameters">(<a href="json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a>&nbsp;conversionFactors,
  double&nbsp;driveMotorRampRate,
  double&nbsp;angleMotorRampRate)</span></div>
 <div class="block">Construct the swerve module physical characteristics. Assume coefficient of friction is 1.19

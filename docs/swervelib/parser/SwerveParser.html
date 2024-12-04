@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../script.js"></script>
-<script type="text/javascript" src="../../script-dir/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../script-dir/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../index-all.html">Index</a></li>
 <li><a href="../../help-doc.html#class">Help</a></li>
 </ul>
@@ -157,8 +158,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Create <a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../SwerveDrive.html" title="class in swervelib">SwerveDrive</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createSwerveDrive(edu.wpi.first.math.controller.SimpleMotorFeedforward,double)" class="member-name-link">createSwerveDrive</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward,
- double&nbsp;maxSpeed)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createSwerveDrive(double,edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">createSwerveDrive</a><wbr>(double&nbsp;maxSpeed,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;initialPose)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Create <a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
 </div>
@@ -170,10 +171,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Create <a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../SwerveModule.html" title="class in swervelib">SwerveModule</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getModuleConfigurationByName(java.lang.String,swervelib.parser.SwerveDriveConfiguration)" class="member-name-link">getModuleConfigurationByName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../SwerveDrive.html" title="class in swervelib">SwerveDrive</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createSwerveDrive(edu.wpi.first.math.controller.SimpleMotorFeedforward,double,edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">createSwerveDrive</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward,
+ double&nbsp;maxSpeed,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;initialPose)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Create <a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../SwerveModule.html" title="class in swervelib">SwerveModule</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getModuleConfigurationByName(java.lang.String,swervelib.parser.SwerveDriveConfiguration)" class="member-name-link">getModuleConfigurationByName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="SwerveDriveConfiguration.html" title="class in swervelib.parser">SwerveDriveConfiguration</a>&nbsp;driveConfiguration)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Get the swerve module by the json name.</div>
 </div>
 </div>
@@ -288,6 +296,22 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="createSwerveDrive(double,edu.wpi.first.math.geometry.Pose2d)">
+<h3>createSwerveDrive</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../SwerveDrive.html" title="class in swervelib">SwerveDrive</a></span>&nbsp;<span class="element-name">createSwerveDrive</span><wbr><span class="parameters">(double&nbsp;maxSpeed,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;initialPose)</span></div>
+<div class="block">Create <a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>maxSpeed</code> - Maximum speed of the robot in meters per second, used for both angular
+     acceleration used in <a href="../SwerveController.html" title="class in swervelib"><code>SwerveController</code></a> and drive feedforward in <a href="../math/SwerveMath.html#createDriveFeedforward(double,double,double)"><code>SwerveMath.createDriveFeedforward(double, double, double)</code></a>.</dd>
+<dd><code>initialPose</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Pose2d</code></a> starting point on the field</dd>
+<dt>Returns:</dt>
+<dd><a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> instance.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="createSwerveDrive(double,double,double)">
 <h3>createSwerveDrive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../SwerveDrive.html" title="class in swervelib">SwerveDrive</a></span>&nbsp;<span class="element-name">createSwerveDrive</span><wbr><span class="parameters">(double&nbsp;maxSpeed,
@@ -331,10 +355,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="createSwerveDrive(edu.wpi.first.math.controller.SimpleMotorFeedforward,double)">
+<section class="detail" id="createSwerveDrive(edu.wpi.first.math.controller.SimpleMotorFeedforward,double,edu.wpi.first.math.geometry.Pose2d)">
 <h3>createSwerveDrive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../SwerveDrive.html" title="class in swervelib">SwerveDrive</a></span>&nbsp;<span class="element-name">createSwerveDrive</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward,
- double&nbsp;maxSpeed)</span></div>
+ double&nbsp;maxSpeed,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;initialPose)</span></div>
 <div class="block">Create <a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -342,6 +367,7 @@ loadScripts(document, 'script');</script>
      <a href="../math/SwerveMath.html#createDriveFeedforward(double,double,double)"><code>SwerveMath.createDriveFeedforward(double, double, double)</code></a>.</dd>
 <dd><code>maxSpeed</code> - Maximum speed of the robot in meters per second for normal+angular acceleration
      in <a href="../SwerveController.html" title="class in swervelib"><code>SwerveController</code></a> of the robot</dd>
+<dd><code>initialPose</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Pose2d</code></a> initial pose.</dd>
 <dt>Returns:</dt>
 <dd><a href="../SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> instance.</dd>
 </dl>
