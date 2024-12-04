@@ -67,7 +67,9 @@ javadoc {
                 'https://codedocs.revrobotics.com/java/',
                 'https://api.ctr-electronics.com/phoenix6/release/java/',
                 'https://api.ctr-electronics.com/phoenix/release/java/',
-                "https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/"
+                "https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/",
+                "https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/",
+                "https://apidocs.reduxrobotics.com/current/java/"
     }
 }
 
