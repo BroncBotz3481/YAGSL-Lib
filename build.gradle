@@ -62,39 +62,16 @@ nativeUtils {
 javadoc {
     destinationDir = file("docs")
     options {
-        links "https://docs.oracle.com/en/java/javase/$javaVersion/docs/api/", 'https://github.wpilib.org/allwpilib/docs/release/java/', 'https://codedocs.revrobotics.com/java/', 'https://api.ctr-electronics.com/phoenix6/release/java/', 'https://api.ctr-electronics.com/phoenix/release/java/'
+        links "https://docs.oracle.com/en/java/javase/$javaVersion/docs/api/",
+                'https://github.wpilib.org/allwpilib/docs/release/java/',
+                'https://codedocs.revrobotics.com/java/',
+                'https://api.ctr-electronics.com/phoenix6/release/java/',
+                'https://api.ctr-electronics.com/phoenix/release/java/'
     }
 }
 
 model {
     components {
-        YAGSL(NativeLibrarySpec) {
-            sources {
-                cpp {
-                    source {
-                        srcDirs 'src/main/native/cpp'
-                        include '**/*.cpp'
-                    }
-                    exportedHeaders {
-                        srcDirs 'src/main/native/include'
-                    }
-                }
-            }
-            nativeUtils.useRequiredLibrary(it, 'wpilib_shared')
-        }
-    }
-    testSuites {
-        YAGSLTest {
-            sources.cpp {
-                source {
-                    srcDir 'src/test/native/cpp'
-                    include '**/*.cpp'
-                }
-            }
-
-            nativeUtils.useRequiredLibrary(it, "wpilib_executable_shared", "googletest_static")
-        }
-
     }
 }
 

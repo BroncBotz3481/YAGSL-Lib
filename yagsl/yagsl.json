@@ -1,8 +1,8 @@
 {
   "fileName": "yagsl.json",
   "name": "YAGSL",
-  "version": "2024.7.0",
-  "frcYear": "2024",
+  "version": "test",
+  "frcYear": "2025",
   "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
   "mavenUrls": [
     "https://broncbotz3481.github.io/YAGSL-Lib/yagsl/repos"
@@ -12,7 +12,7 @@
     {
       "groupId": "swervelib",
       "artifactId": "YAGSL-java",
-      "version": "2024.7.0"
+      "version": "test"
     }
   ],
   "requires": [
@@ -47,8 +47,6 @@
       "onlineUrl": "https://dev.studica.com/releases/2024/NavX.json"
     }
   ],
-  "jniDependencies": [
-  ],
-  "cppDependencies": [
-  ]
+  "jniDependencies": [],
+  "cppDependencies": []
 }

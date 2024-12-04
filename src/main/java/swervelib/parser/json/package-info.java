@@ -1,2 +1,4 @@
-/** JSON Mapped classes for parsing configuration files. */
+/**
+ * JSON Mapped classes for parsing configuration files.
+ */
 package swervelib.parser.json;

@@ -91,5 +91,20 @@
       <option name="name" value="WPI515fe07e-bfc6-11fa-b3de-0242ac130004_1Release" />
       <option name="url" value="https://maven.photonvision.org/repository/snapshots" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPILocal" />
+      <option name="name" value="WPILocal" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../Public/wpilib/2025/maven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPIc39481e8-4a63-4a4c-9df6-48d91e4da37b_0Release" />
+      <option name="name" value="WPIc39481e8-4a63-4a4c-9df6-48d91e4da37b_0Release" />
+      <option name="url" value="https://shenzhen-robotics-alliance.github.io/maple-sim/vendordep/repos/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPIcb311d09-36e9-4143-a032-55bb2b94443b_0Release" />
+      <option name="name" value="WPIcb311d09-36e9-4143-a032-55bb2b94443b_0Release" />
+      <option name="url" value="https://dev.studica.com/maven/release/2025/" />
+    </remote-repository>
   </component>
 </project>
