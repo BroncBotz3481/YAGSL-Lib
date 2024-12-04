@@ -31,6 +31,8 @@ jobs:
         run: |
           rm vendordeps/*
           cp YAGSL-Example/vendordeps/* vendordeps/
+          rm vendordeps/photon*
+          rm vendordeps/WPI*
       - name: Removing source repo
         run: |
           rm -rf YAGSL-Example
