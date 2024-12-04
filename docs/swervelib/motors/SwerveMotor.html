@@ -106,6 +106,11 @@ loadScripts(document, 'script');</script>
 <div class="block">The maximum amount of times the swerve motor will attempt to configure a motor if failures
  occur.</div>
 </div>
+<div class="col-first even-row-color"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></code></div>
+<div class="col-second even-row-color"><code><a href="#simMotor" class="member-name-link">simMotor</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Sim motor to use, defaulted in <a href="#getSimMotor()"><code>getSimMotor()</code></a>, but can be overridden here.</div>
+</div>
 </div>
 </section>
 </li>
@@ -289,6 +294,16 @@ loadScripts(document, 'script');</script>
 </ul>
 </dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="simMotor">
+<h3>simMotor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></span>&nbsp;<span class="element-name">simMotor</span></div>
+<div class="block">Sim motor to use, defaulted in <a href="#getSimMotor()"><code>getSimMotor()</code></a>, but can be overridden here.
+ <br>
+ NOTE: This will not change the simulation motor type! It is intended for use only if you are
+ utilizing Feedforwards from PathPlanner.</div>
 </section>
 </li>
 <li>

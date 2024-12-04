@@ -199,7 +199,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Add a vision measurement to the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/estimator/SwerveDrivePoseEstimator.html" title="class or interface in edu.wpi.first.math.estimator" class="external-link"><code>SwerveDrivePoseEstimator</code></a> and update the <a href="imu/SwerveIMU.html" title="class in swervelib.imu"><code>SwerveIMU</code></a> gyro reading with the given timestamp of the vision measurement.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#angularVelocitySkewCorrection(edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">angularVelocitySkewCorrection</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#angularVelocitySkewCorrection(edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">angularVelocitySkewCorrection</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Correct for skew that worsens as angular velocity increases</div>
 </div>
@@ -226,7 +226,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Secondary method for controlling the drivebase.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drive(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean,edu.wpi.first.math.geometry.Translation2d)" class="member-name-link">drive</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drive(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean,edu.wpi.first.math.geometry.Translation2d)" class="member-name-link">drive</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  boolean&nbsp;isOpenLoop,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Translation2d</a>&nbsp;centerOfRotationMeters)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -239,11 +239,11 @@ loadScripts(document, 'script');</script>
 <div class="block">Secondary method for controlling the drivebase.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drive(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,double%5B%5D)" class="member-name-link">drive</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drive(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,edu.wpi.first.units.measure.Force%5B%5D)" class="member-name-link">drive</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;states,
- double[]&nbsp;feedforwardAmp)</code></div>
+ edu.wpi.first.units.measure.Force[]&nbsp;feedforwardForces)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.</div>
+<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.<br></div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveFieldOriented(edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">driveFieldOriented</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity)</code></div>
@@ -453,7 +453,7 @@ loadScripts(document, 'script');</script>
  correction in teleop</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setChassisSpeeds(edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">setChassisSpeeds</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;chassisSpeeds)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setChassisSpeeds(edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">setChassisSpeeds</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeSpeeds)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set chassis speeds with closed-loop velocity control.</div>
 </div>
@@ -469,105 +469,110 @@ loadScripts(document, 'script');</script>
 <div class="block">Set the conversion factor for the drive motor controller.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGyro(edu.wpi.first.math.geometry.Rotation3d)" class="member-name-link">setGyro</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation3d</a>&nbsp;gyro)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDriveMotorModel(edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">setDriveMotorModel</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;simMotor)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the correct sim motor type to allow for optimal Feedforward generation from PathPlanner.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGyro(edu.wpi.first.math.geometry.Rotation3d)" class="member-name-link">setGyro</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation3d</a>&nbsp;gyro)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the expected gyroscope angle using a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation3d</code></a> object.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGyroOffset(edu.wpi.first.math.geometry.Rotation3d)" class="member-name-link">setGyroOffset</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation3d</a>&nbsp;offset)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGyroOffset(edu.wpi.first.math.geometry.Rotation3d)" class="member-name-link">setGyroOffset</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation3d</a>&nbsp;offset)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the gyro scope offset to a desired known rotation.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHeadingCorrection(boolean)" class="member-name-link">setHeadingCorrection</a><wbr>(boolean&nbsp;state)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the heading correction capabilities of YAGSL.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHeadingCorrection(boolean,double)" class="member-name-link">setHeadingCorrection</a><wbr>(boolean&nbsp;state,
- double&nbsp;deadband)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHeadingCorrection(boolean)" class="member-name-link">setHeadingCorrection</a><wbr>(boolean&nbsp;state)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the heading correction capabilities of YAGSL.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumSpeed(double)" class="member-name-link">setMaximumSpeed</a><wbr>(double&nbsp;maximumSpeed)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHeadingCorrection(boolean,double)" class="member-name-link">setHeadingCorrection</a><wbr>(boolean&nbsp;state,
+ double&nbsp;deadband)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the heading correction capabilities of YAGSL.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumSpeed(double)" class="member-name-link">setMaximumSpeed</a><wbr>(double&nbsp;maximumSpeed)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the maximum speed of the drive motors, modified <code>maxSpeedMPS</code> which is
  used for the <code>setRawModuleStates(SwerveModuleState[], ChassisSpeeds, boolean)</code> function and <a href="SwerveController.html#getTargetSpeeds(double,double,double,double,double)"><code>SwerveController.getTargetSpeeds(double, double, double, double, double)</code></a> functions.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumSpeed(double,boolean,double)" class="member-name-link">setMaximumSpeed</a><wbr>(double&nbsp;maximumSpeed,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumSpeed(double,boolean,double)" class="member-name-link">setMaximumSpeed</a><wbr>(double&nbsp;maximumSpeed,
  boolean&nbsp;updateModuleFeedforward,
  double&nbsp;optimalVoltage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the maximum speed of the drive motors, modified <code>maxSpeedMPS</code> which is
  used for the <code>setRawModuleStates(SwerveModuleState[], ChassisSpeeds, boolean)</code> function and <a href="SwerveController.html#getTargetSpeeds(double,double,double,double,double)"><code>SwerveController.getTargetSpeeds(double, double, double, double, double)</code></a> functions.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumSpeeds(double,double,double)" class="member-name-link">setMaximumSpeeds</a><wbr>(double&nbsp;attainableMaxModuleSpeedMetersPerSecond,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumSpeeds(double,double,double)" class="member-name-link">setMaximumSpeeds</a><wbr>(double&nbsp;attainableMaxModuleSpeedMetersPerSecond,
  double&nbsp;attainableMaxTranslationalSpeedMetersPerSecond,
  double&nbsp;attainableMaxRotationalVelocityRadiansPerSecond)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the maximum speeds for desaturation.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleEncoderAutoSynchronize(boolean,double)" class="member-name-link">setModuleEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleEncoderAutoSynchronize(boolean,double)" class="member-name-link">setModuleEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled,
  double&nbsp;deadband)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enable auto synchronization for encoders during a match.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleStates(edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,boolean)" class="member-name-link">setModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;desiredStates,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleStates(edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,boolean)" class="member-name-link">setModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;desiredStates,
  boolean&nbsp;isOpenLoop)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the module states (azimuth and velocity) directly.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorIdleMode(boolean)" class="member-name-link">setMotorIdleMode</a><wbr>(boolean&nbsp;brake)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorIdleMode(boolean)" class="member-name-link">setMotorIdleMode</a><wbr>(boolean&nbsp;brake)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the drive motors to brake/coast mode.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOdometryPeriod(double)" class="member-name-link">setOdometryPeriod</a><wbr>(double&nbsp;period)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOdometryPeriod(double)" class="member-name-link">setOdometryPeriod</a><wbr>(double&nbsp;period)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the odometry update period in seconds.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVisionMeasurementStdDevs(edu.wpi.first.math.Matrix)" class="member-name-link">setVisionMeasurementStdDevs</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;&nbsp;visionMeasurementStdDevs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVisionMeasurementStdDevs(edu.wpi.first.math.Matrix)" class="member-name-link">setVisionMeasurementStdDevs</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;&nbsp;visionMeasurementStdDevs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the pose estimator's trust of global measurements.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopOdometryThread()" class="member-name-link">stopOdometryThread</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopOdometryThread()" class="member-name-link">stopOdometryThread</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Stop the odometry thread in favor of manually updating odometry.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#synchronizeModuleEncoders()" class="member-name-link">synchronizeModuleEncoders</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#synchronizeModuleEncoders()" class="member-name-link">synchronizeModuleEncoders</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Synchronize angle motor integrated encoders with data from absolute encoders.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toServeModuleStates(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean)" class="member-name-link">toServeModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toServeModuleStates(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean)" class="member-name-link">toServeModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  boolean&nbsp;optimize)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Convert a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> to <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a> for use elsewhere.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCacheValidityPeriods(long,long,long)" class="member-name-link">updateCacheValidityPeriods</a><wbr>(long&nbsp;imu,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCacheValidityPeriods(long,long,long)" class="member-name-link">updateCacheValidityPeriods</a><wbr>(long&nbsp;imu,
  long&nbsp;driveMotor,
  long&nbsp;absoluteEncoder)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update the cache validity period for the robot.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateOdometry()" class="member-name-link">updateOdometry</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateOdometry()" class="member-name-link">updateOdometry</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update odometry should be run every loop.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zeroGyro()" class="member-name-link">zeroGyro</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zeroGyro()" class="member-name-link">zeroGyro</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resets the gyro angle to zero and resets odometry to the same position, but facing toward 0.</div>
 </div>
 </div>
@@ -927,7 +932,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="drive(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean,edu.wpi.first.math.geometry.Translation2d)">
 <h3>drive</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drive</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drive</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  boolean&nbsp;isOpenLoop,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Translation2d</a>&nbsp;centerOfRotationMeters)</span></div>
 <div class="block">The primary method for controlling the drivebase. Takes a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a>, and calculates
@@ -935,7 +940,7 @@ loadScripts(document, 'script');</script>
  control for the wheel velocities. Applies heading correction if enabled and necessary.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>velocity</code> - The chassis speeds to set the robot to achieve.</dd>
+<dd><code>robotRelativeVelocity</code> - The chassis speeds to set the robot to achieve.</dd>
 <dd><code>isOpenLoop</code> - Whether to use closed-loop velocity control. Set to true to disable
      closed-loop.</dd>
 <dd><code>centerOfRotationMeters</code> - The center of rotation in meters, 0 is the center of the robot.</dd>
@@ -1002,28 +1007,42 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="drive(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.SwerveModuleState[],double[])">
+<section class="detail" id="setDriveMotorModel(edu.wpi.first.math.system.plant.DCMotor)">
+<h3>setDriveMotorModel</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setDriveMotorModel</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;simMotor)</span></div>
+<div class="block">Set the correct sim motor type to allow for optimal Feedforward generation from PathPlanner.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>simMotor</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> to use as the drive motor model we are going to use..</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="drive(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.SwerveModuleState[],edu.wpi.first.units.measure.Force[])">
 <h3>drive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drive</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;states,
- double[]&nbsp;feedforwardAmp)</span></div>
-<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.</div>
+ edu.wpi.first.units.measure.Force[]&nbsp;feedforwardForces)</span></div>
+<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.<br>
+
+ <p><b>Warning:</b> Will not work well if motor is not what we are expecting. Should replace
+ call <a href="#setDriveMotorModel(edu.wpi.first.math.system.plant.DCMotor)"><code>setDriveMotorModel(DCMotor)</code></a> with expected motor first.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>robotRelativeVelocity</code> - Robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></dd>
 <dd><code>states</code> - Corresponding <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a> to use (not checked against the ).</dd>
-<dd><code>feedforwardAmp</code> - Feedforward in amperage. (Ignored for now)</dd>
+<dd><code>feedforwardForces</code> - Feedforward forces generated by set-point generator</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setChassisSpeeds(edu.wpi.first.math.kinematics.ChassisSpeeds)">
 <h3>setChassisSpeeds</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setChassisSpeeds</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;chassisSpeeds)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setChassisSpeeds</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeSpeeds)</span></div>
 <div class="block">Set chassis speeds with closed-loop velocity control.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>chassisSpeeds</code> - Chassis speeds to set.</dd>
+<dd><code>robotRelativeSpeeds</code> - Chassis speeds to set.</dd>
 </dl>
 </section>
 </li>
@@ -1099,8 +1118,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the actual robot-relative robot velocity (x, y and omega) during simulation</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>An optional ChassisSpeeds representing the actual robot-relative velocity of the robot,
-     or an empty optional when running on real robot</dd>
+<dd>An <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> representing the actual robot-relative
+     velocity of the robot, or an empty optional when running on real robot</dd>
 </dl>
 </section>
 </li>
@@ -1547,11 +1566,11 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="angularVelocitySkewCorrection(edu.wpi.first.math.kinematics.ChassisSpeeds)">
 <h3>angularVelocitySkewCorrection</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a></span>&nbsp;<span class="element-name">angularVelocitySkewCorrection</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a></span>&nbsp;<span class="element-name">angularVelocitySkewCorrection</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity)</span></div>
 <div class="block">Correct for skew that worsens as angular velocity increases</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>velocity</code> - The chassis speeds to set the robot to achieve.</dd>
+<dd><code>robotRelativeVelocity</code> - The chassis speeds to set the robot to achieve.</dd>
 <dt>Returns:</dt>
 <dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> of the robot after angular velocity skew correction.</dd>
 </dl>
@@ -1560,12 +1579,12 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="toServeModuleStates(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean)">
 <h3>toServeModuleStates</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]</span>&nbsp;<span class="element-name">toServeModuleStates</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]</span>&nbsp;<span class="element-name">toServeModuleStates</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  boolean&nbsp;optimize)</span></div>
 <div class="block">Convert a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> to <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a> for use elsewhere.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>velocity</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> velocity to use.</dd>
+<dd><code>robotRelativeVelocity</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> velocity to use.</dd>
 <dd><code>optimize</code> - Perform chassis velocity correction or angular velocity correction.</dd>
 <dt>Returns:</dt>
 <dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a> for use elsewhere.</dd>

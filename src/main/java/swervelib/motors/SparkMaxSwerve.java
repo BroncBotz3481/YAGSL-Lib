@@ -173,7 +173,10 @@ public class SparkMaxSwerve extends SwerveMotor {
    */
   @Override
   public DCMotor getSimMotor() {
-    return DCMotor.getNEO(1);
+    if (simMotor == null) {
+      simMotor = DCMotor.getNEO(1);
+    }
+    return simMotor;
   }
 
   /**

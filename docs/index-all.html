@@ -784,9 +784,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Secondary method for controlling the drivebase.</div>
 </dd>
-<dt><a href="swervelib/SwerveDrive.html#drive(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,double%5B%5D)" class="member-name-link">drive(ChassisSpeeds, SwerveModuleState[], double[])</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dt><a href="swervelib/SwerveDrive.html#drive(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,edu.wpi.first.units.measure.Force%5B%5D)" class="member-name-link">drive(ChassisSpeeds, SwerveModuleState[], Force[])</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
-<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="swervelib/SwerveDrive.html#setCosineCompensator(boolean)"><code>SwerveDrive.setCosineCompensator(boolean)</code></a> set to false for this.</div>
+<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="swervelib/SwerveDrive.html#setCosineCompensator(boolean)"><code>SwerveDrive.setCosineCompensator(boolean)</code></a> set to false for this.<br></div>
 </dd>
 <dt><a href="swervelib/parser/json/modules/DriveConversionFactorsJson.html" class="type-name-link" title="class in swervelib.parser.json.modules">DriveConversionFactorsJson</a> - Class in <a href="swervelib/parser/json/modules/package-summary.html">swervelib.parser.json.modules</a></dt>
 <dd>
@@ -2475,6 +2475,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Set the conversion factor for the drive motor controller.</div>
 </dd>
+<dt><a href="swervelib/SwerveDrive.html#setDriveMotorModel(edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">setDriveMotorModel(DCMotor)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dd>
+<div class="block">Set the correct sim motor type to allow for optimal Feedforward generation from PathPlanner.</div>
+</dd>
 <dt><a href="swervelib/SwerveModule.html#setDriveMotorVoltageCompensation(double)" class="member-name-link">setDriveMotorVoltageCompensation(double)</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
 <dd>
 <div class="block">Set the voltage compensation for the swerve module motor.</div>
@@ -2824,6 +2828,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/motors/TalonSRXSwerve.html#setVoltageCompensation(double)" class="member-name-link">setVoltageCompensation(double)</a> - Method in class swervelib.motors.<a href="swervelib/motors/TalonSRXSwerve.html" title="class in swervelib.motors">TalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Set the voltage compensation for the swerve module motor.</div>
+</dd>
+<dt><a href="swervelib/motors/SwerveMotor.html#simMotor" class="member-name-link">simMotor</a> - Variable in class swervelib.motors.<a href="swervelib/motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></dt>
+<dd>
+<div class="block">Sim motor to use, defaulted in <a href="swervelib/motors/SwerveMotor.html#getSimMotor()"><code>SwerveMotor.getSimMotor()</code></a>, but can be overridden here.</div>
 </dd>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.html#sizeFrontBack" class="member-name-link">sizeFrontBack</a> - Static variable in class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.html" title="class in swervelib.telemetry">SwerveDriveTelemetry</a></dt>
 <dd>
