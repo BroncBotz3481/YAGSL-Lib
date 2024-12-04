@@ -108,7 +108,7 @@ public class SwerveDriveTelemetry {
   /** Desired {@link ChassisSpeeds} for NT4 AdvantageScope swerve widgets. */
   private static StructPublisher<ChassisSpeeds> desiredChassisSpeedsStruct =
       NetworkTableInstance.getDefault()
-          .getStructTopic("swerve/advantagescope/measuredChassisSpeeds", ChassisSpeeds.struct)
+          .getStructTopic("swerve/advantagescope/desiredChassisSpeeds", ChassisSpeeds.struct)
           .publish();
   /** Robot {@link Rotation2d} for AdvantageScope swerve widgets. */
   private static StructPublisher<Rotation2d> robotRotationStruct =
