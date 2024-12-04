@@ -66,7 +66,8 @@ javadoc {
                 'https://github.wpilib.org/allwpilib/docs/release/java/',
                 'https://codedocs.revrobotics.com/java/',
                 'https://api.ctr-electronics.com/phoenix6/release/java/',
-                'https://api.ctr-electronics.com/phoenix/release/java/'
+                'https://api.ctr-electronics.com/phoenix/release/java/',
+                "https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/"
     }
 }
 
