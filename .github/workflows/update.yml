@@ -32,6 +32,7 @@ jobs:
           rm vendordeps/*
           cp YAGSL-Example/vendordeps/* vendordeps/
           rm vendordeps/photon*
+          rm vendordeps/Pathplanner*
       - name: Removing source repo
         run: |
           rm -rf YAGSL-Example
