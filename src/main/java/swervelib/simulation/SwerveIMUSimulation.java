@@ -15,7 +15,11 @@ public class SwerveIMUSimulation {
 
   private final GyroSimulation gyroSimulation;
 
-  /** Create the swerve drive IMU simulation. */
+  /**
+   * Create the swerve drive IMU simulation.
+   *
+   * @param gyroSimulation Gyro simulation from MapleSim.
+   */
   public SwerveIMUSimulation(GyroSimulation gyroSimulation) {
     this.gyroSimulation = gyroSimulation;
   }
