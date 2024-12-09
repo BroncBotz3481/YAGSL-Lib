@@ -101,13 +101,15 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,boolean)" class="member-name-link">TalonSRXSwerve</a><wbr>(int&nbsp;id,
- boolean&nbsp;isDriveMotor)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">TalonSRXSwerve</a><wbr>(int&nbsp;id,
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Construct the TalonSRX swerve motor given the ID.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX,boolean)" class="member-name-link">TalonSRXSwerve</a><wbr>(<a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/motorcontrol/can/WPI_TalonSRX.html" title="class or interface in com.ctre.phoenix.motorcontrol.can" class="external-link">WPI_TalonSRX</a>&nbsp;motor,
- boolean&nbsp;isDriveMotor)</code></div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">TalonSRXSwerve</a><wbr>(<a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/motorcontrol/can/WPI_TalonSRX.html" title="class or interface in com.ctre.phoenix.motorcontrol.can" class="external-link">WPI_TalonSRX</a>&nbsp;motor,
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Constructor for TalonSRX swerve motor.</div>
 </div>
@@ -299,28 +301,32 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX,boolean)">
+<section class="detail" id="&lt;init&gt;(com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX,boolean,edu.wpi.first.math.system.plant.DCMotor)">
 <h3>TalonSRXSwerve</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TalonSRXSwerve</span><wbr><span class="parameters">(<a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/motorcontrol/can/WPI_TalonSRX.html" title="class or interface in com.ctre.phoenix.motorcontrol.can" class="external-link">WPI_TalonSRX</a>&nbsp;motor,
- boolean&nbsp;isDriveMotor)</span></div>
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</span></div>
 <div class="block">Constructor for TalonSRX swerve motor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>motor</code> - Motor to use.</dd>
 <dd><code>isDriveMotor</code> - Whether this motor is a drive motor.</dd>
+<dd><code>motorType</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> which the <a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/motorcontrol/can/WPI_TalonSRX.html" title="class or interface in com.ctre.phoenix.motorcontrol.can" class="external-link"><code>WPI_TalonSRX</code></a> is attached to.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(int,boolean)">
+<section class="detail" id="&lt;init&gt;(int,boolean,edu.wpi.first.math.system.plant.DCMotor)">
 <h3>TalonSRXSwerve</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TalonSRXSwerve</span><wbr><span class="parameters">(int&nbsp;id,
- boolean&nbsp;isDriveMotor)</span></div>
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</span></div>
 <div class="block">Construct the TalonSRX swerve motor given the ID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>id</code> - ID of the TalonSRX on the canbus.</dd>
 <dd><code>isDriveMotor</code> - Whether the motor is a drive or steering motor.</dd>
+<dd><code>motorType</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> which the <a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link"><code>TalonFX</code></a> is attached to.</dd>
 </dl>
 </section>
 </li>

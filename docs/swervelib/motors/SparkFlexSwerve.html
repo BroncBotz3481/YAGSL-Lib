@@ -122,13 +122,15 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,boolean)" class="member-name-link">SparkFlexSwerve</a><wbr>(int&nbsp;id,
- boolean&nbsp;isDriveMotor)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkFlexSwerve</a><wbr>(int&nbsp;id,
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Initialize the <a href="SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> as a <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> connected to a Brushless Motor.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.revrobotics.spark.SparkFlex,boolean)" class="member-name-link">SparkFlexSwerve</a><wbr>(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkFlex</a>&nbsp;motor,
- boolean&nbsp;isDriveMotor)</code></div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.revrobotics.spark.SparkFlex,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkFlexSwerve</a><wbr>(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkFlex</a>&nbsp;motor,
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Initialize the swerve motor.</div>
 </div>
@@ -328,28 +330,32 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.revrobotics.spark.SparkFlex,boolean)">
+<section class="detail" id="&lt;init&gt;(com.revrobotics.spark.SparkFlex,boolean,edu.wpi.first.math.system.plant.DCMotor)">
 <h3>SparkFlexSwerve</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SparkFlexSwerve</span><wbr><span class="parameters">(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkFlex</a>&nbsp;motor,
- boolean&nbsp;isDriveMotor)</span></div>
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</span></div>
 <div class="block">Initialize the swerve motor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>motor</code> - The SwerveMotor as a SparkFlex object.</dd>
 <dd><code>isDriveMotor</code> - Is the motor being initialized a drive motor?</dd>
+<dd><code>motorType</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> which the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> is attached to.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(int,boolean)">
+<section class="detail" id="&lt;init&gt;(int,boolean,edu.wpi.first.math.system.plant.DCMotor)">
 <h3>SparkFlexSwerve</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SparkFlexSwerve</span><wbr><span class="parameters">(int&nbsp;id,
- boolean&nbsp;isDriveMotor)</span></div>
+ boolean&nbsp;isDriveMotor,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</span></div>
 <div class="block">Initialize the <a href="SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> as a <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> connected to a Brushless Motor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>id</code> - CAN ID of the SparkMax.</dd>
 <dd><code>isDriveMotor</code> - Is the motor being initialized a drive motor?</dd>
+<dd><code>motorType</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> which the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> is attached to.</dd>
 </dl>
 </section>
 </li>

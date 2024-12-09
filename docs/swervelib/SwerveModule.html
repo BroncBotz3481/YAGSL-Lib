@@ -111,14 +111,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Drive motor velocity cache.</div>
 </div>
-<div class="col-first even-row-color"><code>double</code></div>
-<div class="col-second even-row-color"><code><a href="#maxSpeed" class="member-name-link">maxSpeed</a></code></div>
+<div class="col-first even-row-color"><code>final int</code></div>
+<div class="col-second even-row-color"><code><a href="#moduleNumber" class="member-name-link">moduleNumber</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Maximum speed of the drive motors in meters per second.</div>
-</div>
-<div class="col-first odd-row-color"><code>final int</code></div>
-<div class="col-second odd-row-color"><code><a href="#moduleNumber" class="member-name-link">moduleNumber</a></code></div>
-<div class="col-last odd-row-color">
 <div class="block">Module number for kinematics, usually 0 to 3.</div>
 </div>
 </div>
@@ -132,9 +127,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,swervelib.parser.SwerveModuleConfiguration,edu.wpi.first.math.controller.SimpleMotorFeedforward)" class="member-name-link">SwerveModule</a><wbr>(int&nbsp;moduleNumber,
- <a href="parser/SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>&nbsp;moduleConfiguration,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,swervelib.parser.SwerveModuleConfiguration)" class="member-name-link">SwerveModule</a><wbr>(int&nbsp;moduleNumber,
+ <a href="parser/SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>&nbsp;moduleConfiguration)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Construct the swerve module and initialize the swerve module motors and absolute encoder.</div>
 </div>
@@ -153,7 +147,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configureModuleSimulation(org.ironmaple.simulation.drivesims.SwerveModuleSimulation)" class="member-name-link">configureModuleSimulation</a><wbr>(<a href="https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/org/ironmaple/simulation/drivesims/SwerveModuleSimulation.html" title="class or interface in org.ironmaple.simulation.drivesims" class="external-link">SwerveModuleSimulation</a>&nbsp;swerveModuleSimulation)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configureModuleSimulation(org.ironmaple.simulation.drivesims.SwerveModuleSimulation,swervelib.parser.SwerveModulePhysicalCharacteristics)" class="member-name-link">configureModuleSimulation</a><wbr>(<a href="https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/org/ironmaple/simulation/drivesims/SwerveModuleSimulation.html" title="class or interface in org.ironmaple.simulation.drivesims" class="external-link">SwerveModuleSimulation</a>&nbsp;swerveModuleSimulation,
+ <a href="parser/SwerveModulePhysicalCharacteristics.html" title="class in swervelib.parser">SwerveModulePhysicalCharacteristics</a>&nbsp;physicalCharacteristics)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Configure the <code>simModule</code> with the MapleSim <a href="https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/org/ironmaple/simulation/drivesims/SwerveModuleSimulation.html" title="class or interface in org.ironmaple.simulation.drivesims" class="external-link"><code>SwerveModuleSimulation</code></a></div>
 </div>
@@ -188,140 +183,156 @@ loadScripts(document, 'script');</script>
 <div class="block">Fetch the <a href="parser/SwerveModuleConfiguration.html" title="class in swervelib.parser"><code>SwerveModuleConfiguration</code></a> for the <a href="SwerveModule.html" title="class in swervelib"><code>SwerveModule</code></a> with the parsed
  configurations.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDriveMotor()" class="member-name-link">getDriveMotor</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultFeedforward()" class="member-name-link">getDefaultFeedforward</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the default <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>SimpleMotorFeedforward</code></a> for the swerve module drive motor.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="motors/SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDriveMotor()" class="member-name-link">getDriveMotor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the drive <a href="motors/SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> for the <a href="SwerveModule.html" title="class in swervelib"><code>SwerveModule</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDrivePIDF()" class="member-name-link">getDrivePIDF</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDrivePIDF()" class="member-name-link">getDrivePIDF</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the current drive motor PIDF values.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModulePosition.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModulePosition</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>edu.wpi.first.units.measure.AngularVelocity</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaxAngularVelocity()" class="member-name-link">getMaxAngularVelocity</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the maximum module angular velocity as a <code>AngularVelocity</code> based on the RPM and gear
+ ratio.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>edu.wpi.first.units.measure.LinearVelocity</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaxVelocity()" class="member-name-link">getMaxVelocity</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the maximum module velocity as a <code>LinearVelocity</code> based on the RPM and gear ratio.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModulePosition.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModulePosition</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the position of the swerve module.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRawAbsolutePosition()" class="member-name-link">getRawAbsolutePosition</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRawAbsolutePosition()" class="member-name-link">getRawAbsolutePosition</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the absolute position.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRelativePosition()" class="member-name-link">getRelativePosition</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRelativePosition()" class="member-name-link">getRelativePosition</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the relative angle in degrees.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="simulation/SwerveModuleSimulation.html" title="class in swervelib.simulation">SwerveModuleSimulation</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSimModule()" class="member-name-link">getSimModule</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="simulation/SwerveModuleSimulation.html" title="class in swervelib.simulation">SwerveModuleSimulation</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSimModule()" class="member-name-link">getSimModule</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Obtains the <a href="simulation/SwerveModuleSimulation.html" title="class in swervelib.simulation"><code>SwerveModuleSimulation</code></a> used in simulation.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getState()" class="member-name-link">getState</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getState()" class="member-name-link">getState</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the Swerve Module state.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#invalidateCache()" class="member-name-link">invalidateCache</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#invalidateCache()" class="member-name-link">invalidateCache</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Invalidate the <a href="parser/Cache.html" title="class in swervelib.parser"><code>Cache</code></a> objects used by <a href="SwerveModule.html" title="class in swervelib"><code>SwerveModule</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pushOffsetsToEncoders()" class="member-name-link">pushOffsetsToEncoders</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pushOffsetsToEncoders()" class="member-name-link">pushOffsetsToEncoders</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Push absolute encoder offset in the memory of the encoder or controller.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#queueSynchronizeEncoders()" class="member-name-link">queueSynchronizeEncoders</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#queueSynchronizeEncoders()" class="member-name-link">queueSynchronizeEncoders</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Queue synchronization of the integrated angle encoder with the absolute encoder.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restoreInternalOffset()" class="member-name-link">restoreInternalOffset</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restoreInternalOffset()" class="member-name-link">restoreInternalOffset</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Restore internal offset in YAGSL and either sets absolute encoder offset to 0 or restores old
  value.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAngle(double)" class="member-name-link">setAngle</a><wbr>(double&nbsp;angle)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAngle(double)" class="member-name-link">setAngle</a><wbr>(double&nbsp;angle)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the angle for the module.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAngleMotorConversionFactor(double)" class="member-name-link">setAngleMotorConversionFactor</a><wbr>(double&nbsp;conversionFactor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAngleMotorConversionFactor(double)" class="member-name-link">setAngleMotorConversionFactor</a><wbr>(double&nbsp;conversionFactor)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the conversion factor for the angle/azimuth motor controller.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAngleMotorVoltageCompensation(double)" class="member-name-link">setAngleMotorVoltageCompensation</a><wbr>(double&nbsp;optimalVoltage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAngleMotorVoltageCompensation(double)" class="member-name-link">setAngleMotorVoltageCompensation</a><wbr>(double&nbsp;optimalVoltage)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the voltage compensation for the swerve module motor.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAnglePIDF(swervelib.parser.PIDFConfig)" class="member-name-link">setAnglePIDF</a><wbr>(<a href="parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a>&nbsp;config)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAnglePIDF(swervelib.parser.PIDFConfig)" class="member-name-link">setAnglePIDF</a><wbr>(<a href="parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a>&nbsp;config)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the angle/azimuth/steering motor PID</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAntiJitter(boolean)" class="member-name-link">setAntiJitter</a><wbr>(boolean&nbsp;antiJitter)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAntiJitter(boolean)" class="member-name-link">setAntiJitter</a><wbr>(boolean&nbsp;antiJitter)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the antiJitter functionality, if true the modules will NOT auto center.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDesiredState(edu.wpi.first.math.kinematics.SwerveModuleState,boolean,boolean)" class="member-name-link">setDesiredState</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>&nbsp;desiredState,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDesiredState(edu.wpi.first.math.kinematics.SwerveModuleState,boolean,boolean)" class="member-name-link">setDesiredState</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>&nbsp;desiredState,
  boolean&nbsp;isOpenLoop,
  boolean&nbsp;force)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the desired state of the swerve module.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDesiredState(edu.wpi.first.math.kinematics.SwerveModuleState,boolean,double)" class="member-name-link">setDesiredState</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>&nbsp;desiredState,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDesiredState(edu.wpi.first.math.kinematics.SwerveModuleState,boolean,double)" class="member-name-link">setDesiredState</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>&nbsp;desiredState,
  boolean&nbsp;isOpenLoop,
  double&nbsp;driveFeedforwardVoltage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the desired state of the swerve module.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDriveMotorConversionFactor(double)" class="member-name-link">setDriveMotorConversionFactor</a><wbr>(double&nbsp;conversionFactor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDriveMotorConversionFactor(double)" class="member-name-link">setDriveMotorConversionFactor</a><wbr>(double&nbsp;conversionFactor)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the conversion factor for the drive motor controller.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDriveMotorVoltageCompensation(double)" class="member-name-link">setDriveMotorVoltageCompensation</a><wbr>(double&nbsp;optimalVoltage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDriveMotorVoltageCompensation(double)" class="member-name-link">setDriveMotorVoltageCompensation</a><wbr>(double&nbsp;optimalVoltage)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the voltage compensation for the swerve module motor.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDrivePIDF(swervelib.parser.PIDFConfig)" class="member-name-link">setDrivePIDF</a><wbr>(<a href="parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a>&nbsp;config)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDrivePIDF(swervelib.parser.PIDFConfig)" class="member-name-link">setDrivePIDF</a><wbr>(<a href="parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a>&nbsp;config)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the drive PIDF values.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setEncoderAutoSynchronize(boolean)" class="member-name-link">setEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Enable auto synchronization for encoders during a match.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setEncoderAutoSynchronize(boolean,double)" class="member-name-link">setEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled,
- double&nbsp;deadband)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setEncoderAutoSynchronize(boolean)" class="member-name-link">setEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enable auto synchronization for encoders during a match.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setFeedforward(edu.wpi.first.math.controller.SimpleMotorFeedforward)" class="member-name-link">setFeedforward</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;drive)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setEncoderAutoSynchronize(boolean,double)" class="member-name-link">setEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled,
+ double&nbsp;deadband)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Enable auto synchronization for encoders during a match.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setFeedforward(edu.wpi.first.math.controller.SimpleMotorFeedforward)" class="member-name-link">setFeedforward</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;drive)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the feedforward attributes to the given parameters.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;brake)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;brake)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the brake mode.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTelemetry()" class="member-name-link">updateTelemetry</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTelemetry()" class="member-name-link">updateTelemetry</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update data sent to <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link"><code>SmartDashboard</code></a>.</div>
 </div>
 </div>
@@ -377,13 +388,6 @@ loadScripts(document, 'script');</script>
  right.</div>
 </section>
 </li>
-<li>
-<section class="detail" id="maxSpeed">
-<h3>maxSpeed</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">maxSpeed</span></div>
-<div class="block">Maximum speed of the drive motors in meters per second.</div>
-</section>
-</li>
 </ul>
 </section>
 </li>
@@ -393,17 +397,15 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(int,swervelib.parser.SwerveModuleConfiguration,edu.wpi.first.math.controller.SimpleMotorFeedforward)">
+<section class="detail" id="&lt;init&gt;(int,swervelib.parser.SwerveModuleConfiguration)">
 <h3>SwerveModule</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveModule</span><wbr><span class="parameters">(int&nbsp;moduleNumber,
- <a href="parser/SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>&nbsp;moduleConfiguration,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward)</span></div>
+ <a href="parser/SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>&nbsp;moduleConfiguration)</span></div>
 <div class="block">Construct the swerve module and initialize the swerve module motors and absolute encoder.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>moduleNumber</code> - Module number for kinematics.</dd>
 <dd><code>moduleConfiguration</code> - Module constants containing CAN ID's and offsets.</dd>
-<dd><code>driveFeedforward</code> - Drive motor feedforward created by <a href="math/SwerveMath.html#createDriveFeedforward(double,double,double)"><code>SwerveMath.createDriveFeedforward(double, double, double)</code></a>.</dd>
 </dl>
 </section>
 </li>
@@ -415,6 +417,17 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="getDefaultFeedforward()">
+<h3>getDefaultFeedforward</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a></span>&nbsp;<span class="element-name">getDefaultFeedforward</span>()</div>
+<div class="block">Get the default <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>SimpleMotorFeedforward</code></a> for the swerve module drive motor.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>SimpleMotorFeedforward</code></a> using motor details.</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="setAngleMotorVoltageCompensation(double)">
 <h3>setAngleMotorVoltageCompensation</h3>
@@ -744,6 +757,29 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getMaxVelocity()">
+<h3>getMaxVelocity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">edu.wpi.first.units.measure.LinearVelocity</span>&nbsp;<span class="element-name">getMaxVelocity</span>()</div>
+<div class="block">Get the maximum module velocity as a <code>LinearVelocity</code> based on the RPM and gear ratio.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>LinearVelocity</code> max velocity of the drive wheel.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMaxAngularVelocity()">
+<h3>getMaxAngularVelocity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">edu.wpi.first.units.measure.AngularVelocity</span>&nbsp;<span class="element-name">getMaxAngularVelocity</span>()</div>
+<div class="block">Get the maximum module angular velocity as a <code>AngularVelocity</code> based on the RPM and gear
+ ratio.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>AngularVelocity</code> max velocity of the angle/azimuth.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="updateTelemetry()">
 <h3>updateTelemetry</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateTelemetry</span>()</div>
@@ -769,9 +805,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="configureModuleSimulation(org.ironmaple.simulation.drivesims.SwerveModuleSimulation)">
+<section class="detail" id="configureModuleSimulation(org.ironmaple.simulation.drivesims.SwerveModuleSimulation,swervelib.parser.SwerveModulePhysicalCharacteristics)">
 <h3>configureModuleSimulation</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">configureModuleSimulation</span><wbr><span class="parameters">(<a href="https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/org/ironmaple/simulation/drivesims/SwerveModuleSimulation.html" title="class or interface in org.ironmaple.simulation.drivesims" class="external-link">SwerveModuleSimulation</a>&nbsp;swerveModuleSimulation)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">configureModuleSimulation</span><wbr><span class="parameters">(<a href="https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/org/ironmaple/simulation/drivesims/SwerveModuleSimulation.html" title="class or interface in org.ironmaple.simulation.drivesims" class="external-link">SwerveModuleSimulation</a>&nbsp;swerveModuleSimulation,
+ <a href="parser/SwerveModulePhysicalCharacteristics.html" title="class in swervelib.parser">SwerveModulePhysicalCharacteristics</a>&nbsp;physicalCharacteristics)</span></div>
 <div class="block">Configure the <code>simModule</code> with the MapleSim <a href="https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/org/ironmaple/simulation/drivesims/SwerveModuleSimulation.html" title="class or interface in org.ironmaple.simulation.drivesims" class="external-link"><code>SwerveModuleSimulation</code></a></div>
 <dl class="notes">
 <dt>Parameters:</dt>

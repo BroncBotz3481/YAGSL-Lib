@@ -115,7 +115,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Absolute encoder attached to the SparkMax (if exists)</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://codedocs.revrobotics.com/java/com/revrobotics/RelativeEncoder.html" title="class or interface in com.revrobotics" class="external-link">RelativeEncoder</a></code></div>
+<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://codedocs.revrobotics.com/java/com/revrobotics/RelativeEncoder.html" title="class or interface in com.revrobotics" class="external-link">RelativeEncoder</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#encoder" class="member-name-link">encoder</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Integrated encoder.</div>
@@ -139,19 +139,21 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean)" class="member-name-link">SparkMaxBrushedMotorSwerve</a><wbr>(int&nbsp;id,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkMaxBrushedMotorSwerve</a><wbr>(int&nbsp;id,
  boolean&nbsp;isDriveMotor,
  <a href="SparkMaxBrushedMotorSwerve.Type.html" title="enum class in swervelib.motors">SparkMaxBrushedMotorSwerve.Type</a>&nbsp;encoderType,
  int&nbsp;countsPerRevolution,
- boolean&nbsp;useDataPortQuadEncoder)</code></div>
+ boolean&nbsp;useDataPortQuadEncoder,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Initialize the <a href="SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> as a <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a> connected to a Brushless Motor.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.revrobotics.spark.SparkMax,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean)" class="member-name-link">SparkMaxBrushedMotorSwerve</a><wbr>(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkMax</a>&nbsp;motor,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(com.revrobotics.spark.SparkMax,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkMaxBrushedMotorSwerve</a><wbr>(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkMax</a>&nbsp;motor,
  boolean&nbsp;isDriveMotor,
  <a href="SparkMaxBrushedMotorSwerve.Type.html" title="enum class in swervelib.motors">SparkMaxBrushedMotorSwerve.Type</a>&nbsp;encoderType,
  int&nbsp;countsPerRevolution,
- boolean&nbsp;useDataPortQuadEncoder)</code></div>
+ boolean&nbsp;useDataPortQuadEncoder,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Initialize the swerve motor.</div>
 </div>
@@ -331,7 +333,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="encoder">
 <h3>encoder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://codedocs.revrobotics.com/java/com/revrobotics/RelativeEncoder.html" title="class or interface in com.revrobotics" class="external-link">RelativeEncoder</a></span>&nbsp;<span class="element-name">encoder</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://codedocs.revrobotics.com/java/com/revrobotics/RelativeEncoder.html" title="class or interface in com.revrobotics" class="external-link">RelativeEncoder</a>&gt;</span>&nbsp;<span class="element-name">encoder</span></div>
 <div class="block">Integrated encoder.</div>
 </section>
 </li>
@@ -351,13 +353,14 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.revrobotics.spark.SparkMax,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean)">
+<section class="detail" id="&lt;init&gt;(com.revrobotics.spark.SparkMax,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean,edu.wpi.first.math.system.plant.DCMotor)">
 <h3>SparkMaxBrushedMotorSwerve</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SparkMaxBrushedMotorSwerve</span><wbr><span class="parameters">(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkMax</a>&nbsp;motor,
  boolean&nbsp;isDriveMotor,
  <a href="SparkMaxBrushedMotorSwerve.Type.html" title="enum class in swervelib.motors">SparkMaxBrushedMotorSwerve.Type</a>&nbsp;encoderType,
  int&nbsp;countsPerRevolution,
- boolean&nbsp;useDataPortQuadEncoder)</span></div>
+ boolean&nbsp;useDataPortQuadEncoder,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</span></div>
 <div class="block">Initialize the swerve motor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -368,17 +371,19 @@ loadScripts(document, 'script');</script>
      revolution.</dd>
 <dd><code>useDataPortQuadEncoder</code> - Use the encoder attached to the data port of the spark max for a
      quadrature encoder.</dd>
+<dd><code>motorType</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> which the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a> is attached to.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(int,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean)">
+<section class="detail" id="&lt;init&gt;(int,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean,edu.wpi.first.math.system.plant.DCMotor)">
 <h3>SparkMaxBrushedMotorSwerve</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SparkMaxBrushedMotorSwerve</span><wbr><span class="parameters">(int&nbsp;id,
  boolean&nbsp;isDriveMotor,
  <a href="SparkMaxBrushedMotorSwerve.Type.html" title="enum class in swervelib.motors">SparkMaxBrushedMotorSwerve.Type</a>&nbsp;encoderType,
  int&nbsp;countsPerRevolution,
- boolean&nbsp;useDataPortQuadEncoder)</span></div>
+ boolean&nbsp;useDataPortQuadEncoder,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorType)</span></div>
 <div class="block">Initialize the <a href="SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> as a <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a> connected to a Brushless Motor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -389,6 +394,7 @@ loadScripts(document, 'script');</script>
      revolution.</dd>
 <dd><code>useDataPortQuadEncoder</code> - Use the encoder attached to the data port of the spark max for a
      quadrature encoder.</dd>
+<dd><code>motorType</code> - Motor type controlled by the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a> motor controller.</dd>
 </dl>
 </section>
 </li>

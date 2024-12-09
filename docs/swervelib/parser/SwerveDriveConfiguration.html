@@ -127,10 +127,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(swervelib.parser.SwerveModuleConfiguration%5B%5D,swervelib.imu.SwerveIMU,boolean,edu.wpi.first.math.controller.SimpleMotorFeedforward,swervelib.parser.SwerveModulePhysicalCharacteristics)" class="member-name-link">SwerveDriveConfiguration</a><wbr>(<a href="SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>[]&nbsp;moduleConfigs,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(swervelib.parser.SwerveModuleConfiguration%5B%5D,swervelib.imu.SwerveIMU,boolean,swervelib.parser.SwerveModulePhysicalCharacteristics)" class="member-name-link">SwerveDriveConfiguration</a><wbr>(<a href="SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>[]&nbsp;moduleConfigs,
  <a href="../imu/SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a>&nbsp;swerveIMU,
  boolean&nbsp;invertedIMU,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward,
  <a href="SwerveModulePhysicalCharacteristics.html" title="class in swervelib.parser">SwerveModulePhysicalCharacteristics</a>&nbsp;physicalCharacteristics)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Create swerve drive configuration.</div>
@@ -150,8 +149,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../SwerveModule.html" title="class in swervelib">SwerveModule</a>[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createModules(swervelib.parser.SwerveModuleConfiguration%5B%5D,edu.wpi.first.math.controller.SimpleMotorFeedforward)" class="member-name-link">createModules</a><wbr>(<a href="SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>[]&nbsp;swerves,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createModules(swervelib.parser.SwerveModuleConfiguration%5B%5D)" class="member-name-link">createModules</a><wbr>(<a href="SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>[]&nbsp;swerves)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Create modules based off of the SwerveModuleConfiguration.</div>
 </div>
@@ -246,12 +244,11 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(swervelib.parser.SwerveModuleConfiguration[],swervelib.imu.SwerveIMU,boolean,edu.wpi.first.math.controller.SimpleMotorFeedforward,swervelib.parser.SwerveModulePhysicalCharacteristics)">
+<section class="detail" id="&lt;init&gt;(swervelib.parser.SwerveModuleConfiguration[],swervelib.imu.SwerveIMU,boolean,swervelib.parser.SwerveModulePhysicalCharacteristics)">
 <h3>SwerveDriveConfiguration</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwerveDriveConfiguration</span><wbr><span class="parameters">(<a href="SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>[]&nbsp;moduleConfigs,
  <a href="../imu/SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a>&nbsp;swerveIMU,
  boolean&nbsp;invertedIMU,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward,
  <a href="SwerveModulePhysicalCharacteristics.html" title="class in swervelib.parser">SwerveModulePhysicalCharacteristics</a>&nbsp;physicalCharacteristics)</span></div>
 <div class="block">Create swerve drive configuration.</div>
 <dl class="notes">
@@ -259,7 +256,6 @@ loadScripts(document, 'script');</script>
 <dd><code>moduleConfigs</code> - Module configuration.</dd>
 <dd><code>swerveIMU</code> - Swerve IMU.</dd>
 <dd><code>invertedIMU</code> - Invert the IMU.</dd>
-<dd><code>driveFeedforward</code> - The drive motor feedforward to use for the <a href="../SwerveModule.html" title="class in swervelib"><code>SwerveModule</code></a>.</dd>
 <dd><code>physicalCharacteristics</code> - <a href="SwerveModulePhysicalCharacteristics.html" title="class in swervelib.parser"><code>SwerveModulePhysicalCharacteristics</code></a> to store in
      association with self.</dd>
 </dl>
@@ -274,15 +270,13 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="createModules(swervelib.parser.SwerveModuleConfiguration[],edu.wpi.first.math.controller.SimpleMotorFeedforward)">
+<section class="detail" id="createModules(swervelib.parser.SwerveModuleConfiguration[])">
 <h3>createModules</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../SwerveModule.html" title="class in swervelib">SwerveModule</a>[]</span>&nbsp;<span class="element-name">createModules</span><wbr><span class="parameters">(<a href="SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>[]&nbsp;swerves,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">SimpleMotorFeedforward</a>&nbsp;driveFeedforward)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../SwerveModule.html" title="class in swervelib">SwerveModule</a>[]</span>&nbsp;<span class="element-name">createModules</span><wbr><span class="parameters">(<a href="SwerveModuleConfiguration.html" title="class in swervelib.parser">SwerveModuleConfiguration</a>[]&nbsp;swerves)</span></div>
 <div class="block">Create modules based off of the SwerveModuleConfiguration.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>swerves</code> - Swerve constants.</dd>
-<dd><code>driveFeedforward</code> - Drive feedforward created using <a href="../math/SwerveMath.html#createDriveFeedforward(double,double,double)"><code>SwerveMath.createDriveFeedforward(double, double, double)</code></a>.</dd>
 <dt>Returns:</dt>
 <dd>Swerve Modules.</dd>
 </dl>

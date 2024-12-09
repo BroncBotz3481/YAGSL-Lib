@@ -59,8 +59,9 @@ public class SparkFlexSwerve extends SwerveMotor {
    *
    * @param motor The SwerveMotor as a SparkFlex object.
    * @param isDriveMotor Is the motor being initialized a drive motor?
+   * @param motorType {@link DCMotor} which the {@link SparkFlex} is attached to.
    */
-  public SparkFlexSwerve(SparkFlex motor, boolean isDriveMotor) {
+  public SparkFlexSwerve(SparkFlex motor, boolean isDriveMotor, DCMotor motorType) {
     this.motor = motor;
     this.isDriveMotor = isDriveMotor;
     factoryDefaults();
@@ -94,9 +95,10 @@ public class SparkFlexSwerve extends SwerveMotor {
    *
    * @param id CAN ID of the SparkMax.
    * @param isDriveMotor Is the motor being initialized a drive motor?
+   * @param motorType {@link DCMotor} which the {@link SparkFlex} is attached to.
    */
-  public SparkFlexSwerve(int id, boolean isDriveMotor) {
-    this(new SparkFlex(id, MotorType.kBrushless), isDriveMotor);
+  public SparkFlexSwerve(int id, boolean isDriveMotor, DCMotor motorType) {
+    this(new SparkFlex(id, MotorType.kBrushless), isDriveMotor, motorType);
   }
 
   /**
@@ -368,10 +370,6 @@ public class SparkFlexSwerve extends SwerveMotor {
   /** Save the configurations from flash to EEPROM. */
   @Override
   public void burnFlash() {
-    try {
-      Thread.sleep(200);
-    } catch (Exception e) {
-    }
     motor.configure(cfg, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
     cfgUpdated = false;
   }

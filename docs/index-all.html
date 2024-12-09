@@ -539,7 +539,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Configure the integrated encoder for the swerve module.</div>
 </dd>
-<dt><a href="swervelib/SwerveModule.html#configureModuleSimulation(org.ironmaple.simulation.drivesims.SwerveModuleSimulation)" class="member-name-link">configureModuleSimulation(SwerveModuleSimulation)</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
+<dt><a href="swervelib/SwerveModule.html#configureModuleSimulation(org.ironmaple.simulation.drivesims.SwerveModuleSimulation,swervelib.parser.SwerveModulePhysicalCharacteristics)" class="member-name-link">configureModuleSimulation(SwerveModuleSimulation, SwerveModulePhysicalCharacteristics)</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
 <dd>
 <div class="block">Configure the <code>SwerveModule.simModule</code> with the MapleSim <a href="https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/org/ironmaple/simulation/drivesims/SwerveModuleSimulation.html" title="class or interface in org.ironmaple.simulation.drivesims" class="external-link"><code>SwerveModuleSimulation</code></a></div>
 </dd>
@@ -591,7 +591,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Configure the PID wrapping for the position closed loop controller.</div>
 </dd>
-<dt><a href="swervelib/simulation/SwerveModuleSimulation.html#configureSimModule(org.ironmaple.simulation.drivesims.SwerveModuleSimulation)" class="member-name-link">configureSimModule(SwerveModuleSimulation)</a> - Method in class swervelib.simulation.<a href="swervelib/simulation/SwerveModuleSimulation.html" title="class in swervelib.simulation">SwerveModuleSimulation</a></dt>
+<dt><a href="swervelib/simulation/SwerveModuleSimulation.html#configureSimModule(org.ironmaple.simulation.drivesims.SwerveModuleSimulation,swervelib.parser.SwerveModulePhysicalCharacteristics)" class="member-name-link">configureSimModule(SwerveModuleSimulation, SwerveModulePhysicalCharacteristics)</a> - Method in class swervelib.simulation.<a href="swervelib/simulation/SwerveModuleSimulation.html" title="class in swervelib.simulation">SwerveModuleSimulation</a></dt>
 <dd>
 <div class="block">Configure the maple sim module</div>
 </dd>
@@ -663,7 +663,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Create the swerve module configuration based off of parsed data.</div>
 </dd>
-<dt><a href="swervelib/parser/SwerveDriveConfiguration.html#createModules(swervelib.parser.SwerveModuleConfiguration%5B%5D,edu.wpi.first.math.controller.SimpleMotorFeedforward)" class="member-name-link">createModules(SwerveModuleConfiguration[], SimpleMotorFeedforward)</a> - Method in class swervelib.parser.<a href="swervelib/parser/SwerveDriveConfiguration.html" title="class in swervelib.parser">SwerveDriveConfiguration</a></dt>
+<dt><a href="swervelib/parser/SwerveDriveConfiguration.html#createModules(swervelib.parser.SwerveModuleConfiguration%5B%5D)" class="member-name-link">createModules(SwerveModuleConfiguration[])</a> - Method in class swervelib.parser.<a href="swervelib/parser/SwerveDriveConfiguration.html" title="class in swervelib.parser">SwerveDriveConfiguration</a></dt>
 <dd>
 <div class="block">Create modules based off of the SwerveModuleConfiguration.</div>
 </dd>
@@ -688,14 +688,6 @@ loadScripts(document, 'script');</script>
 <div class="block">Create <a href="swervelib/SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
 </dd>
 <dt><a href="swervelib/parser/SwerveParser.html#createSwerveDrive(double,edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">createSwerveDrive(double, Pose2d)</a> - Method in class swervelib.parser.<a href="swervelib/parser/SwerveParser.html" title="class in swervelib.parser">SwerveParser</a></dt>
-<dd>
-<div class="block">Create <a href="swervelib/SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
-</dd>
-<dt><a href="swervelib/parser/SwerveParser.html#createSwerveDrive(edu.wpi.first.math.controller.SimpleMotorFeedforward,double,double,double)" class="member-name-link">createSwerveDrive(SimpleMotorFeedforward, double, double, double)</a> - Method in class swervelib.parser.<a href="swervelib/parser/SwerveParser.html" title="class in swervelib.parser">SwerveParser</a></dt>
-<dd>
-<div class="block">Create <a href="swervelib/SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
-</dd>
-<dt><a href="swervelib/parser/SwerveParser.html#createSwerveDrive(edu.wpi.first.math.controller.SimpleMotorFeedforward,double,edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">createSwerveDrive(SimpleMotorFeedforward, double, Pose2d)</a> - Method in class swervelib.parser.<a href="swervelib/parser/SwerveParser.html" title="class in swervelib.parser">SwerveParser</a></dt>
 <dd>
 <div class="block">Create <a href="swervelib/SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
 </dd>
@@ -1190,6 +1182,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Fetch the <a href="swervelib/parser/SwerveModuleConfiguration.html" title="class in swervelib.parser"><code>SwerveModuleConfiguration</code></a> for the <a href="swervelib/SwerveModule.html" title="class in swervelib"><code>SwerveModule</code></a> with the parsed
  configurations.</div>
 </dd>
+<dt><a href="swervelib/SwerveModule.html#getDefaultFeedforward()" class="member-name-link">getDefaultFeedforward()</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
+<dd>
+<div class="block">Get the default <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>SimpleMotorFeedforward</code></a> for the swerve module drive motor.</div>
+</dd>
 <dt><a href="swervelib/parser/SwerveDriveConfiguration.html#getDriveBaseRadiusMeters()" class="member-name-link">getDriveBaseRadiusMeters()</a> - Method in class swervelib.parser.<a href="swervelib/parser/SwerveDriveConfiguration.html" title="class in swervelib.parser">SwerveDriveConfiguration</a></dt>
 <dd>
 <div class="block">Calculate the Drive Base Radius</div>
@@ -1266,14 +1262,35 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Get the angle in radians based off of the heading joysticks.</div>
 </dd>
-<dt><a href="swervelib/SwerveDrive.html#getMaximumAngularVelocity()" class="member-name-link">getMaximumAngularVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dt><a href="swervelib/SwerveDrive.html#getMapleSimDrive()" class="member-name-link">getMapleSimDrive()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dd>
+<div class="block">Gets the maple-sim drivetrain simulation instance This is used to add intake simulation /
+ launch game pieces from the robot</div>
+</dd>
+<dt><a href="swervelib/SwerveModule.html#getMaxAngularVelocity()" class="member-name-link">getMaxAngularVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
+<dd>
+<div class="block">Get the maximum module angular velocity as a <code>AngularVelocity</code> based on the RPM and gear
+ ratio.</div>
+</dd>
+<dt><a href="swervelib/SwerveDrive.html#getMaximumChassisAngularVelocity()" class="member-name-link">getMaximumChassisAngularVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
 <div class="block">Get the maximum angular velocity, either <code>SwerveDrive.attainableMaxRotationalVelocityRadiansPerSecond</code> or <a href="swervelib/parser/SwerveControllerConfiguration.html#maxAngularVelocity"><code>SwerveControllerConfiguration.maxAngularVelocity</code></a>.</div>
 </dd>
-<dt><a href="swervelib/SwerveDrive.html#getMaximumVelocity()" class="member-name-link">getMaximumVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dt><a href="swervelib/SwerveDrive.html#getMaximumChassisVelocity()" class="member-name-link">getMaximumChassisVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
-<div class="block">Get the maximum velocity from <code>SwerveDrive.attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>SwerveDrive.maxSpeedMPS</code>
- whichever is higher.</div>
+<div class="block">Get the maximum velocity from <code>SwerveDrive.attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>SwerveDrive.maxChassisSpeedMPS</code> whichever is higher.</div>
+</dd>
+<dt><a href="swervelib/SwerveDrive.html#getMaximumModuleAngleVelocity()" class="member-name-link">getMaximumModuleAngleVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dd>
+<div class="block">Get the maximum angular velocity of an azimuth/angle motor in the swerve module.</div>
+</dd>
+<dt><a href="swervelib/SwerveDrive.html#getMaximumModuleDriveVelocity()" class="member-name-link">getMaximumModuleDriveVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dd>
+<div class="block">Get the maximum drive velocity of a module as a <code>LinearVelocity</code>.</div>
+</dd>
+<dt><a href="swervelib/SwerveModule.html#getMaxVelocity()" class="member-name-link">getMaxVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
+<dd>
+<div class="block">Get the maximum module velocity as a <code>LinearVelocity</code> based on the RPM and gear ratio.</div>
 </dd>
 <dt><a href="swervelib/parser/SwerveParser.html#getModuleConfigurationByName(java.lang.String,swervelib.parser.SwerveDriveConfiguration)" class="member-name-link">getModuleConfigurationByName(String, SwerveDriveConfiguration)</a> - Static method in class swervelib.parser.<a href="swervelib/parser/SwerveParser.html" title="class in swervelib.parser">SwerveParser</a></dt>
 <dd>
@@ -1533,18 +1550,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/SwerveDrive.html#getSimulationDriveTrainPose()" class="member-name-link">getSimulationDriveTrainPose()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
 <div class="block">Gets the actual pose of the drivetrain during simulation</div>
-</dd>
-<dt><a href="swervelib/SwerveDrive.html#getSimulationFieldVelocity()" class="member-name-link">getSimulationFieldVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
-<dd>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">for testing version of maple-sim only</div>
-</div>
-</dd>
-<dt><a href="swervelib/SwerveDrive.html#getSimulationRobotVelocity()" class="member-name-link">getSimulationRobotVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
-<dd>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">for testing version of maple-sim only</div>
-</div>
 </dd>
 <dt><a href="swervelib/simulation/SwerveModuleSimulation.html#getState()" class="member-name-link">getState()</a> - Method in class swervelib.simulation.<a href="swervelib/simulation/SwerveModuleSimulation.html" title="class in swervelib.simulation">SwerveModuleSimulation</a></dt>
 <dd>
@@ -1928,7 +1933,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="swervelib/parser/SwerveControllerConfiguration.html#maxAngularVelocity" class="member-name-link">maxAngularVelocity</a> - Variable in class swervelib.parser.<a href="swervelib/parser/SwerveControllerConfiguration.html" title="class in swervelib.parser">SwerveControllerConfiguration</a></dt>
 <dd>
-<div class="block">Maximum angular velocity in rad/s</div>
+<div class="block">Maximum chassis angular velocity in rad/s</div>
 </dd>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.html#maxAngularVelocity" class="member-name-link">maxAngularVelocity</a> - Static variable in class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.html" title="class in swervelib.telemetry">SwerveDriveTelemetry</a></dt>
 <dd>
@@ -1943,10 +1948,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The maximum amount of times the swerve motor will attempt to configure a motor if failures
  occur.</div>
-</dd>
-<dt><a href="swervelib/SwerveModule.html#maxSpeed" class="member-name-link">maxSpeed</a> - Variable in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
-<dd>
-<div class="block">Maximum speed of the drive motors in meters per second.</div>
 </dd>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.html#maxSpeed" class="member-name-link">maxSpeed</a> - Static variable in class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.html" title="class in swervelib.telemetry">SwerveDriveTelemetry</a></dt>
 <dd>
@@ -2475,10 +2476,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Set the conversion factor for the drive motor controller.</div>
 </dd>
-<dt><a href="swervelib/SwerveDrive.html#setDriveMotorModel(edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">setDriveMotorModel(DCMotor)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
-<dd>
-<div class="block">Set the correct sim motor type to allow for optimal Feedforward generation from PathPlanner.</div>
-</dd>
 <dt><a href="swervelib/SwerveModule.html#setDriveMotorVoltageCompensation(double)" class="member-name-link">setDriveMotorVoltageCompensation(double)</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
 <dd>
 <div class="block">Set the voltage compensation for the swerve module motor.</div>
@@ -2603,21 +2600,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Set the maximum rate the open/closed loop output can change by.</div>
 </dd>
-<dt><a href="swervelib/SwerveController.html#setMaximumAngularVelocity(double)" class="member-name-link">setMaximumAngularVelocity(double)</a> - Method in class swervelib.<a href="swervelib/SwerveController.html" title="class in swervelib">SwerveController</a></dt>
+<dt><a href="swervelib/SwerveController.html#setMaximumChassisAngularVelocity(double)" class="member-name-link">setMaximumChassisAngularVelocity(double)</a> - Method in class swervelib.<a href="swervelib/SwerveController.html" title="class in swervelib">SwerveController</a></dt>
 <dd>
 <div class="block">Set a new maximum angular velocity that is different from the auto-generated one.</div>
 </dd>
-<dt><a href="swervelib/SwerveDrive.html#setMaximumSpeed(double)" class="member-name-link">setMaximumSpeed(double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
-<dd>
-<div class="block">Set the maximum speed of the drive motors, modified <code>SwerveDrive.maxSpeedMPS</code> which is
- used for the <code>SwerveDrive.setRawModuleStates(SwerveModuleState[], ChassisSpeeds, boolean)</code> function and <a href="swervelib/SwerveController.html#getTargetSpeeds(double,double,double,double,double)"><code>SwerveController.getTargetSpeeds(double, double, double, double, double)</code></a> functions.</div>
-</dd>
-<dt><a href="swervelib/SwerveDrive.html#setMaximumSpeed(double,boolean,double)" class="member-name-link">setMaximumSpeed(double, boolean, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
-<dd>
-<div class="block">Set the maximum speed of the drive motors, modified <code>SwerveDrive.maxSpeedMPS</code> which is
- used for the <code>SwerveDrive.setRawModuleStates(SwerveModuleState[], ChassisSpeeds, boolean)</code> function and <a href="swervelib/SwerveController.html#getTargetSpeeds(double,double,double,double,double)"><code>SwerveController.getTargetSpeeds(double, double, double, double, double)</code></a> functions.</div>
-</dd>
-<dt><a href="swervelib/SwerveDrive.html#setMaximumSpeeds(double,double,double)" class="member-name-link">setMaximumSpeeds(double, double, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dt><a href="swervelib/SwerveDrive.html#setMaximumSpeeds(double,double)" class="member-name-link">setMaximumSpeeds(double, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
 <div class="block">Set the maximum speeds for desaturation.</div>
 </dd>
@@ -2845,11 +2832,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">An implementation of <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> as a <a href="swervelib/motors/SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a>.</div>
 </dd>
-<dt><a href="swervelib/motors/SparkFlexSwerve.html#%3Cinit%3E(int,boolean)" class="member-name-link">SparkFlexSwerve(int, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkFlexSwerve.html" title="class in swervelib.motors">SparkFlexSwerve</a></dt>
+<dt><a href="swervelib/motors/SparkFlexSwerve.html#%3Cinit%3E(int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkFlexSwerve(int, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkFlexSwerve.html" title="class in swervelib.motors">SparkFlexSwerve</a></dt>
 <dd>
 <div class="block">Initialize the <a href="swervelib/motors/SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> as a <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> connected to a Brushless Motor.</div>
 </dd>
-<dt><a href="swervelib/motors/SparkFlexSwerve.html#%3Cinit%3E(com.revrobotics.spark.SparkFlex,boolean)" class="member-name-link">SparkFlexSwerve(SparkFlex, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkFlexSwerve.html" title="class in swervelib.motors">SparkFlexSwerve</a></dt>
+<dt><a href="swervelib/motors/SparkFlexSwerve.html#%3Cinit%3E(com.revrobotics.spark.SparkFlex,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkFlexSwerve(SparkFlex, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkFlexSwerve.html" title="class in swervelib.motors">SparkFlexSwerve</a></dt>
 <dd>
 <div class="block">Initialize the swerve motor.</div>
 </dd>
@@ -2865,11 +2852,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Brushed motor control with <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a>.</div>
 </dd>
-<dt><a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html#%3Cinit%3E(int,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean)" class="member-name-link">SparkMaxBrushedMotorSwerve(int, boolean, SparkMaxBrushedMotorSwerve.Type, int, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html" title="class in swervelib.motors">SparkMaxBrushedMotorSwerve</a></dt>
+<dt><a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html#%3Cinit%3E(int,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkMaxBrushedMotorSwerve(int, boolean, SparkMaxBrushedMotorSwerve.Type, int, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html" title="class in swervelib.motors">SparkMaxBrushedMotorSwerve</a></dt>
 <dd>
 <div class="block">Initialize the <a href="swervelib/motors/SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> as a <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a> connected to a Brushless Motor.</div>
 </dd>
-<dt><a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html#%3Cinit%3E(com.revrobotics.spark.SparkMax,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean)" class="member-name-link">SparkMaxBrushedMotorSwerve(SparkMax, boolean, SparkMaxBrushedMotorSwerve.Type, int, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html" title="class in swervelib.motors">SparkMaxBrushedMotorSwerve</a></dt>
+<dt><a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html#%3Cinit%3E(com.revrobotics.spark.SparkMax,boolean,swervelib.motors.SparkMaxBrushedMotorSwerve.Type,int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkMaxBrushedMotorSwerve(SparkMax, boolean, SparkMaxBrushedMotorSwerve.Type, int, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxBrushedMotorSwerve.html" title="class in swervelib.motors">SparkMaxBrushedMotorSwerve</a></dt>
 <dd>
 <div class="block">Initialize the swerve motor.</div>
 </dd>
@@ -2889,11 +2876,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">An implementation of <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a> as a <a href="swervelib/motors/SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a>.</div>
 </dd>
-<dt><a href="swervelib/motors/SparkMaxSwerve.html#%3Cinit%3E(int,boolean)" class="member-name-link">SparkMaxSwerve(int, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxSwerve.html" title="class in swervelib.motors">SparkMaxSwerve</a></dt>
+<dt><a href="swervelib/motors/SparkMaxSwerve.html#%3Cinit%3E(int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkMaxSwerve(int, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxSwerve.html" title="class in swervelib.motors">SparkMaxSwerve</a></dt>
 <dd>
 <div class="block">Initialize the <a href="swervelib/motors/SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> as a <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkMax.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkMax</code></a> connected to a Brushless Motor.</div>
 </dd>
-<dt><a href="swervelib/motors/SparkMaxSwerve.html#%3Cinit%3E(com.revrobotics.spark.SparkMax,boolean)" class="member-name-link">SparkMaxSwerve(SparkMax, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxSwerve.html" title="class in swervelib.motors">SparkMaxSwerve</a></dt>
+<dt><a href="swervelib/motors/SparkMaxSwerve.html#%3Cinit%3E(com.revrobotics.spark.SparkMax,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">SparkMaxSwerve(SparkMax, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/SparkMaxSwerve.html" title="class in swervelib.motors">SparkMaxSwerve</a></dt>
 <dd>
 <div class="block">Initialize the swerve motor.</div>
 </dd>
@@ -2973,7 +2960,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Swerve drive configurations used during SwerveDrive construction.</div>
 </dd>
-<dt><a href="swervelib/parser/SwerveDriveConfiguration.html#%3Cinit%3E(swervelib.parser.SwerveModuleConfiguration%5B%5D,swervelib.imu.SwerveIMU,boolean,edu.wpi.first.math.controller.SimpleMotorFeedforward,swervelib.parser.SwerveModulePhysicalCharacteristics)" class="member-name-link">SwerveDriveConfiguration(SwerveModuleConfiguration[], SwerveIMU, boolean, SimpleMotorFeedforward, SwerveModulePhysicalCharacteristics)</a> - Constructor for class swervelib.parser.<a href="swervelib/parser/SwerveDriveConfiguration.html" title="class in swervelib.parser">SwerveDriveConfiguration</a></dt>
+<dt><a href="swervelib/parser/SwerveDriveConfiguration.html#%3Cinit%3E(swervelib.parser.SwerveModuleConfiguration%5B%5D,swervelib.imu.SwerveIMU,boolean,swervelib.parser.SwerveModulePhysicalCharacteristics)" class="member-name-link">SwerveDriveConfiguration(SwerveModuleConfiguration[], SwerveIMU, boolean, SwerveModulePhysicalCharacteristics)</a> - Constructor for class swervelib.parser.<a href="swervelib/parser/SwerveDriveConfiguration.html" title="class in swervelib.parser">SwerveDriveConfiguration</a></dt>
 <dd>
 <div class="block">Create swerve drive configuration.</div>
 </dd>
@@ -3075,7 +3062,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The Swerve Module class which represents and controls Swerve Modules for the swerve drive.</div>
 </dd>
-<dt><a href="swervelib/SwerveModule.html#%3Cinit%3E(int,swervelib.parser.SwerveModuleConfiguration,edu.wpi.first.math.controller.SimpleMotorFeedforward)" class="member-name-link">SwerveModule(int, SwerveModuleConfiguration, SimpleMotorFeedforward)</a> - Constructor for class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
+<dt><a href="swervelib/SwerveModule.html#%3Cinit%3E(int,swervelib.parser.SwerveModuleConfiguration)" class="member-name-link">SwerveModule(int, SwerveModuleConfiguration)</a> - Constructor for class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
 <dd>
 <div class="block">Construct the swerve module and initialize the swerve module motors and absolute encoder.</div>
 </dd>
@@ -3134,15 +3121,15 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block"><a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link"><code>TalonFX</code></a> Swerve Motor.</div>
 </dd>
-<dt><a href="swervelib/motors/TalonFXSwerve.html#%3Cinit%3E(int,boolean)" class="member-name-link">TalonFXSwerve(int, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonFXSwerve.html" title="class in swervelib.motors">TalonFXSwerve</a></dt>
+<dt><a href="swervelib/motors/TalonFXSwerve.html#%3Cinit%3E(int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">TalonFXSwerve(int, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonFXSwerve.html" title="class in swervelib.motors">TalonFXSwerve</a></dt>
 <dd>
 <div class="block">Construct the TalonFX swerve motor given the ID.</div>
 </dd>
-<dt><a href="swervelib/motors/TalonFXSwerve.html#%3Cinit%3E(int,java.lang.String,boolean)" class="member-name-link">TalonFXSwerve(int, String, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonFXSwerve.html" title="class in swervelib.motors">TalonFXSwerve</a></dt>
+<dt><a href="swervelib/motors/TalonFXSwerve.html#%3Cinit%3E(int,java.lang.String,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">TalonFXSwerve(int, String, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonFXSwerve.html" title="class in swervelib.motors">TalonFXSwerve</a></dt>
 <dd>
 <div class="block">Construct the TalonFX swerve motor given the ID and CANBus.</div>
 </dd>
-<dt><a href="swervelib/motors/TalonFXSwerve.html#%3Cinit%3E(com.ctre.phoenix6.hardware.TalonFX,boolean)" class="member-name-link">TalonFXSwerve(TalonFX, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonFXSwerve.html" title="class in swervelib.motors">TalonFXSwerve</a></dt>
+<dt><a href="swervelib/motors/TalonFXSwerve.html#%3Cinit%3E(com.ctre.phoenix6.hardware.TalonFX,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">TalonFXSwerve(TalonFX, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonFXSwerve.html" title="class in swervelib.motors">TalonFXSwerve</a></dt>
 <dd>
 <div class="block">Constructor for TalonFX swerve motor.</div>
 </dd>
@@ -3158,11 +3145,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block"><a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/motorcontrol/can/WPI_TalonSRX.html" title="class or interface in com.ctre.phoenix.motorcontrol.can" class="external-link"><code>WPI_TalonSRX</code></a> Swerve Motor.</div>
 </dd>
-<dt><a href="swervelib/motors/TalonSRXSwerve.html#%3Cinit%3E(int,boolean)" class="member-name-link">TalonSRXSwerve(int, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonSRXSwerve.html" title="class in swervelib.motors">TalonSRXSwerve</a></dt>
+<dt><a href="swervelib/motors/TalonSRXSwerve.html#%3Cinit%3E(int,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">TalonSRXSwerve(int, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonSRXSwerve.html" title="class in swervelib.motors">TalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Construct the TalonSRX swerve motor given the ID.</div>
 </dd>
-<dt><a href="swervelib/motors/TalonSRXSwerve.html#%3Cinit%3E(com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX,boolean)" class="member-name-link">TalonSRXSwerve(WPI_TalonSRX, boolean)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonSRXSwerve.html" title="class in swervelib.motors">TalonSRXSwerve</a></dt>
+<dt><a href="swervelib/motors/TalonSRXSwerve.html#%3Cinit%3E(com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX,boolean,edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">TalonSRXSwerve(WPI_TalonSRX, boolean, DCMotor)</a> - Constructor for class swervelib.motors.<a href="swervelib/motors/TalonSRXSwerve.html" title="class in swervelib.motors">TalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Constructor for TalonSRX swerve motor.</div>
 </dd>

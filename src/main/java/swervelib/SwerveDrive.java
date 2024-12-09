@@ -2,11 +2,11 @@ package swervelib;
 
 import static edu.wpi.first.hal.FRCNetComm.tInstances.kRobotDriveSwerve_YAGSL;
 import static edu.wpi.first.hal.FRCNetComm.tResourceType.kResourceType_RobotDrive;
-import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.KilogramSquareMeters;
 import static edu.wpi.first.units.Units.Kilograms;
 import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.Newtons;
 import static edu.wpi.first.units.Units.Seconds;
 import static edu.wpi.first.units.Units.Volts;
@@ -31,7 +31,9 @@ import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Force;
+import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -48,6 +50,7 @@ import java.util.Optional;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import org.ironmaple.simulation.SimulatedArena;
+import org.ironmaple.simulation.drivesims.AbstractDriveTrainSimulation;
 import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
 import org.ironmaple.simulation.drivesims.SwerveModuleSimulation;
 import org.ironmaple.simulation.drivesims.configs.DriveTrainSimulationConfig;
@@ -141,7 +144,7 @@ public class SwerveDrive {
   /** The absolute max speed the robot can reach while rotating radians per second. */
   private double attainableMaxRotationalVelocityRadiansPerSecond = 0;
   /** Maximum speed of the robot in meters per second. */
-  private double maxSpeedMPS;
+  private double maxChassisSpeedMPS;
 
   /**
    * Creates a new swerve drivebase subsystem. Robot is controlled via the {@link SwerveDrive#drive}
@@ -155,7 +158,7 @@ public class SwerveDrive {
    *     of.
    * @param controllerConfig The {@link SwerveControllerConfiguration} to use when creating the
    *     {@link SwerveController}.
-   * @param maxSpeedMPS Maximum speed in meters per second, remember to use {@link
+   * @param maxSpeedMPS Maximum speed of the robot in meters per second, remember to use {@link
    *     Units#feetToMeters(double)} if you have feet per second!
    * @param startingPose Starting {@link Pose2d} on the field.
    */
@@ -164,7 +167,7 @@ public class SwerveDrive {
       SwerveControllerConfiguration controllerConfig,
       double maxSpeedMPS,
       Pose2d startingPose) {
-    this.maxSpeedMPS = maxSpeedMPS;
+    this.maxChassisSpeedMPS = maxSpeedMPS;
     swerveDriveConfiguration = config;
     swerveController = new SwerveController(controllerConfig);
     // Create Kinematics from swerve module locations.
@@ -191,8 +194,6 @@ public class SwerveDrive {
                           config.getAngleMotorSim(),
                           config.physicalCharacteristics.conversionFactor.drive.gearRatio,
                           config.physicalCharacteristics.conversionFactor.angle.gearRatio,
-                          Amps.of(config.physicalCharacteristics.driveMotorCurrentLimit),
-                          Amps.of(20),
                           Volts.of(config.physicalCharacteristics.driveFrictionVoltage),
                           Volts.of(config.physicalCharacteristics.angleFrictionVoltage),
                           Inches.of(
@@ -204,7 +205,8 @@ public class SwerveDrive {
 
       // feed module simulation instances to modules
       for (int i = 0; i < swerveModules.length; i++) {
-        this.swerveModules[i].configureModuleSimulation(mapleSimDrive.getModules()[i]);
+        this.swerveModules[i].configureModuleSimulation(
+            mapleSimDrive.getModules()[i], config.physicalCharacteristics);
       }
 
       // register the drivetrain simulation
@@ -227,7 +229,6 @@ public class SwerveDrive {
             startingPose); // x,y,heading in radians; Vision measurement std dev, higher=less weight
 
     zeroGyro();
-    setMaximumSpeed(maxSpeedMPS);
 
     // Initialize Telemetry
     if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.POSE.ordinal()) {
@@ -541,18 +542,14 @@ public class SwerveDrive {
   /**
    * Set the maximum speeds for desaturation.
    *
-   * @param attainableMaxModuleSpeedMetersPerSecond The absolute max speed that a module can reach
-   *     in meters per second.
    * @param attainableMaxTranslationalSpeedMetersPerSecond The absolute max speed that your robot
    *     can reach while translating in meters per second.
    * @param attainableMaxRotationalVelocityRadiansPerSecond The absolute max speed the robot can
    *     reach while rotating in radians per second.
    */
   public void setMaximumSpeeds(
-      double attainableMaxModuleSpeedMetersPerSecond,
       double attainableMaxTranslationalSpeedMetersPerSecond,
       double attainableMaxRotationalVelocityRadiansPerSecond) {
-    setMaximumSpeed(attainableMaxModuleSpeedMetersPerSecond);
     this.attainableMaxTranslationalSpeedMetersPerSecond =
         attainableMaxTranslationalSpeedMetersPerSecond;
     this.attainableMaxRotationalVelocityRadiansPerSecond =
@@ -563,13 +560,31 @@ public class SwerveDrive {
 
   /**
    * Get the maximum velocity from {@link
-   * SwerveDrive#attainableMaxTranslationalSpeedMetersPerSecond} or {@link SwerveDrive#maxSpeedMPS}
-   * whichever is higher.
+   * SwerveDrive#attainableMaxTranslationalSpeedMetersPerSecond} or {@link
+   * SwerveDrive#maxChassisSpeedMPS} whichever is higher.
    *
    * @return Maximum speed in meters/second.
    */
-  public double getMaximumVelocity() {
-    return Math.max(this.attainableMaxTranslationalSpeedMetersPerSecond, maxSpeedMPS);
+  public double getMaximumChassisVelocity() {
+    return Math.max(this.attainableMaxTranslationalSpeedMetersPerSecond, maxChassisSpeedMPS);
+  }
+
+  /**
+   * Get the maximum drive velocity of a module as a {@link LinearVelocity}.
+   *
+   * @return {@link LinearVelocity} representing the maximum drive speed of a module.
+   */
+  public LinearVelocity getMaximumModuleDriveVelocity() {
+    return swerveModules[0].getMaxVelocity();
+  }
+
+  /**
+   * Get the maximum angular velocity of an azimuth/angle motor in the swerve module.
+   *
+   * @return {@link AngularVelocity} of the maximum azimuth/angle motor.
+   */
+  public AngularVelocity getMaximumModuleAngleVelocity() {
+    return swerveModules[0].getMaxAngularVelocity();
   }
 
   /**
@@ -579,7 +594,7 @@ public class SwerveDrive {
    *
    * @return Maximum angular velocity in radians per second.
    */
-  public double getMaximumAngularVelocity() {
+  public double getMaximumChassisAngularVelocity() {
     return Math.max(
         this.attainableMaxRotationalVelocityRadiansPerSecond,
         swerveController.config.maxAngularVelocity);
@@ -596,16 +611,17 @@ public class SwerveDrive {
   private void setRawModuleStates(
       SwerveModuleState[] desiredStates, ChassisSpeeds desiredChassisSpeed, boolean isOpenLoop) {
     // Desaturates wheel speeds
+    double maxModuleSpeedMPS = getMaximumModuleDriveVelocity().in(MetersPerSecond);
     if (attainableMaxTranslationalSpeedMetersPerSecond != 0
         || attainableMaxRotationalVelocityRadiansPerSecond != 0) {
       SwerveDriveKinematics.desaturateWheelSpeeds(
           desiredStates,
           desiredChassisSpeed,
-          maxSpeedMPS,
+          maxModuleSpeedMPS,
           attainableMaxTranslationalSpeedMetersPerSecond,
           attainableMaxRotationalVelocityRadiansPerSecond);
     } else {
-      SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, maxSpeedMPS);
+      SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, maxModuleSpeedMPS);
     }
 
     // Sets states
@@ -616,18 +632,19 @@ public class SwerveDrive {
 
   /**
    * Set the module states (azimuth and velocity) directly. Used primarily for auto paths. Does not
-   * allow for usage of desaturateWheelSpeeds(SwerveModuleState[] moduleStates, ChassisSpeeds
-   * desiredChassisSpeed, double attainableMaxModuleSpeedMetersPerSecond, double
-   * attainableMaxTranslationalSpeedMetersPerSecond, double
-   * attainableMaxRotationalVelocityRadiansPerSecond)
+   * allow for usage of {@link SwerveDriveKinematics#desaturateWheelSpeeds(SwerveModuleState[]
+   * moduleStates, ChassisSpeeds desiredChassisSpeed, double
+   * attainableMaxModuleSpeedMetersPerSecond, double attainableMaxTranslationalSpeedMetersPerSecond,
+   * double attainableMaxRotationalVelocityRadiansPerSecond)}
    *
    * @param desiredStates A list of SwerveModuleStates to send to the modules.
    * @param isOpenLoop Whether to use closed-loop velocity control. Set to true to disable
    *     closed-loop.
    */
   public void setModuleStates(SwerveModuleState[] desiredStates, boolean isOpenLoop) {
+    double maxModuleSpeedMPS = getMaximumModuleDriveVelocity().in(MetersPerSecond);
     desiredStates = kinematics.toSwerveModuleStates(kinematics.toChassisSpeeds(desiredStates));
-    SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, maxSpeedMPS);
+    SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, maxModuleSpeedMPS);
 
     // Sets states
     for (SwerveModule module : swerveModules) {
@@ -636,22 +653,10 @@ public class SwerveDrive {
   }
 
   /**
-   * Set the correct sim motor type to allow for optimal Feedforward generation from PathPlanner.
-   *
-   * @param simMotor {@link DCMotor} to use as the drive motor model we are going to use..
-   */
-  public void setDriveMotorModel(DCMotor simMotor) {
-    for (SwerveModule module : swerveModules) {
-      module.configuration.driveMotor.simMotor = simMotor;
-    }
-  }
-
-  /**
    * Drive the robot using the {@link SwerveModuleState}, it is recommended to have {@link
    * SwerveDrive#setCosineCompensator(boolean)} set to false for this.<br>
    *
-   * <p><b>Warning:</b> Will not work well if motor is not what we are expecting. Should replace
-   * call {@link SwerveDrive#setDriveMotorModel(DCMotor)} with expected motor first.
+   * <p>
    *
    * @param robotRelativeVelocity Robot relative {@link ChassisSpeeds}
    * @param states Corresponding {@link SwerveModuleState} to use (not checked against the {@param
@@ -723,20 +728,32 @@ public class SwerveDrive {
   }
 
   /**
-   * Gets the actual pose of the drivetrain during simulation
+   * Gets the maple-sim drivetrain simulation instance This is used to add intake simulation /
+   * launch game pieces from the robot
    *
-   * @return an optional Pose2d, representing the drivetrain pose during simulation, or an empty
-   *     optional when running on real robot
+   * @return an optional maple-sim {@link SwerveDriveSimulation} object, or {@link Optional#empty()}
+   *     when calling from a real robot
    */
-  public Optional<Pose2d> getSimulationDriveTrainPose() {
+  public Optional<SwerveDriveSimulation> getMapleSimDrive() {
     if (SwerveDriveTelemetry.isSimulation) {
-      odometryLock.lock();
-      Pose2d simulationPose = mapleSimDrive.getSimulatedDriveTrainPose();
-      odometryLock.unlock();
-      return Optional.of(simulationPose);
+      return Optional.of(mapleSimDrive);
     }
 
     return Optional.empty();
+  }
+
+  /**
+   * Gets the actual pose of the drivetrain during simulation
+   *
+   * @return an {@link Optional} {@link Pose2d}, representing the drivetrain pose during simulation,
+   *     or an empty optional when running on real robot
+   */
+  public Optional<Pose2d> getSimulationDriveTrainPose() {
+    odometryLock.lock();
+    Optional<Pose2d> simulationPose =
+        getMapleSimDrive().map(AbstractDriveTrainSimulation::getSimulatedDriveTrainPose);
+    odometryLock.unlock();
+    return simulationPose;
   }
 
   /**
@@ -755,52 +772,12 @@ public class SwerveDrive {
   }
 
   /**
-   * Gets the actual field-relative robot velocity (x, y and omega) during simulation
-   *
-   * @return An optional ChassisSpeeds representing the actual field-relative velocity of the robot,
-   *     or an empty optional when running on real robot
-   * @deprecated for testing version of maple-sim only
-   */
-  @Deprecated
-  public Optional<ChassisSpeeds> getSimulationFieldVelocity() {
-    if (SwerveDriveTelemetry.isSimulation) {
-      odometryLock.lock();
-      ChassisSpeeds simulationFieldRelativeVelocity =
-          mapleSimDrive.getDriveTrainSimulatedChassisSpeedsFieldRelative();
-      odometryLock.unlock();
-      return Optional.of(simulationFieldRelativeVelocity);
-    }
-
-    return Optional.empty();
-  }
-
-  /**
    * Gets the current robot-relative velocity (x, y and omega) of the robot
    *
    * @return A ChassisSpeeds object of the current robot-relative velocity
    */
   public ChassisSpeeds getRobotVelocity() {
     return kinematics.toChassisSpeeds(getStates());
-  }
-
-  /**
-   * Gets the actual robot-relative robot velocity (x, y and omega) during simulation
-   *
-   * @return An {@link Optional} {@link ChassisSpeeds} representing the actual robot-relative
-   *     velocity of the robot, or an empty optional when running on real robot
-   * @deprecated for testing version of maple-sim only
-   */
-  @Deprecated
-  public Optional<ChassisSpeeds> getSimulationRobotVelocity() {
-    if (SwerveDriveTelemetry.isSimulation) {
-      odometryLock.lock();
-      ChassisSpeeds simulationFieldRelativeVelocity =
-          mapleSimDrive.getDriveTrainSimulatedChassisSpeedsRobotRelative();
-      odometryLock.unlock();
-      return Optional.of(simulationFieldRelativeVelocity);
-    }
-
-    return Optional.empty();
   }
 
   /**
@@ -977,50 +954,6 @@ public class SwerveDrive {
     for (SwerveModule swerveModule : swerveModules) {
       swerveModule.setEncoderAutoSynchronize(enabled, deadband);
     }
-  }
-
-  /**
-   * Set the maximum speed of the drive motors, modified {@link SwerveDrive#maxSpeedMPS} which is
-   * used for the {@link SwerveDrive#setRawModuleStates(SwerveModuleState[], ChassisSpeeds,
-   * boolean)} function and {@link SwerveController#getTargetSpeeds(double, double, double, double,
-   * double)} functions. This function overrides what was placed in the JSON and could damage your
-   * motor/robot if set too high or unachievable rates.
-   *
-   * @param maximumSpeed Maximum speed for the drive motors in meters / second.
-   * @param updateModuleFeedforward Update the swerve module feedforward to account for the new
-   *     maximum speed. This should be true unless you have replaced the drive motor feedforward
-   *     with {@link SwerveDrive#replaceSwerveModuleFeedforward(SimpleMotorFeedforward)}
-   * @param optimalVoltage Optimal voltage to use for the feedforward.
-   */
-  public void setMaximumSpeed(
-      double maximumSpeed, boolean updateModuleFeedforward, double optimalVoltage) {
-    maxSpeedMPS = maximumSpeed;
-    swerveDriveConfiguration.physicalCharacteristics.optimalVoltage = optimalVoltage;
-    for (SwerveModule module : swerveModules) {
-      module.maxSpeed = maximumSpeed;
-      if (updateModuleFeedforward) {
-        module.setFeedforward(
-            SwerveMath.createDriveFeedforward(
-                optimalVoltage,
-                maximumSpeed,
-                swerveDriveConfiguration.physicalCharacteristics.wheelGripCoefficientOfFriction));
-      }
-    }
-  }
-
-  /**
-   * Set the maximum speed of the drive motors, modified {@link SwerveDrive#maxSpeedMPS} which is
-   * used for the {@link SwerveDrive#setRawModuleStates(SwerveModuleState[], ChassisSpeeds,
-   * boolean)} function and {@link SwerveController#getTargetSpeeds(double, double, double, double,
-   * double)} functions. This function overrides what was placed in the JSON and could damage your
-   * motor/robot if set too high or unachievable rates. Overwrites the {@link
-   * SwerveModule#setFeedforward(SimpleMotorFeedforward)}.
-   *
-   * @param maximumSpeed Maximum speed for the drive motors in meters / second.
-   */
-  public void setMaximumSpeed(double maximumSpeed) {
-    setMaximumSpeed(
-        maximumSpeed, true, swerveDriveConfiguration.physicalCharacteristics.optimalVoltage);
   }
 
   /**
