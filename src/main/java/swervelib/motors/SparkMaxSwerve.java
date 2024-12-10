@@ -376,7 +376,11 @@ public class SparkMaxSwerve extends SwerveMotor {
   /** Save the configurations from flash to EEPROM. */
   @Override
   public void burnFlash() {
-    motor.configure(cfg, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+    configureSparkMax(
+        () -> {
+          return motor.configure(
+              cfg, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        });
     cfgUpdated = false;
   }
 
