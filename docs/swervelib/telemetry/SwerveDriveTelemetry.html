@@ -214,14 +214,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">The distance between the left and right modules.</div>
 </div>
-<div class="col-first odd-row-color"><code>static <a href="SwerveDriveTelemetry.TelemetryVerbosity.html" title="enum class in swervelib.telemetry">SwerveDriveTelemetry.TelemetryVerbosity</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#verbosity" class="member-name-link">verbosity</a></code></div>
+<div class="col-first odd-row-color"><code>static boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#updateSettings" class="member-name-link">updateSettings</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">Update the telemetry settings that infrequently change.</div>
+</div>
+<div class="col-first even-row-color"><code>static <a href="SwerveDriveTelemetry.TelemetryVerbosity.html" title="enum class in swervelib.telemetry">SwerveDriveTelemetry.TelemetryVerbosity</a></code></div>
+<div class="col-second even-row-color"><code><a href="#verbosity" class="member-name-link">verbosity</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The current telemetry verbosity level.</div>
 </div>
-<div class="col-first even-row-color"><code>static double[]</code></div>
-<div class="col-second even-row-color"><code><a href="#wheelLocations" class="member-name-link">wheelLocations</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>static double[]</code></div>
+<div class="col-second odd-row-color"><code><a href="#wheelLocations" class="member-name-link">wheelLocations</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The Locations of the swerve drive wheels.</div>
 </div>
 </div>
@@ -255,6 +260,11 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateData()" class="member-name-link">updateData</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Upload data to smartdashboard</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateSwerveTelemetrySettings()" class="member-name-link">updateSwerveTelemetrySettings</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Update only the settings that infrequently or never change.</div>
 </div>
 </div>
 </div>
@@ -439,6 +449,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Describes the desired forward, sideways and angular velocity of the robot.</div>
 </section>
 </li>
+<li>
+<section class="detail" id="updateSettings">
+<h3>updateSettings</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">updateSettings</span></div>
+<div class="block">Update the telemetry settings that infrequently change.</div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -461,6 +478,13 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="updateSwerveTelemetrySettings()">
+<h3>updateSwerveTelemetrySettings</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateSwerveTelemetrySettings</span>()</div>
+<div class="block">Update only the settings that infrequently or never change.</div>
+</section>
+</li>
 <li>
 <section class="detail" id="updateData()">
 <h3>updateData</h3>
