@@ -1011,8 +1011,8 @@ public class SwerveDrive {
    * SmartDashboard with module encoder readings and states.
    */
   public void updateOdometry() {
-    SwerveDriveTelemetry.feedOdomCycle();
     odometryLock.lock();
+    SwerveDriveTelemetry.feedOdomCycle();
     invalidateCache();
     try {
       // Update odometry
