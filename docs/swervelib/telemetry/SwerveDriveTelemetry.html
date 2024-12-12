@@ -257,13 +257,28 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateData()" class="member-name-link">updateData</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#endCtrlCycle()" class="member-name-link">endCtrlCycle</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Upload data to smartdashboard</div>
+<div class="block">Update the Control cycle time.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateSwerveTelemetrySettings()" class="member-name-link">updateSwerveTelemetrySettings</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#feedOdomCycle()" class="member-name-link">feedOdomCycle</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Update the odom cycle time.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#startCtrlCycle()" class="member-name-link">startCtrlCycle</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Start the ctrl timer to measure cycle time, independent of WPILib loops.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateData()" class="member-name-link">updateData</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Upload data to smartdashboard</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateSwerveTelemetrySettings()" class="member-name-link">updateSwerveTelemetrySettings</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Update only the settings that infrequently or never change.</div>
 </div>
 </div>
@@ -478,6 +493,27 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="startCtrlCycle()">
+<h3>startCtrlCycle</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startCtrlCycle</span>()</div>
+<div class="block">Start the ctrl timer to measure cycle time, independent of WPILib loops.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="endCtrlCycle()">
+<h3>endCtrlCycle</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">endCtrlCycle</span>()</div>
+<div class="block">Update the Control cycle time.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="feedOdomCycle()">
+<h3>feedOdomCycle</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">feedOdomCycle</span>()</div>
+<div class="block">Update the odom cycle time.</div>
+</section>
+</li>
 <li>
 <section class="detail" id="updateSwerveTelemetrySettings()">
 <h3>updateSwerveTelemetrySettings</h3>
