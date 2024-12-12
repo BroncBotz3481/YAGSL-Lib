@@ -55,6 +55,11 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
   private SparkMaxConfig cfg = new SparkMaxConfig();
   /** Tracker for changes that need to be pushed. */
   private boolean cfgUpdated = false;
+  /**
+   * After the first post-module config update there will be an error thrown to alert to a possible
+   * issue.
+   */
+  private boolean startupInitialized = false;
 
   /**
    * Initialize the swerve motor.
@@ -173,7 +178,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
-      Timer.delay(Units.Milliseconds.of(10).in(Seconds));
+      Timer.delay(Units.Milliseconds.of(5).in(Seconds));
     }
     failureConfiguringAlert.set(true);
   }
@@ -490,7 +495,12 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
 
     if (cfgUpdated) {
       burnFlash();
-      Timer.delay(0.1); // Give 100ms to apply changes
+      Timer.delay(0.01); // Give 10ms to apply changes
+      if (startupInitialized) {
+        DriverStation.reportWarning("Applying changes mid-execution not recommended.", true);
+      } else {
+        startupInitialized = true;
+      }
     }
 
     if (isDriveMotor) {
