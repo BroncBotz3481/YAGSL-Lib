@@ -89,10 +89,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Add slew rate limiters to all controls.</div>
 </dd>
-<dt><a href="swervelib/math/IMULinearMovingAverageFilter.html#addValue(double)" class="member-name-link">addValue(double)</a> - Method in class swervelib.math.<a href="swervelib/math/IMULinearMovingAverageFilter.html" title="class in swervelib.math">IMULinearMovingAverageFilter</a></dt>
-<dd>
-<div class="block">Add a value to the DoubleCircularBuffer</div>
-</dd>
 <dt><a href="swervelib/SwerveDrive.html#addVisionMeasurement(edu.wpi.first.math.geometry.Pose2d,double)" class="member-name-link">addVisionMeasurement(Pose2d, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
 <div class="block">Add a vision measurement to the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/estimator/SwerveDrivePoseEstimator.html" title="class or interface in edu.wpi.first.math.estimator" class="external-link"><code>SwerveDrivePoseEstimator</code></a> and update the <a href="swervelib/imu/SwerveIMU.html" title="class in swervelib.imu"><code>SwerveIMU</code></a> gyro reading with the given timestamp of the vision measurement.</div>
@@ -291,10 +287,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/parser/Cache.html#%3Cinit%3E(java.util.function.Supplier,long)" class="member-name-link">Cache(Supplier&lt;T&gt;, long)</a> - Constructor for class swervelib.parser.<a href="swervelib/parser/Cache.html" title="class in swervelib.parser">Cache</a></dt>
 <dd>
 <div class="block">Cache for arbitrary values.</div>
-</dd>
-<dt><a href="swervelib/math/IMULinearMovingAverageFilter.html#calculate()" class="member-name-link">calculate()</a> - Method in class swervelib.math.<a href="swervelib/math/IMULinearMovingAverageFilter.html" title="class in swervelib.math">IMULinearMovingAverageFilter</a></dt>
-<dd>
-<div class="block">Calculate the average of the samples in the buffer</div>
 </dd>
 <dt><a href="swervelib/parser/json/modules/AngleConversionFactorsJson.html#calculate()" class="member-name-link">calculate()</a> - Method in class swervelib.parser.json.modules.<a href="swervelib/parser/json/modules/AngleConversionFactorsJson.html" title="class in swervelib.parser.json.modules">AngleConversionFactorsJson</a></dt>
 <dd>
@@ -654,10 +646,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/parser/json/DeviceJson.html#createIMU()" class="member-name-link">createIMU()</a> - Method in class swervelib.parser.json.<a href="swervelib/parser/json/DeviceJson.html" title="class in swervelib.parser.json">DeviceJson</a></dt>
 <dd>
 <div class="block">Create a <a href="swervelib/imu/SwerveIMU.html" title="class in swervelib.imu"><code>SwerveIMU</code></a> from the given configuration.</div>
-</dd>
-<dt><a href="swervelib/imu/IMUVelocity.html#createIMUVelocity(swervelib.imu.SwerveIMU)" class="member-name-link">createIMUVelocity(SwerveIMU)</a> - Static method in class swervelib.imu.<a href="swervelib/imu/IMUVelocity.html" title="class in swervelib.imu">IMUVelocity</a></dt>
-<dd>
-<div class="block">Static factory for IMU Velocity.</div>
 </dd>
 <dt><a href="swervelib/parser/json/ModuleJson.html#createModuleConfiguration(swervelib.parser.PIDFConfig,swervelib.parser.PIDFConfig,swervelib.parser.SwerveModulePhysicalCharacteristics,java.lang.String)" class="member-name-link">createModuleConfiguration(PIDFConfig, PIDFConfig, SwerveModulePhysicalCharacteristics, String)</a> - Method in class swervelib.parser.json.<a href="swervelib/parser/json/ModuleJson.html" title="class in swervelib.parser.json">ModuleJson</a></dt>
 <dd>
@@ -1389,42 +1377,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Get the position of the swerve module.</div>
 </dd>
-<dt><a href="swervelib/imu/ADIS16448Swerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/ADIS16448Swerve.html" title="class in swervelib.imu">ADIS16448Swerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/ADIS16470Swerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/ADIS16470Swerve.html" title="class in swervelib.imu">ADIS16470Swerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/ADXRS450Swerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/ADXRS450Swerve.html" title="class in swervelib.imu">ADXRS450Swerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/AnalogGyroSwerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/AnalogGyroSwerve.html" title="class in swervelib.imu">AnalogGyroSwerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/CanandgyroSwerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/CanandgyroSwerve.html" title="class in swervelib.imu">CanandgyroSwerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/NavXSwerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/NavXSwerve.html" title="class in swervelib.imu">NavXSwerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/Pigeon2Swerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/Pigeon2Swerve.html" title="class in swervelib.imu">Pigeon2Swerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/PigeonSwerve.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
-<dt><a href="swervelib/imu/SwerveIMU.html#getRate()" class="member-name-link">getRate()</a> - Method in class swervelib.imu.<a href="swervelib/imu/SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></dt>
-<dd>
-<div class="block">Fetch the rotation rate from the IMU in degrees per second.</div>
-</dd>
 <dt><a href="swervelib/SwerveModule.html#getRawAbsolutePosition()" class="member-name-link">getRawAbsolutePosition()</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
 <dd>
 <div class="block">Get the absolute position.</div>
@@ -1639,10 +1591,6 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="swervelib/encoders/TalonSRXEncoderSwerve.html#getVelocity()" class="member-name-link">getVelocity()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/TalonSRXEncoderSwerve.html" title="class in swervelib.encoders">TalonSRXEncoderSwerve</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="swervelib/imu/IMUVelocity.html#getVelocity()" class="member-name-link">getVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/IMUVelocity.html" title="class in swervelib.imu">IMUVelocity</a></dt>
-<dd>
-<div class="block">Get the robot's angular velocity based on averaged meaasurements from the IMU.</div>
-</dd>
 <dt><a href="swervelib/motors/SparkFlexSwerve.html#getVelocity()" class="member-name-link">getVelocity()</a> - Method in class swervelib.motors.<a href="swervelib/motors/SparkFlexSwerve.html" title="class in swervelib.motors">SparkFlexSwerve</a></dt>
 <dd>
 <div class="block">Get the velocity of the integrated encoder.</div>
@@ -1699,6 +1647,26 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Gets the current yaw angle of the robot, as reported by the imu.</div>
 </dd>
+<dt><a href="swervelib/imu/ADIS16448Swerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/ADIS16448Swerve.html" title="class in swervelib.imu">ADIS16448Swerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/ADIS16470Swerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/ADIS16470Swerve.html" title="class in swervelib.imu">ADIS16470Swerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/ADXRS450Swerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/ADXRS450Swerve.html" title="class in swervelib.imu">ADXRS450Swerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/AnalogGyroSwerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/AnalogGyroSwerve.html" title="class in swervelib.imu">AnalogGyroSwerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/CanandgyroSwerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/CanandgyroSwerve.html" title="class in swervelib.imu">CanandgyroSwerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/NavXSwerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/NavXSwerve.html" title="class in swervelib.imu">NavXSwerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/Pigeon2Swerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/Pigeon2Swerve.html" title="class in swervelib.imu">Pigeon2Swerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/PigeonSwerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/SwerveIMU.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></dt>
+<dd>
+<div class="block">Fetch the rotation rate from the IMU as <code>AngularVelocity</code></div>
+</dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
@@ -1745,25 +1713,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Swerve IMU</div>
 </dd>
-<dt><a href="swervelib/math/IMULinearMovingAverageFilter.html" class="type-name-link" title="class in swervelib.math">IMULinearMovingAverageFilter</a> - Class in <a href="swervelib/math/package-summary.html">swervelib.math</a></dt>
-<dd>
-<div class="block">A linear filter that does not calculate() each time a value is added to the DoubleCircularBuffer.</div>
-</dd>
-<dt><a href="swervelib/math/IMULinearMovingAverageFilter.html#%3Cinit%3E(int)" class="member-name-link">IMULinearMovingAverageFilter(int)</a> - Constructor for class swervelib.math.<a href="swervelib/math/IMULinearMovingAverageFilter.html" title="class in swervelib.math">IMULinearMovingAverageFilter</a></dt>
-<dd>
-<div class="block">Construct a linear moving average fitler</div>
-</dd>
 <dt><a href="swervelib/SwerveDrive.html#imuReadingCache" class="member-name-link">imuReadingCache</a> - Variable in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
 <div class="block">IMU reading cache for robot readings.</div>
-</dd>
-<dt><a href="swervelib/imu/IMUVelocity.html" class="type-name-link" title="class in swervelib.imu">IMUVelocity</a> - Class in <a href="swervelib/imu/package-summary.html">swervelib.imu</a></dt>
-<dd>
-<div class="block">Generic IMU Velocity filter.</div>
-</dd>
-<dt><a href="swervelib/imu/IMUVelocity.html#%3Cinit%3E(swervelib.imu.SwerveIMU,double,int)" class="member-name-link">IMUVelocity(SwerveIMU, double, int)</a> - Constructor for class swervelib.imu.<a href="swervelib/imu/IMUVelocity.html" title="class in swervelib.imu">IMUVelocity</a></dt>
-<dd>
-<div class="block">Constructor for the IMU Velocity.</div>
 </dd>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.TelemetryVerbosity.html#INFO" class="member-name-link">INFO</a> - Enum constant in enum class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.TelemetryVerbosity.html" title="enum class in swervelib.telemetry">SwerveDriveTelemetry.TelemetryVerbosity</a></dt>
 <dd>

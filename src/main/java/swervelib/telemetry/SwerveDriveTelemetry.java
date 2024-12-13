@@ -40,6 +40,88 @@ public class SwerveDriveTelemetry {
           "IMU",
           "Serial comms is interrupted with USB and other serial traffic and causes intermittent connected/disconnection issues. Please consider another protocol or be mindful of this.",
           AlertType.kWarning);
+  /** Module counter publisher for NT4 */
+  private static final DoublePublisher moduleCountPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/moduleCount").publish();
+  /** Module measured states for Nt4 */
+  private static final DoubleArrayPublisher measuredStatesArrayPublisher =
+      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/measuredStates").publish();
+  /** Desired states for NT4 */
+  private static final DoubleArrayPublisher desiredStatesArrayPublisher =
+      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/desiredStates").publish();
+  /** Measured chassis speeds array publisher. */
+  private static final DoubleArrayPublisher measuredChassisSpeedsArrayPublisher =
+      NetworkTableInstance.getDefault()
+          .getDoubleArrayTopic("swerve/measuredChassisSpeeds")
+          .publish();
+  /** Desired chassis speeds array publisher. */
+  private static final DoubleArrayPublisher desiredChassisSpeedsArrayPublisher =
+      NetworkTableInstance.getDefault()
+          .getDoubleArrayTopic("swerve/desiredChassisSpeeds")
+          .publish();
+  /** Robot rotation publisher. */
+  private static final DoublePublisher robotRotationPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/robotRotation").publish();
+  /** Max angular velocity publisher. */
+  private static final DoublePublisher maxAngularVelocityPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/maxAngularVelocity").publish();
+  /** Struct publisher for AdvantageScope swerve widgets. */
+  private static final StructArrayPublisher<SwerveModuleState> measuredStatesStruct =
+      NetworkTableInstance.getDefault()
+          .getStructArrayTopic("swerve/advantagescope/currentStates", SwerveModuleState.struct)
+          .publish();
+  /** Struct publisher for AdvantageScope swerve widgets. */
+  private static final StructArrayPublisher<SwerveModuleState> desiredStatesStruct =
+      NetworkTableInstance.getDefault()
+          .getStructArrayTopic("swerve/advantagescope/desiredStates", SwerveModuleState.struct)
+          .publish();
+  /** Measured {@link ChassisSpeeds} for NT4 AdvantageScope swerve widgets. */
+  private static final StructPublisher<ChassisSpeeds> measuredChassisSpeedsStruct =
+      NetworkTableInstance.getDefault()
+          .getStructTopic("swerve/advantagescope/measuredChassisSpeeds", ChassisSpeeds.struct)
+          .publish();
+  /** Desired {@link ChassisSpeeds} for NT4 AdvantageScope swerve widgets. */
+  private static final StructPublisher<ChassisSpeeds> desiredChassisSpeedsStruct =
+      NetworkTableInstance.getDefault()
+          .getStructTopic("swerve/advantagescope/desiredChassisSpeeds", ChassisSpeeds.struct)
+          .publish();
+  /** Robot {@link Rotation2d} for AdvantageScope swerve widgets. */
+  private static final StructPublisher<Rotation2d> robotRotationStruct =
+      NetworkTableInstance.getDefault()
+          .getStructTopic("swerve/advantagescope/robotRotation", Rotation2d.struct)
+          .publish();
+  /** Wheel locations array publisher for NT4. */
+  private static final DoubleArrayPublisher wheelLocationsArrayPublisher =
+      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/wheelLocation").publish();
+  /** Max speed publisher for NT4. */
+  private static final DoublePublisher maxSpeedPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/maxSpeed").publish();
+  /** Rotation unit for NT4. */
+  private static final StringPublisher rotationUnitPublisher =
+      NetworkTableInstance.getDefault().getStringTopic("swerve/rotationUnit").publish();
+  /** Chassis width publisher */
+  private static final DoublePublisher sizeLeftRightPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/sizeLeftRight").publish();
+  /** Chassis Length publisher. */
+  private static final DoublePublisher sizeFrontBackPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/sizeFrontBack").publish();
+  /** Chassis direction widget publisher. */
+  private static final StringPublisher forwardDirectionPublisher =
+      NetworkTableInstance.getDefault().getStringTopic("swerve/forwardDirection").publish();
+  /** Odometry cycle time, updated whenever {@link SwerveDrive#updateOdometry()} is called. */
+  private static final DoublePublisher odomCycleTime =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/odomCycleMS").publish();
+  /**
+   * Control cycle time, updated whenever {@link
+   * swervelib.SwerveModule#setDesiredState(SwerveModuleState, boolean, double)} is called for the
+   * last module.
+   */
+  private static final DoublePublisher ctrlCycleTime =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/controlCycleMS").publish();
+  /** Odometry timer to track cycle times. */
+  private static final Timer odomTimer = new Timer();
+  /** Control timer to track cycle times. */
+  private static final Timer ctrlTimer = new Timer();
   /** Measured swerve module states object. */
   public static SwerveModuleState[] measuredStatesObj = new SwerveModuleState[4];
   /** Desired swerve module states object */
@@ -95,89 +177,6 @@ public class SwerveDriveTelemetry {
   public static double[] measuredChassisSpeeds = new double[3];
   /** Describes the desired forward, sideways and angular velocity of the robot. */
   public static double[] desiredChassisSpeeds = new double[3];
-  /** Module counter publisher for NT4 */
-  private static final DoublePublisher moduleCountPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/moduleCount").publish();
-  /** Module measured states for Nt4 */
-  private static final DoubleArrayPublisher measuredStatesArrayPublisher =
-      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/measuredStates").publish();
-  /** Desired states for NT4 */
-  private static final DoubleArrayPublisher desiredStatesArrayPublisher =
-      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/desiredStates").publish();
-  /** Measured chassis speeds array publisher. */
-  private static final DoubleArrayPublisher measuredChassisSpeedsArrayPublisher =
-      NetworkTableInstance.getDefault()
-          .getDoubleArrayTopic("swerve/measuredChassisSpeeds")
-          .publish();
-  /** Desired chassis speeds array publisher. */
-  private static final DoubleArrayPublisher desiredChassisSpeedsArrayPublisher =
-      NetworkTableInstance.getDefault()
-          .getDoubleArrayTopic("swerve/desiredChassisSpeeds")
-          .publish();
-  /** Robot rotation publisher. */
-  private static final DoublePublisher robotRotationPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/robotRotation").publish();
-  /** Max angular velocity publisher. */
-  private static final DoublePublisher maxAngularVelocityPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/maxAngularVelocity").publish();
-  /** Struct publisher for AdvantageScope swerve widgets. */
-  private static final StructArrayPublisher<SwerveModuleState> measuredStatesStruct =
-      NetworkTableInstance.getDefault()
-          .getStructArrayTopic("swerve/advantagescope/currentStates", SwerveModuleState.struct)
-          .publish();
-  /** Struct publisher for AdvantageScope swerve widgets. */
-  private static final StructArrayPublisher<SwerveModuleState> desiredStatesStruct =
-      NetworkTableInstance.getDefault()
-          .getStructArrayTopic("swerve/advantagescope/desiredStates", SwerveModuleState.struct)
-          .publish();
-  /** Measured {@link ChassisSpeeds} for NT4 AdvantageScope swerve widgets. */
-  private static final StructPublisher<ChassisSpeeds> measuredChassisSpeedsStruct =
-      NetworkTableInstance.getDefault()
-          .getStructTopic("swerve/advantagescope/measuredChassisSpeeds", ChassisSpeeds.struct)
-          .publish();
-  /** Desired {@link ChassisSpeeds} for NT4 AdvantageScope swerve widgets. */
-  private static final StructPublisher<ChassisSpeeds> desiredChassisSpeedsStruct =
-      NetworkTableInstance.getDefault()
-          .getStructTopic("swerve/advantagescope/desiredChassisSpeeds", ChassisSpeeds.struct)
-          .publish();
-  /** Robot {@link Rotation2d} for AdvantageScope swerve widgets. */
-  private static final StructPublisher<Rotation2d> robotRotationStruct =
-      NetworkTableInstance.getDefault()
-          .getStructTopic("swerve/advantagescope/robotRotation", Rotation2d.struct)
-          .publish();
-
-  /** Wheel locations array publisher for NT4. */
-  private static final DoubleArrayPublisher wheelLocationsArrayPublisher =
-      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/wheelLocation").publish();
-  /** Max speed publisher for NT4. */
-  private static final DoublePublisher maxSpeedPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/maxSpeed").publish();
-  /** Rotation unit for NT4. */
-  private static final StringPublisher rotationUnitPublisher =
-      NetworkTableInstance.getDefault().getStringTopic("swerve/rotationUnit").publish();
-  /** Chassis width publisher */
-  private static final DoublePublisher sizeLeftRightPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/sizeLeftRight").publish();
-  /** Chassis Length publisher. */
-  private static final DoublePublisher sizeFrontBackPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/sizeFrontBack").publish();
-  /** Chassis direction widget publisher. */
-  private static final StringPublisher forwardDirectionPublisher =
-      NetworkTableInstance.getDefault().getStringTopic("swerve/forwardDirection").publish();
-  /** Odometry cycle time, updated whenever {@link SwerveDrive#updateOdometry()} is called. */
-  private static final DoublePublisher odomCycleTime =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/odomCycleMS").publish();
-  /**
-   * Control cycle time, updated whenever {@link
-   * swervelib.SwerveModule#setDesiredState(SwerveModuleState, boolean, double)} is called for the
-   * last module.
-   */
-  private static final DoublePublisher ctrlCycleTime =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/controlCycleMS").publish();
-  /** Odometry timer to track cycle times. */
-  private static final Timer odomTimer = new Timer();
-  /** Control timer to track cycle times. */
-  private static final Timer ctrlTimer = new Timer();
   /** Update the telemetry settings that infrequently change. */
   public static boolean updateSettings = true;
 

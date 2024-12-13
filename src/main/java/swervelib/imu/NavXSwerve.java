@@ -1,9 +1,13 @@
 package swervelib.imu;
 
+import static edu.wpi.first.units.Units.DegreesPerSecond;
+
 import com.studica.frc.AHRS;
 import com.studica.frc.AHRS.NavXComType;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.MutAngularVelocity;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import java.util.Optional;
@@ -11,6 +15,8 @@ import java.util.Optional;
 /** Communicates with the NavX({@link AHRS}) as the IMU. */
 public class NavXSwerve extends SwerveIMU {
 
+  /** Mutable {@link AngularVelocity} for readings. */
+  private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
   /** NavX IMU. */
   private AHRS imu;
   /** Offset for the NavX. */
@@ -106,14 +112,9 @@ public class NavXSwerve extends SwerveIMU {
             .times(9.81));
   }
 
-  /**
-   * Fetch the rotation rate from the IMU in degrees per second. If rotation rate isn't supported
-   * returns empty.
-   *
-   * @return {@link Double} of the rotation rate as an {@link Optional}.
-   */
-  public double getRate() {
-    return imu.getRate();
+  @Override
+  public MutAngularVelocity getYawAngularVelocity() {
+    return yawVel.mut_setMagnitude(imu.getRate());
   }
 
   /**

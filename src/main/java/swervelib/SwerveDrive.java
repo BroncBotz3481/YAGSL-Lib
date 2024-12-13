@@ -8,6 +8,7 @@ import static edu.wpi.first.units.Units.Kilograms;
 import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.Newtons;
+import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Seconds;
 import static edu.wpi.first.units.Units.Volts;
 
@@ -57,7 +58,6 @@ import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
 import org.ironmaple.simulation.drivesims.SwerveModuleSimulation;
 import org.ironmaple.simulation.drivesims.configs.DriveTrainSimulationConfig;
 import swervelib.encoders.CANCoderSwerve;
-import swervelib.imu.IMUVelocity;
 import swervelib.imu.Pigeon2Swerve;
 import swervelib.imu.SwerveIMU;
 import swervelib.math.SwerveMath;
@@ -93,6 +93,12 @@ public class SwerveDrive {
           "Your Swerve Drive is compatible with Tuner X swerve generator, please consider using that instead of YAGSL. More information here!\n"
               + "https://pro.docs.ctr-electronics.com/en/latest/docs/tuner/tuner-swerve/index.html",
           AlertType.kWarning);
+  /** NT4 Publisher for the IMU reading. */
+  private final DoublePublisher rawIMUPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/Raw IMU Yaw").publish();
+  /** NT4 Publisher for the IMU reading adjusted by offset and inversion. */
+  private final DoublePublisher adjustedIMUPublisher =
+      NetworkTableInstance.getDefault().getDoubleTopic("swerve/Adjusted IMU Yaw").publish();
   /** Field object. */
   public Field2d field = new Field2d();
   /** Swerve controller for controlling heading of the robot. */
@@ -129,20 +135,8 @@ public class SwerveDrive {
   private double HEADING_CORRECTION_DEADBAND = 0.01;
   /** Swerve IMU device for sensing the heading of the robot. */
   private SwerveIMU imu;
-  /**
-   * Class that calculates robot's yaw velocity using IMU measurements. Used for
-   * angularVelocityCorrection in {@link SwerveDrive#drive(Translation2d, double, boolean,
-   * boolean)}.
-   */
-  private IMUVelocity imuVelocity;
   /** Simulation of the swerve drive. */
   private SwerveIMUSimulation simIMU;
-  /** NT4 Publisher for the IMU reading. */
-  private final DoublePublisher rawIMUPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/Raw IMU Yaw").publish();
-  /** NT4 Publisher for the IMU reading adjusted by offset and inversion. */
-  private final DoublePublisher adjustedIMUPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/Adjusted IMU Yaw").publish();
   /** Counter to synchronize the modules relative encoder with absolute encoder when not moving. */
   private int moduleSynchronizationCounter = 0;
   /** The last heading set in radians. */
@@ -1312,7 +1306,6 @@ public class SwerveDrive {
   public void setAngularVelocityCompensation(
       boolean useInTeleop, boolean useInAuto, double angularVelocityCoeff) {
     if (!SwerveDriveTelemetry.isSimulation) {
-      imuVelocity = IMUVelocity.createIMUVelocity(imu);
       angularVelocityCorrection = useInTeleop;
       autonomousAngularVelocityCorrection = useInAuto;
       angularVelocityCoefficient = angularVelocityCoeff;
@@ -1326,7 +1319,9 @@ public class SwerveDrive {
    * @return {@link ChassisSpeeds} of the robot after angular velocity skew correction.
    */
   public ChassisSpeeds angularVelocitySkewCorrection(ChassisSpeeds robotRelativeVelocity) {
-    var angularVelocity = new Rotation2d(imuVelocity.getVelocity() * angularVelocityCoefficient);
+    var angularVelocity =
+        new Rotation2d(
+            imu.getYawAngularVelocity().in(RadiansPerSecond) * angularVelocityCoefficient);
     if (angularVelocity.getRadians() != 0.0) {
       robotRelativeVelocity.toFieldRelativeSpeeds(getOdometryHeading());
       robotRelativeVelocity.toRobotRelativeSpeeds(getOdometryHeading().plus(angularVelocity));

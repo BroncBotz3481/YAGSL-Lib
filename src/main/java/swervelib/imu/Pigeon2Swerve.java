@@ -8,7 +8,9 @@ import com.ctre.phoenix6.configs.Pigeon2Configurator;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.LinearAcceleration;
+import edu.wpi.first.units.measure.MutAngularVelocity;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -20,6 +22,9 @@ public class Pigeon2Swerve extends SwerveIMU {
   public static double STATUS_TIMEOUT_SECONDS = 0.04;
   /** {@link Pigeon2} IMU device. */
   private final Pigeon2 imu;
+  /** Mutable {@link AngularVelocity} for readings. */
+  private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
+
   /** Offset for the {@link Pigeon2}. */
   private Rotation3d offset = new Rotation3d();
   /** Inversion for the gyro */
@@ -125,17 +130,10 @@ public class Pigeon2Swerve extends SwerveIMU {
     return Optional.empty();
   }
 
-  /**
-   * Fetch the rotation rate from the IMU in degrees per second. If rotation rate isn't supported
-   * returns empty.
-   *
-   * @return Rotation rate in DegreesPerSecond.
-   */
-  public double getRate() {
-    return imu.getAngularVelocityZWorld()
-        .waitForUpdate(STATUS_TIMEOUT_SECONDS)
-        .getValue()
-        .in(DegreesPerSecond);
+  @Override
+  public MutAngularVelocity getYawAngularVelocity() {
+    return yawVel.mut_replace(
+        imu.getAngularVelocityZWorld().waitForUpdate(STATUS_TIMEOUT_SECONDS).getValue());
   }
 
   /**

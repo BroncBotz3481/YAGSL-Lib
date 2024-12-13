@@ -1,7 +1,11 @@
 package swervelib.imu;
 
+import static edu.wpi.first.units.Units.DegreesPerSecond;
+
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.MutAngularVelocity;
 import edu.wpi.first.wpilibj.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Optional;
@@ -11,6 +15,8 @@ public class ADIS16448Swerve extends SwerveIMU {
 
   /** {@link ADIS16448_IMU} device to read the current headings from. */
   private final ADIS16448_IMU imu;
+  /** Mutable {@link AngularVelocity} for readings. */
+  private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
   /** Offset for the ADIS16448. */
   private Rotation3d offset = new Rotation3d();
   /** Inversion for the gyro */
@@ -92,14 +98,10 @@ public class ADIS16448Swerve extends SwerveIMU {
     return Optional.of(new Translation3d(imu.getAccelX(), imu.getAccelY(), imu.getAccelZ()));
   }
 
-  /**
-   * Fetch the rotation rate from the IMU in degrees per second. If rotation rate isn't supported
-   * returns empty.
-   *
-   * @return {@link Double} of the rotation rate as an {@link Optional}.
-   */
-  public double getRate() {
-    return imu.getRate();
+  @Override
+  public MutAngularVelocity getYawAngularVelocity() {
+
+    return yawVel.mut_setMagnitude(imu.getRate());
   }
 
   /**
