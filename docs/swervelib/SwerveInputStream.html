@@ -178,30 +178,35 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Create basic <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> without any rotation components.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scale(double,double)" class="member-name-link">scale</a><wbr>(double&nbsp;scaleTranslation,
- double&nbsp;scaleRotation)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleRotation(double)" class="member-name-link">scaleRotation</a><wbr>(double&nbsp;scaleRotation)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Scale the axis inputs for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> to reduce the range in which they operate.</div>
+<div class="block">Scale the rotation axis input for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> to reduce the range in which they
+ operate.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(boolean)" class="member-name-link">translationOnlyWhile</a><wbr>(boolean&nbsp;translationState)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleTranslation(double)" class="member-name-link">scaleTranslation</a><wbr>(double&nbsp;scaleTranslation)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Scale the translation axis for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> by a constant scalar value.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(boolean)" class="member-name-link">translationOnlyWhile</a><wbr>(boolean&nbsp;translationState)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Enable locking of rotation and only translating, overrides everything.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(java.util.function.BooleanSupplier)" class="member-name-link">translationOnlyWhile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;trigger)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enable locking of rotation and only translating, overrides everything.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(java.util.function.BooleanSupplier)" class="member-name-link">translationOnlyWhile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;trigger)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Enable locking of rotation and only translating, overrides everything.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withHeading(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">withHeading</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withHeading(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">withHeading</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingY)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Add heading axis for Heading based control.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withRotation(java.util.function.DoubleSupplier)" class="member-name-link">withRotation</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withRotation(java.util.function.DoubleSupplier)" class="member-name-link">withRotation</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Add a rotation axis for Angular Velocity control</div>
 </div>
 </div>
@@ -337,17 +342,29 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="scale(double,double)">
-<h3>scale</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">scale</span><wbr><span class="parameters">(double&nbsp;scaleTranslation,
- double&nbsp;scaleRotation)</span></div>
-<div class="block">Scale the axis inputs for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> to reduce the range in which they operate.</div>
+<section class="detail" id="scaleTranslation(double)">
+<h3>scaleTranslation</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">scaleTranslation</span><wbr><span class="parameters">(double&nbsp;scaleTranslation)</span></div>
+<div class="block">Scale the translation axis for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> by a constant scalar value.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>scaleTranslation</code> - Translation axis scalar value. (0, 1]</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="scaleRotation(double)">
+<h3>scaleRotation</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">scaleRotation</span><wbr><span class="parameters">(double&nbsp;scaleRotation)</span></div>
+<div class="block">Scale the rotation axis input for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> to reduce the range in which they
+ operate.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
 <dd><code>scaleRotation</code> - Angular velocity axis scalar value. (0, 1]</dd>
 <dt>Returns:</dt>
-<dd>this.</dd>
+<dd>this</dd>
 </dl>
 </section>
 </li>

@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
+import swervelib.math.SwerveMath;
 
 /**
  * Helper class to easily transform Controller inputs into workable Chassis speeds. <br>
@@ -28,7 +29,7 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
   /** {@link SwerveDrive} object for transformations. */
   private final SwerveDrive swerveDrive;
   /** Rotation supplier as angular velocity. */
-  private Optional<DoubleSupplier> controllerTheta = Optional.empty();
+  private Optional<DoubleSupplier> controllerOmega = Optional.empty();
   /** Controller supplier as heading. */
   private Optional<DoubleSupplier> controllerHeadingX = Optional.empty();
   /** Controller supplier as heading. */
@@ -36,9 +37,9 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
   /** Axis deadband for the controller. */
   private Optional<Double> axisDeadband = Optional.empty();
   /** Translational axis scalar value, should be between (0, 1]. */
-  private Optional<Double> translationScale = Optional.empty();
+  private Optional<Double> translationAxisScale = Optional.empty();
   /** Angular velocity axis scalar value, should be between (0, 1] */
-  private Optional<Double> angularVelocityScale = Optional.empty();
+  private Optional<Double> omegaAxisScale = Optional.empty();
   /** Target to aim at. */
   private Optional<Pose2d> aimTarget = Optional.empty();
   /** Output {@link ChassisSpeeds} based on heading while this is True. */
@@ -74,12 +75,12 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
   public SwerveInputStream copy() {
     SwerveInputStream newStream =
         new SwerveInputStream(swerveDrive, controllerTranslationX, controllerTranslationY);
-    newStream.controllerTheta = controllerTheta;
+    newStream.controllerOmega = controllerOmega;
     newStream.controllerHeadingX = controllerHeadingX;
     newStream.controllerHeadingY = controllerHeadingY;
     newStream.axisDeadband = axisDeadband;
-    newStream.translationScale = translationScale;
-    newStream.angularVelocityScale = angularVelocityScale;
+    newStream.translationAxisScale = translationAxisScale;
+    newStream.omegaAxisScale = omegaAxisScale;
     newStream.aimTarget = aimTarget;
     newStream.headingEnabled = headingEnabled;
     newStream.aimEnabled = aimEnabled;
@@ -116,7 +117,7 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
   public SwerveInputStream(
       SwerveDrive drive, DoubleSupplier x, DoubleSupplier y, DoubleSupplier rot) {
     this(drive, x, y);
-    controllerTheta = Optional.of(rot);
+    controllerOmega = Optional.of(rot);
   }
 
   /**
@@ -159,7 +160,7 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
    * @return self
    */
   public SwerveInputStream withRotation(DoubleSupplier rot) {
-    controllerTheta = Optional.of(rot);
+    controllerOmega = Optional.of(rot);
     return this;
   }
 
@@ -188,15 +189,25 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
   }
 
   /**
-   * Scale the axis inputs for {@link SwerveInputStream} to reduce the range in which they operate.
+   * Scale the translation axis for {@link SwerveInputStream} by a constant scalar value.
    *
    * @param scaleTranslation Translation axis scalar value. (0, 1]
-   * @param scaleRotation Angular velocity axis scalar value. (0, 1]
-   * @return this.
+   * @return this
    */
-  public SwerveInputStream scale(double scaleTranslation, double scaleRotation) {
-    translationScale = scaleTranslation == 0 ? Optional.empty() : Optional.of(scaleTranslation);
-    angularVelocityScale = scaleRotation == 0 ? Optional.empty() : Optional.of(scaleRotation);
+  public SwerveInputStream scaleTranslation(double scaleTranslation) {
+    translationAxisScale = scaleTranslation == 0 ? Optional.empty() : Optional.of(scaleTranslation);
+    return this;
+  }
+
+  /**
+   * Scale the rotation axis input for {@link SwerveInputStream} to reduce the range in which they
+   * operate.
+   *
+   * @param scaleRotation Angular velocity axis scalar value. (0, 1]
+   * @return this
+   */
+  public SwerveInputStream scaleRotation(double scaleRotation) {
+    omegaAxisScale = scaleRotation == 0 ? Optional.empty() : Optional.of(scaleRotation);
     return this;
   }
 
@@ -314,7 +325,7 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
             "Attempting to enter HEADING mode without heading axis, please use SwerveInputStream.withHeading to add heading axis!",
             false);
       }
-    } else if (controllerTheta.isEmpty()) {
+    } else if (controllerOmega.isEmpty()) {
       DriverStation.reportError(
           "Attempting to enter ANGULAR_VELOCITY mode without a rotation axis, please use SwerveInputStream.withRotation to add angular velocity axis!",
           false);
@@ -389,14 +400,30 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
    * Apply the scalar value if it exists.
    *
    * @param axisValue Axis value to apply teh scalar too.
-   * @param scalar Scalar option to use.
    * @return Axis value scaled by scalar value.
    */
-  private double applyScalar(double axisValue, Optional<Double> scalar) {
-    if (scalar.isPresent()) {
-      return axisValue * scalar.get();
+  private double applyRotationalScalar(double axisValue) {
+    if (omegaAxisScale.isPresent()) {
+      return axisValue * omegaAxisScale.get();
     }
     return axisValue;
+  }
+
+  /**
+   * Scale the translational axis by the {@link SwerveInputStream#translationAxisScale} if it
+   * exists.
+   *
+   * @param xAxis X axis to scale.
+   * @param yAxis Y axis to scale.
+   * @return Scaled {@link Translation2d}
+   */
+  private Translation2d applyTranslationScalar(double xAxis, double yAxis) {
+    if (translationAxisScale.isPresent()) {
+
+      return SwerveMath.scaleTranslation(
+          new Translation2d(xAxis, yAxis), translationAxisScale.get());
+    }
+    return new Translation2d(xAxis, yAxis);
   }
 
   /**
@@ -407,12 +434,13 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
   @Override
   public ChassisSpeeds get() {
     double maximumChassisVelocity = swerveDrive.getMaximumChassisVelocity();
-    double vxMetersPerSecond =
-        applyScalar(applyDeadband(controllerTranslationX.getAsDouble()), translationScale)
-            * maximumChassisVelocity;
-    double vyMetersPerSecond =
-        applyScalar(applyDeadband(controllerTranslationY.getAsDouble()), translationScale)
-            * maximumChassisVelocity;
+    Translation2d scaledTranslation =
+        applyTranslationScalar(
+            applyDeadband(controllerTranslationX.getAsDouble()),
+            applyDeadband(controllerTranslationY.getAsDouble()));
+
+    double vxMetersPerSecond = scaledTranslation.getX() * maximumChassisVelocity;
+    double vyMetersPerSecond = scaledTranslation.getY() * maximumChassisVelocity;
     double omegaRadiansPerSecond = 0;
 
     SwerveInputMode newMode = findMode();
@@ -433,7 +461,7 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
       }
       case ANGULAR_VELOCITY -> {
         omegaRadiansPerSecond =
-            applyScalar(applyDeadband(controllerTheta.get().getAsDouble()), angularVelocityScale)
+            applyRotationalScalar(applyDeadband(controllerOmega.get().getAsDouble()))
                 * swerveDrive.getMaximumChassisAngularVelocity();
         break;
       }
