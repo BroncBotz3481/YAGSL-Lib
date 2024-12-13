@@ -233,8 +233,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Initialize the CANCoder on the CANivore.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - CAN ID.</dd>
-<dd><code>canbus</code> - CAN bus to initialize it on.</dd>
+<dd><code>id</code> - CAN ID of the <a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/CANcoder.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link"><code>CANcoder</code></a>.</dd>
+<dd><code>canbus</code> - CAN bus to initialize it on. Should be "rio" or "" if the RIO CANbus, else is the
+     CANivore name.</dd>
 </dl>
 </section>
 </li>
