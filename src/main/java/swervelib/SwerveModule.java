@@ -8,6 +8,9 @@ import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.networktables.BooleanPublisher;
+import edu.wpi.first.networktables.DoublePublisher;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj.Alert;
@@ -51,18 +54,22 @@ public class SwerveModule {
   private final Alert encoderOffsetWarning;
   /** An {@link Alert} for if there is no Absolute Encoder on the module. */
   private final Alert noEncoderWarning;
-  /** NT3 Raw Absolute Angle publisher for the absolute encoder. */
-  private final String rawAbsoluteAngleName;
-  /** NT3 Adjusted Absolute angle publisher for the absolute encoder. */
-  private final String adjAbsoluteAngleName;
-  /** NT3 Absolute encoder read issue. */
-  private final String absoluteEncoderIssueName;
-  /** NT3 raw angle motor. */
-  private final String rawAngleName;
-  /** NT3 Raw drive motor. */
-  private final String rawDriveName;
-  /** NT3 Raw drive motor. */
-  private final String rawDriveVelName;
+  /** NT4 Raw Absolute Angle publisher for the absolute encoder. */
+  private final DoublePublisher rawAbsoluteAnglePublisher;
+  /** NT4 Adjusted Absolute angle publisher for the absolute encoder. */
+  private final DoublePublisher adjAbsoluteAnglePublisher;
+  /** NT4 Absolute encoder read issue. */
+  private final BooleanPublisher absoluteEncoderIssuePublisher;
+  /** NT4 raw angle motor. */
+  private final DoublePublisher rawAnglePublisher;
+  /** NT4 Raw drive motor. */
+  private final DoublePublisher rawDriveEncoderPublisher;
+  /** NT4 Raw drive motor. */
+  private final DoublePublisher rawDriveVelocityPublisher;
+  /** Speed setpoint publisher for the module motor-controller PID. */
+  private final DoublePublisher speedSetpointPublisher;
+  /** Angle setpoint publisher for the module motor-controller PID. */
+  private final DoublePublisher angleSetpointPublisher;
   /** Maximum {@link LinearVelocity} for the drive motor of the swerve module. */
   private LinearVelocity maxDriveVelocity;
   /** Maximum {@link AngularVelocity} for the azimuth/angle motor of the swerve module. */
@@ -173,13 +180,39 @@ public class SwerveModule {
             "Pushing the Absolute Encoder offset to the encoder failed on module #" + moduleNumber,
             AlertType.kWarning);
 
-    rawAbsoluteAngleName = "swerve/modules/" + configuration.name + "/Raw Absolute Encoder";
-    adjAbsoluteAngleName = "swerve/modules/" + configuration.name + "/Adjusted Absolute Encoder";
-    absoluteEncoderIssueName =
-        "swerve/modules/" + configuration.name + "/Absolute Encoder Read Issue";
-    rawAngleName = "swerve/modules/" + configuration.name + "/Raw Angle Encoder";
-    rawDriveName = "swerve/modules/" + configuration.name + "/Raw Drive Encoder";
-    rawDriveVelName = "swerve/modules/" + configuration.name + "/Raw Drive Velocity";
+    rawAbsoluteAnglePublisher =
+        NetworkTableInstance.getDefault()
+            .getDoubleTopic("swerve/modules/" + configuration.name + "/Raw Absolute Encoder")
+            .publish();
+    adjAbsoluteAnglePublisher =
+        NetworkTableInstance.getDefault()
+            .getDoubleTopic("swerve/modules/" + configuration.name + "/Adjusted Absolute Encoder")
+            .publish();
+    absoluteEncoderIssuePublisher =
+        NetworkTableInstance.getDefault()
+            .getBooleanTopic(
+                "swerve/modules/" + configuration.name + "/Absolute Encoder Read Issue")
+            .publish();
+    rawAnglePublisher =
+        NetworkTableInstance.getDefault()
+            .getDoubleTopic("swerve/modules/" + configuration.name + "/Raw Angle Encoder")
+            .publish();
+    rawDriveEncoderPublisher =
+        NetworkTableInstance.getDefault()
+            .getDoubleTopic("swerve/modules/" + configuration.name + "/Raw Drive Encoder")
+            .publish();
+    rawDriveVelocityPublisher =
+        NetworkTableInstance.getDefault()
+            .getDoubleTopic("swerve/modules/" + configuration.name + "/Raw Drive Velocity")
+            .publish();
+    speedSetpointPublisher =
+        NetworkTableInstance.getDefault()
+            .getDoubleTopic("swerve/modules/" + configuration.name + "/Speed Setpoint")
+            .publish();
+    angleSetpointPublisher =
+        NetworkTableInstance.getDefault()
+            .getDoubleTopic("swerve/modules/" + configuration.name + "/Angle Setpoint")
+            .publish();
   }
 
   /**
@@ -385,12 +418,8 @@ public class SwerveModule {
     }
 
     if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
-      SmartDashboard.putNumber(
-          "swerve/modules/" + configuration.name + "/Speed Setpoint",
-          desiredState.speedMetersPerSecond);
-      SmartDashboard.putNumber(
-          "swerve/modules/" + configuration.name + "/Angle Setpoint",
-          desiredState.angle.getDegrees());
+      speedSetpointPublisher.set(desiredState.speedMetersPerSecond);
+      angleSetpointPublisher.set(desiredState.angle.getDegrees());
     }
 
     if (moduleNumber == SwerveDriveTelemetry.moduleCount - 1) {
@@ -666,13 +695,13 @@ public class SwerveModule {
   /** Update data sent to {@link SmartDashboard}. */
   public void updateTelemetry() {
     if (absoluteEncoder != null) {
-      SmartDashboard.putNumber(rawAbsoluteAngleName, absoluteEncoder.getAbsolutePosition());
+      rawAbsoluteAnglePublisher.set(absoluteEncoder.getAbsolutePosition());
     }
-    SmartDashboard.putNumber(rawAngleName, angleMotor.getPosition());
-    SmartDashboard.putNumber(rawDriveName, drivePositionCache.getValue());
-    SmartDashboard.putNumber(rawDriveVelName, driveVelocityCache.getValue());
-    SmartDashboard.putNumber(adjAbsoluteAngleName, getAbsolutePosition());
-    SmartDashboard.putNumber(absoluteEncoderIssueName, getAbsoluteEncoderReadIssue() ? 1 : 0);
+    rawAnglePublisher.set(angleMotor.getPosition());
+    rawDriveEncoderPublisher.set(drivePositionCache.getValue());
+    rawDriveVelocityPublisher.set(driveVelocityCache.getValue());
+    adjAbsoluteAnglePublisher.set(getAbsolutePosition());
+    absoluteEncoderIssuePublisher.set(getAbsoluteEncoderReadIssue());
   }
 
   /** Invalidate the {@link Cache} objects used by {@link SwerveModule}. */
