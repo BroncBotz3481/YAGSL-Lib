@@ -121,6 +121,18 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Construct the ADXRS450 imu and reset default configurations.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html#aim(edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">aim(Pose2d)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Aim the <a href="swervelib/SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> at this pose while driving.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#aimWhile(boolean)" class="member-name-link">aimWhile(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Enable aiming while the trigger is true.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#aimWhile(java.util.function.BooleanSupplier)" class="member-name-link">aimWhile(BooleanSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Enable aiming while the trigger is true.</div>
+</dd>
 <dt><a href="swervelib/encoders/AnalogAbsoluteEncoderSwerve.html" class="type-name-link" title="class in swervelib.encoders">AnalogAbsoluteEncoderSwerve</a> - Class in <a href="swervelib/encoders/package-summary.html">swervelib.encoders</a></dt>
 <dd>
 <div class="block">Swerve Absolute Encoder for Thrifty Encoders and other analog encoders.</div>
@@ -627,6 +639,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Convert the setpoint into native sensor units.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html#copy()" class="member-name-link">copy()</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Copy the <a href="swervelib/SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> object.</div>
+</dd>
 <dt><a href="swervelib/SwerveDriveTest.html#createConfigCustomTimeout(double)" class="member-name-link">createConfigCustomTimeout(double)</a> - Static method in class swervelib.<a href="swervelib/SwerveDriveTest.html" title="class in swervelib">SwerveDriveTest</a></dt>
 <dd>
 <div class="block">Creates a SysIdRoutine.Config with a custom final timeout</div>
@@ -693,6 +709,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/parser/PIDFConfig.html#d" class="member-name-link">d</a> - Variable in class swervelib.parser.<a href="swervelib/parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a></dt>
 <dd>
 <div class="block">Derivative Gain for PID.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#deadband(double)" class="member-name-link">deadband(double)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Set a deadband for all controller axis.</div>
 </dd>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.html#desiredChassisSpeeds" class="member-name-link">desiredChassisSpeeds</a> - Static variable in class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.html" title="class in swervelib.telemetry">SwerveDriveTelemetry</a></dt>
 <dd>
@@ -1008,6 +1028,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/SwerveDriveTest.html#generateSysIdCommand(edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine,double,double,double)" class="member-name-link">generateSysIdCommand(SysIdRoutine, double, double, double)</a> - Static method in class swervelib.<a href="swervelib/SwerveDriveTest.html" title="class in swervelib">SwerveDriveTest</a></dt>
 <dd>
 <div class="block">Creates a command that can be mapped to a button or other trigger.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#get()" class="member-name-link">get()</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Gets a field-oriented <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 </dd>
 <dt><a href="swervelib/encoders/AnalogAbsoluteEncoderSwerve.html#getAbsoluteEncoder()" class="member-name-link">getAbsoluteEncoder()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/AnalogAbsoluteEncoderSwerve.html" title="class in swervelib.encoders">AnalogAbsoluteEncoderSwerve</a></dt>
 <dd>
@@ -1686,6 +1710,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">PIDF for the heading of the robot.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html#headingWhile(boolean)" class="member-name-link">headingWhile(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Set the heading enable state.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#headingWhile(java.util.function.BooleanSupplier)" class="member-name-link">headingWhile(BooleanSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> based on heading while the supplier is True.</div>
+</dd>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.TelemetryVerbosity.html#HIGH" class="member-name-link">HIGH</a> - Enum constant in enum class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.TelemetryVerbosity.html" title="enum class in swervelib.telemetry">SwerveDriveTelemetry.TelemetryVerbosity</a></dt>
 <dd>
 <div class="block">Full swerve drive data is sent back in both human and machine readable forms.</div>
@@ -2021,6 +2053,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:O">O</h2>
 <dl class="index">
+<dt><a href="swervelib/SwerveInputStream.html#of(swervelib.SwerveDrive,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">of(SwerveDrive, DoubleSupplier, DoubleSupplier)</a> - Static method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Create basic <a href="swervelib/SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> without any rotation components.</div>
+</dd>
 <dt><a href="swervelib/parser/json/PhysicalPropertiesJson.html#optimalVoltage" class="member-name-link">optimalVoltage</a> - Variable in class swervelib.parser.json.<a href="swervelib/parser/json/PhysicalPropertiesJson.html" title="class in swervelib.parser.json">PhysicalPropertiesJson</a></dt>
 <dd>
 <div class="block">The voltage to use for the smart motor voltage compensation, default is 12.</div>
@@ -2246,6 +2282,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
+<dt><a href="swervelib/SwerveInputStream.html#scale(double,double)" class="member-name-link">scale(double, double)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Scale the axis inputs for <a href="swervelib/SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> to reduce the range in which they operate.</div>
+</dd>
 <dt><a href="swervelib/math/SwerveMath.html#scaleTranslation(edu.wpi.first.math.geometry.Translation2d,double)" class="member-name-link">scaleTranslation(Translation2d, double)</a> - Static method in class swervelib.math.<a href="swervelib/math/SwerveMath.html" title="class in swervelib.math">SwerveMath</a></dt>
 <dd>
 <div class="block">Scale the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Translation2d</code></a> Polar coordinate magnitude.</div>
@@ -2976,6 +3016,20 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Create the swerve drive IMU simulation.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html" class="type-name-link" title="class in swervelib">SwerveInputStream</a> - Class in <a href="swervelib/package-summary.html">swervelib</a></dt>
+<dd>
+<div class="block">Helper class to easily transform Controller inputs into workable Chassis speeds.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#%3Cinit%3E(swervelib.SwerveDrive,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">SwerveInputStream(SwerveDrive, DoubleSupplier, DoubleSupplier, DoubleSupplier)</a> - Constructor for class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Create a <a href="swervelib/SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> for an easy way to generate <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> from a
+ driver controller.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#%3Cinit%3E(swervelib.SwerveDrive,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">SwerveInputStream(SwerveDrive, DoubleSupplier, DoubleSupplier, DoubleSupplier, DoubleSupplier)</a> - Constructor for class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Create a <a href="swervelib/SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> for an easy way to generate <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> from a
+ driver controller.</div>
+</dd>
 <dt><a href="swervelib/package-summary.html">swervelib</a> - package swervelib</dt>
 <dd>
 <div class="block">Yet-Another Generic Swerve Library (YAGSL) main package AKA swervelib.</div>
@@ -3129,6 +3183,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Convert a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> to <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a> for use elsewhere.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html#translationOnlyWhile(boolean)" class="member-name-link">translationOnlyWhile(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Enable locking of rotation and only translating, overrides everything.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#translationOnlyWhile(java.util.function.BooleanSupplier)" class="member-name-link">translationOnlyWhile(BooleanSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Enable locking of rotation and only translating, overrides everything.</div>
+</dd>
 <dt><a href="swervelib/parser/json/DeviceJson.html#type" class="member-name-link">type</a> - Variable in class swervelib.parser.json.<a href="swervelib/parser/json/DeviceJson.html" title="class in swervelib.parser.json">DeviceJson</a></dt>
 <dd>
 <div class="block">The device type, e.g.</div>
@@ -3244,9 +3306,17 @@ the order they are declared.</div>
 <dd>
 <div class="block">The Locations of the swerve drive wheels.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html#withHeading(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">withHeading(DoubleSupplier, DoubleSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Add heading axis for Heading based control.</div>
+</dd>
 <dt><a href="swervelib/SwerveController.html#withinHypotDeadband(double,double)" class="member-name-link">withinHypotDeadband(double, double)</a> - Method in class swervelib.<a href="swervelib/SwerveController.html" title="class in swervelib">SwerveController</a></dt>
 <dd>
 <div class="block">Calculate the hypot deadband and check if the joystick is within it.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#withRotation(java.util.function.DoubleSupplier)" class="member-name-link">withRotation(DoubleSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Add a rotation axis for Angular Velocity control</div>
 </dd>
 <dt><a href="swervelib/parser/json/modules/ConversionFactorsJson.html#works()" class="member-name-link">works()</a> - Method in class swervelib.parser.json.modules.<a href="swervelib/parser/json/modules/ConversionFactorsJson.html" title="class in swervelib.parser.json.modules">ConversionFactorsJson</a></dt>
 <dd>
