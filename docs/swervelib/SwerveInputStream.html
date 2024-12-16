@@ -199,13 +199,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Enable locking of rotation and only translating, overrides everything.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withHeadingControllerAxis(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">withHeadingControllerAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withControllerHeadingAxis(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">withControllerHeadingAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingY)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Add heading axis for Heading based control.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withRotationControllerAxis(java.util.function.DoubleSupplier)" class="member-name-link">withRotationControllerAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withControllerRotationAxis(java.util.function.DoubleSupplier)" class="member-name-link">withControllerRotationAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Add a rotation axis for Angular Velocity control</div>
 </div>
@@ -301,9 +301,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="withRotationControllerAxis(java.util.function.DoubleSupplier)">
-<h3>withRotationControllerAxis</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">withRotationControllerAxis</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</span></div>
+<section class="detail" id="withControllerRotationAxis(java.util.function.DoubleSupplier)">
+<h3>withControllerRotationAxis</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">withControllerRotationAxis</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</span></div>
 <div class="block">Add a rotation axis for Angular Velocity control</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -314,9 +314,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="withHeadingControllerAxis(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)">
-<h3>withHeadingControllerAxis</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">withHeadingControllerAxis</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
+<section class="detail" id="withControllerHeadingAxis(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)">
+<h3>withControllerHeadingAxis</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">withControllerHeadingAxis</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingY)</span></div>
 <div class="block">Add heading axis for Heading based control.</div>
 <dl class="notes">

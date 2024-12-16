@@ -3,6 +3,7 @@ package swervelib.parser;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import java.util.function.Supplier;
+import org.ironmaple.simulation.drivesims.COTS;
 import org.ironmaple.simulation.drivesims.GyroSimulation;
 import swervelib.SwerveModule;
 import swervelib.imu.NavXSwerve;
@@ -129,10 +130,10 @@ public class SwerveDriveConfiguration {
    */
   public Supplier<GyroSimulation> getGyroSim() {
     if (imu instanceof Pigeon2Swerve) {
-      return GyroSimulation.getPigeon2();
+      return COTS.ofPigeon2();
     } else if (imu instanceof NavXSwerve) {
-      return GyroSimulation.getNav2X();
+      return COTS.ofNav2X();
     }
-    return GyroSimulation.getGeneric();
+    return COTS.ofGenericGyro();
   }
 }
