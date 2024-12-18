@@ -12,6 +12,7 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.math.SwerveMath;
 import swervelib.parser.PIDFConfig;
+import swervelib.parser.json.modules.ConversionFactorsJson;
 import swervelib.telemetry.SwerveDriveTelemetry;
 
 /** {@link com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX} Swerve Motor. */
@@ -30,6 +31,8 @@ public class TalonSRXSwerve extends SwerveMotor {
    * Degrees.
    */
   private double positionConversionFactor = 1;
+  /** Module Conversion factors to use. */
+  private ConversionFactorsJson moduleConversionFactors;
   /** If the TalonFX configuration has changed. */
   private boolean configChanged = true;
   /** Nominal voltage default to use with feedforward. */
@@ -111,6 +114,11 @@ public class TalonSRXSwerve extends SwerveMotor {
     // Taken from democat's library.
     // https://github.com/democat3457/swerve-lib/blob/7c03126b8c22f23a501b2c2742f9d173a5bcbc40/src/main/java/com/swervedrivespecialties/swervelib/ctre/Falcon500DriveControllerFactoryBuilder.java#L16
     configureCANStatusFrames(250);
+  }
+
+  @Override
+  public void configureConversionFactor(ConversionFactorsJson factorsJson) {
+    this.moduleConversionFactors = factorsJson;
   }
 
   /**
