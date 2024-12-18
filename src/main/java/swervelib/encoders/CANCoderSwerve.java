@@ -23,8 +23,6 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
 
   /** Wait time for status frames to show up. */
   public static double STATUS_TIMEOUT_SECONDS = Milliseconds.of(10).in(Seconds);
-  /** CANCoder with WPILib sendable and support. */
-  public CANcoder encoder;
   /** An {@link Alert} for if the CANCoder magnet field is less than ideal. */
   private final Alert magnetFieldLessThanIdeal;
   /** An {@link Alert} for if the CANCoder reading is faulty. */
@@ -39,6 +37,8 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
   private final StatusSignal<Angle> angle;
   /** Angular velocity of the {@link CANcoder}. */
   private final StatusSignal<AngularVelocity> velocity;
+  /** CANCoder with WPILib sendable and support. */
+  public CANcoder encoder;
   /** {@link CANcoder} Configurator objet for this class. */
   private CANcoderConfigurator config;
   /** {@link CANcoderConfiguration} object for the CANcoder. */

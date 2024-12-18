@@ -15,7 +15,6 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.math.system.plant.DCMotor;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
-import swervelib.parser.json.modules.ConversionFactorsJson;
 import swervelib.telemetry.SwerveDriveTelemetry;
 
 /** {@link com.ctre.phoenix6.hardware.TalonFX} Swerve Motor. Made by Team 1466 WebbRobotics. */
@@ -35,8 +34,6 @@ public class TalonFXSwerve extends SwerveMotor {
   private final TalonFX motor;
   /** Conversion factor for the motor. */
   private double conversionFactor;
-  /** Module Conversion factors to use. */
-  private ConversionFactorsJson moduleConversionFactors;
   /** Current TalonFX configuration. */
   private TalonFXConfiguration configuration = new TalonFXConfiguration();
   /** Current TalonFX Configurator. */
@@ -158,11 +155,6 @@ public class TalonFXSwerve extends SwerveMotor {
         .withSensorToMechanismRatio(positionConversionFactor);
 
     cfg.apply(configuration);
-  }
-
-  @Override
-  public void configureConversionFactor(ConversionFactorsJson factorsJson) {
-    this.moduleConversionFactors = factorsJson;
   }
 
   /**

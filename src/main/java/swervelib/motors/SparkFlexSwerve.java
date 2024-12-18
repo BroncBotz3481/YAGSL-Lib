@@ -24,7 +24,6 @@ import edu.wpi.first.wpilibj.Timer;
 import java.util.function.Supplier;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
-import swervelib.parser.json.modules.ConversionFactorsJson;
 import swervelib.telemetry.SwerveDriveTelemetry;
 
 /** An implementation of {@link SparkFlex} as a {@link SwerveMotor}. */
@@ -53,13 +52,6 @@ public class SparkFlexSwerve extends SwerveMotor {
   private Alert absoluteEncoderOffsetWarning;
   /** Configuration object for {@link SparkFlex} motor. */
   private SparkFlexConfig cfg = new SparkFlexConfig();
-  /**
-   * After the first post-module config update there will be an error thrown to alert to a possible
-   * issue.
-   */
-  private boolean startupInitialized = false;
-  /** Module Conversion factors to use. */
-  private ConversionFactorsJson moduleConversionFactors;
 
   /**
    * Initialize the swerve motor.
@@ -320,11 +312,6 @@ public class SparkFlexSwerve extends SwerveMotor {
             .velocityConversionFactor(positionConversionFactor / 60);
       }
     }
-  }
-
-  @Override
-  public void configureConversionFactor(ConversionFactorsJson factorsJson) {
-    this.moduleConversionFactors = factorsJson;
   }
 
   /**

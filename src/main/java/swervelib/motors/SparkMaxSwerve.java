@@ -23,7 +23,6 @@ import swervelib.encoders.SparkMaxAnalogEncoderSwerve;
 import swervelib.encoders.SparkMaxEncoderSwerve;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
-import swervelib.parser.json.modules.ConversionFactorsJson;
 import swervelib.telemetry.SwerveDriveTelemetry;
 
 /** An implementation of {@link com.revrobotics.spark.SparkMax} as a {@link SwerveMotor}. */
@@ -45,13 +44,6 @@ public class SparkMaxSwerve extends SwerveMotor {
   private Supplier<Double> position;
   /** Configuration object for {@link SparkMax} motor. */
   private SparkMaxConfig cfg = new SparkMaxConfig();
-  /** Module Conversion factors to use. */
-  private ConversionFactorsJson moduleConversionFactors;
-  /**
-   * After the first post-module config update there will be an error thrown to alert to a possible
-   * issue.
-   */
-  private boolean startupInitialized = false;
 
   /**
    * Initialize the swerve motor.
@@ -325,11 +317,6 @@ public class SparkMaxSwerve extends SwerveMotor {
             .velocityConversionFactor(positionConversionFactor / 60);
       }
     }
-  }
-
-  @Override
-  public void configureConversionFactor(ConversionFactorsJson factorsJson) {
-    this.moduleConversionFactors = factorsJson;
   }
 
   /**
