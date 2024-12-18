@@ -42,82 +42,128 @@ public class SwerveDriveTelemetry {
           AlertType.kWarning);
   /** Module counter publisher for NT4 */
   private static final DoublePublisher moduleCountPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/moduleCount").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/moduleCount")
+          .publish();
   /** Module measured states for Nt4 */
   private static final DoubleArrayPublisher measuredStatesArrayPublisher =
-      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/measuredStates").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleArrayTopic("swerve/measuredStates")
+          .publish();
   /** Desired states for NT4 */
   private static final DoubleArrayPublisher desiredStatesArrayPublisher =
-      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/desiredStates").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleArrayTopic("swerve/desiredStates")
+          .publish();
   /** Measured chassis speeds array publisher. */
   private static final DoubleArrayPublisher measuredChassisSpeedsArrayPublisher =
       NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
           .getDoubleArrayTopic("swerve/measuredChassisSpeeds")
           .publish();
   /** Desired chassis speeds array publisher. */
   private static final DoubleArrayPublisher desiredChassisSpeedsArrayPublisher =
       NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
           .getDoubleArrayTopic("swerve/desiredChassisSpeeds")
           .publish();
   /** Robot rotation publisher. */
   private static final DoublePublisher robotRotationPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/robotRotation").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/robotRotation")
+          .publish();
   /** Max angular velocity publisher. */
   private static final DoublePublisher maxAngularVelocityPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/maxAngularVelocity").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/maxAngularVelocity")
+          .publish();
   /** Struct publisher for AdvantageScope swerve widgets. */
   private static final StructArrayPublisher<SwerveModuleState> measuredStatesStruct =
       NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
           .getStructArrayTopic("swerve/advantagescope/currentStates", SwerveModuleState.struct)
           .publish();
   /** Struct publisher for AdvantageScope swerve widgets. */
   private static final StructArrayPublisher<SwerveModuleState> desiredStatesStruct =
       NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
           .getStructArrayTopic("swerve/advantagescope/desiredStates", SwerveModuleState.struct)
           .publish();
   /** Measured {@link ChassisSpeeds} for NT4 AdvantageScope swerve widgets. */
   private static final StructPublisher<ChassisSpeeds> measuredChassisSpeedsStruct =
       NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
           .getStructTopic("swerve/advantagescope/measuredChassisSpeeds", ChassisSpeeds.struct)
           .publish();
   /** Desired {@link ChassisSpeeds} for NT4 AdvantageScope swerve widgets. */
   private static final StructPublisher<ChassisSpeeds> desiredChassisSpeedsStruct =
       NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
           .getStructTopic("swerve/advantagescope/desiredChassisSpeeds", ChassisSpeeds.struct)
           .publish();
   /** Robot {@link Rotation2d} for AdvantageScope swerve widgets. */
   private static final StructPublisher<Rotation2d> robotRotationStruct =
       NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
           .getStructTopic("swerve/advantagescope/robotRotation", Rotation2d.struct)
           .publish();
   /** Wheel locations array publisher for NT4. */
   private static final DoubleArrayPublisher wheelLocationsArrayPublisher =
-      NetworkTableInstance.getDefault().getDoubleArrayTopic("swerve/wheelLocation").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleArrayTopic("swerve/wheelLocation")
+          .publish();
   /** Max speed publisher for NT4. */
   private static final DoublePublisher maxSpeedPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/maxSpeed").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/maxSpeed")
+          .publish();
   /** Rotation unit for NT4. */
   private static final StringPublisher rotationUnitPublisher =
-      NetworkTableInstance.getDefault().getStringTopic("swerve/rotationUnit").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getStringTopic("swerve/rotationUnit")
+          .publish();
   /** Chassis width publisher */
   private static final DoublePublisher sizeLeftRightPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/sizeLeftRight").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/sizeLeftRight")
+          .publish();
   /** Chassis Length publisher. */
   private static final DoublePublisher sizeFrontBackPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/sizeFrontBack").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/sizeFrontBack")
+          .publish();
   /** Chassis direction widget publisher. */
   private static final StringPublisher forwardDirectionPublisher =
-      NetworkTableInstance.getDefault().getStringTopic("swerve/forwardDirection").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getStringTopic("swerve/forwardDirection")
+          .publish();
   /** Odometry cycle time, updated whenever {@link SwerveDrive#updateOdometry()} is called. */
   private static final DoublePublisher odomCycleTime =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/odomCycleMS").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/odomCycleMS")
+          .publish();
   /**
    * Control cycle time, updated whenever {@link
    * swervelib.SwerveModule#setDesiredState(SwerveModuleState, boolean, double)} is called for the
    * last module.
    */
   private static final DoublePublisher ctrlCycleTime =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/controlCycleMS").publish();
+      NetworkTableInstance.getDefault()
+          .getTable("SmartDashboard")
+          .getDoubleTopic("swerve/controlCycleMS")
+          .publish();
   /** Odometry timer to track cycle times. */
   private static final Timer odomTimer = new Timer();
   /** Control timer to track cycle times. */
