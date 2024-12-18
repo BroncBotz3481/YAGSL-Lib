@@ -1,12 +1,15 @@
 package swervelib.encoders;
 
 import com.reduxrobotics.sensors.canandmag.Canandmag;
+import com.reduxrobotics.sensors.canandmag.CanandmagSettings;
 
 /** HELIUM {@link Canandmag} from ReduxRobotics absolute encoder, attached through the CAN bus. */
 public class CanAndMagSwerve extends SwerveAbsoluteEncoder {
 
   /** The {@link Canandmag} representing the CANandMag on the CAN bus. */
   public Canandmag encoder;
+  /** The {@link Canandmag} settings object to use. */
+  public CanandmagSettings settings;
 
   /**
    * Create the {@link Canandmag}
@@ -15,6 +18,7 @@ public class CanAndMagSwerve extends SwerveAbsoluteEncoder {
    */
   public CanAndMagSwerve(int canid) {
     encoder = new Canandmag(canid);
+    settings = encoder.getSettings();
   }
 
   /**
@@ -40,7 +44,8 @@ public class CanAndMagSwerve extends SwerveAbsoluteEncoder {
    */
   @Override
   public void configure(boolean inverted) {
-    encoder.setSettings(new Canandmag.Settings().setInvertDirection(inverted));
+    settings.setInvertDirection(inverted);
+    encoder.setSettings(settings);
   }
 
   /**
@@ -71,7 +76,8 @@ public class CanAndMagSwerve extends SwerveAbsoluteEncoder {
    */
   @Override
   public boolean setAbsoluteEncoderOffset(double offset) {
-    return encoder.setSettings(new Canandmag.Settings().setZeroOffset(offset));
+    settings.setZeroOffset(offset);
+    return encoder.setSettings(settings);
   }
 
   /**
