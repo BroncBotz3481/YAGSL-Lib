@@ -785,13 +785,24 @@ public class SwerveDrive {
   }
 
   /**
+   * Resets odometry to the given pose.
+   *
+   * @param pose The pose to set the odometry to
+   * @deprecated This method has been deprecated in favor of {@link #setPose(Pose2d)}
+   */
+  @Deprecated
+  public void resetOdometry(Pose2d pose) {
+    setPose(pose);
+  }
+
+  /**
    * Resets odometry to the given pose. Gyro angle and module positions do not need to be reset when
    * calling this method. However, if either gyro angle or module position is reset, this must be
    * called in order for odometry to keep working.
    *
    * @param pose The pose to set the odometry to
    */
-  public void resetOdometry(Pose2d pose) {
+  public void setPose(Pose2d pose) {
     odometryLock.lock();
     swerveDrivePoseEstimator.resetPosition(getYaw(), getModulePositions(), pose);
     if (SwerveDriveTelemetry.isSimulation) {
