@@ -106,5 +106,10 @@
       <option name="name" value="WPIcb311d09-36e9-4143-a032-55bb2b94443b_0Release" />
       <option name="url" value="https://dev.studica.com/maven/release/2025/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="WPI60b2694b-9e6e-4026-81ee-6f167946f4b0_0Release" />
+      <option name="name" value="WPI60b2694b-9e6e-4026-81ee-6f167946f4b0_0Release" />
+      <option name="url" value="https://docs.home.thethriftybot.com" />
+    </remote-repository>
   </component>
 </project>
