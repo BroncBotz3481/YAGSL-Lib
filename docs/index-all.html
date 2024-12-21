@@ -133,6 +133,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Enable aiming while the trigger is true.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html#allianceRelativeControl(boolean)" class="member-name-link">allianceRelativeControl(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Modify the output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> so that it is always relative to your alliance.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#allianceRelativeControl(java.util.function.BooleanSupplier)" class="member-name-link">allianceRelativeControl(BooleanSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Modify the output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> so that it is always relative to your alliance.</div>
+</dd>
 <dt><a href="swervelib/encoders/AnalogAbsoluteEncoderSwerve.html" class="type-name-link" title="class in swervelib.encoders">AnalogAbsoluteEncoderSwerve</a> - Class in <a href="swervelib/encoders/package-summary.html">swervelib.encoders</a></dt>
 <dd>
 <div class="block">Swerve Absolute Encoder for Thrifty Encoders and other analog encoders.</div>
@@ -725,9 +733,25 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Create <a href="swervelib/SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> from JSON configuration directory.</div>
 </dd>
+<dt><a href="swervelib/SwerveInputStream.html#cubeRotationControllerAxis(boolean)" class="member-name-link">cubeRotationControllerAxis(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Cube the angular velocity controller axis for a non-linear controls scheme.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#cubeRotationControllerAxis(java.util.function.BooleanSupplier)" class="member-name-link">cubeRotationControllerAxis(BooleanSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Cube the angular velocity controller axis for a non-linear controls scheme.</div>
+</dd>
 <dt><a href="swervelib/math/SwerveMath.html#cubeTranslation(edu.wpi.first.math.geometry.Translation2d)" class="member-name-link">cubeTranslation(Translation2d)</a> - Static method in class swervelib.math.<a href="swervelib/math/SwerveMath.html" title="class in swervelib.math">SwerveMath</a></dt>
 <dd>
 <div class="block">Cube the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Translation2d</code></a> magnitude given in Polar coordinates.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#cubeTranslationControllerAxis(boolean)" class="member-name-link">cubeTranslationControllerAxis(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Cube the translation axis magnitude for a non-linear control scheme</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#cubeTranslationControllerAxis(java.util.function.BooleanSupplier)" class="member-name-link">cubeTranslationControllerAxis(BooleanSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Cube the translation axis magnitude for a non-linear control scheme.</div>
 </dd>
 <dt><a href="swervelib/parser/json/PhysicalPropertiesJson.html#currentLimit" class="member-name-link">currentLimit</a> - Variable in class swervelib.parser.json.<a href="swervelib/parser/json/PhysicalPropertiesJson.html" title="class in swervelib.parser.json">PhysicalPropertiesJson</a></dt>
 <dd>
@@ -834,7 +858,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Secondary method of controlling the drive base given velocity and adjusting it for field
  oriented use.</div>
 </dd>
-<dt><a href="swervelib/SwerveDrive.html#driveFieldOrientedandRobotOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">driveFieldOrientedandRobotOriented(ChassisSpeeds, ChassisSpeeds)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dt><a href="swervelib/SwerveDrive.html#driveFieldOrientedAndRobotOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">driveFieldOrientedAndRobotOriented(ChassisSpeeds, ChassisSpeeds)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
 <div class="block">Tertiary method of controlling the drive base given velocity in both field oriented and robot
  oriented at the same time.</div>
@@ -1069,7 +1093,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="swervelib/SwerveInputStream.html#get()" class="member-name-link">get()</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
 <dd>
-<div class="block">Gets a field-oriented <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+<div class="block">Gets a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 </dd>
 <dt><a href="swervelib/encoders/AnalogAbsoluteEncoderSwerve.html#getAbsoluteEncoder()" class="member-name-link">getAbsoluteEncoder()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/AnalogAbsoluteEncoderSwerve.html" title="class in swervelib.encoders">AnalogAbsoluteEncoderSwerve</a></dt>
 <dd>
@@ -2358,6 +2382,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/parser/SwerveModulePhysicalCharacteristics.html#robotMassKg" class="member-name-link">robotMassKg</a> - Variable in class swervelib.parser.<a href="swervelib/parser/SwerveModulePhysicalCharacteristics.html" title="class in swervelib.parser">SwerveModulePhysicalCharacteristics</a></dt>
 <dd>
 <div class="block">Robot mass in Kilograms.</div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#robotRelative(boolean)" class="member-name-link">robotRelative(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+</dd>
+<dt><a href="swervelib/SwerveInputStream.html#robotRelative(java.util.function.BooleanSupplier)" class="member-name-link">robotRelative(BooleanSupplier)</a> - Method in class swervelib.<a href="swervelib/SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></dt>
+<dd>
+<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 </dd>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.html#robotRotation" class="member-name-link">robotRotation</a> - Static variable in class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.html" title="class in swervelib.telemetry">SwerveDriveTelemetry</a></dt>
 <dd>

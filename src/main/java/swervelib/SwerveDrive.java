@@ -377,39 +377,42 @@ public class SwerveDrive {
 
   /**
    * Tertiary method of controlling the drive base given velocity in both field oriented and robot
-   * oriented at the same time. The inputs are added together so this is not intneded to be used to
+   * oriented at the same time. The inputs are added together so this is not intended to be used to
    * give the driver both methods of control.
    *
    * @param fieldOrientedVelocity The field oriented velocties to use
    * @param robotOrientedVelocity The robot oriented velocties to use
    */
-  public void driveFieldOrientedandRobotOriented(
+  public void driveFieldOrientedAndRobotOriented(
       ChassisSpeeds fieldOrientedVelocity, ChassisSpeeds robotOrientedVelocity) {
-    fieldOrientedVelocity.toRobotRelativeSpeeds(getOdometryHeading());
-    drive(fieldOrientedVelocity.plus(robotOrientedVelocity));
+
+    drive(
+        ChassisSpeeds.fromFieldRelativeSpeeds(fieldOrientedVelocity, getOdometryHeading())
+            .plus(robotOrientedVelocity));
   }
 
   /**
    * Secondary method of controlling the drive base given velocity and adjusting it for field
    * oriented use.
    *
-   * @param velocity Velocity of the robot desired.
+   * @param fieldRelativeSpeeds Velocity of the robot desired.
    */
-  public void driveFieldOriented(ChassisSpeeds velocity) {
-    velocity.toRobotRelativeSpeeds(getOdometryHeading());
-    drive(velocity);
+  public void driveFieldOriented(ChassisSpeeds fieldRelativeSpeeds) {
+    drive(ChassisSpeeds.fromFieldRelativeSpeeds(fieldRelativeSpeeds, getOdometryHeading()));
   }
 
   /**
    * Secondary method of controlling the drive base given velocity and adjusting it for field
    * oriented use.
    *
-   * @param velocity Velocity of the robot desired.
+   * @param fieldRelativeSpeeds Velocity of the robot desired.
    * @param centerOfRotationMeters The center of rotation in meters, 0 is the center of the robot.
    */
-  public void driveFieldOriented(ChassisSpeeds velocity, Translation2d centerOfRotationMeters) {
-    velocity.toRobotRelativeSpeeds(getOdometryHeading());
-    drive(velocity, centerOfRotationMeters);
+  public void driveFieldOriented(
+      ChassisSpeeds fieldRelativeSpeeds, Translation2d centerOfRotationMeters) {
+    drive(
+        ChassisSpeeds.fromFieldRelativeSpeeds(fieldRelativeSpeeds, getOdometryHeading()),
+        centerOfRotationMeters);
   }
 
   /**
@@ -461,7 +464,7 @@ public class SwerveDrive {
     // necessary.
     ChassisSpeeds velocity = new ChassisSpeeds(translation.getX(), translation.getY(), rotation);
     if (fieldRelative) {
-      velocity.toRobotRelativeSpeeds(getOdometryHeading());
+      velocity = ChassisSpeeds.fromFieldRelativeSpeeds(velocity, getOdometryHeading());
     }
     drive(velocity, isOpenLoop, centerOfRotationMeters);
   }
@@ -490,7 +493,7 @@ public class SwerveDrive {
     ChassisSpeeds velocity = new ChassisSpeeds(translation.getX(), translation.getY(), rotation);
 
     if (fieldRelative) {
-      velocity.toRobotRelativeSpeeds(getOdometryHeading());
+      ChassisSpeeds.fromFieldRelativeSpeeds(velocity, getOdometryHeading());
     }
     drive(velocity, isOpenLoop, new Translation2d());
   }
@@ -771,8 +774,10 @@ public class SwerveDrive {
     // angle given as the robot angle reverses the direction of rotation, and the conversion is
     // reversed.
     ChassisSpeeds robotRelativeSpeeds = kinematics.toChassisSpeeds(getStates());
-    robotRelativeSpeeds.toFieldRelativeSpeeds(getOdometryHeading()); // .unaryMinus());
-    return robotRelativeSpeeds;
+    return ChassisSpeeds.fromRobotRelativeSpeeds(robotRelativeSpeeds, getOdometryHeading());
+    // Might need to be this instead
+    // return ChassisSpeeds.fromFieldRelativeSpeeds(
+    //        kinematics.toChassisSpeeds(getStates()), getOdometryHeading().unaryMinus());
   }
 
   /**
@@ -798,8 +803,8 @@ public class SwerveDrive {
       mapleSimDrive.setSimulationWorldPose(pose);
     }
     odometryLock.unlock();
-    ChassisSpeeds robotRelativeSpeeds = new ChassisSpeeds();
-    robotRelativeSpeeds.toFieldRelativeSpeeds(getYaw());
+    ChassisSpeeds robotRelativeSpeeds =
+        ChassisSpeeds.fromRobotRelativeSpeeds(new ChassisSpeeds(0, 0, 0), getYaw());
     kinematics.toSwerveModuleStates(robotRelativeSpeeds);
   }
 
@@ -1261,7 +1266,7 @@ public class SwerveDrive {
    * correction in teleop
    *
    * @param enable Enable chassis velocity correction, which will use {@link
-   *     ChassisSpeeds#discretize(double)} with the following.
+   *     ChassisSpeeds#discretize(ChassisSpeeds, double)}} with the following.
    * @param dtSeconds The duration of the timestep the speeds should be applied for.
    */
   public void setChassisDiscretization(boolean enable, double dtSeconds) {
@@ -1276,9 +1281,9 @@ public class SwerveDrive {
    * correction in teleop and/or auto
    *
    * @param useInTeleop Enable chassis velocity correction, which will use {@link
-   *     ChassisSpeeds#discretize(double)} with the following in teleop.
+   *     ChassisSpeeds#discretize(ChassisSpeeds, double)} with the following in teleop.
    * @param useInAuto Enable chassis velocity correction, which will use {@link
-   *     ChassisSpeeds#discretize(double)} with the following in auto.
+   *     ChassisSpeeds#discretize(ChassisSpeeds, double)} with the following in auto.
    * @param dtSeconds The duration of the timestep the speeds should be applied for.
    */
   public void setChassisDiscretization(boolean useInTeleop, boolean useInAuto, double dtSeconds) {
@@ -1323,8 +1328,11 @@ public class SwerveDrive {
         new Rotation2d(
             imu.getYawAngularVelocity().in(RadiansPerSecond) * angularVelocityCoefficient);
     if (angularVelocity.getRadians() != 0.0) {
-      robotRelativeVelocity.toFieldRelativeSpeeds(getOdometryHeading());
-      robotRelativeVelocity.toRobotRelativeSpeeds(getOdometryHeading().plus(angularVelocity));
+      ChassisSpeeds fieldRelativeVelocity =
+          ChassisSpeeds.fromRobotRelativeSpeeds(robotRelativeVelocity, getOdometryHeading());
+      robotRelativeVelocity =
+          ChassisSpeeds.fromFieldRelativeSpeeds(
+              fieldRelativeVelocity, getOdometryHeading().plus(angularVelocity));
     }
     return robotRelativeVelocity;
   }
@@ -1349,7 +1357,8 @@ public class SwerveDrive {
     // Thank you to Jared Russell FRC254 for Open Loop Compensation Code
     // https://www.chiefdelphi.com/t/whitepaper-swerve-drive-skew-and-second-order-kinematics/416964/5
     if (uesChassisDiscretize) {
-      robotRelativeVelocity.discretize(discretizationdtSeconds);
+      robotRelativeVelocity =
+          ChassisSpeeds.discretize(robotRelativeVelocity, discretizationdtSeconds);
     }
 
     return robotRelativeVelocity;

@@ -372,6 +372,9 @@ public class SwerveMath {
    * @return Cubed magnitude from {@link Translation2d}.
    */
   public static Translation2d cubeTranslation(Translation2d translation) {
+    if (Math.hypot(translation.getX(), translation.getY()) <= 1.0E-6) {
+      return translation;
+    }
     return new Translation2d(Math.pow(translation.getNorm(), 3), translation.getAngle());
   }
 

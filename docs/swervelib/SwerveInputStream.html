@@ -83,11 +83,29 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SwerveInputStream</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&gt;</span></div>
-<div class="block">Helper class to easily transform Controller inputs into workable Chassis speeds. <br>
- Inspired by SciBorgs.
- https://github.com/SciBorgs/Crescendo-2024/blob/main/src/main/java/org/sciborgs1155/lib/InputStream.java
+<div class="block">Helper class to easily transform Controller inputs into workable Chassis speeds. Intended to
+ easily create an interface that generates <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> from <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/XboxController.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link"><code>XboxController</code></a>
 
- <p>Intended to easily create an interface that generates <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> from <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/XboxController.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link"><code>XboxController</code></a></div>
+ <p><br>
+ Inspired by SciBorgs FRC 1155. <br>
+ Example:
+
+ <pre><code>
+ XboxController driverXbox = new XboxController(0);
+
+ SwerveInputStream driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
+                                                               () -&gt; driverXbox.getLeftY() * -1,
+                                                               () -&gt; driverXbox.getLeftX() * -1) // Axis which give the desired translational angle and speed.
+                                                           .withControllerRotationAxis(driverXbox::getRightX) // Axis which give the desired angular velocity.
+                                                           .deadband(0.01)                  // Controller deadband
+                                                           .scaleTranslation(0.8)           // Scaled controller translation axis
+                                                           .allianceRelativeControl(true);  // Alliance relative controls.
+
+ SwerveInputStream driveDirectAngle = driveAngularVelocity.copy()  // Copy the stream so further changes do not affect driveAngularVelocity
+                                                          .withControllerHeadingAxis(driverXbox::getRightX,
+                                                                                     driverXbox::getRightY) // Axis which give the desired heading angle using trigonometry.
+                                                          .headingWhile(true); // Enable heading based control.
+ </code></pre></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -146,9 +164,39 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Enable aiming while the trigger is true.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#allianceRelativeControl(boolean)" class="member-name-link">allianceRelativeControl</a><wbr>(boolean&nbsp;enabled)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Modify the output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> so that it is always relative to your alliance.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#allianceRelativeControl(java.util.function.BooleanSupplier)" class="member-name-link">allianceRelativeControl</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Modify the output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> so that it is always relative to your alliance.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#copy()" class="member-name-link">copy</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Copy the <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> object.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cubeRotationControllerAxis(boolean)" class="member-name-link">cubeRotationControllerAxis</a><wbr>(boolean&nbsp;enabled)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Cube the angular velocity controller axis for a non-linear controls scheme.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cubeRotationControllerAxis(java.util.function.BooleanSupplier)" class="member-name-link">cubeRotationControllerAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Cube the angular velocity controller axis for a non-linear controls scheme.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cubeTranslationControllerAxis(boolean)" class="member-name-link">cubeTranslationControllerAxis</a><wbr>(boolean&nbsp;enabled)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Cube the translation axis magnitude for a non-linear control scheme</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cubeTranslationControllerAxis(java.util.function.BooleanSupplier)" class="member-name-link">cubeTranslationControllerAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Cube the translation axis magnitude for a non-linear control scheme.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#deadband(double)" class="member-name-link">deadband</a><wbr>(double&nbsp;deadband)</code></div>
@@ -158,7 +206,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets a field-oriented <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+<div class="block">Gets a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#headingWhile(boolean)" class="member-name-link">headingWhile</a><wbr>(boolean&nbsp;headingState)</code></div>
@@ -176,6 +224,16 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;y)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Create basic <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> without any rotation components.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#robotRelative(boolean)" class="member-name-link">robotRelative</a><wbr>(boolean&nbsp;enabled)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#robotRelative(java.util.function.BooleanSupplier)" class="member-name-link">robotRelative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleRotation(double)" class="member-name-link">scaleRotation</a><wbr>(double&nbsp;scaleRotation)</code></div>
@@ -297,6 +355,110 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>Clone of current <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="robotRelative(java.util.function.BooleanSupplier)">
+<h3>robotRelative</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">robotRelative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</span></div>
+<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Robot-Relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> output.</dd>
+<dt>Returns:</dt>
+<dd>self</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="robotRelative(boolean)">
+<h3>robotRelative</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">robotRelative</span><wbr><span class="parameters">(boolean&nbsp;enabled)</span></div>
+<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Robot-Relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> output.</dd>
+<dt>Returns:</dt>
+<dd>self</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="allianceRelativeControl(java.util.function.BooleanSupplier)">
+<h3>allianceRelativeControl</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">allianceRelativeControl</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</span></div>
+<div class="block">Modify the output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> so that it is always relative to your alliance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Alliance aware <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> output.</dd>
+<dt>Returns:</dt>
+<dd>self</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="allianceRelativeControl(boolean)">
+<h3>allianceRelativeControl</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">allianceRelativeControl</span><wbr><span class="parameters">(boolean&nbsp;enabled)</span></div>
+<div class="block">Modify the output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> so that it is always relative to your alliance.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Alliance aware <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> output.</dd>
+<dt>Returns:</dt>
+<dd>self</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="cubeRotationControllerAxis(java.util.function.BooleanSupplier)">
+<h3>cubeRotationControllerAxis</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">cubeRotationControllerAxis</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</span></div>
+<div class="block">Cube the angular velocity controller axis for a non-linear controls scheme.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Enabled state for the stream.</dd>
+<dt>Returns:</dt>
+<dd>self.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="cubeRotationControllerAxis(boolean)">
+<h3>cubeRotationControllerAxis</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">cubeRotationControllerAxis</span><wbr><span class="parameters">(boolean&nbsp;enabled)</span></div>
+<div class="block">Cube the angular velocity controller axis for a non-linear controls scheme.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Enabled state for the stream.</dd>
+<dt>Returns:</dt>
+<dd>self.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="cubeTranslationControllerAxis(java.util.function.BooleanSupplier)">
+<h3>cubeTranslationControllerAxis</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">cubeTranslationControllerAxis</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</span></div>
+<div class="block">Cube the translation axis magnitude for a non-linear control scheme.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Enabled state for the stream</dd>
+<dt>Returns:</dt>
+<dd>self</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="cubeTranslationControllerAxis(boolean)">
+<h3>cubeTranslationControllerAxis</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">cubeTranslationControllerAxis</span><wbr><span class="parameters">(boolean&nbsp;enabled)</span></div>
+<div class="block">Cube the translation axis magnitude for a non-linear control scheme</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>enabled</code> - Enabled state for the stream</dd>
+<dt>Returns:</dt>
+<dd>self</dd>
 </dl>
 </section>
 </li>
@@ -463,12 +625,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="get()">
 <h3>get</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a></span>&nbsp;<span class="element-name">get</span>()</div>
-<div class="block">Gets a field-oriented <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+<div class="block">Gets a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html#get()" title="class or interface in java.util.function" class="external-link">get</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&gt;</code></dd>
 <dt>Returns:</dt>
-<dd>field-oriented <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></dd>
+<dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></dd>
 </dl>
 </section>
 </li>

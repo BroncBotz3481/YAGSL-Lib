@@ -376,7 +376,10 @@ public class SwerveModule {
     desiredState.speedMetersPerSecond = nextVelocity.magnitude();
 
     setDesiredState(
-        desiredState, isOpenLoop, driveMotorFeedforward.calculate(nextVelocity).magnitude());
+        desiredState,
+        isOpenLoop,
+        driveMotorFeedforward.calculateWithVelocities(
+            curVelocity.in(MetersPerSecond), nextVelocity.in(MetersPerSecond)));
   }
 
   /**
@@ -394,7 +397,7 @@ public class SwerveModule {
     if (isOpenLoop) {
       double percentOutput =
           desiredState.speedMetersPerSecond / maxDriveVelocity.in(MetersPerSecond);
-      driveMotor.set(percentOutput);
+      driveMotor.setVoltage(percentOutput * 12);
     } else {
       driveMotor.setReference(desiredState.speedMetersPerSecond, driveFeedforwardVoltage);
     }

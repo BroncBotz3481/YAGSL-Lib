@@ -246,20 +246,20 @@ loadScripts(document, 'script');</script>
 <div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.<br></div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveFieldOriented(edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">driveFieldOriented</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveFieldOriented(edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">driveFieldOriented</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldRelativeSpeeds)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Secondary method of controlling the drive base given velocity and adjusting it for field
  oriented use.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveFieldOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.geometry.Translation2d)" class="member-name-link">driveFieldOriented</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveFieldOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.geometry.Translation2d)" class="member-name-link">driveFieldOriented</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldRelativeSpeeds,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Translation2d</a>&nbsp;centerOfRotationMeters)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Secondary method of controlling the drive base given velocity and adjusting it for field
  oriented use.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveFieldOrientedandRobotOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">driveFieldOrientedandRobotOriented</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldOrientedVelocity,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveFieldOrientedAndRobotOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.ChassisSpeeds)" class="member-name-link">driveFieldOrientedAndRobotOriented</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldOrientedVelocity,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotOrientedVelocity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Tertiary method of controlling the drive base given velocity in both field oriented and robot
@@ -790,12 +790,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="driveFieldOrientedandRobotOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.ChassisSpeeds)">
-<h3>driveFieldOrientedandRobotOriented</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">driveFieldOrientedandRobotOriented</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldOrientedVelocity,
+<section class="detail" id="driveFieldOrientedAndRobotOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.ChassisSpeeds)">
+<h3>driveFieldOrientedAndRobotOriented</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">driveFieldOrientedAndRobotOriented</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldOrientedVelocity,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotOrientedVelocity)</span></div>
 <div class="block">Tertiary method of controlling the drive base given velocity in both field oriented and robot
- oriented at the same time. The inputs are added together so this is not intneded to be used to
+ oriented at the same time. The inputs are added together so this is not intended to be used to
  give the driver both methods of control.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -807,25 +807,25 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="driveFieldOriented(edu.wpi.first.math.kinematics.ChassisSpeeds)">
 <h3>driveFieldOriented</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">driveFieldOriented</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">driveFieldOriented</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldRelativeSpeeds)</span></div>
 <div class="block">Secondary method of controlling the drive base given velocity and adjusting it for field
  oriented use.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>velocity</code> - Velocity of the robot desired.</dd>
+<dd><code>fieldRelativeSpeeds</code> - Velocity of the robot desired.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="driveFieldOriented(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.geometry.Translation2d)">
 <h3>driveFieldOriented</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">driveFieldOriented</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;velocity,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">driveFieldOriented</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;fieldRelativeSpeeds,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Translation2d</a>&nbsp;centerOfRotationMeters)</span></div>
 <div class="block">Secondary method of controlling the drive base given velocity and adjusting it for field
  oriented use.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>velocity</code> - Velocity of the robot desired.</dd>
+<dd><code>fieldRelativeSpeeds</code> - Velocity of the robot desired.</dd>
 <dd><code>centerOfRotationMeters</code> - The center of rotation in meters, 0 is the center of the robot.</dd>
 </dl>
 </section>
@@ -1453,7 +1453,7 @@ loadScripts(document, 'script');</script>
  correction in teleop</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>enable</code> - Enable chassis velocity correction, which will use <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html#discretize(double)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds.discretize(double)</code></a> with the following.</dd>
+<dd><code>enable</code> - Enable chassis velocity correction, which will use <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html#discretize(edu.wpi.first.math.kinematics.ChassisSpeeds,double)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds.discretize(ChassisSpeeds, double)</code></a>} with the following.</dd>
 <dd><code>dtSeconds</code> - The duration of the timestep the speeds should be applied for.</dd>
 </dl>
 </section>
@@ -1468,8 +1468,8 @@ loadScripts(document, 'script');</script>
  correction in teleop and/or auto</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>useInTeleop</code> - Enable chassis velocity correction, which will use <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html#discretize(double)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds.discretize(double)</code></a> with the following in teleop.</dd>
-<dd><code>useInAuto</code> - Enable chassis velocity correction, which will use <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html#discretize(double)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds.discretize(double)</code></a> with the following in auto.</dd>
+<dd><code>useInTeleop</code> - Enable chassis velocity correction, which will use <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html#discretize(edu.wpi.first.math.kinematics.ChassisSpeeds,double)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds.discretize(ChassisSpeeds, double)</code></a> with the following in teleop.</dd>
+<dd><code>useInAuto</code> - Enable chassis velocity correction, which will use <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html#discretize(edu.wpi.first.math.kinematics.ChassisSpeeds,double)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds.discretize(ChassisSpeeds, double)</code></a> with the following in auto.</dd>
 <dd><code>dtSeconds</code> - The duration of the timestep the speeds should be applied for.</dd>
 </dl>
 </section>

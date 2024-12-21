@@ -3,8 +3,8 @@
   <groupId>swervelib</groupId>
   <artifactId>YAGSL-cpp</artifactId>
   <versioning>
-    <latest>2025.1.0.4</latest>
-    <release>2025.1.0.4</release>
+    <latest>2025.1.1</latest>
+    <release>2025.1.1</release>
     <versions>
       <version>2024.6.1.0</version>
       <version>2024.7.0</version>
@@ -24,7 +24,8 @@
       <version>2025.1.0.2</version>
       <version>2025.1.0.3</version>
       <version>2025.1.0.4</version>
+      <version>2025.1.1</version>
     </versions>
-    <lastUpdated>20241219002020</lastUpdated>
+    <lastUpdated>20241221155526</lastUpdated>
   </versioning>
 </metadata>
