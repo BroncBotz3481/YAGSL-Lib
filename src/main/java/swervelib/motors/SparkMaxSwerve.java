@@ -1,10 +1,12 @@
 package swervelib.motors;
 
+import static edu.wpi.first.units.Units.Milliseconds;
 import static edu.wpi.first.units.Units.Seconds;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.REVLibError;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -15,7 +17,6 @@ import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import java.util.function.Supplier;
@@ -95,7 +96,7 @@ public class SparkMaxSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
-      Timer.delay(Units.Milliseconds.of(5).in(Seconds));
+      Timer.delay(Milliseconds.of(5).in(Seconds));
     }
     DriverStation.reportWarning("Failure configuring motor " + motor.getDeviceId(), true);
   }
@@ -398,10 +399,14 @@ public class SparkMaxSwerve extends SwerveMotor {
 
     if (isDriveMotor) {
       configureSparkMax(
-          () -> pid.setReference(setpoint, ControlType.kVelocity, pidSlot, feedforward));
+          () ->
+              pid.setReference(
+                  setpoint, ControlType.kVelocity, ClosedLoopSlot.kSlot0, feedforward));
     } else {
       configureSparkMax(
-          () -> pid.setReference(setpoint, ControlType.kPosition, pidSlot, feedforward));
+          () ->
+              pid.setReference(
+                  setpoint, ControlType.kPosition, ClosedLoopSlot.kSlot0, feedforward));
       if (SwerveDriveTelemetry.isSimulation) {
         encoder.setPosition(setpoint);
       }

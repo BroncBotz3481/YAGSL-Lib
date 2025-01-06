@@ -55,8 +55,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.ironmaple.simulation.SimulatedArena;
 import org.ironmaple.simulation.drivesims.AbstractDriveTrainSimulation;
 import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
-import org.ironmaple.simulation.drivesims.SwerveModuleSimulation;
 import org.ironmaple.simulation.drivesims.configs.DriveTrainSimulationConfig;
+import org.ironmaple.simulation.drivesims.configs.SwerveModuleSimulationConfig;
 import swervelib.encoders.CANCoderSwerve;
 import swervelib.imu.Pigeon2Swerve;
 import swervelib.imu.SwerveIMU;
@@ -190,18 +190,16 @@ public class SwerveDrive {
               .withCustomModuleTranslations(config.moduleLocationsMeters)
               .withGyro(config.getGyroSim())
               .withSwerveModule(
-                  () ->
-                      new SwerveModuleSimulation(
-                          config.getDriveMotorSim(),
-                          config.getAngleMotorSim(),
-                          config.physicalCharacteristics.conversionFactor.drive.gearRatio,
-                          config.physicalCharacteristics.conversionFactor.angle.gearRatio,
-                          Volts.of(config.physicalCharacteristics.driveFrictionVoltage),
-                          Volts.of(config.physicalCharacteristics.angleFrictionVoltage),
-                          Inches.of(
-                              config.physicalCharacteristics.conversionFactor.drive.diameter / 2),
-                          KilogramSquareMeters.of(0.02),
-                          config.physicalCharacteristics.wheelGripCoefficientOfFriction));
+                  new SwerveModuleSimulationConfig(
+                      config.getDriveMotorSim(),
+                      config.getAngleMotorSim(),
+                      config.physicalCharacteristics.conversionFactor.drive.gearRatio,
+                      config.physicalCharacteristics.conversionFactor.angle.gearRatio,
+                      Volts.of(config.physicalCharacteristics.driveFrictionVoltage),
+                      Volts.of(config.physicalCharacteristics.angleFrictionVoltage),
+                      Inches.of(config.physicalCharacteristics.conversionFactor.drive.diameter / 2),
+                      KilogramSquareMeters.of(0.02),
+                      config.physicalCharacteristics.wheelGripCoefficientOfFriction));
 
       mapleSimDrive = new SwerveDriveSimulation(simulationConfig, startingPose);
 
@@ -661,8 +659,6 @@ public class SwerveDrive {
   /**
    * Drive the robot using the {@link SwerveModuleState}, it is recommended to have {@link
    * SwerveDrive#setCosineCompensator(boolean)} set to false for this.<br>
-   *
-   * <p>
    *
    * @param robotRelativeVelocity Robot relative {@link ChassisSpeeds}
    * @param states Corresponding {@link SwerveModuleState} to use (not checked against the {@param

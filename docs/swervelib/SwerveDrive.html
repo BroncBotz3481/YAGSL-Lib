@@ -241,7 +241,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drive(edu.wpi.first.math.kinematics.ChassisSpeeds,edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,edu.wpi.first.units.measure.Force%5B%5D)" class="member-name-link">drive</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;states,
- edu.wpi.first.units.measure.Force[]&nbsp;feedforwardForces)</code></div>
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Force.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Force</a>[]&nbsp;feedforwardForces)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.<br></div>
 </div>
@@ -301,15 +301,15 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the maximum velocity from <code>attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>maxChassisSpeedMPS</code> whichever is higher.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>edu.wpi.first.units.measure.AngularVelocity</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaximumModuleAngleVelocity()" class="member-name-link">getMaximumModuleAngleVelocity</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the maximum angular velocity of an azimuth/angle motor in the swerve module.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>edu.wpi.first.units.measure.LinearVelocity</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/LinearVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">LinearVelocity</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaximumModuleDriveVelocity()" class="member-name-link">getMaximumModuleDriveVelocity</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the maximum drive velocity of a module as a <code>LinearVelocity</code>.</div>
+<div class="block">Get the maximum drive velocity of a module as a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/LinearVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link"><code>LinearVelocity</code></a>.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="SwerveModule.html" title="class in swervelib">SwerveModule</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getModuleMap()" class="member-name-link">getModuleMap</a>()</code></div>
@@ -957,22 +957,22 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getMaximumModuleDriveVelocity()">
 <h3>getMaximumModuleDriveVelocity</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">edu.wpi.first.units.measure.LinearVelocity</span>&nbsp;<span class="element-name">getMaximumModuleDriveVelocity</span>()</div>
-<div class="block">Get the maximum drive velocity of a module as a <code>LinearVelocity</code>.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/LinearVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">LinearVelocity</a></span>&nbsp;<span class="element-name">getMaximumModuleDriveVelocity</span>()</div>
+<div class="block">Get the maximum drive velocity of a module as a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/LinearVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link"><code>LinearVelocity</code></a>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd><code>LinearVelocity</code> representing the maximum drive speed of a module.</dd>
+<dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/LinearVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link"><code>LinearVelocity</code></a> representing the maximum drive speed of a module.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMaximumModuleAngleVelocity()">
 <h3>getMaximumModuleAngleVelocity</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">edu.wpi.first.units.measure.AngularVelocity</span>&nbsp;<span class="element-name">getMaximumModuleAngleVelocity</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a></span>&nbsp;<span class="element-name">getMaximumModuleAngleVelocity</span>()</div>
 <div class="block">Get the maximum angular velocity of an azimuth/angle motor in the swerve module.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd><code>AngularVelocity</code> of the maximum azimuth/angle motor.</dd>
+<dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link"><code>AngularVelocity</code></a> of the maximum azimuth/angle motor.</dd>
 </dl>
 </section>
 </li>
@@ -1007,10 +1007,8 @@ loadScripts(document, 'script');</script>
 <h3>drive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drive</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;states,
- edu.wpi.first.units.measure.Force[]&nbsp;feedforwardForces)</span></div>
-<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.<br>
-
- <p></div>
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Force.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Force</a>[]&nbsp;feedforwardForces)</span></div>
+<div class="block">Drive the robot using the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a>, it is recommended to have <a href="#setCosineCompensator(boolean)"><code>setCosineCompensator(boolean)</code></a> set to false for this.<br></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>robotRelativeVelocity</code> - Robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></dd>

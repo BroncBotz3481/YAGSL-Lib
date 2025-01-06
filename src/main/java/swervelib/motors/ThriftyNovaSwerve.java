@@ -23,7 +23,7 @@ import swervelib.parser.PIDFConfig;
 /** An implementation of {@link ThriftyNova} as a {@link SwerveMotor}. */
 public class ThriftyNovaSwerve extends SwerveMotor {
 
-  /** SparkMAX Instance. */
+  /** ThriftyNova Instance. */
   private ThriftyNova motor;
   /** The Encoder type being used */
   private EncoderType encoderType;
@@ -45,7 +45,7 @@ public class ThriftyNovaSwerve extends SwerveMotor {
   /**
    * Initialize the swerve motor.
    *
-   * @param motor The SwerveMotor as a SparkMax object.
+   * @param motor The SwerveMotor as a ThriftyNova object.
    * @param isDriveMotor Is the motor being initialized a drive motor?
    * @param motorType {@link DCMotor} controlled by the {@link ThriftyNova}
    */
@@ -72,7 +72,7 @@ public class ThriftyNovaSwerve extends SwerveMotor {
   /**
    * Initialize the {@link SwerveMotor} as a {@link ThriftyNova} connected to a Brushless Motor.
    *
-   * @param id CAN ID of the SparkMax.
+   * @param id CAN ID of the ThriftyNova.
    * @param isDriveMotor Is the motor being initialized a drive motor?
    * @param motor {@link DCMotor} controlled by the {@link ThriftyNova}
    */
@@ -96,7 +96,7 @@ public class ThriftyNovaSwerve extends SwerveMotor {
       configureCANStatusFrames(0.25, 0.1, 0.25, 0.5, 0.50);
       motor.setSoftLimits(0, 0);
       configurePIDF(new PIDFConfig());
-      motor.pid1.setP(0).pid1.setI(0).pid1.setD(0).pid1.setFF(0.0);
+      motor.pid1.setP(0).setI(0).setD(0).setFF(0.0);
       DriverStation.reportWarning("Factory defaults not implemented for ThriftyNovaSwerve", true);
       factoryDefaultOccurred = true;
     }
@@ -168,7 +168,7 @@ public class ThriftyNovaSwerve extends SwerveMotor {
    */
   @Override
   public void configurePIDF(PIDFConfig config) {
-    motor.pid0.setP(config.p).pid0.setI(config.i).pid0.setD(config.d);
+    motor.pid0.setP(config.p).setI(config.i).setD(config.d);
     checkErrors("Configuring PIDF failed: ");
   }
 

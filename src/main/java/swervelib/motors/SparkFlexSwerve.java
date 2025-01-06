@@ -1,10 +1,12 @@
 package swervelib.motors;
 
+import static edu.wpi.first.units.Units.Milliseconds;
 import static edu.wpi.first.units.Units.Seconds;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.REVLibError;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -14,9 +16,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
-import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -33,7 +33,7 @@ public class SparkFlexSwerve extends SwerveMotor {
   private final SparkFlex motor;
   /** Integrated encoder. */
   public RelativeEncoder encoder;
-  /** Absolute encoder attached to the SparkMax (if exists) */
+  /** Absolute encoder attached to the SparkFlex (if exists) */
   public SwerveAbsoluteEncoder absoluteEncoder;
   /** Closed-loop PID controller. */
   public SparkClosedLoopController pid;
@@ -74,7 +74,7 @@ public class SparkFlexSwerve extends SwerveMotor {
     // encoder.
 
     // Spin off configurations in a different thread.
-    // configureSparkMax(() -> motor.setCANTimeout(0)); // Commented out because it prevents
+    // configureSparkFlex(() -> motor.setCANTimeout(0)); // Commented out because it prevents
     // feedback.
     failureConfiguring =
         new Alert("Motors", "Failure configuring motor " + motor.getDeviceId(), AlertType.kWarning);
@@ -91,7 +91,7 @@ public class SparkFlexSwerve extends SwerveMotor {
   /**
    * Initialize the {@link SwerveMotor} as a {@link SparkFlex} connected to a Brushless Motor.
    *
-   * @param id CAN ID of the SparkMax.
+   * @param id CAN ID of the SparkFlex.
    * @param isDriveMotor Is the motor being initialized a drive motor?
    * @param motorType {@link DCMotor} which the {@link SparkFlex} is attached to.
    */
@@ -109,7 +109,7 @@ public class SparkFlexSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
-      Timer.delay(Units.Milliseconds.of(5).in(Seconds));
+      Timer.delay(Milliseconds.of(5).in(Seconds));
     }
     failureConfiguring.set(true);
   }
@@ -117,7 +117,7 @@ public class SparkFlexSwerve extends SwerveMotor {
   /**
    * Get the current configuration of the {@link SparkFlex}
    *
-   * @return {@link SparkMaxConfig}
+   * @return {@link SparkFlexConfig}
    */
   public SparkFlexConfig getConfig() {
     return cfg;
@@ -389,14 +389,17 @@ public class SparkFlexSwerve extends SwerveMotor {
    */
   @Override
   public void setReference(double setpoint, double feedforward) {
-    int pidSlot = 0;
 
     if (isDriveMotor) {
       configureSparkFlex(
-          () -> pid.setReference(setpoint, ControlType.kVelocity, pidSlot, feedforward));
+          () ->
+              pid.setReference(
+                  setpoint, ControlType.kVelocity, ClosedLoopSlot.kSlot0, feedforward));
     } else {
       configureSparkFlex(
-          () -> pid.setReference(setpoint, ControlType.kPosition, pidSlot, feedforward));
+          () ->
+              pid.setReference(
+                  setpoint, ControlType.kPosition, ClosedLoopSlot.kSlot0, feedforward));
       if (SwerveDriveTelemetry.isSimulation) {
         encoder.setPosition(setpoint);
       }
