@@ -1,5 +1,5 @@
 {
-  "fileName": "yagsl.json",
+  "fileName": "yagsl-${version}.json",
   "name": "YAGSL",
   "version": "${version}",
   "frcYear": "2025",
