@@ -14,7 +14,7 @@ public class AnalogGyroSwerve extends SwerveIMU {
 
   /** Gyroscope object. */
   private final AnalogGyro imu;
-  /** Mutable {@link AngularVelocity} for readings. */
+  /** Mutable {@link MutAngularVelocity} for readings. */
   private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
   /** Offset for the analog gyro. */
   private Rotation3d offset = new Rotation3d();

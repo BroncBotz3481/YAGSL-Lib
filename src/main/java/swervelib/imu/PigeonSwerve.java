@@ -15,7 +15,7 @@ public class PigeonSwerve extends SwerveIMU {
 
   /** {@link WPI_PigeonIMU} IMU device. */
   private final WPI_PigeonIMU imu;
-  /** Mutable {@link AngularVelocity} for readings. */
+  /** Mutable {@link MutAngularVelocity} for readings. */
   private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
   /** Offset for the {@link WPI_PigeonIMU}. */
   private Rotation3d offset = new Rotation3d();

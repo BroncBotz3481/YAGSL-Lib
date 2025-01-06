@@ -14,7 +14,7 @@ public class ADXRS450Swerve extends SwerveIMU {
 
   /** {@link ADXRS450_Gyro} device to read the current headings from. */
   private final ADXRS450_Gyro imu;
-  /** Mutable {@link AngularVelocity} for readings. */
+  /** Mutable {@link MutAngularVelocity} for readings. */
   private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
   /** Offset for the ADXRS450. */
   private Rotation3d offset = new Rotation3d();

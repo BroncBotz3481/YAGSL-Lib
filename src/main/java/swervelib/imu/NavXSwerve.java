@@ -14,7 +14,7 @@ import java.util.Optional;
 /** Communicates with the NavX({@link AHRS}) as the IMU. */
 public class NavXSwerve extends SwerveIMU {
 
-  /** Mutable {@link AngularVelocity} for readings. */
+  /** Mutable {@link MutAngularVelocity} for readings. */
   private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
   /** NavX IMU. */
   private AHRS imu;

@@ -14,7 +14,7 @@ public class ADIS16448Swerve extends SwerveIMU {
 
   /** {@link ADIS16448_IMU} device to read the current headings from. */
   private final ADIS16448_IMU imu;
-  /** Mutable {@link AngularVelocity} for readings. */
+  /** Mutable {@link MutAngularVelocity} for readings. */
   private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
   /** Offset for the ADIS16448. */
   private Rotation3d offset = new Rotation3d();

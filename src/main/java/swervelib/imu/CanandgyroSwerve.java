@@ -15,7 +15,7 @@ public class CanandgyroSwerve extends SwerveIMU {
   public static double STATUS_TIMEOUT_SECONDS = 0.04;
   /** Boron {@link Canandgyro} by Redux Robotics. */
   private final Canandgyro imu;
-  /** Mutable {@link AngularVelocity} for readings. */
+  /** Mutable {@link MutAngularVelocity} for readings. */
   private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, RotationsPerSecond);
   /** Offset for the Boron {@link Canandgyro}. */
   private Rotation3d offset = new Rotation3d();

@@ -83,6 +83,10 @@ public class DeviceJson {
         return new AnalogAbsoluteEncoderSwerve(id);
       case "cancoder":
         return new CANCoderSwerve(id, canbus != null ? canbus : "");
+      case "srxmag_standalone":
+        return new TalonSRXEncoderSwerve(
+            new TalonSRXSwerve(id, false, DCMotor.getCIM(1)),
+            FeedbackDevice.PulseWidthEncodedPosition);
       case "talonsrx_pwm":
         return new TalonSRXEncoderSwerve(motor, FeedbackDevice.PulseWidthEncodedPosition);
       case "talonsrx_analog":
