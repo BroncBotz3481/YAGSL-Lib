@@ -708,9 +708,17 @@ public class SwerveModule {
     if (absoluteEncoder != null) {
       rawAbsoluteAnglePublisher.set(absoluteEncoder.getAbsolutePosition());
     }
-    rawAnglePublisher.set(angleMotor.getPosition());
-    rawDriveEncoderPublisher.set(drivePositionCache.getValue());
-    rawDriveVelocityPublisher.set(driveVelocityCache.getValue());
+    if (SwerveDriveTelemetry.isSimulation) {
+      SwerveModulePosition pos = simModule.getPosition();
+      SwerveModuleState state = simModule.getState();
+      rawAnglePublisher.set(pos.angle.getDegrees());
+      rawDriveEncoderPublisher.set(pos.distanceMeters);
+      rawDriveVelocityPublisher.set(state.speedMetersPerSecond);
+    } else {
+      rawAnglePublisher.set(angleMotor.getPosition());
+      rawDriveEncoderPublisher.set(drivePositionCache.getValue());
+      rawDriveVelocityPublisher.set(driveVelocityCache.getValue());
+    }
     adjAbsoluteAnglePublisher.set(getAbsolutePosition());
     absoluteEncoderIssuePublisher.set(getAbsoluteEncoderReadIssue());
   }

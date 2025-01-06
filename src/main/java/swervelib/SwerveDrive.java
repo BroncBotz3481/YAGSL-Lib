@@ -95,10 +95,14 @@ public class SwerveDrive {
           AlertType.kWarning);
   /** NT4 Publisher for the IMU reading. */
   private final DoublePublisher rawIMUPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/Raw IMU Yaw").publish();
+      NetworkTableInstance.getDefault()
+          .getDoubleTopic("SmartDashboard/swerve/Raw IMU Yaw")
+          .publish();
   /** NT4 Publisher for the IMU reading adjusted by offset and inversion. */
   private final DoublePublisher adjustedIMUPublisher =
-      NetworkTableInstance.getDefault().getDoubleTopic("swerve/Adjusted IMU Yaw").publish();
+      NetworkTableInstance.getDefault()
+          .getDoubleTopic("SmartDashboard/swerve/Adjusted IMU Yaw")
+          .publish();
   /** Field object. */
   public Field2d field = new Field2d();
   /** Swerve controller for controlling heading of the robot. */
