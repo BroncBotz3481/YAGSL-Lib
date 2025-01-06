@@ -737,6 +737,8 @@ public class SwerveModule {
    *
    * @param swerveModuleSimulation MapleSim {@link
    *     org.ironmaple.simulation.drivesims.SwerveModuleSimulation} to configure with.
+   * @param physicalCharacteristics {@link SwerveModulePhysicalCharacteristics} that represent the
+   *     swerve drive.
    */
   public void configureModuleSimulation(
       org.ironmaple.simulation.drivesims.SwerveModuleSimulation swerveModuleSimulation,
