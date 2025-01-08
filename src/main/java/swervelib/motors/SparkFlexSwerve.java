@@ -41,15 +41,8 @@ public class SparkFlexSwerve extends SwerveMotor {
   private Supplier<Double> velocity;
   /** Supplier for the position of the motor controller. */
   private Supplier<Double> position;
-  /** Factory default already occurred. */
-  private boolean factoryDefaultOccurred = false;
   /** An {@link Alert} for if there is an error configuring the motor. */
   private Alert failureConfiguring;
-  /**
-   * An {@link Alert} for if the absolute encoder's offset is set in the json instead of the
-   * hardware client.
-   */
-  private Alert absoluteEncoderOffsetWarning;
   /** Configuration object for {@link SparkFlex} motor. */
   private SparkFlexConfig cfg = new SparkFlexConfig();
 
@@ -78,12 +71,6 @@ public class SparkFlexSwerve extends SwerveMotor {
     // feedback.
     failureConfiguring =
         new Alert("Motors", "Failure configuring motor " + motor.getDeviceId(), AlertType.kWarning);
-    absoluteEncoderOffsetWarning =
-        new Alert(
-            "Motors",
-            "IF possible configure the duty cycle encoder offset in the REV Hardware Client instead of using the "
-                + "absoluteEncoderOffset in the Swerve Module JSON!",
-            AlertType.kWarning);
     velocity = encoder::getVelocity;
     position = encoder::getPosition;
   }
@@ -232,7 +219,6 @@ public class SparkFlexSwerve extends SwerveMotor {
       position = this.encoder::getPosition;
     } else if (encoder.getAbsoluteEncoder() instanceof AbsoluteEncoder) {
       cfg.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
-      absoluteEncoderOffsetWarning.set(true);
       absoluteEncoder = encoder;
 
       velocity = absoluteEncoder::getVelocity;

@@ -1,6 +1,5 @@
 package swervelib.encoders;
 
-import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.DegreesPerSecond;
 import static edu.wpi.first.units.Units.Milliseconds;
 import static edu.wpi.first.units.Units.Rotations;
@@ -22,7 +21,7 @@ import edu.wpi.first.wpilibj.Alert.AlertType;
 public class CANCoderSwerve extends SwerveAbsoluteEncoder {
 
   /** Wait time for status frames to show up. */
-  public static double STATUS_TIMEOUT_SECONDS = Milliseconds.of(10).in(Seconds);
+  public static double STATUS_TIMEOUT_SECONDS = Milliseconds.of(1).in(Seconds);
   /** An {@link Alert} for if the CANCoder magnet field is less than ideal. */
   private final Alert magnetFieldLessThanIdeal;
   /** An {@link Alert} for if the CANCoder reading is faulty. */
@@ -128,6 +127,7 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
   public double getAbsolutePosition() {
     readingError = false;
     MagnetHealthValue strength = magnetHealth.refresh().getValue();
+    angle.refresh();
 
     magnetFieldLessThanIdeal.set(strength != MagnetHealthValue.Magnet_Green);
     if (strength == MagnetHealthValue.Magnet_Invalid || strength == MagnetHealthValue.Magnet_Red) {
@@ -137,8 +137,6 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
     } else {
       readingFaulty.set(false);
     }
-
-    angle.refresh();
 
     // Taken from democat's library.
     // Source:
@@ -155,8 +153,8 @@ public class CANCoderSwerve extends SwerveAbsoluteEncoder {
     } else {
       readingIgnored.set(false);
     }
-
-    return angle.getValue().in(Degrees);
+    // Convert from Rotations to Degrees.
+    return angle.getValueAsDouble() * 360;
   }
 
   /**

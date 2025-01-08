@@ -305,10 +305,6 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
               ? FeedbackSensor.kAnalogSensor
               : FeedbackSensor.kAbsoluteEncoder);
 
-      DriverStation.reportWarning(
-          "IF possible configure the encoder offset in the REV Hardware Client instead of using the"
-              + " absoluteEncoderOffset in the Swerve Module JSON!",
-          false);
       absoluteEncoder = encoder;
       velocity = absoluteEncoder::getVelocity;
       position = absoluteEncoder::getAbsolutePosition;

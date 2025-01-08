@@ -294,12 +294,13 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaximumChassisAngularVelocity()" class="member-name-link">getMaximumChassisAngularVelocity</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the maximum angular velocity, either <code>attainableMaxRotationalVelocityRadiansPerSecond</code> or <a href="parser/SwerveControllerConfiguration.html#maxAngularVelocity"><code>SwerveControllerConfiguration.maxAngularVelocity</code></a>.</div>
+<div class="block">Get the maximum angular velocity, either <code>attainableMaxRotationalVelocityRadiansPerSecond</code> or <a href="parser/SwerveControllerConfiguration.html#maxAngularVelocity"><code>SwerveControllerConfiguration.maxAngularVelocity</code></a>, whichever is the lower limit on the robot's
+ speed.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaximumChassisVelocity()" class="member-name-link">getMaximumChassisVelocity</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the maximum velocity from <code>attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>maxChassisSpeedMPS</code> whichever is higher.</div>
+<div class="block">Get the maximum velocity from <code>attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>maxChassisSpeedMPS</code> whichever is the lower limit on the robot's speed.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaximumModuleAngleVelocity()" class="member-name-link">getMaximumModuleAngleVelocity</a>()</code></div>
@@ -491,69 +492,75 @@ loadScripts(document, 'script');</script>
 <div class="block">Set the heading correction capabilities of YAGSL.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumSpeeds(double,double)" class="member-name-link">setMaximumSpeeds</a><wbr>(double&nbsp;attainableMaxTranslationalSpeedMetersPerSecond,
- double&nbsp;attainableMaxRotationalVelocityRadiansPerSecond)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumAllowableSpeeds(double,double)" class="member-name-link">setMaximumAllowableSpeeds</a><wbr>(double&nbsp;maxTranslationalSpeedMetersPerSecond,
+ double&nbsp;maxRotationalVelocityRadiansPerSecond)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the maximum speeds for desaturation.</div>
+<div class="block">Set the maximum allowable speeds for desaturation.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleEncoderAutoSynchronize(boolean,double)" class="member-name-link">setModuleEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled,
- double&nbsp;deadband)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaximumAttainableSpeeds(double,double)" class="member-name-link">setMaximumAttainableSpeeds</a><wbr>(double&nbsp;attainableMaxTranslationalSpeedMetersPerSecond,
+ double&nbsp;attainableMaxRotationalVelocityRadiansPerSecond)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the maximum attainable speeds for desaturation.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleEncoderAutoSynchronize(boolean,double)" class="member-name-link">setModuleEncoderAutoSynchronize</a><wbr>(boolean&nbsp;enabled,
+ double&nbsp;deadband)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enable auto synchronization for encoders during a match.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleStates(edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,boolean)" class="member-name-link">setModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;desiredStates,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleStates(edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,boolean)" class="member-name-link">setModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]&nbsp;desiredStates,
  boolean&nbsp;isOpenLoop)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the module states (azimuth and velocity) directly.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorIdleMode(boolean)" class="member-name-link">setMotorIdleMode</a><wbr>(boolean&nbsp;brake)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorIdleMode(boolean)" class="member-name-link">setMotorIdleMode</a><wbr>(boolean&nbsp;brake)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the drive motors to brake/coast mode.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOdometryPeriod(double)" class="member-name-link">setOdometryPeriod</a><wbr>(double&nbsp;period)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOdometryPeriod(double)" class="member-name-link">setOdometryPeriod</a><wbr>(double&nbsp;period)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the odometry update period in seconds.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVisionMeasurementStdDevs(edu.wpi.first.math.Matrix)" class="member-name-link">setVisionMeasurementStdDevs</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;&nbsp;visionMeasurementStdDevs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVisionMeasurementStdDevs(edu.wpi.first.math.Matrix)" class="member-name-link">setVisionMeasurementStdDevs</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;&nbsp;visionMeasurementStdDevs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the pose estimator's trust of global measurements.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopOdometryThread()" class="member-name-link">stopOdometryThread</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopOdometryThread()" class="member-name-link">stopOdometryThread</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Stop the odometry thread in favor of manually updating odometry.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#synchronizeModuleEncoders()" class="member-name-link">synchronizeModuleEncoders</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#synchronizeModuleEncoders()" class="member-name-link">synchronizeModuleEncoders</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Synchronize angle motor integrated encoders with data from absolute encoders.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toServeModuleStates(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean)" class="member-name-link">toServeModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">SwerveModuleState</a>[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toServeModuleStates(edu.wpi.first.math.kinematics.ChassisSpeeds,boolean)" class="member-name-link">toServeModuleStates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a>&nbsp;robotRelativeVelocity,
  boolean&nbsp;optimize)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Convert a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> to <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState</code></a> for use elsewhere.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCacheValidityPeriods(long,long,long)" class="member-name-link">updateCacheValidityPeriods</a><wbr>(long&nbsp;imu,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCacheValidityPeriods(long,long,long)" class="member-name-link">updateCacheValidityPeriods</a><wbr>(long&nbsp;imu,
  long&nbsp;driveMotor,
  long&nbsp;absoluteEncoder)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update the cache validity period for the robot.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateOdometry()" class="member-name-link">updateOdometry</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateOdometry()" class="member-name-link">updateOdometry</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update odometry should be run every loop.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zeroGyro()" class="member-name-link">zeroGyro</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zeroGyro()" class="member-name-link">zeroGyro</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resets the gyro angle to zero and resets odometry to the same position, but facing toward 0.</div>
 </div>
 </div>
@@ -929,11 +936,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="setMaximumSpeeds(double,double)">
-<h3>setMaximumSpeeds</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMaximumSpeeds</span><wbr><span class="parameters">(double&nbsp;attainableMaxTranslationalSpeedMetersPerSecond,
+<section class="detail" id="setMaximumAttainableSpeeds(double,double)">
+<h3>setMaximumAttainableSpeeds</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMaximumAttainableSpeeds</span><wbr><span class="parameters">(double&nbsp;attainableMaxTranslationalSpeedMetersPerSecond,
  double&nbsp;attainableMaxRotationalVelocityRadiansPerSecond)</span></div>
-<div class="block">Set the maximum speeds for desaturation.</div>
+<div class="block">Set the maximum attainable speeds for desaturation.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>attainableMaxTranslationalSpeedMetersPerSecond</code> - The absolute max speed that your robot
@@ -944,13 +951,28 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="setMaximumAllowableSpeeds(double,double)">
+<h3>setMaximumAllowableSpeeds</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMaximumAllowableSpeeds</span><wbr><span class="parameters">(double&nbsp;maxTranslationalSpeedMetersPerSecond,
+ double&nbsp;maxRotationalVelocityRadiansPerSecond)</span></div>
+<div class="block">Set the maximum allowable speeds for desaturation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>maxTranslationalSpeedMetersPerSecond</code> - The allowable max speed that your robot should
+     reach while translating in meters per second.</dd>
+<dd><code>maxRotationalVelocityRadiansPerSecond</code> - The allowable max speed the robot should reach
+     while rotating in radians per second.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getMaximumChassisVelocity()">
 <h3>getMaximumChassisVelocity</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getMaximumChassisVelocity</span>()</div>
-<div class="block">Get the maximum velocity from <code>attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>maxChassisSpeedMPS</code> whichever is higher.</div>
+<div class="block">Get the maximum velocity from <code>attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>maxChassisSpeedMPS</code> whichever is the lower limit on the robot's speed.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>Maximum speed in meters/second.</dd>
+<dd>Minimum speed in meters/second of physically attainable and user allowable limits.</dd>
 </dl>
 </section>
 </li>
@@ -980,10 +1002,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getMaximumChassisAngularVelocity()">
 <h3>getMaximumChassisAngularVelocity</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getMaximumChassisAngularVelocity</span>()</div>
-<div class="block">Get the maximum angular velocity, either <code>attainableMaxRotationalVelocityRadiansPerSecond</code> or <a href="parser/SwerveControllerConfiguration.html#maxAngularVelocity"><code>SwerveControllerConfiguration.maxAngularVelocity</code></a>.</div>
+<div class="block">Get the maximum angular velocity, either <code>attainableMaxRotationalVelocityRadiansPerSecond</code> or <a href="parser/SwerveControllerConfiguration.html#maxAngularVelocity"><code>SwerveControllerConfiguration.maxAngularVelocity</code></a>, whichever is the lower limit on the robot's
+ speed.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>Maximum angular velocity in radians per second.</dd>
+<dd>Minimum angular velocity in radians per second of physically attainable and user
+     allowable limits.</dd>
 </dl>
 </section>
 </li>

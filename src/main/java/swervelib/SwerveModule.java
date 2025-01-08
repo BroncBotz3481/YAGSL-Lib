@@ -1,5 +1,6 @@
 package swervelib;
 
+import static edu.wpi.first.units.Units.InchesPerSecond;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.RotationsPerSecond;
@@ -677,11 +678,11 @@ public class SwerveModule {
   public LinearVelocity getMaxVelocity() {
     if (maxDriveVelocity == null) {
       maxDriveVelocity =
-          MetersPerSecond.of(
-              (RadiansPerSecond.of(driveMotor.getSimMotor().freeSpeedRadPerSec)
-                          .in(RotationsPerSecond)
+          InchesPerSecond.of(
+              (driveMotor.getSimMotor().freeSpeedRadPerSec
                       / configuration.conversionFactors.drive.gearRatio)
-                  * configuration.conversionFactors.drive.diameter);
+                  * configuration.conversionFactors.drive.diameter
+                  / 2.0);
     }
     return maxDriveVelocity;
   }
@@ -708,12 +709,17 @@ public class SwerveModule {
     if (absoluteEncoder != null) {
       rawAbsoluteAnglePublisher.set(absoluteEncoder.getAbsolutePosition());
     }
-    if (SwerveDriveTelemetry.isSimulation) {
+    if (SwerveDriveTelemetry.isSimulation
+        && SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {
       SwerveModulePosition pos = simModule.getPosition();
       SwerveModuleState state = simModule.getState();
       rawAnglePublisher.set(pos.angle.getDegrees());
       rawDriveEncoderPublisher.set(pos.distanceMeters);
       rawDriveVelocityPublisher.set(state.speedMetersPerSecond);
+      // For code coverage
+      angleMotor.getPosition();
+      drivePositionCache.getValue();
+      driveVelocityCache.getValue();
     } else {
       rawAnglePublisher.set(angleMotor.getPosition());
       rawDriveEncoderPublisher.set(drivePositionCache.getValue());

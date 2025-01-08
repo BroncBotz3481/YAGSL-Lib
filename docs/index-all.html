@@ -1368,11 +1368,12 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="swervelib/SwerveDrive.html#getMaximumChassisAngularVelocity()" class="member-name-link">getMaximumChassisAngularVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
-<div class="block">Get the maximum angular velocity, either <code>SwerveDrive.attainableMaxRotationalVelocityRadiansPerSecond</code> or <a href="swervelib/parser/SwerveControllerConfiguration.html#maxAngularVelocity"><code>SwerveControllerConfiguration.maxAngularVelocity</code></a>.</div>
+<div class="block">Get the maximum angular velocity, either <code>SwerveDrive.attainableMaxRotationalVelocityRadiansPerSecond</code> or <a href="swervelib/parser/SwerveControllerConfiguration.html#maxAngularVelocity"><code>SwerveControllerConfiguration.maxAngularVelocity</code></a>, whichever is the lower limit on the robot's
+ speed.</div>
 </dd>
 <dt><a href="swervelib/SwerveDrive.html#getMaximumChassisVelocity()" class="member-name-link">getMaximumChassisVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
-<div class="block">Get the maximum velocity from <code>SwerveDrive.attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>SwerveDrive.maxChassisSpeedMPS</code> whichever is higher.</div>
+<div class="block">Get the maximum velocity from <code>SwerveDrive.attainableMaxTranslationalSpeedMetersPerSecond</code> or <code>SwerveDrive.maxChassisSpeedMPS</code> whichever is the lower limit on the robot's speed.</div>
 </dd>
 <dt><a href="swervelib/SwerveDrive.html#getMaximumModuleAngleVelocity()" class="member-name-link">getMaximumModuleAngleVelocity()</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
@@ -2754,13 +2755,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Set the maximum rate the open/closed loop output can change by.</div>
 </dd>
+<dt><a href="swervelib/SwerveDrive.html#setMaximumAllowableSpeeds(double,double)" class="member-name-link">setMaximumAllowableSpeeds(double, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dd>
+<div class="block">Set the maximum allowable speeds for desaturation.</div>
+</dd>
+<dt><a href="swervelib/SwerveDrive.html#setMaximumAttainableSpeeds(double,double)" class="member-name-link">setMaximumAttainableSpeeds(double, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dd>
+<div class="block">Set the maximum attainable speeds for desaturation.</div>
+</dd>
 <dt><a href="swervelib/SwerveController.html#setMaximumChassisAngularVelocity(double)" class="member-name-link">setMaximumChassisAngularVelocity(double)</a> - Method in class swervelib.<a href="swervelib/SwerveController.html" title="class in swervelib">SwerveController</a></dt>
 <dd>
 <div class="block">Set a new maximum angular velocity that is different from the auto-generated one.</div>
-</dd>
-<dt><a href="swervelib/SwerveDrive.html#setMaximumSpeeds(double,double)" class="member-name-link">setMaximumSpeeds(double, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
-<dd>
-<div class="block">Set the maximum speeds for desaturation.</div>
 </dd>
 <dt><a href="swervelib/SwerveDrive.html#setModuleEncoderAutoSynchronize(boolean,double)" class="member-name-link">setModuleEncoderAutoSynchronize(boolean, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
