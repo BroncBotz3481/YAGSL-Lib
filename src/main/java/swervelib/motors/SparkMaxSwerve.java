@@ -19,6 +19,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import java.util.Optional;
 import java.util.function.Supplier;
 import swervelib.encoders.SparkMaxAnalogEncoderSwerve;
 import swervelib.encoders.SparkMaxEncoderSwerve;
@@ -34,7 +35,7 @@ public class SparkMaxSwerve extends SwerveMotor {
   /** Integrated encoder. */
   public RelativeEncoder encoder;
   /** Absolute encoder attached to the SparkMax (if exists) */
-  public SwerveAbsoluteEncoder absoluteEncoder;
+  private Optional<SwerveAbsoluteEncoder> absoluteEncoder = Optional.empty();
   /** Closed-loop PID controller. */
   public SparkClosedLoopController pid;
   /** Factory default already occurred. */
@@ -211,7 +212,7 @@ public class SparkMaxSwerve extends SwerveMotor {
   @Override
   public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder) {
     if (encoder == null) {
-      absoluteEncoder = null;
+      this.absoluteEncoder = Optional.empty();
       cfg.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder);
 
       velocity = this.encoder::getVelocity;
@@ -224,9 +225,9 @@ public class SparkMaxSwerve extends SwerveMotor {
               ? FeedbackSensor.kAnalogSensor
               : FeedbackSensor.kAbsoluteEncoder);
 
-      absoluteEncoder = encoder;
-      velocity = absoluteEncoder::getVelocity;
-      position = absoluteEncoder::getAbsolutePosition;
+      this.absoluteEncoder = Optional.of(encoder);
+      velocity = encoder::getVelocity;
+      position = encoder::getAbsolutePosition;
     }
     return this;
   }
@@ -252,8 +253,7 @@ public class SparkMaxSwerve extends SwerveMotor {
         .iAccumulationAlwaysOn(false)
         .appliedOutputPeriodMs(10)
         .faultsPeriodMs(20);
-
-    if (absoluteEncoder == null) {
+    if (absoluteEncoder.isEmpty()) {
       cfg.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder);
       cfg.encoder
           .positionConversionFactor(positionConversionFactor)
@@ -292,7 +292,7 @@ public class SparkMaxSwerve extends SwerveMotor {
       // the azimuth but 8ms may be overkill,
       // with limited testing 19ms did not return the same value while the module was constatntly
       // rotating.
-      if (absoluteEncoder.getAbsoluteEncoder() instanceof AbsoluteEncoder) {
+      if (absoluteEncoder.get().getAbsoluteEncoder() instanceof AbsoluteEncoder) {
         cfg.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
 
         cfg.signals.absoluteEncoderPositionAlwaysOn(true).absoluteEncoderPositionPeriodMs(20);
@@ -478,7 +478,7 @@ public class SparkMaxSwerve extends SwerveMotor {
    */
   @Override
   public void setPosition(double position) {
-    if (absoluteEncoder == null) {
+    if (absoluteEncoder.isEmpty()) {
       configureSparkMax(() -> encoder.setPosition(position));
     }
   }

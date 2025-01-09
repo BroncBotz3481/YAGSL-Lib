@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config;
 import java.util.function.Supplier;
 import swervelib.encoders.SwerveAbsoluteEncoder;
+import swervelib.telemetry.SwerveDriveTelemetry;
 
 /** Class to perform tests on the swerve drive. */
 public class SwerveDriveTest {
@@ -83,7 +84,7 @@ public class SwerveDriveTest {
    * Power the drive motors for the swerve drive to a set voltage.
    *
    * @param swerveDrive {@link SwerveDrive} to control.
-   * @param volts DutyCycle percentage of voltage to send to drive motors.
+   * @param volts Voltage to send to drive motors.
    */
   public static void powerDriveMotorsVoltage(SwerveDrive swerveDrive, double volts) {
     for (SwerveModule swerveModule : swerveDrive.getModules()) {
@@ -110,6 +111,36 @@ public class SwerveDriveTest {
    */
   public static void centerModules(SwerveDrive swerveDrive) {
     angleModules(swerveDrive, Rotation2d.fromDegrees(0));
+  }
+
+  /**
+   * Set the sim modules to center to 0 and power them to drive in a voltage. Calling this function
+   * in sim is equivalent to calling {@link #centerModules(SwerveDrive)} and {@link
+   * #powerDriveMotorsVoltage(SwerveDrive, double)} on a real robot.
+   *
+   * @param swerveDrive {@link SwerveDrive} to control.
+   * @param volts Voltage to send to drive motors.
+   */
+  public static void runDriveMotorsCharacterizationOnSimModules(
+      SwerveDrive swerveDrive, double volts) {
+    for (SwerveModule module : swerveDrive.getModules()) {
+      module.getSimModule().runDriveMotorCharacterization(Rotation2d.kZero, volts);
+    }
+  }
+
+  /**
+   * Set the sim modules to center to 0 and power them to drive in a voltage. Calling this function
+   * in sim is equivalent to calling {@link #centerModules(SwerveDrive)} and {@link
+   * #powerDriveMotorsVoltage(SwerveDrive, double)} on a real robot.
+   *
+   * @param swerveDrive {@link SwerveDrive} to control.
+   * @param volts Voltage to send to angle motors.
+   */
+  public static void runAngleMotorsCharacterizationOnSimModules(
+      SwerveDrive swerveDrive, double volts) {
+    for (SwerveModule module : swerveDrive.getModules()) {
+      module.getSimModule().runAngleMotorCharacterization(volts);
+    }
   }
 
   /**
@@ -286,9 +317,14 @@ public class SwerveDriveTest {
         config,
         new SysIdRoutine.Mechanism(
             (Voltage voltage) -> {
-              SwerveDriveTest.centerModules(swerveDrive);
-              SwerveDriveTest.powerDriveMotorsVoltage(
-                  swerveDrive, Math.min(voltage.in(Volts), maxVolts));
+              if (!SwerveDriveTelemetry.isSimulation) {
+                SwerveDriveTest.centerModules(swerveDrive);
+                SwerveDriveTest.powerDriveMotorsVoltage(
+                    swerveDrive, Math.min(voltage.in(Volts), maxVolts));
+              } else {
+                SwerveDriveTest.runDriveMotorsCharacterizationOnSimModules(
+                    swerveDrive, voltage.in(Volts));
+              }
             },
             log -> {
               for (SwerveModule module : swerveDrive.getModules()) {
@@ -363,8 +399,13 @@ public class SwerveDriveTest {
         config,
         new SysIdRoutine.Mechanism(
             (Voltage voltage) -> {
-              SwerveDriveTest.powerAngleMotorsVoltage(swerveDrive, voltage.in(Volts));
-              SwerveDriveTest.powerDriveMotorsVoltage(swerveDrive, 0);
+              if (!SwerveDriveTelemetry.isSimulation) {
+                SwerveDriveTest.powerAngleMotorsVoltage(swerveDrive, voltage.in(Volts));
+                SwerveDriveTest.powerDriveMotorsVoltage(swerveDrive, 0);
+              } else {
+                SwerveDriveTest.runAngleMotorsCharacterizationOnSimModules(
+                    swerveDrive, voltage.in(Volts));
+              }
             },
             log -> {
               for (SwerveModule module : swerveDrive.getModules()) {
