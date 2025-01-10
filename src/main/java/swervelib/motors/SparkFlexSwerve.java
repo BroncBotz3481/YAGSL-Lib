@@ -29,6 +29,8 @@ import swervelib.telemetry.SwerveDriveTelemetry;
 /** An implementation of {@link SparkFlex} as a {@link SwerveMotor}. */
 public class SparkFlexSwerve extends SwerveMotor {
 
+  /** Config retry delay. */
+  private final double configDelay = Milliseconds.of(5).in(Seconds);
   /** {@link SparkFlex} Instance. */
   private final SparkFlex motor;
   /** Integrated encoder. */
@@ -96,7 +98,7 @@ public class SparkFlexSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
-      Timer.delay(Milliseconds.of(5).in(Seconds));
+      Timer.delay(configDelay);
     }
     failureConfiguring.set(true);
   }

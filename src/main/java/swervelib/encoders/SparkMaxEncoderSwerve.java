@@ -33,7 +33,7 @@ public class SparkMaxEncoderSwerve extends SwerveAbsoluteEncoder {
    */
   public SparkMaxEncoderSwerve(SwerveMotor motor, int conversionFactor) {
     failureConfiguring =
-        new Alert("Encoders", "Failure configuring SparkMax Analog Encoder", AlertType.kWarning);
+        new Alert("Encoders", "Failure configuring SparkMax Absolute Encoder", AlertType.kWarning);
     offsetFailure =
         new Alert("Encoders", "Failure to set Absolute Encoder Offset", AlertType.kWarning);
     if (motor.getMotor() instanceof SparkMax) {
@@ -81,11 +81,11 @@ public class SparkMaxEncoderSwerve extends SwerveAbsoluteEncoder {
   public void configure(boolean inverted) {
     if (sparkMax instanceof SparkMaxSwerve) {
       SparkMaxConfig cfg = ((SparkMaxSwerve) sparkMax).getConfig();
-      cfg.analogSensor.inverted(true);
+      cfg.absoluteEncoder.inverted(inverted);
       ((SparkMaxSwerve) sparkMax).updateConfig(cfg);
     } else if (sparkMax instanceof SparkMaxBrushedMotorSwerve) {
       SparkMaxConfig cfg = ((SparkMaxBrushedMotorSwerve) sparkMax).getConfig();
-      cfg.analogSensor.inverted(true);
+      cfg.absoluteEncoder.inverted(inverted);
       ((SparkMaxBrushedMotorSwerve) sparkMax).updateConfig(cfg);
     }
   }

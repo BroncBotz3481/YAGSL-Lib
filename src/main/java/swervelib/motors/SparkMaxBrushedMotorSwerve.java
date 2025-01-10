@@ -32,6 +32,8 @@ import swervelib.telemetry.SwerveDriveTelemetry;
 /** Brushed motor control with {@link SparkMax}. */
 public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
 
+  /** Config retry delay. */
+  private final double configDelay = Milliseconds.of(5).in(Seconds);
   /** SparkMAX Instance. */
   private final SparkMax motor;
   /** Absolute encoder attached to the SparkMax (if exists) */
@@ -171,7 +173,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
-      Timer.delay(Milliseconds.of(5).in(Seconds));
+      Timer.delay(configDelay);
     }
     failureConfiguringAlert.set(true);
   }

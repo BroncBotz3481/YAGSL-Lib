@@ -371,18 +371,18 @@ public class SwerveModule {
     }
 
     // Cosine compensation.
-    LinearVelocity nextVelocity =
+    double nextVelocityMetersPerSecond =
         configuration.useCosineCompensator
             ? getCosineCompensatedVelocity(desiredState)
-            : MetersPerSecond.of(desiredState.speedMetersPerSecond);
-    LinearVelocity curVelocity = MetersPerSecond.of(lastState.speedMetersPerSecond);
-    desiredState.speedMetersPerSecond = nextVelocity.magnitude();
+            : desiredState.speedMetersPerSecond;
+    double curVelocityMetersPerSecond = lastState.speedMetersPerSecond;
+    desiredState.speedMetersPerSecond = nextVelocityMetersPerSecond;
 
     setDesiredState(
         desiredState,
         isOpenLoop,
         driveMotorFeedforward.calculateWithVelocities(
-            curVelocity.in(MetersPerSecond), nextVelocity.in(MetersPerSecond)));
+            curVelocityMetersPerSecond, nextVelocityMetersPerSecond));
   }
 
   /**
@@ -447,7 +447,7 @@ public class SwerveModule {
    * @param desiredState Desired {@link SwerveModuleState} to use.
    * @return Cosine compensated velocity in meters/second.
    */
-  private LinearVelocity getCosineCompensatedVelocity(SwerveModuleState desiredState) {
+  private double getCosineCompensatedVelocity(SwerveModuleState desiredState) {
     double cosineScalar = 1.0;
     // Taken from the CTRE SwerveModule class.
     // https://api.ctr-electronics.com/phoenix6/release/java/src-html/com/ctre/phoenix6/mechanisms/swerve/SwerveModule.html#line.46
@@ -464,7 +464,7 @@ public class SwerveModule {
       cosineScalar = 1;
     }
 
-    return MetersPerSecond.of(desiredState.speedMetersPerSecond).times(cosineScalar);
+    return desiredState.speedMetersPerSecond * cosineScalar;
   }
 
   /**

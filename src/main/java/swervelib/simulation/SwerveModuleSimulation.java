@@ -12,7 +12,8 @@ import swervelib.parser.SwerveModulePhysicalCharacteristics;
 /** Class that wraps around {@link org.ironmaple.simulation.drivesims.SwerveModuleSimulation} */
 public class SwerveModuleSimulation {
 
-  private SelfControlledSwerveDriveSimulation.SelfControlledModuleSimulation mapleSimModule = null;
+  /** MapleSim module. */
+  public SelfControlledSwerveDriveSimulation.SelfControlledModuleSimulation mapleSimModule = null;
 
   /**
    * Configure the maple sim module

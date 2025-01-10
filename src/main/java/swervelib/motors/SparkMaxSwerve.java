@@ -30,6 +30,8 @@ import swervelib.telemetry.SwerveDriveTelemetry;
 /** An implementation of {@link com.revrobotics.spark.SparkMax} as a {@link SwerveMotor}. */
 public class SparkMaxSwerve extends SwerveMotor {
 
+  /** Config retry delay. */
+  private final double configDelay = Milliseconds.of(5).in(Seconds);
   /** {@link SparkMax} Instance. */
   private final SparkMax motor;
   /** Integrated encoder. */
@@ -97,7 +99,7 @@ public class SparkMaxSwerve extends SwerveMotor {
       if (config.get() == REVLibError.kOk) {
         return;
       }
-      Timer.delay(Milliseconds.of(5).in(Seconds));
+      Timer.delay(configDelay);
     }
     DriverStation.reportWarning("Failure configuring motor " + motor.getDeviceId(), true);
   }
