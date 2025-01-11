@@ -709,7 +709,7 @@ public class SwerveModule {
   /** Update data sent to {@link SmartDashboard}. */
   public void updateTelemetry() {
     if (absoluteEncoder != null) {
-      rawAbsoluteAnglePublisher.set(absoluteEncoder.getAbsolutePosition());
+      rawAbsoluteAnglePublisher.set(getAbsolutePosition());
     }
     if (SwerveDriveTelemetry.isSimulation
         && SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH) {

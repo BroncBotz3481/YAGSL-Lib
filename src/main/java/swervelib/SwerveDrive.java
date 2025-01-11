@@ -1038,7 +1038,7 @@ public class SwerveDrive {
   public void updateOdometry() {
     SwerveDriveTelemetry.startOdomCycle();
     odometryLock.lock();
-    invalidateCache();
+    //    invalidateCache();
     try {
       // Update odometry
       swerveDrivePoseEstimator.update(getYaw(), getModulePositions());

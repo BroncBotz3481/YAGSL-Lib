@@ -3,8 +3,8 @@
   <groupId>swervelib</groupId>
   <artifactId>YAGSL-cpp</artifactId>
   <versioning>
-    <latest>2025.1.3.jwt151</latest>
-    <release>2025.1.3.jwt151</release>
+    <latest>2025.2.0-beta</latest>
+    <release>2025.2.0-beta</release>
     <versions>
       <version>2024.6.1.0</version>
       <version>2024.7.0</version>
@@ -30,7 +30,8 @@
       <version>2025.1.3</version>
       <version>2025.1.3-1</version>
       <version>2025.1.3.jwt151</version>
+      <version>2025.2.0-beta</version>
     </versions>
-    <lastUpdated>20250110224739</lastUpdated>
+    <lastUpdated>20250111192301</lastUpdated>
   </versioning>
 </metadata>
