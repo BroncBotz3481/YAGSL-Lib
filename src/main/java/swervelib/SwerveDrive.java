@@ -6,7 +6,6 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.KilogramSquareMeters;
 import static edu.wpi.first.units.Units.Kilograms;
 import static edu.wpi.first.units.Units.Meters;
-import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.Newtons;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Seconds;
@@ -597,8 +596,8 @@ public class SwerveDrive {
    *
    * @return {@link LinearVelocity} representing the maximum drive speed of a module.
    */
-  public LinearVelocity getMaximumModuleDriveVelocity() {
-    return swerveModules[0].getMaxVelocity();
+  public double getMaximumModuleDriveVelocity() {
+    return swerveModules[0].getMaxDriveVelocityMetersPerSecond();
   }
 
   /**
@@ -636,7 +635,7 @@ public class SwerveDrive {
   private void setRawModuleStates(
       SwerveModuleState[] desiredStates, ChassisSpeeds desiredChassisSpeed, boolean isOpenLoop) {
     // Desaturates wheel speeds
-    double maxModuleSpeedMPS = getMaximumModuleDriveVelocity().in(MetersPerSecond);
+    double maxModuleSpeedMPS = getMaximumModuleDriveVelocity();
     if (attainableMaxTranslationalSpeedMetersPerSecond != 0
         || attainableMaxRotationalVelocityRadiansPerSecond != 0) {
       SwerveDriveKinematics.desaturateWheelSpeeds(
@@ -668,7 +667,7 @@ public class SwerveDrive {
    */
   public void setModuleStates(SwerveModuleState[] desiredStates, boolean isOpenLoop) {
     SwerveDriveTelemetry.startCtrlCycle();
-    double maxModuleSpeedMPS = getMaximumModuleDriveVelocity().in(MetersPerSecond);
+    double maxModuleSpeedMPS = getMaximumModuleDriveVelocity();
     desiredStates = kinematics.toSwerveModuleStates(kinematics.toChassisSpeeds(desiredStates));
     SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, maxModuleSpeedMPS);
 
