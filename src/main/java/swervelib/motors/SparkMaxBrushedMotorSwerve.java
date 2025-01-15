@@ -37,7 +37,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
   /** SparkMAX Instance. */
   private final SparkMax motor;
   /** Absolute encoder attached to the SparkMax (if exists) */
-  public SwerveAbsoluteEncoder absoluteEncoder;
+  public Optional<SwerveAbsoluteEncoder> absoluteEncoder;
   /** Integrated encoder. */
   public Optional<RelativeEncoder> encoder = Optional.empty();
   /** Closed-loop PID controller. */
@@ -264,7 +264,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
    */
   @Override
   public boolean isAttachedAbsoluteEncoder() {
-    return absoluteEncoder != null;
+    return absoluteEncoder.isPresent();
   }
 
   /** Configure the factory defaults. */
@@ -288,7 +288,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
   @Override
   public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder) {
     if (encoder == null) {
-      absoluteEncoder = null;
+      this.absoluteEncoder = Optional.empty();
       cfg.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder);
 
       this.encoder.ifPresentOrElse(
@@ -307,12 +307,12 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
               ? FeedbackSensor.kAnalogSensor
               : FeedbackSensor.kAbsoluteEncoder);
 
-      absoluteEncoder = encoder;
-      velocity = absoluteEncoder::getVelocity;
-      position = absoluteEncoder::getAbsolutePosition;
+      this.absoluteEncoder = Optional.of(encoder);
+      velocity = this.absoluteEncoder.get()::getVelocity;
+      position = this.absoluteEncoder.get()::getAbsolutePosition;
       noEncoderDefinedAlert.set(false);
     }
-    if (absoluteEncoder == null && this.encoder.isEmpty()) {
+    if (absoluteEncoder.isEmpty() && this.encoder.isEmpty()) {
       noEncoderDefinedAlert.set(true);
       throw new RuntimeException("An encoder MUST be defined to work with a SparkMAX");
     }
@@ -340,7 +340,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
         .iAccumulationAlwaysOn(false)
         .appliedOutputPeriodMs(10)
         .faultsPeriodMs(20);
-    if (absoluteEncoder == null) {
+    if (absoluteEncoder.isEmpty()) {
       cfg.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder);
       cfg.encoder
           .positionConversionFactor(positionConversionFactor)
@@ -378,7 +378,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
       // the azimuth but 8ms may be overkill,
       // with limited testing 19ms did not return the same value while the module was constatntly
       // rotating.
-      if (absoluteEncoder.getAbsoluteEncoder() instanceof AbsoluteEncoder) {
+      if (absoluteEncoder.get().getAbsoluteEncoder() instanceof AbsoluteEncoder) {
         cfg.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
 
         cfg.signals.absoluteEncoderPositionAlwaysOn(true).absoluteEncoderPositionPeriodMs(20);
@@ -567,7 +567,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
    */
   @Override
   public void setPosition(double position) {
-    if (absoluteEncoder == null) {
+    if (absoluteEncoder.isEmpty()) {
       encoder.ifPresent(
           (RelativeEncoder enc) -> {
             configureSparkMax(() -> enc.setPosition(position));

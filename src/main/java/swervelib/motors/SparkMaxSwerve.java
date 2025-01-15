@@ -228,8 +228,8 @@ public class SparkMaxSwerve extends SwerveMotor {
               : FeedbackSensor.kAbsoluteEncoder);
 
       this.absoluteEncoder = Optional.of(encoder);
-      velocity = encoder::getVelocity;
-      position = encoder::getAbsolutePosition;
+      velocity = this.absoluteEncoder.get()::getVelocity;
+      position = this.absoluteEncoder.get()::getAbsolutePosition;
     }
     return this;
   }
