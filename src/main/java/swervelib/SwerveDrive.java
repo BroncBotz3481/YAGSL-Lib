@@ -273,7 +273,7 @@ public class SwerveDrive {
 
     HAL.report(kResourceType_RobotDrive, kRobotDriveSwerve_YAGSL);
     // Defaulting to something reasonable for most robots
-    setMaximumAttainableSpeeds(maxSpeedMPS, 2 * Math.PI);
+    // setMaximumAttainableSpeeds(maxSpeedMPS, 2 * Math.PI);
   }
 
   /**
@@ -588,7 +588,7 @@ public class SwerveDrive {
    * @return Minimum speed in meters/second of physically attainable and user allowable limits.
    */
   public double getMaximumChassisVelocity() {
-    return Math.min(this.attainableMaxTranslationalSpeedMetersPerSecond, maxChassisSpeedMPS);
+    return Math.max(this.attainableMaxTranslationalSpeedMetersPerSecond, maxChassisSpeedMPS);
   }
 
   /**
@@ -619,7 +619,7 @@ public class SwerveDrive {
    *     allowable limits.
    */
   public double getMaximumChassisAngularVelocity() {
-    return Math.min(
+    return Math.max(
         this.attainableMaxRotationalVelocityRadiansPerSecond,
         swerveController.config.maxAngularVelocity);
   }
