@@ -217,8 +217,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Set the sim modules to center to 0 and power them to drive in a voltage.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#runDriveMotorsCharacterizationOnSimModules(swervelib.SwerveDrive,double)" class="member-name-link">runDriveMotorsCharacterizationOnSimModules</a><wbr>(<a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;swerveDrive,
- double&nbsp;volts)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#runDriveMotorsCharacterizationOnSimModules(swervelib.SwerveDrive,double,boolean)" class="member-name-link">runDriveMotorsCharacterizationOnSimModules</a><wbr>(<a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;swerveDrive,
+ double&nbsp;volts,
+ boolean&nbsp;testWithSpinning)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Set the sim modules to center to 0 and power them to drive in a voltage.</div>
 </div>
@@ -230,12 +231,18 @@ loadScripts(document, 'script');</script>
 <div class="block">Sets up the SysId runner and logger for the angle motors</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#setDriveSysIdRoutine(edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config,edu.wpi.first.wpilibj2.command.SubsystemBase,swervelib.SwerveDrive,double)" class="member-name-link">setDriveSysIdRoutine</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.Config.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine.Config</a>&nbsp;config,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#setDriveSysIdRoutine(edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config,edu.wpi.first.wpilibj2.command.SubsystemBase,swervelib.SwerveDrive,double,boolean)" class="member-name-link">setDriveSysIdRoutine</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.Config.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine.Config</a>&nbsp;config,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;swerveSubsystem,
  <a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;swerveDrive,
- double&nbsp;maxVolts)</code></div>
+ double&nbsp;maxVolts,
+ boolean&nbsp;testWithSpinning)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Sets up the SysId runner and logger for the drive motors</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#setModulesToRotaryPosition(swervelib.SwerveDrive)" class="member-name-link">setModulesToRotaryPosition</a><wbr>(<a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;swerveDrive)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Set the modules to their rotary position to allow running sysid and spinning the robot</div>
 </div>
 </div>
 </div>
@@ -345,16 +352,30 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="runDriveMotorsCharacterizationOnSimModules(swervelib.SwerveDrive,double)">
+<section class="detail" id="setModulesToRotaryPosition(swervelib.SwerveDrive)">
+<h3>setModulesToRotaryPosition</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setModulesToRotaryPosition</span><wbr><span class="parameters">(<a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;swerveDrive)</span></div>
+<div class="block">Set the modules to their rotary position to allow running sysid and spinning the robot</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>swerveDrive</code> - Swerve Drive to control.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="runDriveMotorsCharacterizationOnSimModules(swervelib.SwerveDrive,double,boolean)">
 <h3>runDriveMotorsCharacterizationOnSimModules</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">runDriveMotorsCharacterizationOnSimModules</span><wbr><span class="parameters">(<a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;swerveDrive,
- double&nbsp;volts)</span></div>
+ double&nbsp;volts,
+ boolean&nbsp;testWithSpinning)</span></div>
 <div class="block">Set the sim modules to center to 0 and power them to drive in a voltage. Calling this function
  in sim is equivalent to calling <a href="#centerModules(swervelib.SwerveDrive)"><code>centerModules(SwerveDrive)</code></a> and <a href="#powerDriveMotorsVoltage(swervelib.SwerveDrive,double)"><code>powerDriveMotorsVoltage(SwerveDrive, double)</code></a> on a real robot.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>swerveDrive</code> - <a href="SwerveDrive.html" title="class in swervelib"><code>SwerveDrive</code></a> to control.</dd>
 <dd><code>volts</code> - Voltage to send to drive motors.</dd>
+<dd><code>testWithSpinning</code> - - Whether to make the robot spin in place instead of driving in a
+     straight line, true to make the robot spin, false to make the robot drive in straight line</dd>
 </dl>
 </section>
 </li>
@@ -466,12 +487,13 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="setDriveSysIdRoutine(edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config,edu.wpi.first.wpilibj2.command.SubsystemBase,swervelib.SwerveDrive,double)">
+<section class="detail" id="setDriveSysIdRoutine(edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config,edu.wpi.first.wpilibj2.command.SubsystemBase,swervelib.SwerveDrive,double,boolean)">
 <h3>setDriveSysIdRoutine</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></span>&nbsp;<span class="element-name">setDriveSysIdRoutine</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.Config.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine.Config</a>&nbsp;config,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;swerveSubsystem,
  <a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;swerveDrive,
- double&nbsp;maxVolts)</span></div>
+ double&nbsp;maxVolts,
+ boolean&nbsp;testWithSpinning)</span></div>
 <div class="block">Sets up the SysId runner and logger for the drive motors</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -479,6 +501,8 @@ loadScripts(document, 'script');</script>
 <dd><code>swerveSubsystem</code> - - the subsystem to add to requirements</dd>
 <dd><code>swerveDrive</code> - - the SwerveDrive from which to access motor info</dd>
 <dd><code>maxVolts</code> - - The maximum voltage that should be applied to the drive motors.</dd>
+<dd><code>testWithSpinning</code> - - Whether to make the robot spin in place instead of driving in a
+     straight line, true to make the robot spin, false to make the robot drive in straight line</dd>
 <dt>Returns:</dt>
 <dd>A SysIdRoutine runner</dd>
 </dl>
