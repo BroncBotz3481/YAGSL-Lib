@@ -174,7 +174,9 @@ public class SwerveDrive {
       SwerveControllerConfiguration controllerConfig,
       double maxSpeedMPS,
       Pose2d startingPose) {
-    this.maxChassisSpeedMPS = maxSpeedMPS;
+    this.attainableMaxTranslationalSpeedMetersPerSecond = this.maxChassisSpeedMPS = maxSpeedMPS;
+    this.attainableMaxRotationalVelocityRadiansPerSecond =
+        Math.PI * 2; // Defaulting to something reasonable for most robots
     swerveDriveConfiguration = config;
     swerveController = new SwerveController(controllerConfig);
     // Create Kinematics from swerve module locations.
@@ -272,8 +274,6 @@ public class SwerveDrive {
     checkIfTunerXCompatible();
 
     HAL.report(kResourceType_RobotDrive, kRobotDriveSwerve_YAGSL);
-    // Defaulting to something reasonable for most robots
-    // setMaximumAttainableSpeeds(maxSpeedMPS, 2 * Math.PI);
   }
 
   /**
@@ -588,7 +588,7 @@ public class SwerveDrive {
    * @return Minimum speed in meters/second of physically attainable and user allowable limits.
    */
   public double getMaximumChassisVelocity() {
-    return Math.max(this.attainableMaxTranslationalSpeedMetersPerSecond, maxChassisSpeedMPS);
+    return Math.min(this.attainableMaxTranslationalSpeedMetersPerSecond, maxChassisSpeedMPS);
   }
 
   /**
@@ -619,7 +619,7 @@ public class SwerveDrive {
    *     allowable limits.
    */
   public double getMaximumChassisAngularVelocity() {
-    return Math.max(
+    return Math.min(
         this.attainableMaxRotationalVelocityRadiansPerSecond,
         swerveController.config.maxAngularVelocity);
   }
@@ -636,8 +636,9 @@ public class SwerveDrive {
       SwerveModuleState[] desiredStates, ChassisSpeeds desiredChassisSpeed, boolean isOpenLoop) {
     // Desaturates wheel speeds
     double maxModuleSpeedMPS = getMaximumModuleDriveVelocity();
-    if (attainableMaxTranslationalSpeedMetersPerSecond != 0
-        || attainableMaxRotationalVelocityRadiansPerSecond != 0) {
+    if ((attainableMaxTranslationalSpeedMetersPerSecond != 0
+            || attainableMaxRotationalVelocityRadiansPerSecond != 0)
+        && attainableMaxTranslationalSpeedMetersPerSecond != maxChassisSpeedMPS) {
       SwerveDriveKinematics.desaturateWheelSpeeds(
           desiredStates,
           desiredChassisSpeed,

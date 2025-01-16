@@ -3,8 +3,8 @@
   <groupId>swervelib</groupId>
   <artifactId>YAGSL-java</artifactId>
   <versioning>
-    <latest>2025.2.1-beta4</latest>
-    <release>2025.2.1-beta4</release>
+    <latest>2025.2.1</latest>
+    <release>2025.2.1</release>
     <versions>
       <version>2024.7.0</version>
       <version>2025.0.0</version>
@@ -27,7 +27,8 @@
       <version>2025.2.1-beta2</version>
       <version>2025.2.1-beta3</version>
       <version>2025.2.1-beta4</version>
+      <version>2025.2.1</version>
     </versions>
-    <lastUpdated>20250115183939</lastUpdated>
+    <lastUpdated>20250116011709</lastUpdated>
   </versioning>
 </metadata>
