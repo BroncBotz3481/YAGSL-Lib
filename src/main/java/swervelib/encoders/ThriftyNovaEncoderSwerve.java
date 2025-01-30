@@ -5,6 +5,7 @@ import swervelib.motors.ThriftyNovaSwerve;
 
 /** Thrifty Nova absolute encoder, attached through the data port. */
 public class ThriftyNovaEncoderSwerve extends SwerveAbsoluteEncoder {
+
   /** The absolute encoder is directly interfaced through the Thrifty Nova motor. */
   protected ThriftyNovaSwerve motor;
   /** Inversion state of the attached encoder. */

@@ -23,12 +23,14 @@ import swervelib.parser.PIDFConfig;
 /** An implementation of {@link ThriftyNova} as a {@link SwerveMotor}. */
 public class ThriftyNovaSwerve extends SwerveMotor {
 
+  /** {@link DCMotor} for simulation and calculations. */
+  private final DCMotor simMotor;
+  /** Closed-loop PID controller. */
+  public PIDController pid;
   /** ThriftyNova Instance. */
   private ThriftyNova motor;
   /** The Encoder type being used */
   private EncoderType encoderType;
-  /** Closed-loop PID controller. */
-  public PIDController pid;
   /** Factory default already occurred. */
   private boolean factoryDefaultOccurred = false;
   /** Position conversion object for the motor encoder */
@@ -39,8 +41,6 @@ public class ThriftyNovaSwerve extends SwerveMotor {
   private double positionConversionFactor = 1.0;
   /** The position conversion factor for the encoder */
   private double velocityConversionFactor = 1.0 / 60.0;
-  /** {@link DCMotor} for simulation and calculations. */
-  private final DCMotor simMotor;
 
   /**
    * Initialize the swerve motor.

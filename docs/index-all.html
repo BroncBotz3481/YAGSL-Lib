@@ -402,7 +402,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Clear sticky faults on the encoder.</div>
 </dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#clearStickyFaults()" class="member-name-link">clearStickyFaults()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#clearStickyFaults()" class="member-name-link">clearStickyFaults()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
+<dd>
+<div class="block">Clear sticky faults on the encoder.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#clearStickyFaults()" class="member-name-link">clearStickyFaults()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
 <dd>
 <div class="block">Clear sticky faults on the encoder.</div>
 </dd>
@@ -453,6 +457,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Clear sticky faults on <a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/Pigeon2.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link"><code>Pigeon2</code></a>.</div>
 </dd>
 <dt><a href="swervelib/imu/PigeonSwerve.html#clearStickyFaults()" class="member-name-link">clearStickyFaults()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>
+<div class="block">Clear sticky faults on IMU.</div>
+</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#clearStickyFaults()" class="member-name-link">clearStickyFaults()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Clear sticky faults on IMU.</div>
 </dd>
@@ -509,9 +517,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Configure the absolute encoder to read from [0, 360) per second.</div>
 </dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#configure(boolean)" class="member-name-link">configure(boolean)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#configure(boolean)" class="member-name-link">configure(boolean)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
 <dd>
 <div class="block">Configure the inversion state of the encoder.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#configure(boolean)" class="member-name-link">configure(boolean)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
+<dd>
+<div class="block">Configure the absolute encoder to read from [0, 360) per second.</div>
 </dd>
 <dt><a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html#configure(boolean)" class="member-name-link">configure(boolean)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html" title="class in swervelib.encoders">SparkMaxAnalogEncoderSwerve</a></dt>
 <dd>
@@ -790,6 +802,15 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Diameter of the wheel in inches.</div>
 </dd>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" class="type-name-link" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a> - Class in <a href="swervelib/encoders/package-summary.html">swervelib.encoders</a></dt>
+<dd>
+<div class="block">DutyCycle encoders such as "US Digital MA3 with DIO Output, the CTRE Mag Encoder, the Rev Hex
+ Encoder, and the AM Mag Encoder." attached via a DIO lane.</div>
+</dd>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#%3Cinit%3E(int)" class="member-name-link">DIODutyCycleEncoderSwerve(int)</a> - Constructor for class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
+<dd>
+<div class="block">Constructor for the DIO duty cycle encoder.</div>
+</dd>
 <dt><a href="swervelib/parser/json/ModuleJson.html#drive" class="member-name-link">drive</a> - Variable in class swervelib.parser.json.<a href="swervelib/parser/json/ModuleJson.html" title="class in swervelib.parser.json">ModuleJson</a></dt>
 <dd>
 <div class="block">Drive motor device configuration.</div>
@@ -902,6 +923,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">CANCoder with WPILib sendable and support.</div>
 </dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#encoder" class="member-name-link">encoder</a> - Variable in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
+<dd>
+<div class="block">The <a href="https://codedocs.revrobotics.com/java/com/revrobotics/AbsoluteEncoder.html" title="class or interface in com.revrobotics" class="external-link"><code>AbsoluteEncoder</code></a> representing the duty cycle encoder attached to the SparkFlex.</div>
+</dd>
 <dt><a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html#encoder" class="member-name-link">encoder</a> - Variable in class swervelib.encoders.<a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html" title="class in swervelib.encoders">SparkMaxAnalogEncoderSwerve</a></dt>
 <dd>
 <div class="block">The <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkAnalogSensor.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkAnalogSensor</code></a> representing the duty cycle encoder attached to the SparkMax
@@ -962,7 +987,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Reset the encoder to factory defaults.</div>
 </dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#factoryDefault()" class="member-name-link">factoryDefault()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#factoryDefault()" class="member-name-link">factoryDefault()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
+<dd>
+<div class="block">Reset the encoder to factory defaults.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#factoryDefault()" class="member-name-link">factoryDefault()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
 <dd>
 <div class="block">Reset the encoder to factory defaults.</div>
 </dd>
@@ -1013,6 +1042,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Reset <a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/Pigeon2.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link"><code>Pigeon2</code></a> to factory default.</div>
 </dd>
 <dt><a href="swervelib/imu/PigeonSwerve.html#factoryDefault()" class="member-name-link">factoryDefault()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>
+<div class="block">Reset IMU to factory default.</div>
+</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#factoryDefault()" class="member-name-link">factoryDefault()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Reset IMU to factory default.</div>
 </dd>
@@ -1103,9 +1136,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Get the instantiated absolute encoder Object.</div>
 </dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#getAbsoluteEncoder()" class="member-name-link">getAbsoluteEncoder()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#getAbsoluteEncoder()" class="member-name-link">getAbsoluteEncoder()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
 <dd>
 <div class="block">Get the encoder object.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#getAbsoluteEncoder()" class="member-name-link">getAbsoluteEncoder()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
+<dd>
+<div class="block">Get the instantiated absolute encoder Object.</div>
 </dd>
 <dt><a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html#getAbsoluteEncoder()" class="member-name-link">getAbsoluteEncoder()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html" title="class in swervelib.encoders">SparkMaxAnalogEncoderSwerve</a></dt>
 <dd>
@@ -1145,7 +1182,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Get the absolute position of the encoder.</div>
 </dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#getAbsolutePosition()" class="member-name-link">getAbsolutePosition()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#getAbsolutePosition()" class="member-name-link">getAbsolutePosition()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
+<dd>
+<div class="block">Get the absolute position of the encoder.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#getAbsolutePosition()" class="member-name-link">getAbsolutePosition()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
 <dd>
 <div class="block">Get the absolute position of the encoder.</div>
 </dd>
@@ -1200,6 +1241,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Fetch the acceleration [x, y, z] from the IMU in meters per second squared.</div>
 </dd>
 <dt><a href="swervelib/imu/PigeonSwerve.html#getAccel()" class="member-name-link">getAccel()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>
+<div class="block">Fetch the acceleration [x, y, z] from the IMU in meters per second squared.</div>
+</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#getAccel()" class="member-name-link">getAccel()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Fetch the acceleration [x, y, z] from the IMU in meters per second squared.</div>
 </dd>
@@ -1341,6 +1386,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Get the instantiated <a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/Pigeon2.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link"><code>Pigeon2</code></a> object.</div>
 </dd>
 <dt><a href="swervelib/imu/PigeonSwerve.html#getIMU()" class="member-name-link">getIMU()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>
+<div class="block">Get the instantiated <a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/sensors/WPI_PigeonIMU.html" title="class or interface in com.ctre.phoenix.sensors" class="external-link"><code>WPI_PigeonIMU</code></a> IMU object.</div>
+</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#getIMU()" class="member-name-link">getIMU()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Get the instantiated <a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/sensors/WPI_PigeonIMU.html" title="class or interface in com.ctre.phoenix.sensors" class="external-link"><code>WPI_PigeonIMU</code></a> IMU object.</div>
 </dd>
@@ -1520,6 +1569,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Fetch the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation3d</code></a> from the IMU without any zeroing.</div>
 </dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#getRawRotation3d()" class="member-name-link">getRawRotation3d()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
+<dd>
+<div class="block">Fetch the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation3d</code></a> from the IMU without any zeroing.</div>
+</dd>
 <dt><a href="swervelib/imu/SwerveIMU.html#getRawRotation3d()" class="member-name-link">getRawRotation3d()</a> - Method in class swervelib.imu.<a href="swervelib/imu/SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></dt>
 <dd>
 <div class="block">Fetch the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation3d</code></a> from the IMU without any zeroing.</div>
@@ -1579,6 +1632,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Fetch the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation3d</code></a> from the IMU.</div>
 </dd>
 <dt><a href="swervelib/imu/PigeonSwerve.html#getRotation3d()" class="member-name-link">getRotation3d()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>
+<div class="block">Fetch the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation3d</code></a> from the IMU.</div>
+</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#getRotation3d()" class="member-name-link">getRotation3d()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Fetch the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation3d</code></a> from the IMU.</div>
 </dd>
@@ -1682,7 +1739,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Get the velocity in degrees/sec.</div>
 </dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#getVelocity()" class="member-name-link">getVelocity()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#getVelocity()" class="member-name-link">getVelocity()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
+<dd>
+<div class="block">Get the velocity in degrees/sec.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#getVelocity()" class="member-name-link">getVelocity()</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
 <dd>
 <div class="block">Get the velocity in degrees/sec.</div>
 </dd>
@@ -1783,6 +1844,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/imu/Pigeon2Swerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/Pigeon2Swerve.html" title="class in swervelib.imu">Pigeon2Swerve</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="swervelib/imu/PigeonSwerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="swervelib/imu/SwerveIMU.html#getYawAngularVelocity()" class="member-name-link">getYawAngularVelocity()</a> - Method in class swervelib.imu.<a href="swervelib/imu/SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></dt>
 <dd>
@@ -2299,6 +2362,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Generate the SwerveIMU for <a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/sensors/WPI_PigeonIMU.html" title="class or interface in com.ctre.phoenix.sensors" class="external-link"><code>WPI_PigeonIMU</code></a>.</div>
 </dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" class="type-name-link" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a> - Class in <a href="swervelib/imu/package-summary.html">swervelib.imu</a></dt>
+<dd>
+<div class="block">SwerveIMU interface for the <a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/sensors/WPI_PigeonIMU.html" title="class or interface in com.ctre.phoenix.sensors" class="external-link"><code>WPI_PigeonIMU</code></a>.</div>
+</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#%3Cinit%3E(int)" class="member-name-link">PigeonViaTalonSRXSwerve(int)</a> - Constructor for class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
+<dd>
+<div class="block">Generate the SwerveIMU for <a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/sensors/WPI_PigeonIMU.html" title="class or interface in com.ctre.phoenix.sensors" class="external-link"><code>WPI_PigeonIMU</code></a> attached to a <a href="https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/motorcontrol/can/TalonSRX.html" title="class or interface in com.ctre.phoenix.motorcontrol.can" class="external-link"><code>TalonSRX</code></a>.</div>
+</dd>
 <dt><a href="swervelib/math/SwerveMath.html#placeInAppropriate0To360Scope(double,double)" class="member-name-link">placeInAppropriate0To360Scope(double, double)</a> - Static method in class swervelib.math.<a href="swervelib/math/SwerveMath.html" title="class in swervelib.math">SwerveMath</a></dt>
 <dd>
 <div class="block">Put an angle within the 360 deg scope of a reference.</div>
@@ -2342,15 +2413,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/SwerveModule.html#pushOffsetsToEncoders()" class="member-name-link">pushOffsetsToEncoders()</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
 <dd>
 <div class="block">Push absolute encoder offset in the memory of the encoder or controller.</div>
-</dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" class="type-name-link" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a> - Class in <a href="swervelib/encoders/package-summary.html">swervelib.encoders</a></dt>
-<dd>
-<div class="block">DutyCycle encoders such as "US Digital MA3 with PWM Output, the CTRE Mag Encoder, the Rev Hex
- Encoder, and the AM Mag Encoder." attached via a PWM lane.</div>
-</dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#%3Cinit%3E(int)" class="member-name-link">PWMDutyCycleEncoderSwerve(int)</a> - Constructor for class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
-<dd>
-<div class="block">Constructor for the PWM duty cycle encoder.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:Q">Q</h2>
@@ -2524,8 +2586,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets the Absolute Encoder Offset within the CANcoder's Memory.</div>
 </dd>
-<dt><a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html#setAbsoluteEncoderOffset(double)" class="member-name-link">setAbsoluteEncoderOffset(double)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/PWMDutyCycleEncoderSwerve.html" title="class in swervelib.encoders">PWMDutyCycleEncoderSwerve</a></dt>
+<dt><a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html#setAbsoluteEncoderOffset(double)" class="member-name-link">setAbsoluteEncoderOffset(double)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/DIODutyCycleEncoderSwerve.html" title="class in swervelib.encoders">DIODutyCycleEncoderSwerve</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#setAbsoluteEncoderOffset(double)" class="member-name-link">setAbsoluteEncoderOffset(double)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
+<dd>
+<div class="block">Sets the Absolute Encoder Offset inside of the SparkFlex's Memory.</div>
+</dd>
 <dt><a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html#setAbsoluteEncoderOffset(double)" class="member-name-link">setAbsoluteEncoderOffset(double)</a> - Method in class swervelib.encoders.<a href="swervelib/encoders/SparkMaxAnalogEncoderSwerve.html" title="class in swervelib.encoders">SparkMaxAnalogEncoderSwerve</a></dt>
 <dd>
 <div class="block">Sets the Absolute Encoder offset at the Encoder Level.</div>
@@ -2727,6 +2793,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Set the gyro to invert its default direction</div>
 </dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#setInverted(boolean)" class="member-name-link">setInverted(boolean)</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
+<dd>
+<div class="block">Set the gyro to invert its default direction</div>
+</dd>
 <dt><a href="swervelib/imu/SwerveIMU.html#setInverted(boolean)" class="member-name-link">setInverted(boolean)</a> - Method in class swervelib.imu.<a href="swervelib/imu/SwerveIMU.html" title="class in swervelib.imu">SwerveIMU</a></dt>
 <dd>
 <div class="block">Set the gyro to invert its default direction.</div>
@@ -2802,6 +2872,15 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/SwerveDrive.html#setModuleEncoderAutoSynchronize(boolean,double)" class="member-name-link">setModuleEncoderAutoSynchronize(boolean, double)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
 <div class="block">Enable auto synchronization for encoders during a match.</div>
+</dd>
+<dt><a href="swervelib/SwerveDrive.html#setModuleStateOptimization(boolean)" class="member-name-link">setModuleStateOptimization(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
+<dd>
+<div class="block">Set module optimization to be utilized or not.</div>
+</dd>
+<dt><a href="swervelib/SwerveModule.html#setModuleStateOptimization(boolean)" class="member-name-link">setModuleStateOptimization(boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveModule.html" title="class in swervelib">SwerveModule</a></dt>
+<dd>
+<div class="block">Set utilization of <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html#optimize(edu.wpi.first.math.geometry.Rotation2d)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState.optimize(Rotation2d)</code></a> which should be disabled for
+ some debugging.</div>
 </dd>
 <dt><a href="swervelib/SwerveDrive.html#setModuleStates(edu.wpi.first.math.kinematics.SwerveModuleState%5B%5D,boolean)" class="member-name-link">setModuleStates(SwerveModuleState[], boolean)</a> - Method in class swervelib.<a href="swervelib/SwerveDrive.html" title="class in swervelib">SwerveDrive</a></dt>
 <dd>
@@ -2880,6 +2959,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Set the gyro offset.</div>
 </dd>
 <dt><a href="swervelib/imu/PigeonSwerve.html#setOffset(edu.wpi.first.math.geometry.Rotation3d)" class="member-name-link">setOffset(Rotation3d)</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonSwerve.html" title="class in swervelib.imu">PigeonSwerve</a></dt>
+<dd>
+<div class="block">Set the gyro offset.</div>
+</dd>
+<dt><a href="swervelib/imu/PigeonViaTalonSRXSwerve.html#setOffset(edu.wpi.first.math.geometry.Rotation3d)" class="member-name-link">setOffset(Rotation3d)</a> - Method in class swervelib.imu.<a href="swervelib/imu/PigeonViaTalonSRXSwerve.html" title="class in swervelib.imu">PigeonViaTalonSRXSwerve</a></dt>
 <dd>
 <div class="block">Set the gyro offset.</div>
 </dd>
@@ -3048,6 +3131,15 @@ loadScripts(document, 'script');</script>
 <dt><a href="swervelib/telemetry/SwerveDriveTelemetry.html#sizeLeftRight" class="member-name-link">sizeLeftRight</a> - Static variable in class swervelib.telemetry.<a href="swervelib/telemetry/SwerveDriveTelemetry.html" title="class in swervelib.telemetry">SwerveDriveTelemetry</a></dt>
 <dd>
 <div class="block">The distance between the left and right modules.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html" class="type-name-link" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a> - Class in <a href="swervelib/encoders/package-summary.html">swervelib.encoders</a></dt>
+<dd>
+<div class="block">SparkFlex absolute encoder, attached through the data port.</div>
+</dd>
+<dt><a href="swervelib/encoders/SparkFlexEncoderSwerve.html#%3Cinit%3E(swervelib.motors.SwerveMotor,int)" class="member-name-link">SparkFlexEncoderSwerve(SwerveMotor, int)</a> - Constructor for class swervelib.encoders.<a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders">SparkFlexEncoderSwerve</a></dt>
+<dd>
+<div class="block">Create the <a href="swervelib/encoders/SparkFlexEncoderSwerve.html" title="class in swervelib.encoders"><code>SparkFlexEncoderSwerve</code></a> object as a duty cycle from the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a>
+ motor.</div>
 </dd>
 <dt><a href="swervelib/motors/SparkFlexSwerve.html" class="type-name-link" title="class in swervelib.motors">SparkFlexSwerve</a> - Class in <a href="swervelib/motors/package-summary.html">swervelib.motors</a></dt>
 <dd>
@@ -3566,10 +3658,6 @@ the order they are declared.</div>
 </dl>
 <h2 class="title" id="I:X">X</h2>
 <dl class="index">
-<dt><a href="swervelib/parser/json/modules/LocationJson.html#x" class="member-name-link">x</a> - Variable in class swervelib.parser.json.modules.<a href="swervelib/parser/json/modules/LocationJson.html" title="class in swervelib.parser.json.modules">LocationJson</a></dt>
-<dd>
-<div class="block">Location of the swerve module in inches from the center of the robot horizontally.</div>
-</dd>
 <dt><a href="swervelib/SwerveController.html#xLimiter" class="member-name-link">xLimiter</a> - Variable in class swervelib.<a href="swervelib/SwerveController.html" title="class in swervelib">SwerveController</a></dt>
 <dd>
 <div class="block"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/filter/SlewRateLimiter.html" title="class or interface in edu.wpi.first.math.filter" class="external-link"><code>SlewRateLimiter</code></a> for movement in the X direction in meters/second.</div>
@@ -3577,10 +3665,6 @@ the order they are declared.</div>
 </dl>
 <h2 class="title" id="I:Y">Y</h2>
 <dl class="index">
-<dt><a href="swervelib/parser/json/modules/LocationJson.html#y" class="member-name-link">y</a> - Variable in class swervelib.parser.json.modules.<a href="swervelib/parser/json/modules/LocationJson.html" title="class in swervelib.parser.json.modules">LocationJson</a></dt>
-<dd>
-<div class="block">Location of the swerve module in inches from the center of the robot vertically.</div>
-</dd>
 <dt><a href="swervelib/SwerveController.html#yLimiter" class="member-name-link">yLimiter</a> - Variable in class swervelib.<a href="swervelib/SwerveController.html" title="class in swervelib">SwerveController</a></dt>
 <dd>
 <div class="block"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/filter/SlewRateLimiter.html" title="class or interface in edu.wpi.first.math.filter" class="external-link"><code>SlewRateLimiter</code></a> for movement in the Y direction in meters/second.</div>

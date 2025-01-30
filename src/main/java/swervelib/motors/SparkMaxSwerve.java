@@ -36,10 +36,10 @@ public class SparkMaxSwerve extends SwerveMotor {
   private final SparkMax motor;
   /** Integrated encoder. */
   public RelativeEncoder encoder;
-  /** Absolute encoder attached to the SparkMax (if exists) */
-  private Optional<SwerveAbsoluteEncoder> absoluteEncoder = Optional.empty();
   /** Closed-loop PID controller. */
   public SparkClosedLoopController pid;
+  /** Absolute encoder attached to the SparkMax (if exists) */
+  private Optional<SwerveAbsoluteEncoder> absoluteEncoder = Optional.empty();
   /** Factory default already occurred. */
   private boolean factoryDefaultOccurred = false;
   /** Supplier for the velocity of the motor controller. */

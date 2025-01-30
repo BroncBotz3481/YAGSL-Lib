@@ -1254,6 +1254,18 @@ public class SwerveDrive {
   }
 
   /**
+   * Set module optimization to be utilized or not. Sometimes it is desirable to be enabled for
+   * debugging purposes only.
+   *
+   * @param enabled Optimization enabled state.
+   */
+  public void setModuleStateOptimization(boolean enabled) {
+    for (SwerveModule module : swerveModules) {
+      module.setModuleStateOptimization(enabled);
+    }
+  }
+
+  /**
    * Enable auto-centering module wheels. This has a side effect of causing some jitter to the robot
    * when a PID is not tuned perfectly. This function is a wrapper for {@link
    * SwerveModule#setAntiJitter(boolean)} to perform auto-centering.

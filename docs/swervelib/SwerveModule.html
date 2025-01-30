@@ -331,13 +331,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Set the feedforward attributes to the given parameters.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;brake)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setModuleStateOptimization(boolean)" class="member-name-link">setModuleStateOptimization</a><wbr>(boolean&nbsp;optimizationState)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the brake mode.</div>
+<div class="block">Set utilization of <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html#optimize(edu.wpi.first.math.geometry.Rotation2d)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState.optimize(Rotation2d)</code></a> which should be disabled for
+ some debugging.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTelemetry()" class="member-name-link">updateTelemetry</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;brake)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the brake mode.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateTelemetry()" class="member-name-link">updateTelemetry</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update data sent to <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/SmartDashboard.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link"><code>SmartDashboard</code></a>.</div>
 </div>
 </div>
@@ -430,6 +436,18 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/SimpleMotorFeedforward.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>SimpleMotorFeedforward</code></a> using motor details.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setModuleStateOptimization(boolean)">
+<h3>setModuleStateOptimization</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setModuleStateOptimization</span><wbr><span class="parameters">(boolean&nbsp;optimizationState)</span></div>
+<div class="block">Set utilization of <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveModuleState.html#optimize(edu.wpi.first.math.geometry.Rotation2d)" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>SwerveModuleState.optimize(Rotation2d)</code></a> which should be disabled for
+ some debugging.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>optimizationState</code> - Optimization enabled.</dd>
 </dl>
 </section>
 </li>

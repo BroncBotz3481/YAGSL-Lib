@@ -23,20 +23,18 @@ public class Pigeon2Swerve extends SwerveIMU {
   private final Pigeon2 imu;
   /** Mutable {@link MutAngularVelocity} for readings. */
   private final MutAngularVelocity yawVel = new MutAngularVelocity(0, 0, DegreesPerSecond);
-
-  /** Offset for the {@link Pigeon2}. */
-  private Rotation3d offset = new Rotation3d();
-  /** Inversion for the gyro */
-  private boolean invertedIMU = false;
-  /** {@link Pigeon2} configurator. */
-  private Pigeon2Configurator cfg;
-
   /** X Acceleration supplier */
   private final Supplier<StatusSignal<LinearAcceleration>> xAcc;
   /** Y Accelleration supplier. */
   private final Supplier<StatusSignal<LinearAcceleration>> yAcc;
   /** Z Acceleration supplier. */
   private final Supplier<StatusSignal<LinearAcceleration>> zAcc;
+  /** Offset for the {@link Pigeon2}. */
+  private Rotation3d offset = new Rotation3d();
+  /** Inversion for the gyro */
+  private boolean invertedIMU = false;
+  /** {@link Pigeon2} configurator. */
+  private Pigeon2Configurator cfg;
 
   /**
    * Generate the SwerveIMU for {@link Pigeon2}.
