@@ -15,11 +15,7 @@
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var evenRowColor = "even-row-color";
-var oddRowColor = "odd-row-color";
-var tableTab = "table-tab";
-var activeTableTab = "active-table-tab";
-var pathtoroot = "../../";
+<script type="text/javascript">var pathtoroot = "../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -51,9 +47,9 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method-detail">Method</a></li>
+<li>Method</li>
 </ul>
 </div>
 <div class="nav-list-search"><label for="search-input">SEARCH:</label>
@@ -73,13 +69,15 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
 <div class="inheritance"><a href="SwerveMotor.html" title="class in swervelib.motors">swervelib.motors.SwerveMotor</a>
+<div class="inheritance"><a href="SparkSwerve.html" title="class in swervelib.motors">swervelib.motors.SparkSwerve</a>
 <div class="inheritance">swervelib.motors.SparkFlexSwerve</div>
+</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SparkFlexSwerve</span>
-<span class="extends-implements">extends <a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></span></div>
+<span class="extends-implements">extends <a href="SparkSwerve.html" title="class in swervelib.motors">SparkSwerve</a></span></div>
 <div class="block">An implementation of <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> as a <a href="SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a>.</div>
 </section>
 <section class="summary">
@@ -88,27 +86,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
-<div class="caption"><span>Fields</span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Field</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#absoluteEncoder" class="member-name-link">absoluteEncoder</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Absolute encoder attached to the SparkFlex (if exists)</div>
-</div>
-<div class="col-first odd-row-color"><code><a href="https://codedocs.revrobotics.com/java/com/revrobotics/RelativeEncoder.html" title="class or interface in com.revrobotics" class="external-link">RelativeEncoder</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#encoder" class="member-name-link">encoder</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Integrated encoder.</div>
-</div>
-<div class="col-first even-row-color"><code><a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkClosedLoopController.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkClosedLoopController</a></code></div>
-<div class="col-second even-row-color"><code><a href="#pid" class="member-name-link">pid</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Closed-loop PID controller.</div>
-</div>
-</div>
+<div class="inherited-list">
+<h3 id="fields-inherited-from-class-swervelib.motors.SparkSwerve">Fields inherited from class&nbsp;swervelib.motors.<a href="SparkSwerve.html" title="class in swervelib.motors">SparkSwerve</a></h3>
+<code><a href="SparkSwerve.html#encoder">encoder</a>, <a href="SparkSwerve.html#pid">pid</a></code></div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-swervelib.motors.SwerveMotor">Fields inherited from class&nbsp;swervelib.motors.<a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></h3>
 <code><a href="SwerveMotor.html#isDriveMotor">isDriveMotor</a>, <a href="SwerveMotor.html#maximumRetries">maximumRetries</a>, <a href="SwerveMotor.html#simMotor">simMotor</a></code></div>
@@ -141,151 +121,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
-<div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Method</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#burnFlash()" class="member-name-link">burnFlash</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Save the configurations from flash to EEPROM.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#clearStickyFaults()" class="member-name-link">clearStickyFaults</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Clear the sticky faults on the motor controller.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configureIntegratedEncoder(double)" class="member-name-link">configureIntegratedEncoder</a><wbr>(double&nbsp;positionConversionFactor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Configure the integrated encoder for the swerve module.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configurePIDF(swervelib.parser.PIDFConfig)" class="member-name-link">configurePIDF</a><wbr>(<a href="../parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a>&nbsp;config)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Configure the PIDF values for the closed loop controller.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#configurePIDWrapping(double,double)" class="member-name-link">configurePIDWrapping</a><wbr>(double&nbsp;minInput,
- double&nbsp;maxInput)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Configure the PID wrapping for the position closed loop controller.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#factoryDefaults()" class="member-name-link">factoryDefaults</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Configure the factory defaults.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAppliedOutput()" class="member-name-link">getAppliedOutput</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the applied dutycycle output.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/config/SparkFlexConfig.html" title="class or interface in com.revrobotics.spark.config" class="external-link">SparkFlexConfig</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConfig()" class="member-name-link">getConfig</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the current configuration of the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a></div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotor()" class="member-name-link">getMotor</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the motor object from the module.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the position of the integrated encoder.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSimMotor()" class="member-name-link">getSimMotor</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> of the motor class.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the velocity of the integrated encoder.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVoltage()" class="member-name-link">getVoltage</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the voltage output of the motor controller.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAttachedAbsoluteEncoder()" class="member-name-link">isAttachedAbsoluteEncoder</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Queries whether the absolute encoder is directly attached to the motor controller.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#set(double)" class="member-name-link">set</a><wbr>(double&nbsp;percentOutput)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the percentage output.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAbsoluteEncoder(swervelib.encoders.SwerveAbsoluteEncoder)" class="member-name-link">setAbsoluteEncoder</a><wbr>(<a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;encoder)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the absolute encoder to be a compatible absolute encoder.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurrentLimit(int)" class="member-name-link">setCurrentLimit</a><wbr>(int&nbsp;currentLimit)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the current limit for the swerve drive motor, remember this may cause jumping if used in
- conjunction with voltage compensation.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInverted(boolean)" class="member-name-link">setInverted</a><wbr>(boolean&nbsp;inverted)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the motor to be inverted.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLoopRampRate(double)" class="member-name-link">setLoopRampRate</a><wbr>(double&nbsp;rampRate)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the maximum rate the open/closed loop output can change by.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;isBrakeMode)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the idle mode.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPosition(double)" class="member-name-link">setPosition</a><wbr>(double&nbsp;position)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the integrated encoder position.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;setpoint,
- double&nbsp;feedforward)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the closed loop PID controller reference point.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,double,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;setpoint,
- double&nbsp;feedforward,
- double&nbsp;position)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the closed loop PID controller reference point.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltage(double)" class="member-name-link">setVoltage</a><wbr>(double&nbsp;voltage)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the voltage of the motor.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltageCompensation(double)" class="member-name-link">setVoltageCompensation</a><wbr>(double&nbsp;nominalVoltage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the voltage compensation for the swerve module motor.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateConfig(com.revrobotics.spark.config.SparkFlexConfig)" class="member-name-link">updateConfig</a><wbr>(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/config/SparkFlexConfig.html" title="class or interface in com.revrobotics.spark.config" class="external-link">SparkFlexConfig</a>&nbsp;cfgGiven)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Update the config for the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a></div>
-</div>
-</div>
-</div>
-</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-swervelib.motors.SparkSwerve">Methods inherited from class&nbsp;swervelib.motors.<a href="SparkSwerve.html" title="class in swervelib.motors">SparkSwerve</a></h3>
+<code><a href="SparkSwerve.html#burnFlash()">burnFlash</a>, <a href="SparkSwerve.html#clearStickyFaults()">clearStickyFaults</a>, <a href="SparkSwerve.html#configureIntegratedEncoder(double)">configureIntegratedEncoder</a>, <a href="SparkSwerve.html#configurePIDF(swervelib.parser.PIDFConfig)">configurePIDF</a>, <a href="SparkSwerve.html#configurePIDWrapping(double,double)">configurePIDWrapping</a>, <a href="SparkSwerve.html#factoryDefaults()">factoryDefaults</a>, <a href="SparkSwerve.html#getAppliedOutput()">getAppliedOutput</a>, <a href="SparkSwerve.html#getConfig()">getConfig</a>, <a href="SparkSwerve.html#getMotor()">getMotor</a>, <a href="SparkSwerve.html#getPosition()">getPosition</a>, <a href="SparkSwerve.html#getSimMotor()">getSimMotor</a>, <a href="SparkSwerve.html#getVelocity()">getVelocity</a>, <a href="SparkSwerve.html#getVoltage()">getVoltage</a>, <a href="SparkSwerve.html#isAttachedAbsoluteEncoder()">isAttachedAbsoluteEncoder</a>, <a href="SparkSwerve.html#set(double)">set</a>, <a href="SparkSwerve.html#setAbsoluteEncoder(swervelib.encoders.SwerveAbsoluteEncoder)">setAbsoluteEncoder</a>, <a href="SparkSwerve.html#setCurrentLimit(int)">setCurrentLimit</a>, <a href="SparkSwerve.html#setInverted(boolean)">setInverted</a>, <a href="SparkSwerve.html#setLoopRampRate(double)">setLoopRampRate</a>, <a href="SparkSwerve.html#setMotorBrake(boolean)">setMotorBrake</a>, <a href="SparkSwerve.html#setPosition(double)">setPosition</a>, <a href="SparkSwerve.html#setReference(double,double)">setReference</a>, <a href="SparkSwerve.html#setReference(double,double,double)">setReference</a>, <a href="SparkSwerve.html#setVoltage(double)">setVoltage</a>, <a href="SparkSwerve.html#setVoltageCompensation(double)">setVoltageCompensation</a>, <a href="SparkSwerve.html#updateConfig(com.revrobotics.spark.config.SparkBaseConfig)">updateConfig</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -295,35 +133,6 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ============ FIELD DETAIL =========== -->
-<li>
-<section class="field-details" id="field-detail">
-<h2>Field Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="encoder">
-<h3>encoder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://codedocs.revrobotics.com/java/com/revrobotics/RelativeEncoder.html" title="class or interface in com.revrobotics" class="external-link">RelativeEncoder</a></span>&nbsp;<span class="element-name">encoder</span></div>
-<div class="block">Integrated encoder.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="absoluteEncoder">
-<h3>absoluteEncoder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&gt;</span>&nbsp;<span class="element-name">absoluteEncoder</span></div>
-<div class="block">Absolute encoder attached to the SparkFlex (if exists)</div>
-</section>
-</li>
-<li>
-<section class="detail" id="pid">
-<h3>pid</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkClosedLoopController.html" title="class or interface in com.revrobotics.spark" class="external-link">SparkClosedLoopController</a></span>&nbsp;<span class="element-name">pid</span></div>
-<div class="block">Closed-loop PID controller.</div>
-</section>
-</li>
-</ul>
-</section>
-</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -356,354 +165,6 @@ loadScripts(document, 'script');</script>
 <dd><code>id</code> - CAN ID of the SparkFlex.</dd>
 <dd><code>isDriveMotor</code> - Is the motor being initialized a drive motor?</dd>
 <dd><code>motorType</code> - <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> which the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a> is attached to.</dd>
-</dl>
-</section>
-</li>
-</ul>
-</section>
-</li>
-<!-- ============ METHOD DETAIL ========== -->
-<li>
-<section class="method-details" id="method-detail">
-<h2>Method Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="getConfig()">
-<h3>getConfig</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/config/SparkFlexConfig.html" title="class or interface in com.revrobotics.spark.config" class="external-link">SparkFlexConfig</a></span>&nbsp;<span class="element-name">getConfig</span>()</div>
-<div class="block">Get the current configuration of the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a></div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd><a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/config/SparkFlexConfig.html" title="class or interface in com.revrobotics.spark.config" class="external-link"><code>SparkFlexConfig</code></a></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="updateConfig(com.revrobotics.spark.config.SparkFlexConfig)">
-<h3>updateConfig</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateConfig</span><wbr><span class="parameters">(<a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/config/SparkFlexConfig.html" title="class or interface in com.revrobotics.spark.config" class="external-link">SparkFlexConfig</a>&nbsp;cfgGiven)</span></div>
-<div class="block">Update the config for the <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/SparkFlex.html" title="class or interface in com.revrobotics.spark" class="external-link"><code>SparkFlex</code></a></div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>cfgGiven</code> - Given <a href="https://codedocs.revrobotics.com/java/com/revrobotics/spark/config/SparkFlexConfig.html" title="class or interface in com.revrobotics.spark.config" class="external-link"><code>SparkFlexConfig</code></a> which should have minimal modifications.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setVoltageCompensation(double)">
-<h3>setVoltageCompensation</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setVoltageCompensation</span><wbr><span class="parameters">(double&nbsp;nominalVoltage)</span></div>
-<div class="block">Set the voltage compensation for the swerve module motor.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setVoltageCompensation(double)">setVoltageCompensation</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>nominalVoltage</code> - Nominal voltage for operation to output to.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setCurrentLimit(int)">
-<h3>setCurrentLimit</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setCurrentLimit</span><wbr><span class="parameters">(int&nbsp;currentLimit)</span></div>
-<div class="block">Set the current limit for the swerve drive motor, remember this may cause jumping if used in
- conjunction with voltage compensation. This is useful to protect the motor from current spikes.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setCurrentLimit(int)">setCurrentLimit</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>currentLimit</code> - Current limit in AMPS at free speed.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setLoopRampRate(double)">
-<h3>setLoopRampRate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setLoopRampRate</span><wbr><span class="parameters">(double&nbsp;rampRate)</span></div>
-<div class="block">Set the maximum rate the open/closed loop output can change by.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setLoopRampRate(double)">setLoopRampRate</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>rampRate</code> - Time in seconds to go from 0 to full throttle.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getMotor()">
-<h3>getMotor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">getMotor</span>()</div>
-<div class="block">Get the motor object from the module.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#getMotor()">getMotor</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Returns:</dt>
-<dd>Motor object.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getSimMotor()">
-<h3>getSimMotor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></span>&nbsp;<span class="element-name">getSimMotor</span>()</div>
-<div class="block">Get the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> of the motor class.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#getSimMotor()">getSimMotor</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Returns:</dt>
-<dd><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> of this type.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isAttachedAbsoluteEncoder()">
-<h3>isAttachedAbsoluteEncoder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAttachedAbsoluteEncoder</span>()</div>
-<div class="block">Queries whether the absolute encoder is directly attached to the motor controller.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#isAttachedAbsoluteEncoder()">isAttachedAbsoluteEncoder</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Returns:</dt>
-<dd>connected absolute encoder state.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="factoryDefaults()">
-<h3>factoryDefaults</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">factoryDefaults</span>()</div>
-<div class="block">Configure the factory defaults.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#factoryDefaults()">factoryDefaults</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="clearStickyFaults()">
-<h3>clearStickyFaults</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">clearStickyFaults</span>()</div>
-<div class="block">Clear the sticky faults on the motor controller.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#clearStickyFaults()">clearStickyFaults</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setAbsoluteEncoder(swervelib.encoders.SwerveAbsoluteEncoder)">
-<h3>setAbsoluteEncoder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></span>&nbsp;<span class="element-name">setAbsoluteEncoder</span><wbr><span class="parameters">(<a href="../encoders/SwerveAbsoluteEncoder.html" title="class in swervelib.encoders">SwerveAbsoluteEncoder</a>&nbsp;encoder)</span></div>
-<div class="block">Set the absolute encoder to be a compatible absolute encoder.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setAbsoluteEncoder(swervelib.encoders.SwerveAbsoluteEncoder)">setAbsoluteEncoder</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>encoder</code> - The encoder to use.</dd>
-<dt>Returns:</dt>
-<dd>The <a href="SwerveMotor.html" title="class in swervelib.motors"><code>SwerveMotor</code></a> for easy instantiation.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="configureIntegratedEncoder(double)">
-<h3>configureIntegratedEncoder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">configureIntegratedEncoder</span><wbr><span class="parameters">(double&nbsp;positionConversionFactor)</span></div>
-<div class="block">Configure the integrated encoder for the swerve module. Sets the conversion factors for
- position and velocity.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#configureIntegratedEncoder(double)">configureIntegratedEncoder</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>positionConversionFactor</code> - The conversion factor to apply.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="configurePIDF(swervelib.parser.PIDFConfig)">
-<h3>configurePIDF</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">configurePIDF</span><wbr><span class="parameters">(<a href="../parser/PIDFConfig.html" title="class in swervelib.parser">PIDFConfig</a>&nbsp;config)</span></div>
-<div class="block">Configure the PIDF values for the closed loop controller.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#configurePIDF(swervelib.parser.PIDFConfig)">configurePIDF</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>config</code> - Configuration class holding the PIDF values.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="configurePIDWrapping(double,double)">
-<h3>configurePIDWrapping</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">configurePIDWrapping</span><wbr><span class="parameters">(double&nbsp;minInput,
- double&nbsp;maxInput)</span></div>
-<div class="block">Configure the PID wrapping for the position closed loop controller.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#configurePIDWrapping(double,double)">configurePIDWrapping</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>minInput</code> - Minimum PID input.</dd>
-<dd><code>maxInput</code> - Maximum PID input.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setMotorBrake(boolean)">
-<h3>setMotorBrake</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMotorBrake</span><wbr><span class="parameters">(boolean&nbsp;isBrakeMode)</span></div>
-<div class="block">Set the idle mode.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setMotorBrake(boolean)">setMotorBrake</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>isBrakeMode</code> - Set the brake mode.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setInverted(boolean)">
-<h3>setInverted</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setInverted</span><wbr><span class="parameters">(boolean&nbsp;inverted)</span></div>
-<div class="block">Set the motor to be inverted.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setInverted(boolean)">setInverted</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>inverted</code> - State of inversion.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="burnFlash()">
-<h3>burnFlash</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">burnFlash</span>()</div>
-<div class="block">Save the configurations from flash to EEPROM.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#burnFlash()">burnFlash</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="set(double)">
-<h3>set</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">set</span><wbr><span class="parameters">(double&nbsp;percentOutput)</span></div>
-<div class="block">Set the percentage output.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#set(double)">set</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>percentOutput</code> - percent out for the motor controller.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setReference(double,double)">
-<h3>setReference</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setReference</span><wbr><span class="parameters">(double&nbsp;setpoint,
- double&nbsp;feedforward)</span></div>
-<div class="block">Set the closed loop PID controller reference point.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setReference(double,double)">setReference</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>setpoint</code> - Setpoint in MPS or Angle in degrees.</dd>
-<dd><code>feedforward</code> - Feedforward in volt-meter-per-second or kV.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setReference(double,double,double)">
-<h3>setReference</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setReference</span><wbr><span class="parameters">(double&nbsp;setpoint,
- double&nbsp;feedforward,
- double&nbsp;position)</span></div>
-<div class="block">Set the closed loop PID controller reference point.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setReference(double,double,double)">setReference</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>setpoint</code> - Setpoint in meters per second or angle in degrees.</dd>
-<dd><code>feedforward</code> - Feedforward in volt-meter-per-second or kV.</dd>
-<dd><code>position</code> - Only used on the angle motor, the position of the motor in degrees.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getVoltage()">
-<h3>getVoltage</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getVoltage</span>()</div>
-<div class="block">Get the voltage output of the motor controller.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#getVoltage()">getVoltage</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Returns:</dt>
-<dd>Voltage output.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setVoltage(double)">
-<h3>setVoltage</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setVoltage</span><wbr><span class="parameters">(double&nbsp;voltage)</span></div>
-<div class="block">Set the voltage of the motor.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setVoltage(double)">setVoltage</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>voltage</code> - Voltage to set.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getAppliedOutput()">
-<h3>getAppliedOutput</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getAppliedOutput</span>()</div>
-<div class="block">Get the applied dutycycle output.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#getAppliedOutput()">getAppliedOutput</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Returns:</dt>
-<dd>Applied dutycycle output to the motor.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getVelocity()">
-<h3>getVelocity</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getVelocity</span>()</div>
-<div class="block">Get the velocity of the integrated encoder.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#getVelocity()">getVelocity</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Returns:</dt>
-<dd>velocity</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getPosition()">
-<h3>getPosition</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getPosition</span>()</div>
-<div class="block">Get the position of the integrated encoder.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#getPosition()">getPosition</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Returns:</dt>
-<dd>Position</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setPosition(double)">
-<h3>setPosition</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPosition</span><wbr><span class="parameters">(double&nbsp;position)</span></div>
-<div class="block">Set the integrated encoder position.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="SwerveMotor.html#setPosition(double)">setPosition</a></code>&nbsp;in class&nbsp;<code><a href="SwerveMotor.html" title="class in swervelib.motors">SwerveMotor</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>position</code> - Integrated encoder position.</dd>
 </dl>
 </section>
 </li>

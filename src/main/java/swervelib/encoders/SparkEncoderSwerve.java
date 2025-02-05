@@ -1,63 +1,49 @@
 package swervelib.encoders;
 
 import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.REVLibError;
 import com.revrobotics.spark.SparkAbsoluteEncoder;
-import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.SparkBase;
+import com.revrobotics.spark.config.SparkBaseConfig;
+import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
-import java.util.function.Supplier;
-import swervelib.motors.SparkFlexSwerve;
+import swervelib.motors.SparkMaxBrushedMotorSwerve;
+import swervelib.motors.SparkSwerve;
 import swervelib.motors.SwerveMotor;
 
-/** SparkFlex absolute encoder, attached through the data port. */
-public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
+/** SparkBase absolute encoder, attached through the data port. */
+public class SparkEncoderSwerve extends SwerveAbsoluteEncoder {
 
-  /** The {@link AbsoluteEncoder} representing the duty cycle encoder attached to the SparkFlex. */
-  public SparkAbsoluteEncoder encoder;
+  /** The {@link AbsoluteEncoder} representing the duty cycle encoder attached to the SparkBase. */
+  public final SparkAbsoluteEncoder encoder;
   /** An {@link Alert} for if there is a failure configuring the encoder. */
-  private Alert failureConfiguring;
+  protected final Alert failureConfiguring;
   /** An {@link Alert} for if there is a failure configuring the encoder offset. */
-  private Alert offsetFailure;
-  /** {@link SparkFlexSwerve} instance. */
-  private SwerveMotor sparkFlex;
+  protected final Alert offsetFailure;
+  /** {@link SparkMaxBrushedMotorSwerve} or {@link SparkSwerve} instance. */
+  protected final SwerveMotor motor;
 
   /**
-   * Create the {@link SparkFlexEncoderSwerve} object as a duty cycle from the {@link SparkFlex}
-   * motor.
+   * Create the {@link SparkEncoderSwerve} object as a duty cycle from the {@link
+   * com.revrobotics.spark.SparkBase} motor.
    *
    * @param motor Motor to create the encoder from.
    * @param conversionFactor The conversion factor to set if the output is not from 0 to 360.
    */
-  public SparkFlexEncoderSwerve(SwerveMotor motor, int conversionFactor) {
+  public SparkEncoderSwerve(SwerveMotor motor, int conversionFactor) {
     failureConfiguring =
-        new Alert("Encoders", "Failure configuring SparkFlex Absolute Encoder", AlertType.kWarning);
+        new Alert("Encoders", "Failure configuring SparkBase Absolute Encoder", AlertType.kWarning);
     offsetFailure =
         new Alert("Encoders", "Failure to set Absolute Encoder Offset", AlertType.kWarning);
-    if (motor.getMotor() instanceof SparkFlex) {
-      sparkFlex = motor;
-      encoder = ((SparkFlex) motor.getMotor()).getAbsoluteEncoder();
+    if (motor.getMotor() instanceof SparkBase) {
+      this.motor = motor;
+      encoder = ((SparkBase) motor.getMotor()).getAbsoluteEncoder();
       motor.setAbsoluteEncoder(this);
       motor.configureIntegratedEncoder(conversionFactor);
+      motor.setAbsoluteEncoder(null);
     } else {
-      throw new RuntimeException(
-          "Motor given to instantiate SparkFlexEncoder is not a CANSparkFlex");
+      throw new RuntimeException("Motor given to instantiate SparkBaseEncoder is not a SparkBase");
     }
-  }
-
-  /**
-   * Run the configuration until it succeeds or times out.
-   *
-   * @param config Lambda supplier returning the error state.
-   */
-  private void configureSparkFlex(Supplier<REVLibError> config) {
-    for (int i = 0; i < maximumRetries; i++) {
-      if (config.get() == REVLibError.kOk) {
-        return;
-      }
-    }
-    failureConfiguring.set(true);
   }
 
   /** Reset the encoder to factory defaults. */
@@ -79,10 +65,10 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
    */
   @Override
   public void configure(boolean inverted) {
-    if (sparkFlex instanceof SparkFlexSwerve) {
-      SparkFlexConfig cfg = ((SparkFlexSwerve) sparkFlex).getConfig();
+    if (motor instanceof SparkSwerve) {
+      SparkBaseConfig cfg = ((SparkSwerve) motor).getConfig();
       cfg.absoluteEncoder.inverted(inverted);
-      ((SparkFlexSwerve) sparkFlex).updateConfig(cfg);
+      ((SparkSwerve) motor).updateConfig(cfg);
     }
   }
 
@@ -107,17 +93,24 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
   }
 
   /**
-   * Sets the Absolute Encoder Offset inside of the SparkFlex's Memory.
+   * Sets the Absolute Encoder Offset inside of the SparkBase's Memory.
    *
    * @param offset the offset the Absolute Encoder uses as the zero point.
    * @return if setting Absolute Encoder Offset was successful or not.
    */
   @Override
   public boolean setAbsoluteEncoderOffset(double offset) {
-    if (sparkFlex instanceof SparkFlexSwerve) {
-      SparkFlexConfig cfg = ((SparkFlexSwerve) sparkFlex).getConfig();
+    if (motor instanceof SparkSwerve) {
+      var sparkBase = (SparkSwerve) motor;
+      SparkBaseConfig cfg = sparkBase.getConfig();
       cfg.absoluteEncoder.zeroOffset(offset);
-      ((SparkFlexSwerve) sparkFlex).updateConfig(cfg);
+      sparkBase.updateConfig(cfg);
+      return true;
+    } else if (motor instanceof SparkMaxBrushedMotorSwerve) {
+      var sparkMax = (SparkMaxBrushedMotorSwerve) motor;
+      SparkMaxConfig cfg = sparkMax.getConfig();
+      cfg.absoluteEncoder.zeroOffset(offset);
+      sparkMax.updateConfig(cfg);
       return true;
     }
     return false;
