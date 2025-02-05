@@ -1,13 +1,11 @@
 package swervelib.encoders;
 
 import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.REVLibError;
 import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
-import java.util.function.Supplier;
 import swervelib.motors.SparkFlexSwerve;
 import swervelib.motors.SwerveMotor;
 
@@ -18,8 +16,6 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
   public SparkAbsoluteEncoder encoder;
   /** An {@link Alert} for if there is a failure configuring the encoder. */
   private Alert failureConfiguring;
-  /** An {@link Alert} for if there is a failure configuring the encoder offset. */
-  private Alert offsetFailure;
   /** {@link SparkFlexSwerve} instance. */
   private SwerveMotor sparkFlex;
 
@@ -33,8 +29,6 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
   public SparkFlexEncoderSwerve(SwerveMotor motor, int conversionFactor) {
     failureConfiguring =
         new Alert("Encoders", "Failure configuring SparkFlex Absolute Encoder", AlertType.kWarning);
-    offsetFailure =
-        new Alert("Encoders", "Failure to set Absolute Encoder Offset", AlertType.kWarning);
     if (motor.getMotor() instanceof SparkFlex) {
       sparkFlex = motor;
       encoder = ((SparkFlex) motor.getMotor()).getAbsoluteEncoder();
@@ -46,18 +40,12 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
     }
   }
 
-  /**
-   * Run the configuration until it succeeds or times out.
-   *
-   * @param config Lambda supplier returning the error state.
-   */
-  private void configureSparkFlex(Supplier<REVLibError> config) {
-    for (int i = 0; i < maximumRetries; i++) {
-      if (config.get() == REVLibError.kOk) {
-        return;
-      }
-    }
-    failureConfiguring.set(true);
+  @Override
+  public void close() {
+    // SPARK Flex encoder gets closed with the motor
+    // I don't think an encoder getting closed should
+    // close the entire motor so i will keep this empty
+    // sparkFlex.close();
   }
 
   /** Reset the encoder to factory defaults. */

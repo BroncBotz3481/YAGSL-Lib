@@ -32,7 +32,7 @@ import swervelib.telemetry.SwerveDriveTelemetry;
 import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 
 /** The Swerve Module class which represents and controls Swerve Modules for the swerve drive. */
-public class SwerveModule {
+public class SwerveModule implements AutoCloseable {
 
   /** Swerve module configuration options. */
   public final SwerveModuleConfiguration configuration;
@@ -55,6 +55,24 @@ public class SwerveModule {
   private final Alert encoderOffsetWarning;
   /** An {@link Alert} for if there is no Absolute Encoder on the module. */
   private final Alert noEncoderWarning;
+  /** An {@link Alert} for if there is no Absolute Encoder on the module. */
+  private final Alert externalSensorIsNull =
+      new Alert("No absolute Encoder found.", AlertType.kError);
+  /** An {@link Alert} for if the offset is 0 degrees. */
+  private final Alert internalOffsetIsZero =
+      new Alert("Absolute encoder offset is 0, this may be a problem.", AlertType.kWarning);
+  /**
+   * An {@link Alert} for if the angle/steer/azimuth motor is incompatible with the absolute
+   * encoder.
+   */
+  private final Alert externalFeedbackIncompatible =
+      new Alert(
+          "Absolute encoder is incompatible, cannot set as an external feedback device.",
+          AlertType.kError);
+  /** An {@link Alert} for if the absolute encoder cannot set an offset. */
+  private final Alert externalOffsetIncompatible =
+      new Alert(
+          "Absolute encoder is incompatible, cannot set an offset internally.", AlertType.kError);
   /** NT4 Raw Absolute Angle publisher for the absolute encoder. */
   private final DoublePublisher rawAbsoluteAnglePublisher;
   /** NT4 Adjusted Absolute angle publisher for the absolute encoder. */
@@ -143,7 +161,7 @@ public class SwerveModule {
     absolutePositionCache = new Cache<>(this::getRawAbsolutePosition, 20);
 
     // Config angle motor/controller
-    if (!angleMotor.isAttachedAbsoluteEncoder()) {
+    if (!angleMotor.usingExternalFeedbackSensor()) {
       angleMotor.configureIntegratedEncoder(moduleConfiguration.conversionFactors.angle.factor);
     }
     angleMotor.configurePIDF(moduleConfiguration.anglePIDF);
@@ -230,6 +248,13 @@ public class SwerveModule {
             .publish();
   }
 
+  @Override
+  public void close() {
+    angleMotor.close();
+    driveMotor.close();
+    absoluteEncoder.close();
+  }
+
   /**
    * Get the default {@link SimpleMotorFeedforward} for the swerve module drive motor.
    *
@@ -252,6 +277,20 @@ public class SwerveModule {
    */
   public void setModuleStateOptimization(boolean optimizationState) {
     optimizeSwerveModuleState = optimizationState;
+    if (!optimizeSwerveModuleState) {
+      angleMotor.disablePIDWrapping();
+      angleMotor.burnFlash();
+    }
+  }
+
+  /**
+   * Check if the module state optimization used by {@link SwerveModuleState#optimize(Rotation2d)}
+   * is enabled.
+   *
+   * @return optimization state.
+   */
+  public boolean getModuleStateOptimization() {
+    return optimizeSwerveModuleState;
   }
 
   /**
@@ -374,16 +413,8 @@ public class SwerveModule {
    *     desired state onto the swerve module.
    */
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop, boolean force) {
-    // SwerveModuleState optimization might be desired to be disabled while debugging.
-    if (optimizeSwerveModuleState) {
-      desiredState.optimize(Rotation2d.fromDegrees(getAbsolutePosition()));
-    }
-
-    // If we are forcing the angle
-    if (!force && antiJitterEnabled) {
-      // Prevents module rotation if speed is less than 1%
-      SwerveMath.antiJitter(desiredState, lastState, Math.min(maxDriveVelocityMetersPerSecond, 4));
-    }
+    applyStateOptimizations(desiredState);
+    applyAntiJitter(desiredState, force);
 
     // Cosine compensation.
     double nextVelocityMetersPerSecond =
@@ -411,7 +442,6 @@ public class SwerveModule {
    */
   public void setDesiredState(
       SwerveModuleState desiredState, boolean isOpenLoop, double driveFeedforwardVoltage) {
-
     if (isOpenLoop) {
       double percentOutput =
           desiredState.speedMetersPerSecond / maxDriveVelocity.in(MetersPerSecond);
@@ -480,6 +510,34 @@ public class SwerveModule {
     }
 
     return desiredState.speedMetersPerSecond * cosineScalar;
+  }
+
+  /**
+   * Apply the {@link SwerveModuleState#optimize(Rotation2d)} function if the module state
+   * optimization is enabled while debugging.
+   *
+   * @param desiredState The desired state to apply the optimization to.
+   */
+  public void applyStateOptimizations(SwerveModuleState desiredState) {
+    // SwerveModuleState optimization might be desired to be disabled while debugging.
+    if (optimizeSwerveModuleState) {
+      desiredState.optimize(Rotation2d.fromDegrees(getAbsolutePosition()));
+    }
+  }
+
+  /**
+   * Apply anti-jitter to the desired state. This will prevent the module from rotating if the speed
+   * requested is too low. If force is true, the anti-jitter will not be applied.
+   *
+   * @param desiredState The desired state to apply the anti-jitter to.
+   * @param force Whether to ignore the {@link SwerveModule#antiJitterEnabled} state and apply the
+   *     anti-jitter anyway.
+   */
+  public void applyAntiJitter(SwerveModuleState desiredState, boolean force) {
+    if (!force && antiJitterEnabled) {
+      // Prevents module rotation if speed is less than 1%
+      SwerveMath.antiJitter(desiredState, lastState, Math.min(maxDriveVelocityMetersPerSecond, 4));
+    }
   }
 
   /**
@@ -639,10 +697,50 @@ public class SwerveModule {
     return configuration;
   }
 
+  /** Use external sensors for the feedback of the angle/azimuth/steer controller. */
+  public void useExternalFeedbackSensor() {
+    if (absoluteEncoder == null) {
+      externalSensorIsNull.set(true);
+      return;
+    }
+    if (angleOffset == 0) {
+      internalOffsetIsZero.set(true);
+    }
+    if (absoluteEncoder.setAbsoluteEncoderOffset(configuration.angleOffset)) {
+      angleMotor.setAbsoluteEncoder(absoluteEncoder);
+      if (angleMotor.usingExternalFeedbackSensor()) {
+        angleOffset = 0;
+      } else {
+        externalFeedbackIncompatible.set(true);
+        angleMotor.setAbsoluteEncoder(null);
+        absoluteEncoder.setAbsoluteEncoderOffset(0);
+      }
+
+    } else {
+      externalOffsetIncompatible.set(true);
+      absoluteEncoder.setAbsoluteEncoderOffset(0);
+    }
+  }
+
+  /** Use external sensors for the feedback of the angle/azimuth/steer controller. */
+  public void useInternalFeedbackSensor() {
+    if (absoluteEncoder == null) {
+      externalSensorIsNull.set(true);
+      return;
+    }
+    if (angleOffset == 0) {
+      internalOffsetIsZero.set(true);
+    }
+    angleMotor.setAbsoluteEncoder(null);
+    absoluteEncoder.setAbsoluteEncoderOffset(0);
+    angleOffset = configuration.angleOffset;
+  }
+
   /**
    * Push absolute encoder offset in the memory of the encoder or controller. Also removes the
    * internal angle offset.
    */
+  @Deprecated
   public void pushOffsetsToEncoders() {
     if (absoluteEncoder != null && angleOffset == configuration.angleOffset) {
       // If the absolute encoder is attached.

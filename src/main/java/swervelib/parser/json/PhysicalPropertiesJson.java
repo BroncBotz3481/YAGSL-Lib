@@ -3,8 +3,6 @@ package swervelib.parser.json;
 import static edu.wpi.first.units.Units.Kilogram;
 import static edu.wpi.first.units.Units.Pounds;
 
-import edu.wpi.first.wpilibj.Alert;
-import edu.wpi.first.wpilibj.Alert.AlertType;
 import swervelib.parser.SwerveModulePhysicalCharacteristics;
 import swervelib.parser.json.modules.ConversionFactorsJson;
 
@@ -48,20 +46,17 @@ public class PhysicalPropertiesJson {
         && conversionFactor.angle != 0
         && conversionFactors.isDriveEmpty()
         && conversionFactors.isAngleEmpty()) {
-      new Alert(
-              "Configuration",
-              "\n'conversionFactor': {'drive': "
-                  + conversionFactor.drive
-                  + ", 'angle': "
-                  + conversionFactor.angle
-                  + "} \nis deprecated, please use\n"
-                  + "'conversionFactors': {'drive': {'factor': "
-                  + conversionFactor.drive
-                  + "}, 'angle': {'factor': "
-                  + conversionFactor.angle
-                  + "} }",
-              AlertType.kError)
-          .set(true);
+      throw new RuntimeException(
+          "\n'conversionFactor': {'drive': "
+              + conversionFactor.drive
+              + ", 'angle': "
+              + conversionFactor.angle
+              + "} \nis deprecated, please use\n"
+              + "'conversionFactors': {'drive': {'factor': "
+              + conversionFactor.drive
+              + "}, 'angle': {'factor': "
+              + conversionFactor.angle
+              + "} }");
     }
 
     return new SwerveModulePhysicalCharacteristics(

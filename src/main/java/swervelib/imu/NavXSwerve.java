@@ -44,6 +44,11 @@ public class NavXSwerve extends SwerveIMU {
     }
   }
 
+  @Override
+  public void close() {
+    imu.close();
+  }
+
   /**
    * Reset offset to current gyro reading. Does not call NavX({@link AHRS#reset()}) because it has
    * been reported to be too slow.

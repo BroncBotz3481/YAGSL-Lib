@@ -65,6 +65,11 @@ public class TalonSRXSwerve extends SwerveMotor {
     this(new WPI_TalonSRX(id), isDriveMotor, motorType);
   }
 
+  @Override
+  public void close() {
+    motor.close();
+  }
+
   /** Configure the factory defaults. */
   @Override
   public void factoryDefaults() {
@@ -193,6 +198,12 @@ public class TalonSRXSwerve extends SwerveMotor {
    */
   @Override
   public void configurePIDWrapping(double minInput, double maxInput) {
+    // Do nothing
+  }
+
+  /** Disable PID Wrapping on the motor. */
+  @Override
+  public void disablePIDWrapping() {
     // Do nothing
   }
 
@@ -421,7 +432,7 @@ public class TalonSRXSwerve extends SwerveMotor {
    * @return connected absolute encoder state.
    */
   @Override
-  public boolean isAttachedAbsoluteEncoder() {
+  public boolean usingExternalFeedbackSensor() {
     return absoluteEncoder;
   }
 }

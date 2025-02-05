@@ -79,6 +79,10 @@ public class PIDFConfig {
    * @return PIDController.
    */
   public PIDController createPIDController() {
-    return new PIDController(p, i, d);
+    PIDController pidController = new PIDController(p, i, d);
+    if (iz != 0) {
+      pidController.setIZone(iz);
+    }
+    return pidController;
   }
 }

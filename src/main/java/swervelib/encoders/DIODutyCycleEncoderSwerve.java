@@ -37,6 +37,11 @@ public class DIODutyCycleEncoderSwerve extends SwerveAbsoluteEncoder {
             AlertType.kWarning);
   }
 
+  @Override
+  public void close() {
+    encoder.close();
+  }
+
   /**
    * Configure the inversion state of the encoder.
    *

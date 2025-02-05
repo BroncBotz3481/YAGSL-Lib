@@ -3,6 +3,7 @@ package swervelib.imu;
 import static edu.wpi.first.units.Units.DegreesPerSecond;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 import edu.wpi.first.math.geometry.Quaternion;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class PigeonViaTalonSRXSwerve extends SwerveIMU {
 
   /** {@link TalonSRX} TalonSRX the IMU is attached to. */
-  private final TalonSRX talon;
+  private final WPI_TalonSRX talon;
 
   /** {@link WPI_PigeonIMU} IMU device. */
   private final WPI_PigeonIMU imu;
@@ -34,10 +35,16 @@ public class PigeonViaTalonSRXSwerve extends SwerveIMU {
    *     support CANBus.
    */
   public PigeonViaTalonSRXSwerve(int canid) {
-    talon = new TalonSRX(canid);
+    talon = new WPI_TalonSRX(canid);
     imu = new WPI_PigeonIMU(talon);
     offset = new Rotation3d();
     SmartDashboard.putData(imu);
+  }
+
+  @Override
+  public void close() {
+    imu.close();
+    talon.close();
   }
 
   /** Reset IMU to factory default. */
