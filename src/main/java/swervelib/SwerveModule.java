@@ -614,9 +614,11 @@ public class SwerveModule implements AutoCloseable {
     } else {
       angle = getRelativePosition();
     }
-    angle %= 360;
-    if (angle < 0.0) {
-      angle += 360;
+    if (optimizeSwerveModuleState) {
+      angle %= 360;
+      if (angle < 0.0) {
+        angle += 360;
+      }
     }
 
     return angle;
