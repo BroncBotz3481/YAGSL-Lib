@@ -32,7 +32,7 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
     if (motor.getMotor() instanceof SparkFlex) {
       sparkFlex = motor;
       encoder = ((SparkFlex) motor.getMotor()).getAbsoluteEncoder();
-      motor.configureIntegratedEncoder(conversionFactor);
+      setConversionFactor(conversionFactor);
     } else {
       throw new RuntimeException(
           "Motor given to instantiate SparkFlexEncoder is not a CANSparkFlex");
@@ -71,6 +71,20 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
       cfg.absoluteEncoder.inverted(inverted);
       ((SparkFlexSwerve) sparkFlex).updateConfig(cfg);
     }
+  }
+
+  /**
+   * Set the conversion factor of the {@link SparkFlexEncoderSwerve}.
+   *
+   * @param conversionFactor Position conversion factor from ticks to unit.
+   */
+  public void setConversionFactor(double conversionFactor) {
+    SparkFlexConfig cfg = ((SparkFlexSwerve) sparkFlex).getConfig();
+    cfg.signals.absoluteEncoderPositionAlwaysOn(true).absoluteEncoderPositionPeriodMs(20);
+    cfg.absoluteEncoder
+        .positionConversionFactor(conversionFactor)
+        .velocityConversionFactor(conversionFactor / 60);
+    ((SparkFlexSwerve) sparkFlex).updateConfig(cfg);
   }
 
   /**

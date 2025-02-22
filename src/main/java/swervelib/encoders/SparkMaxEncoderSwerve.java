@@ -4,7 +4,6 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.REVLibError;
 import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
@@ -125,8 +124,6 @@ public class SparkMaxEncoderSwerve extends SwerveAbsoluteEncoder {
       cfg = ((SparkMaxBrushedMotorSwerve) sparkMax).getConfig();
     }
     if (cfg != null) {
-      cfg.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
-
       cfg.signals.absoluteEncoderPositionAlwaysOn(true).absoluteEncoderPositionPeriodMs(20);
 
       cfg.absoluteEncoder
