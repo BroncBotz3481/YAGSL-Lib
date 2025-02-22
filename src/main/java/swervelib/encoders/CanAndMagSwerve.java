@@ -18,7 +18,7 @@ public class CanAndMagSwerve extends SwerveAbsoluteEncoder {
    */
   public CanAndMagSwerve(int canid) {
     encoder = new Canandmag(canid);
-    settings = encoder.getSettings();
+    settings = new CanandmagSettings();
   }
 
   @Override
