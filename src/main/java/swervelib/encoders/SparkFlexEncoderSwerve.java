@@ -32,7 +32,6 @@ public class SparkFlexEncoderSwerve extends SwerveAbsoluteEncoder {
     if (motor.getMotor() instanceof SparkFlex) {
       sparkFlex = motor;
       encoder = ((SparkFlex) motor.getMotor()).getAbsoluteEncoder();
-      motor.setAbsoluteEncoder(this);
       motor.configureIntegratedEncoder(conversionFactor);
     } else {
       throw new RuntimeException(
