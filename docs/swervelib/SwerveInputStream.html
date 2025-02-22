@@ -435,9 +435,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>pose</code> - <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;</code> for ease of use.</dd>
-<dd><code>xPIDController</code> - PID controller for the X axis.</dd>
-<dd><code>yPIDController</code> - PID controller for the Y axis.</dd>
-<dd><code>omegaPIDController</code> - PID Controller for rotational axis.</dd>
+<dd><code>xPIDController</code> - PID controller for the X axis, units are m/s.</dd>
+<dd><code>yPIDController</code> - PID controller for the Y axis, units are m/s.</dd>
+<dd><code>omegaPIDController</code> - PID Controller for rotational axis, units are rad/s.</dd>
 <dt>Returns:</dt>
 <dd>self</dd>
 </dl>
@@ -453,8 +453,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>pose</code> - <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;</code> for ease of use.</dd>
-<dd><code>translation</code> - PID controller for the X and Y axis.</dd>
-<dd><code>rotation</code> - PID Controller for rotational axis.</dd>
+<dd><code>translation</code> - PID controller for the X and Y axis, units are m/s.</dd>
+<dd><code>rotation</code> - PID Controller for rotational axis, units are rad/s.</dd>
 <dt>Returns:</dt>
 <dd>self</dd>
 </dl>

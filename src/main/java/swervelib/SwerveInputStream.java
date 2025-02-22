@@ -222,9 +222,9 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
    * Drive to a given pose with the provided {@link ProfiledPIDController}s
    *
    * @param pose {@link Supplier<Pose2d>} for ease of use.
-   * @param xPIDController PID controller for the X axis.
-   * @param yPIDController PID controller for the Y axis.
-   * @param omegaPIDController PID Controller for rotational axis.
+   * @param xPIDController PID controller for the X axis, units are m/s.
+   * @param yPIDController PID controller for the Y axis, units are m/s.
+   * @param omegaPIDController PID Controller for rotational axis, units are rad/s.
    * @return self
    */
   public SwerveInputStream driveToPose(
@@ -243,23 +243,21 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
    * Drive to a given pose with the provided {@link ProfiledPIDController}s
    *
    * @param pose {@link Supplier<Pose2d>} for ease of use.
-   * @param translation PID controller for the X and Y axis.
-   * @param rotation PID Controller for rotational axis.
+   * @param translation PID controller for the X and Y axis, units are m/s.
+   * @param rotation PID Controller for rotational axis, units are rad/s.
    * @return self
    */
   public SwerveInputStream driveToPose(
       Supplier<Pose2d> pose, ProfiledPIDController translation, ProfiledPIDController rotation) {
-    driveToPose = Optional.of(pose);
-    driveToPoseXPIDController = Optional.of(translation);
-    driveToPoseYPIDController =
-        Optional.of(
-            new ProfiledPIDController(
-                translation.getP(),
-                translation.getI(),
-                translation.getD(),
-                translation.getConstraints()));
-    driveToPoseOmegaPIDController = Optional.of(rotation);
-    return this;
+    return driveToPose(
+        pose,
+        translation,
+        new ProfiledPIDController(
+            translation.getP(),
+            translation.getI(),
+            translation.getD(),
+            translation.getConstraints()),
+        rotation);
   }
 
   /**

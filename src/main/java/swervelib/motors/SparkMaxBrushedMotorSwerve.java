@@ -417,6 +417,9 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
   @Override
   public void setInverted(boolean inverted) {
     cfg.inverted(inverted);
+    if (isDriveMotor) {
+      cfg.encoder.inverted(inverted);
+    }
   }
 
   /** Save the configurations from flash to EEPROM. */
