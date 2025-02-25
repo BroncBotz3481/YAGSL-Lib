@@ -205,106 +205,98 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveToPose(java.util.function.Supplier,edu.wpi.first.math.controller.ProfiledPIDController,edu.wpi.first.math.controller.ProfiledPIDController)" class="member-name-link">driveToPose</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;&nbsp;pose,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;translation,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;rotation)</code></div>
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;xPIDController,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;omegaPIDController)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Drive to a given pose with the provided <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>ProfiledPIDController</code></a>s</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveToPose(java.util.function.Supplier,edu.wpi.first.math.controller.ProfiledPIDController,edu.wpi.first.math.controller.ProfiledPIDController,edu.wpi.first.math.controller.ProfiledPIDController)" class="member-name-link">driveToPose</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;&nbsp;pose,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;xPIDController,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;yPIDController,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;omegaPIDController)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveToPoseEnabled(boolean)" class="member-name-link">driveToPoseEnabled</a><wbr>(boolean&nbsp;enabled)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Drive to a given pose with the provided <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>ProfiledPIDController</code></a>s</div>
+<div class="block">Enable driving to the target pose.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveToPoseEnabled(boolean)" class="member-name-link">driveToPoseEnabled</a><wbr>(boolean&nbsp;enabled)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveToPoseEnabled(java.util.function.BooleanSupplier)" class="member-name-link">driveToPoseEnabled</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enable driving to the target pose.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#driveToPoseEnabled(java.util.function.BooleanSupplier)" class="member-name-link">driveToPoseEnabled</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Enable driving to the target pose.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link">ChassisSpeeds</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#headingWhile(boolean)" class="member-name-link">headingWhile</a><wbr>(boolean&nbsp;headingState)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#headingWhile(boolean)" class="member-name-link">headingWhile</a><wbr>(boolean&nbsp;headingState)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the heading enable state.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#headingWhile(java.util.function.BooleanSupplier)" class="member-name-link">headingWhile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;trigger)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#headingWhile(java.util.function.BooleanSupplier)" class="member-name-link">headingWhile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;trigger)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Output <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a> based on heading while the supplier is True.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(swervelib.SwerveDrive,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">of</a><wbr>(<a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;drive,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(swervelib.SwerveDrive,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">of</a><wbr>(<a href="SwerveDrive.html" title="class in swervelib">SwerveDrive</a>&nbsp;drive,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;x,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;y)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Create basic <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> without any rotation components.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#robotRelative(boolean)" class="member-name-link">robotRelative</a><wbr>(boolean&nbsp;enabled)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#robotRelative(java.util.function.BooleanSupplier)" class="member-name-link">robotRelative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#robotRelative(boolean)" class="member-name-link">robotRelative</a><wbr>(boolean&nbsp;enabled)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleRotation(double)" class="member-name-link">scaleRotation</a><wbr>(double&nbsp;scaleRotation)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#robotRelative(java.util.function.BooleanSupplier)" class="member-name-link">robotRelative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the stream to output robot relative <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/ChassisSpeeds.html" title="class or interface in edu.wpi.first.math.kinematics" class="external-link"><code>ChassisSpeeds</code></a></div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleRotation(double)" class="member-name-link">scaleRotation</a><wbr>(double&nbsp;scaleRotation)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Scale the rotation axis input for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> to reduce the range in which they
  operate.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleTranslation(double)" class="member-name-link">scaleTranslation</a><wbr>(double&nbsp;scaleTranslation)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleTranslation(double)" class="member-name-link">scaleTranslation</a><wbr>(double&nbsp;scaleTranslation)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Scale the translation axis for <a href="SwerveInputStream.html" title="class in swervelib"><code>SwerveInputStream</code></a> by a constant scalar value.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationHeadingOffset(boolean)" class="member-name-link">translationHeadingOffset</a><wbr>(boolean&nbsp;enabled)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationHeadingOffset(boolean)" class="member-name-link">translationHeadingOffset</a><wbr>(boolean&nbsp;enabled)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Heading offset enable</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationHeadingOffset(edu.wpi.first.math.geometry.Rotation2d)" class="member-name-link">translationHeadingOffset</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation2d</a>&nbsp;angle)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationHeadingOffset(edu.wpi.first.math.geometry.Rotation2d)" class="member-name-link">translationHeadingOffset</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation2d</a>&nbsp;angle)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the heading offset angle.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationHeadingOffset(java.util.function.BooleanSupplier)" class="member-name-link">translationHeadingOffset</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationHeadingOffset(java.util.function.BooleanSupplier)" class="member-name-link">translationHeadingOffset</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;enabled)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Heading offset enabled boolean supplier.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(boolean)" class="member-name-link">translationOnlyWhile</a><wbr>(boolean&nbsp;translationState)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Enable locking of rotation and only translating, overrides everything.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(java.util.function.BooleanSupplier)" class="member-name-link">translationOnlyWhile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;trigger)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(boolean)" class="member-name-link">translationOnlyWhile</a><wbr>(boolean&nbsp;translationState)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enable locking of rotation and only translating, overrides everything.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withControllerHeadingAxis(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">withControllerHeadingAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingY)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translationOnlyWhile(java.util.function.BooleanSupplier)" class="member-name-link">translationOnlyWhile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;trigger)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Enable locking of rotation and only translating, overrides everything.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withControllerHeadingAxis(java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)" class="member-name-link">withControllerHeadingAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingX,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;headingY)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Add heading axis for Heading based control.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withControllerRotationAxis(java.util.function.DoubleSupplier)" class="member-name-link">withControllerRotationAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withControllerRotationAxis(java.util.function.DoubleSupplier)" class="member-name-link">withControllerRotationAxis</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;rot)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Add a rotation axis for Angular Velocity control</div>
 </div>
 </div>
@@ -425,36 +417,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="driveToPose(java.util.function.Supplier,edu.wpi.first.math.controller.ProfiledPIDController,edu.wpi.first.math.controller.ProfiledPIDController,edu.wpi.first.math.controller.ProfiledPIDController)">
+<section class="detail" id="driveToPose(java.util.function.Supplier,edu.wpi.first.math.controller.ProfiledPIDController,edu.wpi.first.math.controller.ProfiledPIDController)">
 <h3>driveToPose</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">driveToPose</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;&nbsp;pose,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;xPIDController,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;yPIDController,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;omegaPIDController)</span></div>
 <div class="block">Drive to a given pose with the provided <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>ProfiledPIDController</code></a>s</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>pose</code> - <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;</code> for ease of use.</dd>
-<dd><code>xPIDController</code> - PID controller for the X axis, units are m/s.</dd>
-<dd><code>yPIDController</code> - PID controller for the Y axis, units are m/s.</dd>
+<dd><code>xPIDController</code> - PID controller for the translational axis, units are m/s.</dd>
 <dd><code>omegaPIDController</code> - PID Controller for rotational axis, units are rad/s.</dd>
-<dt>Returns:</dt>
-<dd>self</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="driveToPose(java.util.function.Supplier,edu.wpi.first.math.controller.ProfiledPIDController,edu.wpi.first.math.controller.ProfiledPIDController)">
-<h3>driveToPose</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwerveInputStream.html" title="class in swervelib">SwerveInputStream</a></span>&nbsp;<span class="element-name">driveToPose</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;&nbsp;pose,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;translation,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link">ProfiledPIDController</a>&nbsp;rotation)</span></div>
-<div class="block">Drive to a given pose with the provided <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>ProfiledPIDController</code></a>s</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>pose</code> - <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;</code> for ease of use.</dd>
-<dd><code>translation</code> - PID controller for the X and Y axis, units are m/s.</dd>
-<dd><code>rotation</code> - PID Controller for rotational axis, units are rad/s.</dd>
 <dt>Returns:</dt>
 <dd>self</dd>
 </dl>
