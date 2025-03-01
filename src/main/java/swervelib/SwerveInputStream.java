@@ -719,27 +719,6 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
   }
 
   /**
-   * Apply alliance aware translation which flips the {@link Rotation2d} if the robot is on the Blue
-   * alliance.
-   *
-   * @param fieldRelativeRotation Field-relative {@link Rotation2d} to flip.
-   * @return Alliance-oriented {@link Rotation2d}
-   */
-  private Rotation2d applyAllianceAwareRotation(Rotation2d fieldRelativeRotation) {
-    if (allianceRelative.isPresent() && allianceRelative.get().getAsBoolean()) {
-      if (robotRelative.isPresent() && robotRelative.get().getAsBoolean()) {
-        throw new RuntimeException(
-            "Cannot use robot oriented control with Alliance aware movement!");
-      }
-      if (DriverStation.getAlliance().isPresent()
-          && DriverStation.getAlliance().get() == Alliance.Red) {
-        return fieldRelativeRotation.rotateBy(Rotation2d.k180deg);
-      }
-    }
-    return fieldRelativeRotation;
-  }
-
-  /**
    * Adds offset to translation if one is set.
    *
    * @param speeds {@link ChassisSpeeds} to offset
@@ -831,11 +810,10 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
         omegaRadiansPerSecond =
             swerveController.headingCalculate(
                 swerveDrive.getOdometryHeading().getRadians(),
-                applyAllianceAwareRotation(
-                        Rotation2d.fromRadians(
-                            swerveController.getJoystickAngle(
-                                controllerHeadingX.get().getAsDouble(),
-                                controllerHeadingY.get().getAsDouble())))
+                Rotation2d.fromRadians(
+                        swerveController.getJoystickAngle(
+                            controllerHeadingX.get().getAsDouble(),
+                            controllerHeadingY.get().getAsDouble()))
                     .getRadians());
 
         // Prevent rotation if controller heading inputs are not past axisDeadband
