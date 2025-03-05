@@ -20,8 +20,6 @@ public class NavXSwerve extends SwerveIMU {
   private AHRS imu;
   /** Offset for the NavX. */
   private Rotation3d offset = new Rotation3d();
-  /** Inversion for the gyro */
-  private boolean invertedIMU = false;
   /** An {@link Alert} for if there is an error instantiating the NavX. */
   private Alert navXError;
 
@@ -78,7 +76,9 @@ public class NavXSwerve extends SwerveIMU {
    * @param invertIMU invert gyro direction
    */
   public void setInverted(boolean invertIMU) {
-    invertedIMU = invertIMU;
+    while (!imu.isConnected())
+      ;
+    imu.configureVelocity(false, false, false, invertIMU);
     setOffset(getRawRotation3d());
   }
 
@@ -89,7 +89,7 @@ public class NavXSwerve extends SwerveIMU {
    */
   @Override
   public Rotation3d getRawRotation3d() {
-    return invertedIMU ? imu.getRotation3d().unaryMinus() : imu.getRotation3d();
+    return imu.getRotation3d();
   }
 
   /**
