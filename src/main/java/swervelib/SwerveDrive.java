@@ -329,14 +329,18 @@ public class SwerveDrive implements AutoCloseable {
    */
   public void setOdometryPeriod(double period) {
     odometryThread.stop();
-    SimulatedArena.overrideSimulationTimings(Seconds.of(period), 1);
+    if (SwerveDriveTelemetry.isSimulation) {
+      SimulatedArena.overrideSimulationTimings(Seconds.of(period), 1);
+    }
     odometryThread.startPeriodic(period);
   }
 
   /** Stop the odometry thread in favor of manually updating odometry. */
   public void stopOdometryThread() {
     odometryThread.stop();
-    SimulatedArena.overrideSimulationTimings(Seconds.of(TimedRobot.kDefaultPeriod), 5);
+    if (SwerveDriveTelemetry.isSimulation) {
+      SimulatedArena.overrideSimulationTimings(Seconds.of(TimedRobot.kDefaultPeriod), 5);
+    }
   }
 
   /**
