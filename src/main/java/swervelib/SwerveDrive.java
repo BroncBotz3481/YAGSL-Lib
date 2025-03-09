@@ -831,7 +831,8 @@ public class SwerveDrive implements AutoCloseable {
    * calling this method. However, if either gyro angle or module position is reset, this must be
    * called in order for odometry to keep working.
    *
-   * @param pose The pose to set the odometry to
+   * @param pose The pose to set the odometry to. Field relative, blue-origin where 0deg is facing
+   *     towards RED alliance.
    */
   public void resetOdometry(Pose2d pose) {
     odometryLock.lock();
@@ -909,7 +910,8 @@ public class SwerveDrive implements AutoCloseable {
   }
 
   /**
-   * Resets the gyro angle to zero and resets odometry to the same position, but facing toward 0.
+   * Resets the gyro angle to zero and resets odometry to the same position, but facing toward 0
+   * (red alliance station).
    */
   public void zeroGyro() {
     // Resets the real gyro or the angle accumulator, depending on whether the robot is being

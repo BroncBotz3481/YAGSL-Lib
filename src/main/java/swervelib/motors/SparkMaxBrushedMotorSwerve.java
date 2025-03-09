@@ -18,7 +18,6 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -195,10 +194,6 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
    * @param cfgGiven Given {@link SparkMaxConfig} which should have minimal modifications.
    */
   public void updateConfig(SparkMaxConfig cfgGiven) {
-    if (!DriverStation.isDisabled()) {
-      throw new RuntimeException(
-          "Configuration changes cannot be applied while the robot is enabled.");
-    }
     cfg.apply(cfgGiven);
     configureSparkMax(
         () ->
@@ -425,10 +420,6 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
   /** Save the configurations from flash to EEPROM. */
   @Override
   public void burnFlash() {
-    if (!DriverStation.isDisabled()) {
-      DriverStation.reportWarning(
-          "Config updates cannot be applied while the robot is Enabled!", false);
-    }
     configureSparkMax(
         () -> {
           return motor.configure(
