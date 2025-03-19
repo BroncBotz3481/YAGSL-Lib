@@ -235,6 +235,7 @@ public class SwerveInputStream implements Supplier<ChassisSpeeds> {
     omegaPIDController.reset(swerveDrive.getPose().getRotation().getRadians());
     xPIDController.reset(
         swerveDrive.getPose().getTranslation().getDistance(pose.get().getTranslation()));
+    omegaPIDController.enableContinuousInput(-Math.PI, Math.PI);
     xPIDController.setGoal(new State(0, 0));
     driveToPose = Optional.of(pose);
     driveToPoseTranslationPIDController = Optional.of(xPIDController);
