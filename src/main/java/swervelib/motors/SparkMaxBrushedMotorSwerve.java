@@ -35,7 +35,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor {
   /** SparkMAX Instance. */
   private final SparkMax motor;
   /** Absolute encoder attached to the SparkMax (if exists) */
-  public Optional<SwerveAbsoluteEncoder> absoluteEncoder;
+  public Optional<SwerveAbsoluteEncoder> absoluteEncoder = Optional.empty();
   /** Integrated encoder. */
   public Optional<RelativeEncoder> encoder = Optional.empty();
   /** Closed-loop PID controller. */
